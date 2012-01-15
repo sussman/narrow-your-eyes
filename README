@@ -1,29 +1,12 @@
-HOW TO USE THIS TEMPLATE:
-
-1. Replace XXX with the game's name below.  Edit as needed.
-
-2. Rename 'game.inform' to the real game-name.
-
-3. Put everything at the top level under version control.
-
-4. Put only game.inform/Source/story.ni and game.inform/uuid.txt under
-   version control;  nothing else in the game.inform/ folder.
-
-5. Remove these instructions.  Commit to version control.
-
-6. Push the project up to a version control server.
-
-
-*********************************
 
 What is this?
 -------------
 
-This is the source code to "XXX", an interactive fiction
+This is the source code to "Narrow Your Eyes", an interactive fiction
 game (or more commonly known as "text adventure".)
 
-It was originally written by Jack Welch and Ben Collins-Sussman on XXX
-DATE..  The code is now released under the "Creative Commons
+It was originally written by Jack Welch and Ben Collins-Sussman on January 15, 
+2012.  The code is now released under the "Creative Commons
 Attribution - Noncommercial - Share Alike 3.0" license, which you can
 find in the LICENSE file.
 
@@ -33,20 +16,10 @@ download the compiler and IDE as a single package from here:
   http://www.inform7.com
 
 
-[
-When compiled, the source code produces a bytecode file which can be
-executed on any implementation of a Z machine interpreter; we
-typically tell Inform to compile it to a .z8 file.
-]
-
-OR
-
-[
 When compiled, the source code produces a bytecode file which can be
 executed on any implementation of a Glulx virtual machine:
 
   http://www.eblong.com/zarf/glulx/
-]
 
 The game's source code lives in a single file called 'story.ni'.
 
@@ -57,14 +30,14 @@ To build the game:
 
 1. Create a working Inform project from your source tree:
 
-  $ hg clone URL XXX
-  $ cd XXX
-  $ mv XXX.inform/ temp.inform/
+  $ hg clone URL nye
+  $ cd nye
+  $ mv nye.inform/ temp.inform/
 
-  [...launch Inform, create new project in this dir called 'XXX'...]
+  [...launch Inform, create new project in this dir called 'nye'…]
 
-  $ cp temp.inform/Source/story.ni XXX.inform/Source/
-  $ cp temp.inform/uuid.txt XXX.inform/
+  $ cp temp.inform/Source/story.ni nye.inform/Source/
+  $ cp temp.inform/uuid.txt nye.inform/
   $ rm -rf temp.inform/
 
 
@@ -81,7 +54,7 @@ expects to find extension modules:
   - [add instructions for other .i7x extensions here]
 
 
-3. Launch the Inform IDE and load the XXX.inform project.  The
+3. Launch the Inform IDE and load the nye.inform project.  The
 source code should be visible, and it should compile fine.  [Make sure
 that Inform's settings are are set to "Glulx" as the target VM.]
 
@@ -90,7 +63,7 @@ WARNING!!
 
   ** DO NOT do any version control operations (commit, update, push,
       pull) while the Inform IDE is still open.  When the IDE 'saves',
-      it destroys and recreates the whole XXX.inform/ directory, thus
+      it destroys and recreates the whole nye.inform/ directory, thus
       possibly eradicating any changes you may have downloaded.  ***
 
 
