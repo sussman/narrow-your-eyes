@@ -1,0 +1,22 @@
+
+Random shared notes go here.
+
+Also some helpful philosophical reminders about things we've found
+make a game really great:
+
+  * great characters; they are the main story and focus, not the puzzles.
+  * ongoing humor
+  * backstory increasingly revealed
+  * dynamically changing enivronment;  events progress around you
+  * parser is a character, or at least has "attitude"
+  * default responses are changed to match game's geist
+  * rewards you with humor for repeating actions
+  * xyzzy
+  * context-sensitive hints
+  * awesome denoument
+
+If possible, try to write a transcript of the game before you type a
+lick of code;  otherwise the novelty of programming/implementation
+will distract you from doing good creative writing.  Implementation is
+meaningless if you don't have a solid story and characters first.
+
