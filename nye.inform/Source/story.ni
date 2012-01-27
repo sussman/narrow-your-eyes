@@ -1,22 +1,14 @@
 "Narrow Your Eyes" by Ben Collins-Sussman and Jack Welch
 
-The story headline is "Scaffold".
+The story headline is "The 10th track on a tribute to TMBG's Apollo 18".
 The release number is 1.
 The story creation year is 2012.
 The story genre is "Comedy".
 
-The story description is "Something happens, and then there is an aha moment when the player realizes that this is the game that they have been waiting their entire life to play. Indeed, the generations before them were mere stepping stones on the way to this, their ultimate destiny."
-
-The intro-text is a text that varies.  Intro-text is "Before other test prints, this text prints. Hence its name, eh?[paragraph break]".
-
+The story description is "Your wedding rehearsal is hours away, and what do you do but sit on your glasses, crushing them beyond repair? Can you and your stylish cell phone make it through the day unscathed?"
 
 Include Menus by Emily Short.
 Include Plurality by Emily Short.
-
-[
-Include Default Messages by David Fisher.
-Include Adaptive Hints by Eric Eve.
-]
 
 Use full-length room descriptions, american dialect and the serial comma.
 
@@ -39,16 +31,7 @@ Chapter Rules Modifications
 
 [Override inherent prudeness -- allow PC to kiss anything]
 The block kissing rule is not listed in any rulebook.
-The kissing yourself rule is not listed in any rulebook.
-
-Chapter Time
-
-Time-checking is an action applying to nothing.  Understand "time" as time-checking.
-
-Carry out time-checking:
-	[consider adding a check to make sure that a time-telling device is in the room, or that the player would reasonable know the time of day.]
-	say "It is [time of day + 1 minute]."
-		
+The kissing yourself rule is not listed in any rulebook.		
 
 Section Fixing Room Capitalization
 [This particular bit of Inform voodoo came from a timely usenet post by Erik Temple dated Wed, Jan 13, 2010]
@@ -81,13 +64,7 @@ level;
 	say line break; 
 	say run paragraph on with special look spacing. 
 
-Section Award the Escape
 
-[from example 135]
-A room can be scored or unscored.
-
-Carry out going to an unvisited scored room:
-	adjust points by 5.
 
 Chapter Declare Global Variables
 
@@ -95,6 +72,10 @@ The last mentioned thing is a thing that varies.
 
 Muted is a truth state that varies. Muted is false.
 
+geeBars, gpsBars, and powerBars are numbers that vary.
+geeBars is usually zero.
+gpsBars is usually zero.
+powerBars is usually zero.
 
 Chapter Class Definitions
 
@@ -161,17 +142,6 @@ To say (regular verb - some text) in correct agreement:
 	say "[regular verb][if the last mentioned thing is not plural-named]s".
 
 
-Chapter Adjust Points
-
-
-To adjust points by (amount - a number):
-	say "[bracket]Your score has just gone ";
-	if amount is less than zero:
-		say "down";
-	otherwise:
-		say "up";
-	say " by [amount in words][close bracket][paragraph break]";
-	change the score to the score plus amount.
 
 
 Chapter Verbs
@@ -328,18 +298,22 @@ Carry out muting:
 	
 Chapter Initialize
 
-The maximum score is 100. [TODO:  change this later]
 
 When play begins:
-	say the intro-text;
-	change the time of day to 09:00 AM;
-        	change the left hand status line to "[capped room name of the location]";
-        	change right hand status line to "Score: [score]/[maximum score]";
-			try silently switching score notification off;
-			[puts the onus on us to display messags about score updates]
-		[choose row with a left of " P = Previous" in the Table of Deep Menu Status;
-	Need this until parchement is patched to accomodate the default "ENTER"
-	change right entry to "SPACE = Select".]
+	say openingLine1;
+	wait for any key;
+	clear screen;
+	say "[bracket]BLIIINNGGGG[close bracket]";
+	[trigger glk bliiinngggg sound here];
+	wait for any key;
+	clear screen;
+	say openingLine2;
+	change the time of day to 11:00 AM;
+	change gpsBars to 0;
+	change geeBars to 0;
+	change powerBars to 5;
+	change the left hand status line to "[capped room name of the location]";
+	change right hand status line to "Power:[powerBars] 5G:[geeBars] GPS:[gpsBars]";
 
 After printing the banner text:
 	say "Type [quotation mark]help[quotation mark] for instructions.[paragraph break]";
@@ -500,11 +474,7 @@ title	subtable	description	toggle
 "General Pointers"		--		"Here are some practical pointers for this game:[paragraph break]* Try everything you can think of. If it doesn't work, try rephrasing.[line break]* Reread text to make sure you didn't miss anything.[line break]* Leave no stone unturned; conversely, don't obsess.[line break]* This game follows many, but not all, of the conventions of computer adventure games. If something makes sense to you, try it even though it [quotation mark]shouldn't work.[quotation mark][line break]* As far as we know, it is not possible to get trapped in an unwinnable situation. By winning, we mean you can complete the game. Achieving good outcomes is another matter.[line break]* If you are really stuck, put the game aside and let it percolate through your subconscious for a while. Come back fresh.[line break]* If you are really really stuck, con someone else into playing the game and watch them. You might get some ideas.[line break]* If you are really and truly stuck, you could search the Internet and see if someone has already posted a similar question/answer. Since you could be playing this years after it was released, maybe we've even created a FAQ about it. If you do post a question or answer, preface your message with a spoiler warning and skip down a bunch of lines before writing anything too revealing."		--
 "Spelling"	--		"This game is written in the US-English dialect."	--
 
-[ Add the following, if hints or walkthrough are implemented:
 
-[line break]* Within the game, you can type [quotation mark]hint[quotation mark] to bring up some context-specific hints. To minimize spoilers, the hints are revealed one at a time, and go from general to specific.[line break]* If all else fails, the game includes a walkthrough (type [quotation mark]walkthrough[quotation mark]), which shows one possible way through the game. The walkthrough is nothing but spoilers, so please consider this a last resort, or something to look at after you've played through the game.
-
-]
 
 Table of Bugs
 title	subtable	description	toggle
@@ -531,12 +501,16 @@ title	subtable	description	toggle
 
 
 
-Section Hints
-[Note: In thinking about hint activation, remember that the set up of the extension is such that once a hint is deactivated, the activation rule will not reset it. The table row is deleted, so one doesn't need to worry about recurrent activation of a hint. Still, it's good to make the activation rules specific.]
-
 Chapter Default Messages
 
-Section Boxted Text
+Section Boxed Text
+
+To say openingLine1:
+	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]";
+	
+to say openingLine2:
+	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark][paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]";
+ 
 
 Book 2  Scenes
  
