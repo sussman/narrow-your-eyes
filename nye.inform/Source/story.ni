@@ -293,6 +293,25 @@ Carry out xyzzying:
 
 Chapter General Insteads
 
+Section Examining
+
+Instead of examining:
+	if Eye Exam is happening:
+		if the noun is: 
+			-- eye chart:
+				say "todo: eye chart description";
+			-- Amelia: 
+				continue the action;
+			-- button:
+				continue the action;
+			-- otherwise:
+				say "Sitting in the deliberate darkness of an ophthalmologist's office, you can't see anything but the eye chart."
+
+Section Inventory
+
+Instead of taking inventory: [purloined from Persephone, example 62 in I7 documentation]
+	say "You're carrying [a list of things carried by the player]."
+
 Chapter Not Ready For Prime Time - Not for release
 
 Section Muting
@@ -401,6 +420,8 @@ Chapter The Ophthalmology Office
 
 The Ophthalmology Office is a room. The description of the Ophthalmology office is "office description".
 
+The eye chart is a fardrop. It is in the Ophthalmology Office.
+
 Chapter Wisconsin Avenue
 
 Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "wisconsin avenue description."
@@ -431,7 +452,16 @@ The player is Marv Spindle. Marv is a man in the Ophthalmology Office.
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia[stopping]."
+
+The button is part of Amelia. The description of the button is "[one of]
+The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
+
+Instead of giving Amelia to someone:
+	say "No, you swore up and down to Mr. Boulot that you wouldn[apostrophe]t let the prototype phone out of your hands for even a moment."
+	
+Instead of throwing, dropping, or attacking Amelia:
+	say "[hyperbole]";
 
 Chapter Igneous
 
@@ -444,7 +474,6 @@ Doctor Giblets is a man in the Ophthalmology Office.
 Chapter Trevor
 
 Trevor is a man in the Ophthalmology Office. Understand "Trev" as Trevor.
-
 
 Book 4 Tables and Boxed Text
 
@@ -533,12 +562,6 @@ Table of License
 title	subtable	description	toggle
 "Creative Commons License"	--	"This game is released under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States license. As a consequence, you are free to copy, distribute, display, and use this work and to make derivative works under the following conditions:[paragraph break]Attribution. You must attribute such works mentioning our names [story author] and the title of this work [quotation mark][story title].[quotation mark] This can appear in the title, with the Release Information, or in the acknowledgements section of a menu system. Attribution does not suggest my endorsement of derivative works or their authors.[paragraph break]Noncommercial. You may not use this work for commercial purposes.[paragraph break]Share Alike. If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.[paragraph break]If you would like a copy of the Inform7 source for this game, please let us know by email: nye@red-bean.com"	--
 
-
-
-
-
-
-
 Chapter Default Messages
 
 Section Boxed Text
@@ -551,6 +574,12 @@ To say openingLine2:
 	
 To say aboutText:
 	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
+	
+to say geeWhiz:
+	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amelia's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
+	
+to say hyperbole:
+	say "[one of]Not in a million years. It[apostrophe]s a next generation mangoFone! The sweetheart hardware of the technopaparrazi, the envy of all gageteers, the economic cornerstone of US economy two point oh, the technological underpinning of Stephenson[apostrophe]s Diamond Age, the catalyst of Kurzweil[apostrophe]s Singularity, the final step to the realization of Teilhard[apostrophe]s Omega Point.[paragraph break]To say that it is a mere phone, is to say that infinity is a number somewhat larger than six[or]You would rather walk blindly into heavy traffic[or]Better that you should throw yourself in front of a bus[or]You would rather face a firing squad of evil robots with lasers for arms[or]You[apostrophe]d really rather not[stopping].[paragraph break]"
  
 
 Book 2  Scenes
@@ -558,6 +587,8 @@ Book 2  Scenes
 Chapter Eye Exam
 
 Eye Exam is a scene. Eye Exam begins when play begins. 
+
+After examining Amelia for the first time during Eye Exam, say "[geeWhiz]".
 
 Chapter Exterior
 
