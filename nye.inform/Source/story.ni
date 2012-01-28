@@ -19,6 +19,22 @@ Release along with cover art.
 
 Book 1 Mechanics
 
+Chapter Bars
+
+To say (bars - a number) graphically:
+	let i be a number;
+	change i to MAXBARS minus bars;
+	while (i is greater than zero):
+		say ".[no line break]";
+		decrease i by one;
+	change i to bars;
+	while (i is greater than zero):
+		say "|";
+		decrease i by one.
+
+	
+	
+
 Chapter No More Get All
 [A more efficient no more get all, suggested by Radical Al:]
 
@@ -83,6 +99,7 @@ Updates is a text that varies. Updates is "".
 
 hasturCount is a number that varies. hasturCount is zero.
 
+MAXBARS is a number that varies. MAXBARS is five.
 
 Chapter Class Definitions
 
@@ -320,6 +337,7 @@ Section Taking Inventory
 
 Instead of taking inventory: [purloined from Persephone, example 62 in I7 documentation]
 	say "You're carrying [a list of things carried by the player]."
+
 	
 Chapter General Afters
 
@@ -352,7 +370,7 @@ When play begins:
 	wait for any key;
 	say openingLine2;
 	change the time of day to 11:00 AM;
-	change the left hand status line to "Power:[powerBars] 5G:[geeBars] GPS:[gpsBars] [Notifications] [Updates]";
+	change the left hand status line to "Power [powerBars graphically] 5G [geeBars graphically] GPS [gpsBars graphically] [Notifications] [Updates]";
 	change the right hand status line to "".
 
 After printing the banner text:
@@ -524,13 +542,13 @@ The player is Marv Spindle. Marv is a man in the Ophthalmology Office.
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia[stopping]."
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]."
 
 The button is part of Amelia. The description of the button is "[one of]
 The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
 
 Instead of giving Amelia to someone:
-	say "No, you swore up and down to Mr. Boulot that you wouldn[apostrophe]t let the prototype phone out of your hands for even a moment."
+	say "No, you swore up and down to Amy's dad, Istvan Boulot, that you wouldn[apostrophe]t let the prototype phone out of your hands for even a moment."
 	
 Instead of throwing, dropping, or attacking Amelia:
 	say "[hyperbole]";
@@ -540,6 +558,10 @@ Instead of eating Amelia:
 	
 Instead of pushing the button:
 	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark]Say a voice command in the form of [bold type]Amelia, command[roman type].[quotation mark][one of][paragraph break][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][or][stopping][paragraph break]".
+	
+Instead of asking Amelia about something, say "[lackOfPhoneReply]".
+Instead of telling Amelia about something, say "[lackOfPhoneReply]".
+Instead of showing something to Amelia, say "[lackOfPhoneReply]".
 
 Chapter Igneous
 
@@ -557,7 +579,47 @@ Book 4 Tables and Boxed Text
 
 Section Tables
 
-Chapter Menus
+Understand "phone" or "mangofone" or "mangophone" or "Amelia" or "cell" or "cellular" or "cell phone" or "cellular phone" as "[phone]".
+
+Understand "me" or "myself" or "Marv" or "Marvin" or "Marvin Spindle" or "Marv Spindle" or "Spindle" as "[moi]".
+
+Table of OphthoAsking
+topic		ophtho-text
+"[phone]"		"[askPhone]"
+"mangoIndustries"		"[askMangoIndustries]"
+"music"		"[askMusic]"
+"girls"		"[askGirls]"
+"bike" or "bicycle"		"[askBike]"
+"Istvan" or "Istvan Boulot"		"[askIstvan]"
+"Amy" or "fiancee" or "fiancée"		"[askAmy]"
+"Doctor" or "Giblets" or "Doctor Giblets"		"[askGiblets]"
+"Trevor" or "Trev" or "Trevor Giblets"		"[askTrevor]"
+"eye chart" or "chart"		"[askEyeChart]"
+"refractor"		"[askRefractor]"
+"atropine"		"[askAtropine]"
+"rehearsal" 		"[askRehearsal]"
+"office" or "ophthalmology office"		"[askOffice]"
+"ophthalmology"		"[askOphthalmology]"
+		
+
+Table of OphthoTelling
+topic		ophtho-text
+"[phone]"		"[tellPhone]"
+"Amy" or "Amy Boulot"		"[tellAmy]"
+"hawaii"		"[tellHawaii]"
+"astronomy" or "nasa"		"[tellAstronomy]"
+"observatory" or "Mauna Kea"		"[tellObservatory]"
+"Istvan" or "Istvan Boulot"		"[tellIstvan]"
+"glasses"		"[tellGlasses]"
+"rehearsal"		"[tellRehearsal]"
+"engagement"		"[tellEngagement]"
+"wedding" or "wedding plans" or "plans"		"[tellPlans]"
+"[moi]"		"[tellMoi]"
+
+
+
+		
+
 
 Chapter Menus
 
@@ -654,10 +716,13 @@ To say aboutText:
 	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
 	
 To say geeWhiz:
-	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amelia's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
+	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amy's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
 	
 To say hyperbole:
 	say "[one of]Not in a million years. It[apostrophe]s a next generation mangoFone! The sweetheart hardware of the technopaparrazi, the envy of all gageteers, the economic cornerstone of US economy two point oh, the technological underpinning of Stephenson[apostrophe]s Diamond Age, the catalyst of Kurzweil[apostrophe]s Singularity, the final step to the realization of Teilhard[apostrophe]s Omega Point.[paragraph break]To say that it is a mere phone, is to say that infinity is a number somewhat larger than six[or]You would rather walk blindly into heavy traffic[or]Better that you should throw yourself in front of a bus[or]You would rather face a firing squad of evil robots with lasers for arms[or]You[apostrophe]d really rather not[stopping].[paragraph break]"
+	
+To say lackOfPhoneReply:
+	say "The phone does not respond."
 	
 To say hasturedText:
 	say "Consumed by ancient evil."
@@ -668,6 +733,86 @@ To say wonText:
 To say laseredText:
 	say "laseredText."
  
+To say askPhone:
+	say "[if the noun is Doctor Giblets]The mangoFONE is my brother Istvan[apostrophe]s crowning technological achievement -- an artificially intelligent phone. It does everything except the dishes! Best thing mangoIndustries ever produced.[otherwise]They are amazing, uncle Istvan certainly has a flair for design. I would love to get my hands on one![end if][paragraph break]".
+	
+To say askMangoIndustries:
+	say "askMangoIndustries".
+	
+To say askMusic:
+	say "askMusic".
+	
+To say askGirls:
+	say "aboutGirls".
+	
+To say askBike:
+	say "askBike".
+	
+To say askIstvan:
+	say "askIstvan".
+	
+To say askAmy:
+	say "askAmy".
+	
+To say askGiblets:
+	say "askGiblets".
+	
+To say askTrevor:
+	say "askTrevor".
+	
+To say askEyeChart:
+	say "askEyeChart".
+	
+To say askRefractor:
+	say "askRefractor".
+	
+To say askAtropine:
+	say "askAtropine".
+	
+To say askRehearsal:
+	say "askRehearsal".
+	
+To say askOffice:
+	say "askOffice".
+	
+To say askOphthalmology:
+	say "askOphthalmology".
+	
+To say tellPhone:
+	say "tellPhone".
+	
+To say tellAmy:
+	say "tellAmy".
+	
+To say tellHawaii:
+	say "tellHawaii".
+	
+To say tellAstronomy:
+	say "tellAstronomy".
+	
+To say tellObservatory:
+	say "tellObservatory".
+	
+To say tellIstvan:
+	say "tellIstvan"
+	
+To say tellGlasses:
+	say "tellGlasses".
+	
+To say tellRehearsal:
+	say "tellRehearsal".
+	
+To say tellEngagement:
+	say "tellEngagement".
+	
+To say tellPlans:
+	say "tellPlans".
+	
+To say tellMoi:
+	say "tellMoi".
+
+	
+
 
 Book 2  Scenes
  
@@ -677,6 +822,18 @@ Eye Exam is a scene. Eye Exam begins when play begins.
 
 After examining Amelia for the first time during Eye Exam, say "[geeWhiz]".
 
+Instead of asking someone (called the reporter) about a topic listed in the Table of OphthoAsking during the Eye Exam:
+	if the reporter is Amelia:
+		continue the action;
+	otherwise:
+		say "[ophtho-text entry]".
+		
+Instead of telling someone (called the auditor) about a topic listed in the Table of OphthoTelling during the Eye Exam:
+	if the auditor is Amelia:
+		continue the action;
+	otherwise:
+		say "[ophtho-text entry]".
+	
 Chapter Exterior
 
 Exterior is a scene. Exterior begins when the player is in Wisconsin Avenue. Exterior ends when the player is in the Factory.
