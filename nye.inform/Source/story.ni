@@ -75,7 +75,14 @@ Muted is a truth state that varies. Muted is false.
 geeBars, gpsBars, and powerBars are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
-powerBars is usually zero.
+powerBars is usually zero. powerBars is five.
+
+Notifications is a text that varies. Notifications is "".
+
+Updates is a text that varies. Updates is "".
+
+hasturCount is a number that varies. hasturCount is zero.
+
 
 Chapter Class Definitions
 
@@ -92,13 +99,15 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are lost and won.  
+Conclusion is a kind of value. The conclusions are hastured, lasered, and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
 A latch is a kind of thing. A latch can be openable. A latch can be open. A latch can be lockable. A latch can be locked. A latch is usually openable, lockable, closed and locked.
 
 Mortality is a kind of value. The mortalities are alive and dead. Persons have mortality. A person is usually alive.
+
+Focus is a kind of value. The focuses are unfocused, diplopic, blurry, and sharp.
 
 Chapter General Routines
 		
@@ -298,8 +307,8 @@ Section Examining
 Instead of examining:
 	if Eye Exam is happening:
 		if the noun is: 
-			-- eye chart:
-				say "todo: eye chart description";
+			-- refractor:
+				say "It is so close to your face that you can't focus on it. The best you can do is look through it at the eye chart.";
 			-- Amelia: 
 				continue the action;
 			-- button:
@@ -307,10 +316,16 @@ Instead of examining:
 			-- otherwise:
 				say "Sitting in the deliberate darkness of an ophthalmologist's office, you can't see anything but the eye chart."
 
-Section Inventory
+Section Taking Inventory
 
 Instead of taking inventory: [purloined from Persephone, example 62 in I7 documentation]
 	say "You're carrying [a list of things carried by the player]."
+	
+Chapter General Afters
+
+Section Undoing
+
+
 
 Chapter Not Ready For Prime Time - Not for release
 
@@ -337,11 +352,8 @@ When play begins:
 	wait for any key;
 	say openingLine2;
 	change the time of day to 11:00 AM;
-	change gpsBars to 0;
-	change geeBars to 0;
-	change powerBars to 5;
-	change the left hand status line to "[capped room name of the location]";
-	change right hand status line to "Power:[powerBars] 5G:[geeBars] GPS:[gpsBars]";
+	change the left hand status line to "Power:[powerBars] 5G:[geeBars] GPS:[gpsBars] [Notifications] [Updates]";
+	change the right hand status line to "".
 
 After printing the banner text:
 	say "Type [quotation mark]help[quotation mark] for instructions.[paragraph break]";
@@ -420,7 +432,67 @@ Chapter The Ophthalmology Office
 
 The Ophthalmology Office is a room. The description of the Ophthalmology office is "office description".
 
-The eye chart is a fardrop. It is in the Ophthalmology Office.
+The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart.
+
+Instead of reading or examining the first line:
+	say "[one of]You have no trouble reading the large letters of the first line: [quotation mark]hv[quotation mark]. Oh wait, that's a greek nu. Ah, some optics humor[or]It says [quotation mark]h nu[quotation mark]. You wonder how many of Doctor Giblets patients are famliar with the Planck constant[or]There[apostrophe]s no challenge in reading such large letters[stopping]."
+	
+Instead of reading or examining the second line:
+	say "[one of]You read the second line, but Trevor replies, [quotation mark]One more line down, Marv. That's the second line[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets[or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor[or][quotation mark]Right[quotation mark][stopping]."
+	
+Instead of reading or examining the third line:
+	say "[thirdLineDescription]".
+	
+Instead of reading or examining the fourth line:
+	if the focus of the refractor is not sharp:
+		say "[one of]There is no way you can read tiny letters in the fourth line without being able to make out the ones in the line above it[or]You wonder if anyone can read the nearly microscopic letters in the fourth line. They seem to squirm and wiggle even as you try your best to resolve them[or]You are not able to. Yet[stopping].";
+	otherwise:
+		if the hasturCount is:
+			-- 0: say "[quotation mark]It looks,[quotation mark] you say, [quotation mark]like the fourth line is some kind of name… HASTUR?[quotation mark][paragraph break][quotation mark]Oh you don't need to read that line, Marv. We've got all we need.[quotation mark] Trevor sounds somewhat nervous.";
+				increase the hasturCount by one;
+			-- 1: say "[quotation mark]Hmm, that fourth line is an odd word.[quotation mark] You can[apostrophe]t help but think that you[apostrophe]ve heard that one before somewhere. Idly, you pronounce it: [quotation mark]HASTUR.[quotation mark][paragraph break][quotation mark]Marv, really. We need to get on with the rest of the exam. You can stop reading that line[quotation mark], advises Doctor Giblets.[paragraph break]Trevor sounds frankly panicked now, though, as he implores [quotation mark]For the love of man, stop reading![quotation mark][paragraph break]";
+				increase the hasturCount by one;
+			-- 2: say "Once more, you say [quotation mark]HASTUR[quotation mark].[paragraph break]Doctor Giblets lunges at the refractor, trying to pry it from your eyes, while Trevor tears the eye chart from the wall.[paragraph break]But it is too late. You have awoken the Unspeakable One and given birth to a nightmare horror that even now is reaching out of an incompressible fold in space, uncoiling its tentacles, and snapping its hideous beak in anticipation of what is to come.[paragraph break]You narrow your eyes as the grotesque horror engulfs you and gibbers madly onward towards an unsuspecting world.";
+			   now the endgame is hastured;
+				end the story.
+		
+	
+
+To say thirdLineDescription:
+	if the focus of the refractor is:
+		-- unfocused:
+			say "[quotation mark]I can't even tell if they are letters. Does it start with an X or maybe a K?[quotation mark].[paragraph break][quotation mark]No problem,[quotation mark] replies Doctor Giblets. [quotation mark]My initial guess was probably off. Let[apostrophe]s try kicking in a few negative diopters.[quotation mark] The refractor vibrates and makes a rachety sound as he twists some dials.[paragraph break]";
+			now the refractor is  blurry;
+		-- blurry:
+			say "Okay, I can tell that it definitely starts with some X[apostrophe]s and I think it ends with an L.[quotation mark][paragraph break][quotation mark]No fair guessing. When we get it right, it should be entirely in focus.[quotation mark] Doctor Giblets makes some more adjustments.";
+			now the refractor is diplopic;
+		-- diplopic:
+			say "The letters are now crisply focused, and you confidently read them off, [quotation mark]XXMMVVEEHHGGAAQQLL.[quotation mark][paragraph break][quotation mark]Ah, great. But you're seeing double. Trevor -- adjust the convergence.[quotation mark][paragraph break]You hear some clicking and the letters slide together.";
+			now the refractor is sharp;
+		-- sharp:
+			say "[one of]You read off the letters again, [quotation mark]XMVEHGAQL[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]".	
+			
+Instead of doing something with the fifth line:
+	say "The eye chart has only four lines (three if you are a computer scientist)."
+
+Instead of reading or examining the eye chart, try searching the refractor.
+
+The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused.
+
+Instead of pulling or pushing the refractor, say "It is heavier than it looks. Maybe Trevor clamped it into position so it would stay in proper alignment."
+
+Instead of taking the refractor, say "You can[apostrophe]t -- it[apostrophe]s huge[one of] Besides, what would Amy say when you show up at the rehearsal lugging along a couple tons of ophthalmology equipment[or][stopping]."
+
+Instead of searching the refractor:
+	if the focus of the refractor is:
+		-- unfocused:
+			say "You strain as you peer through the refractor, but you can[apostrophe]t even tell where one letter ends and another begins. [paragraph break][quotation mark]It[apostrophe]s a total blur,[quotation mark] you reply.[paragraph break]Doctor Giblets makes an adjustment.[paragraph break][quotation mark]How about now?[quotation mark][paragraph break]The lines of the letters sharpen up. [quotation mark]A bit better,[quotation mark] you reply.";
+			  now the refractor is blurry;
+		-- blurry:
+			say "Well, Marv,[quotation mark] asks Doctor Giblets, [quotation mark]what do you see? Just read the third line back to me.[quotation mark].";
+		-- sharp:
+			say "sharp".
+
 
 Chapter Wisconsin Avenue
 
@@ -462,6 +534,12 @@ Instead of giving Amelia to someone:
 	
 Instead of throwing, dropping, or attacking Amelia:
 	say "[hyperbole]";
+	
+Instead of eating Amelia:
+	say "It[apostrophe]s not that kind of mango."
+	
+Instead of pushing the button:
+	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark]Say a voice command in the form of [bold type]Amelia, command[roman type].[quotation mark][one of][paragraph break][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][or][stopping][paragraph break]".
 
 Chapter Igneous
 
@@ -575,11 +653,20 @@ To say openingLine2:
 To say aboutText:
 	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
 	
-to say geeWhiz:
+To say geeWhiz:
 	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amelia's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
 	
-to say hyperbole:
+To say hyperbole:
 	say "[one of]Not in a million years. It[apostrophe]s a next generation mangoFone! The sweetheart hardware of the technopaparrazi, the envy of all gageteers, the economic cornerstone of US economy two point oh, the technological underpinning of Stephenson[apostrophe]s Diamond Age, the catalyst of Kurzweil[apostrophe]s Singularity, the final step to the realization of Teilhard[apostrophe]s Omega Point.[paragraph break]To say that it is a mere phone, is to say that infinity is a number somewhat larger than six[or]You would rather walk blindly into heavy traffic[or]Better that you should throw yourself in front of a bus[or]You would rather face a firing squad of evil robots with lasers for arms[or]You[apostrophe]d really rather not[stopping].[paragraph break]"
+	
+To say hasturedText:
+	say "Consumed by ancient evil."
+	
+To say wonText:
+	say "WonText."
+	
+To say laseredText:
+	say "laseredText."
  
 
 Book 2  Scenes
@@ -603,11 +690,20 @@ Chapter Finale
 The Finale is a scene. Finale begins when Cunning Plan ends.
 
 Rule for printing the player's obituary:
+	say "*** YOU HAVE ";
+	if the endgame is won:
+		say "WON ***";
+	otherwise:
+		say "DIED ***";
+	say paragraph break;
 	if the endgame is:
-		-- lost:
-			say "*** LOST ***";
 		-- won:
-			say "*** WON ***".
+			say "[wonText]";
+		-- hastured:
+			say "[hasturedText]";
+		-- lasered:
+			say "[laseredText]".	
+		
 						
 Rule for amusing a victorious player:
 say "Amusing stuff".
