@@ -14,8 +14,8 @@ Use full-length room descriptions, american dialect and the serial comma.
 
 [
 Use memory economy.
-
-Release along with cover art.]
+Release along with cover art.
+]
 
 Book 1 Mechanics
 
@@ -98,6 +98,8 @@ Endgame is a conclusion that varies. The endgame is usually won.
 
 A latch is a kind of thing. A latch can be openable. A latch can be open. A latch can be lockable. A latch can be locked. A latch is usually openable, lockable, closed and locked.
 
+Mortality is a kind of value. The mortalities are alive and dead. Persons have mortality. A person is usually alive.
+
 Chapter General Routines
 		
 [borrowed from example I7 documentation, example 424 Odins:]
@@ -145,6 +147,15 @@ To say (regular verb - some text) in correct agreement:
 
 
 Chapter Verbs
+
+Section Abouting
+
+Understand "about" as abouting.
+
+Abouting is an action out of world.
+
+Carry out abouting:
+	say aboutText.
 
 Section Answering
 
@@ -302,11 +313,9 @@ Chapter Initialize
 When play begins:
 	say openingLine1;
 	wait for any key;
-	clear screen;
 	say "[bracket]BLIIINNGGGG[close bracket]";
 	[trigger glk bliiinngggg sound here];
 	wait for any key;
-	clear screen;
 	say openingLine2;
 	change the time of day to 11:00 AM;
 	change gpsBars to 0;
@@ -358,7 +367,7 @@ The stage business rules is a rulebook.
 The endgame block stage business rule is listed first in the stage business rules.
 
 This is the endgame block stage business rule:
-	if the denouement is happening or the finale is happening:
+	if the finale is happening:
 		the rule succeeds.
 
 The block all stage business rule is listed after the endgame block stage business rule in the stage business rules. 
@@ -388,9 +397,25 @@ times-used		verbage
 
 Book 2 Places
 
-Chapter The Lab
+Chapter The Ophthalmology Office
 
-The lab is a room. "A big white room." The capped room name of the lab is "Laboratory". The player is in the lab.
+The Ophthalmology Office is a room. The description of the Ophthalmology office is "office description".
+
+Chapter Wisconsin Avenue
+
+Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "wisconsin avenue description."
+
+Chapter M Street
+
+M Street is a room. It is south of Wisconsin Avenue. The description of M Street is "m street description".
+
+Chapter Factory
+
+The Factory is a room. The description of the Factory is "factory description". 
+
+Chapter CornerNW
+
+CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "cornernw description".
 
 Chapter Limbo
 
@@ -400,13 +425,26 @@ Limbo is a room.
 
 Book 3 Characters
 
-Chapter Protagonist
+Chapter Marv
 
-Chapter Sidekick
+The player is Marv Spindle. Marv is a man in the Ophthalmology Office. 
 
-Chapter Antagonist
+Chapter mangoFONE
 
-Chapter Extras
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia.
+
+Chapter Igneous
+
+Professor Igneous is a man in the Factory. He is alive.
+
+Chapter Giblets
+
+Doctor Giblets is a man in the Ophthalmology Office. 
+
+Chapter Trevor
+
+Trevor is a man in the Ophthalmology Office. Understand "Trev" as Trevor.
+
 
 Book 4 Tables and Boxed Text
 
@@ -416,7 +454,7 @@ Chapter Menus
 
 Chapter Menus
 
-Understand "help" or "about" or "info" as asking for help.
+Understand "help" or "info" as asking for help.
 
 Asking for help is an action out of world.
 
@@ -506,26 +544,32 @@ Chapter Default Messages
 Section Boxed Text
 
 To say openingLine1:
-	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]";
+	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
 	
-to say openingLine2:
-	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark][paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]";
+To say openingLine2:
+	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark][paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]"
+	
+To say aboutText:
+	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
  
 
 Book 2  Scenes
  
-Chapter Introduction
+Chapter Eye Exam
 
-Introduction is a scene. Introduction begins when play begins. 
+Eye Exam is a scene. Eye Exam begins when play begins. 
 
-Chapter Denouement
+Chapter Exterior
 
-[using enclosure here because climbing the stool means that Rick is not in the jail cell]
-Denouement is a scene. 
+Exterior is a scene. Exterior begins when the player is in Wisconsin Avenue. Exterior ends when the player is in the Factory.
+
+Chapter Cunning Plan
+
+Cunning Plan is a scene. Cunning Plan begins when the player is in the Factory. Cunning Plan ends when Professor Igneous is dead.
 	
 Chapter Finale
 
-The Finale is a scene. 
+The Finale is a scene. Finale begins when Cunning Plan ends.
 
 Rule for printing the player's obituary:
 	if the endgame is:
