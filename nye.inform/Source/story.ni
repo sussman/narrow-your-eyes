@@ -32,9 +32,6 @@ To say (bars - a number) graphically:
 		say "|";
 		decrease i by one.
 
-	
-	
-
 Chapter No More Get All
 [A more efficient no more get all, suggested by Radical Al:]
 
@@ -187,6 +184,10 @@ Section Answering
 
 Section Asking
 
+Before asking the player about something:
+	say "[noSelfTalking]";
+	stop the action.
+	
 Section Listening
 [Listen is implemented through insteads. Override this general instead rule with more specific ones as needed]
 
@@ -198,7 +199,8 @@ Instead of listening:
 	
 Table of Ambient Noise
 times-used		verbage
-0			"You hear yourself breathing"
+0		"You hear yourself breathing"
+1		"You hear nothing special"
 
 
 Section Looking Under
@@ -229,16 +231,12 @@ Carry out reading:
 	say the inscription of the noun;
 	say paragraph break.
 	
-[
+
 Section Showing
 
-Rule for reaching inside a room when the current action is showing:
-	allow access.
-	
-Instead of showing something (called the thingie) to a person (called the observer):
-	if the observer is:
-		-- bob:
-]
+Before showing something (called the item) to the player:
+	try examining the item;
+	the rule fails.
 
 Section Smelling
 	
@@ -265,6 +263,9 @@ To say lame talk:
 	
 Section Telling
 
+Before telling the player about something:
+	say "[noSelfTalking]";
+	stop the action.
 	
 Section Touch
 [ Jan 15, 2012  Jack comment - I commented out this section, as it would not compile, possibly due to changes in Inform, extensions, etc.
@@ -316,6 +317,68 @@ Carry out xyzzying:
 	otherwise:
 		say "Absolutely nothing happens.".
 		
+
+Chapter Phone Actions
+
+[The general form of these is:
+	
+- persuasion rule for Amelia: she'll do it. Make it a success.
+- definition of the action and its synonyms
+- check rules: make sure nothing else does these phone-specific actions
+- carry out rule: what happens when Amelia does the action.]
+
+Section Word of Power Amelia
+
+Section Ameliaing
+
+Ameliaing is an action applying to nothing.
+
+Understand "amelia" as ameliaing.
+
+Persuasion rule for asking Amelia to try ameliaing:
+	say "[quotation mark]Reflexive commands are just plain rude,[quotation mark] complains your phone.";
+	persuasion fails.
+	
+Carry out Ameliaing:
+	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [VoiceCommandPrompt][quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]".
+
+Section Commanding
+
+Commanding is an action applying to nothing.
+
+Understand "command" as commanding.
+
+Persuasion rule for asking Amelia to try commanding:
+	persuasion succeeds.
+
+Carry out commanding:
+	say "[errorPrompt]".
+	
+Instead of Amelia commanding:
+	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
+	the rule succeeds.
+	
+
+Section Tutoring
+
+Tutoring is an action applying to nothing.
+
+Understand "tutor" as tutoring.
+
+Persuasion rule for asking Amelia to try tutoring:
+	persuasion succeeds.
+
+Carry out tutoring:
+	say "[errorPrompt]".
+	
+Instead of Amelia tutoring:
+	say "Tutortext here";
+	the rule succeeds.
+
+
+
+
+	
 
 Chapter General Insteads
 
@@ -538,14 +601,13 @@ Book 3 Characters
 
 Chapter Marv
 
-The player is Marv Spindle. Marv is a man in the Ophthalmology Office. 
+The player is Marv Spindle. Marv is a man in the Ophthalmology Office. Marv can be dilated. Marv is not dilated.
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]."
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor.
 
-The button is part of Amelia. The description of the button is "[one of]
-The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
+The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
 
 Instead of giving Amelia to someone:
 	say "No, you swore up and down to Amy's dad, Istvan Boulot, that you wouldn[apostrophe]t let the prototype phone out of your hands for even a moment."
@@ -557,7 +619,7 @@ Instead of eating Amelia:
 	say "It[apostrophe]s not that kind of mango."
 	
 Instead of pushing the button:
-	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark]Say a voice command in the form of [bold type]Amelia, command[roman type].[quotation mark][one of][paragraph break][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][or][stopping][paragraph break]".
+	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark][voiceCommandPrompt][quotation mark][one of][paragraph break][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][or][stopping][paragraph break]".
 	
 Instead of asking Amelia about something, say "[lackOfPhoneReply]".
 Instead of telling Amelia about something, say "[lackOfPhoneReply]".
@@ -600,6 +662,7 @@ topic		ophtho-text
 "rehearsal" 		"[askRehearsal]"
 "office" or "ophthalmology office"		"[askOffice]"
 "ophthalmology"		"[askOphthalmology]"
+"himself"		"[askHimselfOphtho]"
 		
 
 Table of OphthoTelling
@@ -724,6 +787,18 @@ To say hyperbole:
 To say lackOfPhoneReply:
 	say "The phone does not respond."
 	
+To say voiceCommandPrompt:
+	say "Say a voice command in the form of [bold type]Amelia, command[roman type].[no line break]".
+	
+To say errorPrompt:
+	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]".
+	
+To say tutorPrompt:
+	say "For a list of available functions, you can say [bold type]Amelia, tutor[roman type].[no line break]".
+	
+To say noSelfTalking:
+	say "You have never talked to yourself, and you are not about to start now."
+	
 To say hasturedText:
 	say "Consumed by ancient evil."
 	
@@ -734,31 +809,38 @@ To say laseredText:
 	say "laseredText."
  
 To say askPhone:
-	say "[if the noun is Doctor Giblets]The mangoFONE is my brother Istvan[apostrophe]s crowning technological achievement -- an artificially intelligent phone. It does everything except the dishes! Best thing mangoIndustries ever produced.[otherwise]They are amazing, uncle Istvan certainly has a flair for design. I would love to get my hands on one![end if][paragraph break]".
+	if the noun is Doctor Giblets:
+		say "[quotation mark]The mangoFONE is my brother Istvan[apostrophe]s crowning technological achievement -- an artificially intelligent phone. It does everything except the dishes! Best thing mangoIndustries ever produced.[quotation mark][paragraph break]";
+	otherwise:
+		if Amelia is not shown-to-Trevor:
+			say "[geeWhiz]";
+			now Amelia is shown-to-Trevor;
+		otherwise:
+			say "[quotation mark]They are amazing, uncle Istvan certainly has a flair for design. I would love to get my hands on one![quotation mark][paragraph break]".
 	
 To say askMangoIndustries:
-	say "askMangoIndustries".
+	say "[quotation mark][if the noun is Giblets]Istvan[apostrophe]s company makes mostly consumer electronics, but not just cheap throwaway gizmos! Nope, every product is built to military spec. It[apostrophe]s just how he does business[otherwise]Dad[apostrophe]s the one to ask about that sort of stuff. Mostly, I[apostrophe]m into music, girls and my bike[end if].[quotation mark][paragraph break]".
 	
 To say askMusic:
-	say "askMusic".
+	say "[quotation mark][if the noun is Giblets]I prefer They Might Be Giants[otherwise][one of]Perry Como[or]Mario Lanza[or]Nat King Cole[or]Tony Bennett[or]Elvis Presley[or]Chuck Berry[or]Jerry Lee Lewis[or]Johnny Cash[or]Ella Fitzgerald[or]Dean Martin[or]Doris Day[or]Frank Sinatra[or]Connie Francis[or]Jim Reeves[or]Cliff Richard[at random] sure is [one of]swell[or]spiff[or]snazzy[or]the cat's potatoes[at random][end if].[quotation mark][paragraph break]".
 	
 To say askGirls:
-	say "aboutGirls".
+	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I want to date[or]I might have a crush on[or]I want to go to the movies with[at random] [one of]Jenny[or]Jeanine[or]Julie[or]Jeanette[or]Jeanie[or]Janine[or]Jo-Jo[or]JoAnne[or]Julianne[or]Janet[at random]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
 	
 To say askBike:
-	say "askBike".
+	say "[quotation mark][if the noun is Giblets]Trevor sure has put a lot of work into that bike of his -- it can practically drive itself[otherwise]It[apostrophe]s the latest -- three speeds! I painted it myself: bright red. You must have seen it when you came in[end if].[quotation mark][paragraph break]".
 	
 To say askIstvan:
-	say "askIstvan".
+	say "[quotation mark][if the noun is Giblets]He was a strange child, but I'm quite proud of my brother and his company, mangoIndustries[otherwise]I[apostrophe]m sure he[apostrophe] will make a great father-in-law. The always say what a tough boss he is, but Amy says that her dad is only like that at work[end if].[quotation mark][paragraph break]".
 	
 To say askAmy:
 	say "askAmy".
 	
-To say askGiblets:
-	say "askGiblets".
-	
 To say askTrevor:
-	say "askTrevor".
+	say "[if the noun is Giblets]Doctor Giblets says, [quotation mark]He[apostrophe]s a good kid, and big help around the office. Who knows, some day, maybe he[apostrophe]ll grow up to be an ophthomologist like his dad![quotation mark] Somewhat at odds with his chipper disposition, he leans in and whispers in a more serious tone, [quotation mark]Though...he has been acting odd lately. Not quite himself[otherwise]I[apostrophe]m the youngest of Amy[apostrophe]s cousins. I haven[apostrophe]t seen her much since she moved to Arecibo, and then out to Hawaii. I help dad out in the Ophtho office over the summers[end if].[quotation mark][paragraph break]".
+	
+To say askGiblets:
+	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]”.
 	
 To say askEyeChart:
 	say "askEyeChart".
@@ -777,6 +859,12 @@ To say askOffice:
 	
 To say askOphthalmology:
 	say "askOphthalmology".
+	
+To say askHimselfOphtho:
+	if the noun is Doctor Giblets:
+		say askGiblets;
+	otherwise:
+		say askTrevor.
 	
 To say tellPhone:
 	say "tellPhone".
@@ -810,6 +898,8 @@ To say tellPlans:
 	
 To say tellMoi:
 	say "tellMoi".
+	
+
 
 	
 
@@ -820,8 +910,9 @@ Chapter Eye Exam
 
 Eye Exam is a scene. Eye Exam begins when play begins. 
 
-After examining Amelia for the first time during Eye Exam, say "[geeWhiz]".
-
+After examining Amelia for the first time during Eye Exam:
+	try showing Amelia to Trevor.
+		
 Instead of asking someone (called the reporter) about a topic listed in the Table of OphthoAsking during the Eye Exam:
 	if the reporter is Amelia:
 		continue the action;
@@ -833,6 +924,11 @@ Instead of telling someone (called the auditor) about a topic listed in the Tabl
 		continue the action;
 	otherwise:
 		say "[ophtho-text entry]".
+		
+Instead of showing Amelia to someone (called the spectator) during Eye Exam:
+	try asking the spectator about "amelia".
+	
+	
 	
 Chapter Exterior
 
