@@ -870,6 +870,28 @@ Book 4 Tables and Boxed Text
 
 Section Tables
 
+Table of PreChart
+round		text
+3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark][paragraph break]"
+4		"Pop? Who says pop?"
+5		"Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break][quotation mark]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark][paragraph break]"
+
+Table of EyeChartEncouragement
+text
+"temp"
+
+
+Table of PostChart
+text
+"[quotation mark]Marv, we should get on with this exam. Trevor -- hand me those drops, would you? Thanks.[quotation mark][paragraph break][quotation mark]Doctor Giblets leans your head back, [quotation mark]I[apostrophe]m going to put these drops in your eyes as part of the exam. Try not to blink.[quotation mark] You try, but you blink anyhow and feel the coolness on your eye lashes.[paragraph break][quotation mark]This will dilate your pupils, so I can do a better exam of your retina.[quotation mark][paragraph break]"
+"All you can see is a bright white light first in your left eye, and then in your right eye.  Doctor Giblets continues his exam."
+"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell, dinner bell, dinner bell ring![quotation mark]"
+"[quotation mark]Much better, much better,[quotation mark] notes Doctor Giblets, who seems satisfied with the way the eye exam is going."
+"[quotation mark]See that, Trevor?[quotation mark][paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark]you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark]reassures Doctor Giblets. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark][paragraph break]"
+"[quotation mark]Try not to move, Marv.[quotation mark] Doctor Giblets does something that half-tickles and half-irritates your eyes. You try to hold still, but your eyes tear.[paragraph break]"
+"[quotation mark]BRINK! BRINK![quotation mark] The phone rings with the tone that indicates a text message has just arrived from your fiancée.[paragraph break]"
+
+
 Understand "phone" or "mangofone" or "mangophone" or "Amelia" or "cell" or "cellular" or "cell phone" or "cellular phone" as "[phone]".
 
 Understand "me" or "myself" or "Marv" or "Marvin" or "Marvin Spindle" or "Marv Spindle" or "Spindle" as "[moi]".
@@ -1032,7 +1054,7 @@ To say openingLine1:
 	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
 	
 To say openingLine2:
-	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark][paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]"
+	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark] asks Dr. Giblets.[paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]"
 	
 To say aboutText:
 	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
@@ -1162,9 +1184,9 @@ To say tellMoi:
 	say "tellMoi".
 	
 
-
+To say OMGLate:
+	say "The words roll back and forth in your mind as you puzzle out the transcript: starts at won... At one? The rehearsal starts at one? You think back to the day you very methodically entered the appointment, back at the Mauna Kea Observatory -- OMG!!! The time zones. You forgot the time zone adjustment! The rehearsal is right after lunch![paragraph break]You bound out of the exam chair, slamming your head some expensive equipment, but you don[apostrophe]t care. In your panicked state, all you can picture in the darkness is the near future scene in which you offer lame excuses to your former fiancée, while friends and family look on with pity and disgust. You race for the door, screaming, [quotation mark]I[apostrophe]’ve got to get to the rehearsal right now or my life is not worth living![quotation mark][paragraph break]Doctor Giblets yells after you, [quotation mark]Hey! Those drops are still in your eyes -- don[apostrophe]t try to operate any motor vehicle for at least an hour![quotation mark][paragraph break]Trevor adds, [quotation mark]Take my bike, it[apostrophe]s right outside! I[apostrophe]ll bring your glasses as soon as they are made![quotation mark]"
 	
-
 
 Book 2  Scenes
  
