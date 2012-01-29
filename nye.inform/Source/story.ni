@@ -46,39 +46,6 @@ Chapter Rules Modifications
 The block kissing rule is not listed in any rulebook.
 The kissing yourself rule is not listed in any rulebook.		
 
-Section Fixing Room Capitalization
-[This particular bit of Inform voodoo came from a timely usenet post by Erik Temple dated Wed, Jan 13, 2010]
-
-A room has some text called the capped room name. The capped room name property translates into I6 as "cap_short_name". 
-
-The new room description heading rule is listed instead of the room description heading rule in the carry out looking rules. 
-
-Carry out looking (this is the new room description heading rule): 
-	say bold type; 
-	if the visibility level count is 0: 
-		begin the printing the name of a dark room activity; 
-		if handling the printing the name of a dark room activity, 
-			issue miscellaneous library message number 71; 
-		end the printing the name of a dark room activity; 
-	otherwise if the visibility ceiling is the location: 
-		say "[capped room name of the visibility ceiling]";
-	otherwise: 
-		if the visibility ceiling is a room: 
-			say "[The capped room name of the visibility ceiling]"; 
-		otherwise: 
-			say "[The visibility ceiling]"; 
-	say roman type; 
-	let intermediate level be the visibility-holder of the actor; 
-	repeat with intermediate level count running from 2 to the visibility   
-level count: 
-		issue library message looking action number 8 for the intermediate level; 
-		let the intermediate level be the visibility-holder of the intermediate   
-level; 
-	say line break; 
-	say run paragraph on with special look spacing. 
-
-
-
 Chapter Declare Global Variables
 
 The last mentioned thing is a thing that varies.
@@ -836,7 +803,7 @@ Instead of searching the refractor:
 			say "You strain as you peer through the refractor, but you can[apostrophe]t even tell where one letter ends and another begins. [paragraph break][quotation mark]It[apostrophe]s a total blur,[quotation mark] you reply.[paragraph break]Doctor Giblets makes an adjustment.[paragraph break][quotation mark]How about now?[quotation mark][paragraph break]The lines of the letters sharpen up. [quotation mark]A bit better,[quotation mark] you reply.";
 			  now the refractor is blurry;
 		-- blurry:
-			say "Well, Marv,[quotation mark] asks Doctor Giblets, [quotation mark]what do you see? Just read the third line back to me.[quotation mark].";
+			say "Well, Marv,[quotation mark] asks Doctor Giblets, [quotation mark]what do you see? Just read the third line back to me.[quotation mark][paragraph break]";
 		-- diplopic:
 			say "It looks more in focus, but not quite right.";
 		-- sharp:
@@ -847,13 +814,20 @@ Instead of going somewhere during the Eye Exam:
 
 Chapter Wisconsin Avenue
 
-Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "Somewhere on Wisconsin Avenue, just above Reservoir Road."
+Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "[one of]It is a bright, unpleasantly sunny day. So sunny, in fact, that everything more than a few feet away is a complete blur. You narrow your eyes and recognize the outside of Doctor Giblet’s office[or]Somewhere on Wisconsin Avenue, just above Reservoir Road[stopping]."
 
-The bike is a portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.
+The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy. 
 
-Chapter M Street
+Instead of climbing the bike:
+	try entering the bike.
 
-M Street is a room. It is south of Wisconsin Avenue. The description of M Street is "m street description".
+
+Chapter Nonlocations
+
+The Russian Embassy is a room. The Russian Embassy is north of Wisconsin Avenue. 
+M Street is a room. M Street is south of Wisconsin Avenue. 
+Dupont Circle is a room. Dupont Circle is east of Wisconsin Avenue. 
+The Hilltop is a room. The Hilltop is west of Wisconsin Avenue.
 
 Chapter Factory
 
@@ -926,7 +900,7 @@ turnNumber	canned-text
 4	"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell, dinner bell, dinner bell ring![quotation mark]"
 6	"[quotation mark]BRINK! BRINK![quotation mark] The phone rings with the tone that indicates a text message has just arrived from your fiancée."
 7	"[quotation mark]Much better, much better,[quotation mark] notes Doctor Giblets, who seems satisfied with the way the eye exam is going."
-9	"[quotation mark]See that, Trevor?[quotation mark][paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark] you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark] reassures Doctor Giblets with a nervous laugh. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark]"
+9	"[quotation mark]See that, Trevor?[quotation mark] Doctor Giblets pulls Trevor over to where he is sitting, performing the examination.[paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark] you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark] reassures Doctor Giblets with a nervous laugh. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark]"
 12	"[quotation mark]Try not to move, Marv.[quotation mark] Doctor Giblets does something that half-tickles and half-irritates your eyes. You try to hold still, but your eyes tear."
 
 
@@ -1292,9 +1266,28 @@ Chapter Exterior
 
 Exterior is a scene. Exterior begins when Eye Exam ends. Exterior ends when the player is in the Factory.
 
-Instead of going in a direction:
-	if the bike encloses the player:
-		say "You have been in Washington, DC for NASA meetings before, but you don’t know your way around."
+Instead of going when Exterior is happening:
+	if the location is Wisconsin Avenue:
+		if the bike does not enclose the player:
+			say "[one of ]It[apostrophe]s a long way downtown, walking would take too long[or]There must be a faster way then schlepping down there on foot[or]You are desperate enough to try anything to get to the wedding rehearsal, but walking (even running, you suppose) wouldn't get you there in time[or]Walking is out of the question. The clock is ticking[stopping].";
+			the rule succeeds;
+		otherwise:[on the bike]
+			if gpsBars is zero:[but amelia's travel function not activated]
+				say "[one of]You have been in Washington, DC for NASA meetings before, but you don’t know your way around[or]You know your way back and forth to National, Dulles and BWI airports from the metro system, but above ground, you are hopelessly lost[or]All of these roads look the same to you. Blurry[or]You are not sure which way to go[stopping].";
+	otherwise: [on the corner, just outside the hotel]
+		say "[one of]You are not very familiar with this area, but even on a Sunday, there is a lot of traffic, and you are not keen to get run over again[or]You had enough trouble finding this place, you are reluctant to wander off blindly. Literally[or]You are right outside the hotel. Amy is pretty understanding, but you would not want to explain that you nearly died getting here and then, just for the heck of it, decided to go sight-seeing in the neighborhood, while she waited nervously inside entertaining all of your guests at the wedding rehearsal[or]The only place you are interested in going right now is into the hotel[stopping]." 
+	
+			
+Every turn during Exterior:
+	if gpsBars is greater than zero:
+		if location is Wisconsin Avenue:
+			say "Your mangoFONE dutifully computes your location and directs you as you get on the bike and ride down the block. You can’t quite make out the traffic signs, but you are thankful that at least the traffic lights are green as you whiz through intersections along Wisconsin Avenue. You turn left on to M Street and weave between the slow moving lines of cars, full of confidence that your phone will get you to the rehearsal on time.[paragraph break]All things considered, you are not terribly surprised when the number 30 bus clips you, crushing the bike under its massive wheels. You roll clear, tucking your body protectively around the mangoFONE, which soldiers on unphased, [quotation mark]Rerouting...rerouting…[quotation mark][paragraph break][quotation mark]Zambozay![quotation mark] Shouts the bus driver, as he clambers down to assist you. [quotation mark]I nearly flattened you like a monomolecular sheet of graphene! Sorry about the bike. I guess the least I can do is offer you a ride[quotation mark].  You are so happy to have a ride to the rehearsal that you ignore your torn clothing, roadburned right leg, and dislocated left shoulder. Moments later, the bus drops you off right outside a hotel at 4th and I Street.";
+			move the player to CornerNW;
+		otherwise:
+			say "Turquoise lines criss-cross the surface of your mangoFONE, which announces, [quotation mark]You have reached your destination, deactivating navigation.[quotation mark][paragraph break]";
+			change gpsBars to zero.
+			
+
 
 Chapter Cunning Plan
 
