@@ -8,7 +8,7 @@ The story genre is "Comedy".
 The story description is "Your wedding rehearsal is hours away, and what do you do but sit on your glasses, crushing them beyond repair? Can you and your stylish cell phone survive the day?"
 
 Include Menus by Emily Short.
-Include Plurality by Emily Short.
+Include Plurality by Emily Short. 
 
 Use full-length room descriptions, american dialect and the serial comma.
 
@@ -86,10 +86,11 @@ The last mentioned thing is a thing that varies.
 Muted is a truth state that varies. Muted is false.
 
 MAXBARS is a number that varies. MAXBARS is five.
-geeBars, gpsBars, and powerBars are numbers that vary.
+geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
+phoneCharge is usually zero. phoneCharge is 100.
 
 Notifications is a text that varies. Notifications is "".
 
@@ -100,9 +101,6 @@ hasturCount is a number that varies. hasturCount is zero.
 lastDialed is an indexed text that varies. lastDialed is "".
 
 cowLicense is a number that varies. cowLicense is four.
-
-
-
 
 
 Chapter Class Definitions
@@ -201,8 +199,6 @@ Section Listening
 Instead of listening:
 	pick a phrase from the Table of Ambient Noise;
 	say ".";
-	[to avoid conflicting with some other sound-generating random event]
-	change the block stage business flag to true.
 	
 Table of Ambient Noise
 times-used		verbage
@@ -685,7 +681,7 @@ Chapter Not Ready For Prime Time - Not for release
 
 Section Muting
 
-[To reduce the clutter during debugging; suppreses stage business]
+[To reduce the clutter during debugging]
 Muting is an action out of world. Understand "mute" as muting.
 
 Carry out muting:
@@ -710,7 +706,7 @@ When play begins:
 	change the right hand status line to "".
 
 After printing the banner text:
-	say "Type [quotation mark]help[quotation mark] for instructions.[paragraph break]";
+	say "Type [quotation mark]help[quotation mark] for instructions.";
 
 	
 Chapter Every Turn
@@ -718,12 +714,7 @@ Chapter Every Turn
 Every turn:
 	[avoid penalizing time for non-actions, a nuance]
 	if the current action is taking inventory or the current action is looking:
-		change the time of day to 1 minute before the time of day;
-		[stage business]
-	if muted is false:
-		Consider the stage business rules;
-	[unblock stage business for next turn]
-	Change the block stage business flag to false.
+		change the time of day to 1 minute before the time of day.
 		
 Section Phrase Picker
 [To select a canned phrase from a table, choosing randomly amongst the less frequently said phrases. Tables need at least two entries.]
@@ -741,50 +732,15 @@ To pick a phrase from (source - a table-name):
 	increase the times-used entry by one;
 	say "[verbage entry]".
 
-Section Stage Business
-
-[Set the block stage business flag to suppress stage business at the end of that turn sequence -- helpful for scenes with long dialogue and descriptions. To make something not come up until at least one cycle through, change the times-used to "1" in the table]
-
-The block stage business flag is a truth state that varies. The block stage business flag is false.
-
-The stage business rules is a rulebook.
-
-The endgame block stage business rule is listed first in the stage business rules.
-
-This is the endgame block stage business rule:
-	if the finale is happening:
-		the rule succeeds.
-
-The block all stage business rule is listed after the endgame block stage business rule in the stage business rules. 
-
-This is the block all stage business rule:
-	if the block stage business flag is true:
-		the rule succeeds.
-		
-The block stage business while-looking rule is listed after the block all stage business rule in the stage business rules.
-
-This is the block stage business while-looking rule:
-	if the current action is looking:
-		the rule succeeds.
-	
-The Environmental stage business rule is listed last in the stage business rules.
-
-This is the Environmental stage business rule:
-	if a random chance of 2 in 20 succeeds:
-		pick a phrase from the Table of Environmental Stage Business;
-		say ".";
-		the rule succeeds.
-		
-Table of Environmental Stage Business
-times-used		verbage
-0			"A fly buzzes past your ear and lands on the ceiling"
-0			"A faint breeze wafts by"
 
 Book 2 Places
 
 Chapter The Ophthalmology Office
 
-The Ophthalmology Office is a room. The description of the Ophthalmology office is "office description".
+The Ophthalmology Office is a room. The description of the Ophthalmology office is "The room is pitch dark, except for some light coming through a device, which you are told is called a refractor, just in front of your nose."
+
+Before printing a locale paragraph about something (called the item) in the Ophthalmology Office: 
+	now the item is mentioned.
 
 The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart.
 
@@ -835,7 +791,7 @@ The refractor is a furniture in the Ophthalmology Office. The refractor has focu
 
 Instead of pulling or pushing the refractor, say "It is heavier than it looks. Maybe Trevor clamped it into position so it would stay in proper alignment."
 
-Instead of taking the refractor, say "You can[apostrophe]t -- it[apostrophe]s huge[one of] Besides, what would Amy say when you show up at the rehearsal lugging along a couple tons of ophthalmology equipment[or][stopping]."
+Instead of taking the refractor, say "You can[apostrophe]t -- it[apostrophe]s huge.[no line break][one of] Besides, what would Amy say when you show up at the wedding rehearsal lugging along a couple tons of ophthalmology equipment?[or][stopping][paragraph break]"
 
 Instead of searching the refractor:
 	if the focus of the refractor is:
