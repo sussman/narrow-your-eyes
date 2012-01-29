@@ -92,15 +92,18 @@ gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
 phoneCharge is usually zero. phoneCharge is 100.
 
-Notifications is a text that varies. Notifications is "".
-
-Updates is a text that varies. Updates is "".
-
 hasturCount is a number that varies. hasturCount is zero.
 
 lastDialed is an indexed text that varies. lastDialed is "".
 
 cowLicense is a number that varies. cowLicense is four.
+
+turnCounter is a number that varies. turnCounter is zero.
+
+currentMessage is a text that varies. currentMessage is "".
+messageAlert is a truth state that varies. messageAlert is false.
+
+updated is a truth state that varies. updated is true.
 
 
 Chapter Class Definitions
@@ -273,12 +276,13 @@ Before telling the player about something:
 Section Touch
 [ Jan 15, 2012  Jack comment - I commented out this section, as it would not compile, possibly due to changes in Inform, extensions, etc.
 
-Touching is implemented through an after rule, which is nice in terms of making use of existing relationships about whether something is touchable or not. If an item has a texture attribute, this rule makes use of it.
+Touching is implemented through an after rule, which is nice in terms of making use of existing relationships about whether something is touchable or not. If an item has a texture attribute, this rule makes use of it.]
 
 Instead of touching a fardrop:
 	say "[The noun] is too far away to touch."
 
 After touching something (called the item):
+	let T be indexed text;
 	if the item is the player:
 		say "You feel normal. Nothing out of the ordinary, really.";
 	otherwise:
@@ -300,9 +304,6 @@ To say smooth:
 	
 To say metallic:
 	say "[smooth] and metallic". 
-	
-
-]
 
 Section Using
 
@@ -457,6 +458,31 @@ Instead of Amelia flashing:
 	the rule succeeds.
 	
 Section Messaging
+
+Messaging is an action applying to nothing.
+
+Understand "message" as messaging.
+
+Persuasion rule for asking Amelia to try messaging:
+	persuasion succeeds.
+
+Carry out messaging:
+	say "[errorPrompt]".
+
+Instead of Amelia messaging:
+	say "The phone twinkles pink and light green, then announces, [quotation mark][run paragraph on]";
+	if currentMessage is "":
+		say "No messages have been received. Sorry, Marv.";
+	otherwise:
+		if messageAlert is true:
+			say "Now playing new transcribed voice message:";
+			now messageAlert is false;
+			now Amelia is message-played;
+		otherwise:
+			say "Now playing most recently received transcribed voice message:[run paragraph on]";
+		say "[quotation mark][paragraph break][currentMessage][paragraph break]";
+	the rule succeeds.
+
 	
 Section Phoning
 
@@ -702,7 +728,7 @@ When play begins:
 	wait for any key;
 	say openingLine2;
 	change the time of day to 11:00 AM;
-	change the left hand status line to "Power [powerBars graphically] 5G [geeBars graphically] GPS [gpsBars graphically] [Notifications] [Updates]";
+	change the left hand status line to "Power [powerBars graphically] 5G [geeBars graphically] GPS [gpsBars graphically] [Messages] [Updates]";
 	change the right hand status line to "".
 
 After printing the banner text:
@@ -711,10 +737,12 @@ After printing the banner text:
 	
 Chapter Every Turn
 
+[note: fires after the turn-specific every turn rule]
 Every turn:
 	[avoid penalizing time for non-actions, a nuance]
 	if the current action is taking inventory or the current action is looking:
-		change the time of day to 1 minute before the time of day.
+		change the time of day to 1 minute before the time of day;
+	increase turnCounter by one;
 		
 Section Phrase Picker
 [To select a canned phrase from a table, choosing randomly amongst the less frequently said phrases. Tables need at least two entries.]
@@ -742,7 +770,7 @@ The Ophthalmology Office is a room. The description of the Ophthalmology office 
 Before printing a locale paragraph about something (called the item) in the Ophthalmology Office: 
 	now the item is mentioned.
 
-The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart.
+The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart. The eye chart can be read. The eye chart is not read.
 
 Instead of reading or examining the first line:
 	say "[one of]You have no trouble reading the large letters of the first line: [quotation mark]hv[quotation mark]. Oh wait, that's a greek nu. Ah, some optics humor[or]It says [quotation mark]h nu[quotation mark]. You wonder how many of Doctor Giblets patients are famliar with the Planck constant[or]There[apostrophe]s no challenge in reading such large letters[stopping]."
@@ -766,7 +794,6 @@ Instead of reading or examining the fourth line:
 			   now the endgame is hastured;
 				end the story.
 		
-	
 
 To say thirdLineDescription:
 	if the focus of the refractor is:
@@ -780,7 +807,9 @@ To say thirdLineDescription:
 			say "The letters are now crisply focused, and you confidently read them off, [quotation mark]XXMMVVEEHHGGAAQQLL.[quotation mark][paragraph break][quotation mark]Ah, great. But you're seeing double. Trevor -- adjust the convergence.[quotation mark][paragraph break]You hear some clicking and the letters slide together.";
 			now the refractor is sharp;
 		-- sharp:
-			say "[one of]You read off the letters again, [quotation mark]XMVEHGAQL[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]".	
+			say "[one of]You read off the letters again, [quotation mark]XMVEHGAQL[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]";
+			now the eye chart is read;
+			now the turnCounter is zero.
 			
 Instead of doing something with the fifth line:
 	say "The eye chart has only four lines (three if you are a computer scientist)."
@@ -800,8 +829,13 @@ Instead of searching the refractor:
 			  now the refractor is blurry;
 		-- blurry:
 			say "Well, Marv,[quotation mark] asks Doctor Giblets, [quotation mark]what do you see? Just read the third line back to me.[quotation mark].";
+		-- diplopic:
+			say "It looks more in focus, but not quite right.";
 		-- sharp:
 			say "sharp".
+			
+Instead of going somewhere during the Eye Exam:
+	say "Wedding jitters almost got to you, but then you sit back down to finish the eye exam."
 
 
 Chapter Wisconsin Avenue
@@ -834,7 +868,7 @@ The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. M
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. 
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played.
 
 The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
 
@@ -871,25 +905,21 @@ Book 4 Tables and Boxed Text
 Section Tables
 
 Table of PreChart
-round		text
-3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark][paragraph break]"
+turnNumber		canned-text
+3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
 4		"Pop? Who says pop?"
-5		"Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break][quotation mark]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark][paragraph break]"
-
-Table of EyeChartEncouragement
-text
-"temp"
-
+6		"Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
 
 Table of PostChart
-text
-"[quotation mark]Marv, we should get on with this exam. Trevor -- hand me those drops, would you? Thanks.[quotation mark][paragraph break][quotation mark]Doctor Giblets leans your head back, [quotation mark]I[apostrophe]m going to put these drops in your eyes as part of the exam. Try not to blink.[quotation mark] You try, but you blink anyhow and feel the coolness on your eye lashes.[paragraph break][quotation mark]This will dilate your pupils, so I can do a better exam of your retina.[quotation mark][paragraph break]"
-"All you can see is a bright white light first in your left eye, and then in your right eye.  Doctor Giblets continues his exam."
-"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell, dinner bell, dinner bell ring![quotation mark]"
-"[quotation mark]Much better, much better,[quotation mark] notes Doctor Giblets, who seems satisfied with the way the eye exam is going."
-"[quotation mark]See that, Trevor?[quotation mark][paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark]you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark]reassures Doctor Giblets. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark][paragraph break]"
-"[quotation mark]Try not to move, Marv.[quotation mark] Doctor Giblets does something that half-tickles and half-irritates your eyes. You try to hold still, but your eyes tear.[paragraph break]"
-"[quotation mark]BRINK! BRINK![quotation mark] The phone rings with the tone that indicates a text message has just arrived from your fiancée.[paragraph break]"
+turnNumber	canned-text
+1	 "[quotation mark]Marv, we should get on with this exam. Trevor -- hand me those drops, would you? Thanks.[quotation mark][paragraph break][quotation mark]Doctor Giblets leans your head back, [quotation mark]I[apostrophe]m going to put these drops in your eyes as part of the exam. Try not to blink.[quotation mark] You try, but you blink anyhow and feel the coolness on your eye lashes.[paragraph break][quotation mark]This will dilate your pupils, so I can do a better exam of your retina.[quotation mark]"
+3	"All you can see is a bright white light first in your left eye, and then in your right eye.  Doctor Giblets continues his exam."
+4	"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell, dinner bell, dinner bell ring![quotation mark]"
+6	"[quotation mark]BRINK! BRINK![quotation mark] The phone rings with the tone that indicates a text message has just arrived from your fiancée."
+7	"[quotation mark]Much better, much better,[quotation mark] notes Doctor Giblets, who seems satisfied with the way the eye exam is going."
+9	"[quotation mark]See that, Trevor?[quotation mark][paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark] you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark]reassures Doctor Giblets. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark]"
+12	"[quotation mark]Try not to move, Marv.[quotation mark] Doctor Giblets does something that half-tickles and half-irritates your eyes. You try to hold still, but your eyes tear."
+
 
 
 Understand "phone" or "mangofone" or "mangophone" or "Amelia" or "cell" or "cellular" or "cell phone" or "cellular phone" as "[phone]".
@@ -1046,9 +1076,16 @@ Table of License
 title	subtable	description	toggle
 "Creative Commons License"	--	"This game is released under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States license. As a consequence, you are free to copy, distribute, display, and use this work and to make derivative works under the following conditions:[paragraph break]Attribution. You must attribute such works mentioning our names [story author] and the title of this work [quotation mark][story title].[quotation mark] This can appear in the title, with the Release Information, or in the acknowledgements section of a menu system. Attribution does not suggest my endorsement of derivative works or their authors.[paragraph break]Noncommercial. You may not use this work for commercial purposes.[paragraph break]Share Alike. If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.[paragraph break]If you would like a copy of the Inform7 source for this game, please let us know by email: nye@red-bean.com"	--
 
-Chapter Default Messages
+Chapter Boxed Text`
 
-Section Boxed Text
+To say Messages:
+	if messageAlert is true:
+		say "MESSAGE".
+		
+To say Updates:
+	if updated is true:
+		say "UPDATED";
+		now updated is false.
 
 To say openingLine1:
 	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
@@ -1108,8 +1145,11 @@ To say askMangoIndustries:
 To say askMusic:
 	say "[quotation mark][if the noun is Giblets]I prefer They Might Be Giants[otherwise][one of]Perry Como[or]Mario Lanza[or]Nat King Cole[or]Tony Bennett[or]Elvis Presley[or]Chuck Berry[or]Jerry Lee Lewis[or]Johnny Cash[or]Ella Fitzgerald[or]Dean Martin[or]Doris Day[or]Frank Sinatra[or]Connie Francis[or]Jim Reeves[or]Cliff Richard[at random] sure is [one of]swell[or]spiff[or]snazzy[or]the cat's potatoes[at random][end if].[quotation mark][paragraph break]".
 	
+To say randomGirl:
+	say "[one of]Jenny[or]Jeanine[or]Julie[or]Jeanette[or]Jeanie[or]Janine[or]Jo-Jo[or]JoAnne[or]Julianne[or]Janet[at random]".
+	
 To say askGirls:
-	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I want to date[or]I might have a crush on[or]I want to go to the movies with[at random] [one of]Jenny[or]Jeanine[or]Julie[or]Jeanette[or]Jeanie[or]Janine[or]Jo-Jo[or]JoAnne[or]Julianne[or]Janet[at random]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
+	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I want to date[or]I might have a crush on[or]I want to go to the movies with[at random] [randomGirl]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
 	
 To say askBike:
 	say "[quotation mark][if the noun is Giblets]Trevor sure has put a lot of work into that bike of his -- it can practically drive itself[otherwise]It[apostrophe]s the latest -- three speeds! I painted it myself: bright red. You must have seen it when you came in[end if].[quotation mark][paragraph break]".
@@ -1183,12 +1223,14 @@ To say tellPlans:
 To say tellMoi:
 	say "tellMoi".
 	
+To say youAreLate:
+	 say "[quotation mark]High muff, this is your finance day, a meal ear. Everyone is here and we[apostrophe]re just setting down two and early lunch. Don[apostrophe]t fork head the reversal starts at won. Hope you don[apostrophe]t half a lard time finding the oat hell. Love yew![quotation mark]"
 
 To say OMGLate:
 	say "The words roll back and forth in your mind as you puzzle out the transcript: starts at won... At one? The rehearsal starts at one? You think back to the day you very methodically entered the appointment, back at the Mauna Kea Observatory -- OMG!!! The time zones. You forgot the time zone adjustment! The rehearsal is right after lunch![paragraph break]You bound out of the exam chair, slamming your head some expensive equipment, but you don[apostrophe]t care. In your panicked state, all you can picture in the darkness is the near future scene in which you offer lame excuses to your former fiancée, while friends and family look on with pity and disgust. You race for the door, screaming, [quotation mark]I[apostrophe]’ve got to get to the rehearsal right now or my life is not worth living![quotation mark][paragraph break]Doctor Giblets yells after you, [quotation mark]Hey! Those drops are still in your eyes -- don[apostrophe]t try to operate any motor vehicle for at least an hour![quotation mark][paragraph break]Trevor adds, [quotation mark]Take my bike, it[apostrophe]s right outside! I[apostrophe]ll bring your glasses as soon as they are made![quotation mark]"
 	
 
-Book 2  Scenes
+Book 5  Scenes
  
 Chapter Eye Exam
 
@@ -1212,7 +1254,31 @@ Instead of telling someone (called the auditor) about a topic listed in the Tabl
 Instead of showing Amelia to someone (called the spectator) during Eye Exam:
 	try asking the spectator about "amelia".
 	
-	
+Every turn during Eye Exam:
+	if the eye chart is not read:
+		if the turnCounter is less than 7:
+			if there is a turnNumber of turnCounter in the Table of PreChart:
+				 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PreChart][paragraph break]";
+		otherwise:
+			if a random chance of one in five succeeds:
+				say "A randomPhraseOfOcularEncouragement.";	
+	otherwise:
+		if Amelia is not message-played:
+			if the turnCounter is less than 13:
+				if there is a turnNumber of turnCounter in the Table of PostChart:
+					 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PostChart][paragraph break]";
+				if the turnCounter is 6:
+					now messageAlert is true;
+					change the currentMessage to "[youAreLate]";
+					now the turnCounter is zero;
+			otherwise:
+				if a random chance of one in five succeeds:
+					say "A randomPhraseOfOcularTimeConsumption.";
+		otherwise:
+			if the turnCounter is 2:
+				say "[OMGLate][paragraph break]";
+				move the player to Wisconsin Avenue;
+					
 	
 Chapter Exterior
 
