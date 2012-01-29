@@ -85,6 +85,7 @@ The last mentioned thing is a thing that varies.
 
 Muted is a truth state that varies. Muted is false.
 
+MAXBARS is a number that varies. MAXBARS is five.
 geeBars, gpsBars, and powerBars are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
@@ -96,7 +97,11 @@ Updates is a text that varies. Updates is "".
 
 hasturCount is a number that varies. hasturCount is zero.
 
-MAXBARS is a number that varies. MAXBARS is five.
+lastDialed is an indexed text that varies. lastDialed is "".
+
+
+
+
 
 Chapter Class Definitions
 
@@ -324,8 +329,9 @@ Chapter Phone Actions
 	
 - persuasion rule for Amelia: she'll do it. Make it a success.
 - definition of the action and its synonyms
-- check rules: make sure nothing else does these phone-specific actions
-- carry out rule: what happens when Amelia does the action.]
+- carry out rule: what happens the player types this without invoking amelia
+- instead -- what happens when amelia is correctly invoked.
+]
 
 Section Word of Power Amelia
 
@@ -341,6 +347,32 @@ Persuasion rule for asking Amelia to try ameliaing:
 	
 Carry out Ameliaing:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [VoiceCommandPrompt][quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]".
+	
+Section Appsing
+
+
+	
+Section Calendaring
+
+
+	
+
+Section Caveating
+
+Caveating is an action applying to nothing.
+
+Understand "guarantee" or "caveat emptor" as caveating.
+
+Persuasion rule for asking Amelia to try caveating:
+	persuasion succeeds.
+
+Carry out caveating:
+	say "[errorPrompt]".
+
+Instead of Amelia caveating:
+	say "The phone explains, [quotation mark]It means, we hope you like it.[quotation mark][paragraph break]";
+	the rule succeeds.
+
 
 Section Commanding
 
@@ -358,6 +390,83 @@ Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
 	the rule succeeds.
 	
+Section Messaging
+
+
+	
+Section Phoning
+
+Phoning is an action applying to nothing.
+
+Understand "phone" or "dial" as phoning.
+
+Persuasion rule for asking Amelia to try phoning:
+	persuasion succeeds.
+
+Carry out phoning:
+	say "[errorPrompt]".
+	
+Instead of Amelia phoning:
+	say "A ring of orange light cork screws along the surface of the phone. The phone replies, [quotation mark]After the word phone, please say a series of numbers or a name to dial.[quotation mark][paragraph break]";
+	the rule succeeds.
+	
+Section PhoneToing
+
+PhoneToing is an action applying to one topic.
+
+Understand "phone [text]" or "call [text]" or "dial [text]" as phoneToing.
+
+Persuasion rule for asking Amelia to try phoneToing:
+	persuasion succeeds.
+	
+Carry out phoneToing:
+	say "[errorPrompt]".
+
+Instead of Amelia phoneToing:
+	let T be indexed text;
+	let T be the player's command;
+	replace the regular expression "^amelia\s*,\s*" in T with "";
+	replace the regular expression "(dial|phone|call)\s*" in T with "";
+	if T matches the regular expression "^<0-9><0-9>*<0-9>$":
+		let n be the number of characters in T;
+		if n is greater than 10:
+			say "Your mangoFONE fades to a deep purple and says, [quotation mark]Error: Phone numbers are limited to ten digits.[quotation mark][paragraph break]";
+			change lastDialed to "";
+		otherwise:
+			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]You hear a ";
+			if n is:
+				-- 1:say "single";
+				-- 2:say "couple";
+				-- 3:say "few";
+				-- otherwise: say "series of";
+			say " loud touch tone[if n is greater than one]s[end if].[no line break][NoNetwork]";	
+			change lastDialed to T;
+	else:	
+		if T matches the regular expression "amelia", case insensitively:
+			say "The phone flashes grey for an instant, then replies, [quotation mark]I am here, Marv. Please tell me who to call.[quotation mark][paragraph break]";
+		otherwise:
+			say "Waves of green chase each other around the phone's surface as it says, [quotation mark]Dialing [T].[quotation mark][noNetwork]";
+	the rule succeeds.
+	
+Section Time
+
+
+
+Section Time Travel
+
+Timetraveling is an action applying to nothing.
+
+Understand "travel" or "time travel" as Timetraveling.
+
+Persuasion rule for asking Amelia to try timetraveling:
+	persuasion succeeds.
+
+Carry out timetraveling:
+	say "[errorPrompt]".
+	
+Instead of Amelia timetraveling:
+	say "You feel yourself thrust forward one second in time.";
+	the rule succeeds.
 
 Section Tutoring
 
@@ -372,11 +481,45 @@ Carry out tutoring:
 	say "[errorPrompt]".
 	
 Instead of Amelia tutoring:
-	say "Tutortext here";
+	say "[quotation mark]Tutor mode. The phone recognizes the following  basic commands: apps calendar messages phone time travel tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
 	the rule succeeds.
+	
+Section Updating
 
+Updating is an action applying to nothing.
 
+Understand "update" as updating.
 
+Persuasion rule for asking Amelia to try updating:
+	persuasion succeeds.
+
+Carry out updating:
+	say "[errorPrompt]".
+	
+[For now, this is hardcoded, but we could generalize with a list of updates with time, description,etc.]
+
+Instead of Amelia updating:
+	say "Tiny blue dots of light dance under the smooth, black glass skin of the phone, and it replies, [quotation mark]The most recent update occurred ten minutes ago and installed the travel module, which provides context-sensitive turn by turn directions. No additional updates are available at this time.[quotation mark][paragraph break]";
+	the rule succeeds.
+	
+Section Warranting
+
+Warranting is an action applying to nothing.
+
+Understand "warantee" as warranting.
+
+Persuasion rule for asking Amelia to try warranting:
+	persuasion succeeds.
+
+Carry out warranting:
+	say "[errorPrompt]".
+
+Instead of Amelia warranting:
+	say "All Mango Industry Products are provided with a comprehensive  [quotation mark]Caveat Emptor[quotation mark] guarantee.";
+	the rule succeeds.
+	
+
+	
 
 	
 
@@ -795,6 +938,9 @@ To say errorPrompt:
 	
 To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, tutor[roman type].[no line break]".
+	
+To say noNetwork:
+	say "[paragraph break]A moment later, however, the phone turns marroon, and warns, [quotation mark]No SIM card is installed. No phone network is available.[quotation mark][one of][paragraph break]You realize that in your haste to pack for the trip to Washington, DC, you didn’t move your SIM card from your old phone to the mangoFONE that Istvan gave you. Guess that explains the lack of network bars.[no line break][or][stopping][paragraph break]".
 	
 To say noSelfTalking:
 	say "You have never talked to yourself, and you are not about to start now."
