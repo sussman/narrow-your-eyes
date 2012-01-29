@@ -117,6 +117,8 @@ A thing can be large. A thing is usually not large.
 Everything has some text called texture. The texture of something is usually "".
 Everything has some text called scent. The scent of something is usually "". 
 
+A thing can be fuzzy. A thing is usually fuzzy.
+
 A thing has some text called the inscription. The inscription of something is usually "".
 
 A fardrop is a kind of backdrop.
@@ -248,7 +250,6 @@ Section Smelling
 	
 [Like listening, smelling is performed through instead rules. The generic smell rule tracks bad smells, which decay over time.]
 
-[
 Section Talking
 
 Talking is an action applying to one thing. Understand "talk to [something]" as talking.
@@ -264,8 +265,7 @@ Carry out talking:
 	say "[lame talk]".
 	
 To say lame talk:
-	say "You can ASK someone ABOUT something or SHOW something TO someone."
-	]
+	say "You can ASK or TELL someone ABOUT something."
 	
 Section Telling
 
@@ -478,6 +478,9 @@ Instead of Amelia messaging:
 			say "Now playing new transcribed voice message:";
 			now messageAlert is false;
 			now Amelia is message-played;
+			change the turnCounter to zero;
+			[to generalize this, give each message a number and keep track of
+			 which message number was played]
 		otherwise:
 			say "Now playing most recently received transcribed voice message:[run paragraph on]";
 		say "[quotation mark][paragraph break][currentMessage][paragraph break]";
@@ -601,8 +604,12 @@ Carry out Traveling:
 	
 Instead of Amelia Traveling:
 	if gpsBars is zero:
-		change the gpsBars to a random number between two and five;
-		say "Amelia replies, [quotation mark]Advanced real time navigation activated. Next destination retrieved from calendar: the hotel at 4th and I Street. GPS position acquired. To deactivate navigation, repeat the same phrase.[quotation mark][paragraph break]";
+		say "[quotation mark]Advanced real time navigation activated. [run paragraph on]";
+		if Exterior is not happening:
+			say "Attempting to acquire GPS lock.[quotation mark][paragraph break][quotation mark]Stand-by. [quotation mark][paragraph break][quotation mark]Stand-by. [quotation mark][paragraph break][quotation mark]No GPS satellites detected. Shutting down travel mode.";
+		otherwise:
+			change the gpsBars to a random number between two and five;
+			say "GPS position acquired. Next destination retrieved from calendar: the hotel at 4th and I Street. To deactivate navigation, repeat the same phrase.[quotation mark][paragraph break]";
 	otherwise:
 		say "Amelia replies, [quotation mark]Deactivating real time navigation.[quotation mark][paragraph break]";
 		change gpsBars to zero;
@@ -679,17 +686,18 @@ Chapter General Insteads
 
 Section Examining
 
-Instead of examining:
+Instead of examining something fuzzy (called the item):
 	if Eye Exam is happening:
-		if the noun is: 
-			-- refractor:
-				say "It is so close to your face that you can't focus on it. The best you can do is look through it at the eye chart.";
-			-- Amelia: 
-				continue the action;
-			-- button:
-				continue the action;
-			-- otherwise:
-				say "Sitting in the deliberate darkness of an ophthalmologist's office, you can't see anything but the eye chart."
+		if Marv Spindle is dilated:
+			say "It must be an effect of those drops. Everything is blurry.[no line break][one of][quotation mark]Doc? Everything[apostrophe]s blurry.[quotation mark][paragraph break][quotation mark]Yes, it[apostrophe]s those drops.[quotation mark][paragraph break]Just as you had suspected.[no line break][or][stopping][paragraph break]";
+		otherwise:
+			if the item is: 
+				-- refractor:
+					say "It is so close to your face that you can't focus on it. The best you can do is look through it at the eye chart.";					
+				-- otherwise:
+					say "Sitting in the deliberate darkness of an ophthalmologist's office, you can't see anything but the eye chart.";
+	otherwise:
+		say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] is a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
 
 Section Taking Inventory
 
@@ -804,10 +812,10 @@ To say thirdLineDescription:
 			say "Okay, I can tell that it definitely starts with some X[apostrophe]s and I think it ends with an L.[quotation mark][paragraph break][quotation mark]No fair guessing. When we get it right, it should be entirely in focus.[quotation mark] Doctor Giblets makes some more adjustments.";
 			now the refractor is diplopic;
 		-- diplopic:
-			say "The letters are now crisply focused, and you confidently read them off, [quotation mark]XXMMVVEEHHGGAAQQLL.[quotation mark][paragraph break][quotation mark]Ah, great. But you're seeing double. Trevor -- adjust the convergence.[quotation mark][paragraph break]You hear some clicking and the letters slide together.";
+			say "The letters are now crisply focused, and you confidently read them off, [quotation mark]X-X-M-M-V-V-E-E-H-H-G-G-A-A-Q-Q-L-L.[quotation mark][paragraph break][quotation mark]Ah, great. But you're seeing double. Trevor -- adjust the convergence.[quotation mark][paragraph break]You hear some clicking and the letters slide together.";
 			now the refractor is sharp;
 		-- sharp:
-			say "[one of]You read off the letters again, [quotation mark]XMVEHGAQL[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]";
+			say "[one of]You read off the letters again, [quotation mark]X-M-V-E-H-G-A-Q-L[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]";
 			now the eye chart is read;
 			now the turnCounter is zero.
 			
@@ -832,15 +840,16 @@ Instead of searching the refractor:
 		-- diplopic:
 			say "It looks more in focus, but not quite right.";
 		-- sharp:
-			say "sharp".
+			say "Now it all looks sharp, except perhaps for the tiny letters of the fourth line that seem to crawl about on their own."
 			
 Instead of going somewhere during the Eye Exam:
 	say "Wedding jitters almost got to you, but then you sit back down to finish the eye exam."
 
-
 Chapter Wisconsin Avenue
 
-Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "wisconsin avenue description."
+Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "Somewhere on Wisconsin Avenue, just above Reservoir Road."
+
+The bike is a portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.
 
 Chapter M Street
 
@@ -868,9 +877,9 @@ The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. M
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy.
 
-The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
+The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]." The button is not fuzzy.
 
 Instead of giving Amelia to someone:
 	say "No, you swore up and down to Amy's dad, Istvan Boulot, that you wouldn[apostrophe]t let the prototype phone out of your hands for even a moment."
@@ -908,16 +917,16 @@ Table of PreChart
 turnNumber		canned-text
 3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
 4		"Pop? Who says pop?"
-6		"Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
+6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
 
 Table of PostChart
 turnNumber	canned-text
 1	 "[quotation mark]Marv, we should get on with this exam. Trevor -- hand me those drops, would you? Thanks.[quotation mark][paragraph break][quotation mark]Doctor Giblets leans your head back, [quotation mark]I[apostrophe]m going to put these drops in your eyes as part of the exam. Try not to blink.[quotation mark] You try, but you blink anyhow and feel the coolness on your eye lashes.[paragraph break][quotation mark]This will dilate your pupils, so I can do a better exam of your retina.[quotation mark]"
-3	"All you can see is a bright white light first in your left eye, and then in your right eye.  Doctor Giblets continues his exam."
+3	"Doctor Giblets shines a bright white light first in your left eye, and then in your right eye."
 4	"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell, dinner bell, dinner bell ring![quotation mark]"
 6	"[quotation mark]BRINK! BRINK![quotation mark] The phone rings with the tone that indicates a text message has just arrived from your fiancée."
 7	"[quotation mark]Much better, much better,[quotation mark] notes Doctor Giblets, who seems satisfied with the way the eye exam is going."
-9	"[quotation mark]See that, Trevor?[quotation mark][paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark] you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark]reassures Doctor Giblets. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark]"
+9	"[quotation mark]See that, Trevor?[quotation mark][paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark] you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark] reassures Doctor Giblets with a nervous laugh. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark]"
 12	"[quotation mark]Try not to move, Marv.[quotation mark] Doctor Giblets does something that half-tickles and half-irritates your eyes. You try to hold still, but your eyes tear."
 
 
@@ -1227,14 +1236,14 @@ To say youAreLate:
 	 say "[quotation mark]High muff, this is your finance day, a meal ear. Everyone is here and we[apostrophe]re just setting down two and early lunch. Don[apostrophe]t fork head the reversal starts at won. Hope you don[apostrophe]t half a lard time finding the oat hell. Love yew![quotation mark]"
 
 To say OMGLate:
-	say "The words roll back and forth in your mind as you puzzle out the transcript: starts at won... At one? The rehearsal starts at one? You think back to the day you very methodically entered the appointment, back at the Mauna Kea Observatory -- OMG!!! The time zones. You forgot the time zone adjustment! The rehearsal is right after lunch![paragraph break]You bound out of the exam chair, slamming your head some expensive equipment, but you don[apostrophe]t care. In your panicked state, all you can picture in the darkness is the near future scene in which you offer lame excuses to your former fiancée, while friends and family look on with pity and disgust. You race for the door, screaming, [quotation mark]I[apostrophe]’ve got to get to the rehearsal right now or my life is not worth living![quotation mark][paragraph break]Doctor Giblets yells after you, [quotation mark]Hey! Those drops are still in your eyes -- don[apostrophe]t try to operate any motor vehicle for at least an hour![quotation mark][paragraph break]Trevor adds, [quotation mark]Take my bike, it[apostrophe]s right outside! I[apostrophe]ll bring your glasses as soon as they are made![quotation mark]"
+	say "The words roll back and forth in your mind as you puzzle out the transcript: starts at won... At one? The rehearsal starts at one? You think back to the day you very methodically entered the appointment, back at the Mauna Kea Observatory -- OMG!!! The time zones. You forgot the time zone adjustment! The rehearsal is right after lunch![paragraph break]You bound out of the exam chair, slamming your head some expensive equipment, but you don[apostrophe]t care. In your panicked state, all you can picture in the darkness is the near future scene in which you offer lame excuses to your former fiancée, while friends and family look on with pity and disgust. You race for the door, screaming, [quotation mark]I[apostrophe]ve got to get to the rehearsal right now or my life is not worth living![quotation mark][paragraph break]Doctor Giblets yells after you, [quotation mark]Hey! Those drops are still in your eyes -- don[apostrophe]t try to operate any motor vehicle for at least an hour![quotation mark][paragraph break]Trevor adds, [quotation mark]Take my bike, it[apostrophe]s right outside! I[apostrophe]ll bring your glasses as soon as they are made![quotation mark]"
 	
 
 Book 5  Scenes
  
 Chapter Eye Exam
 
-Eye Exam is a scene. Eye Exam begins when play begins. 
+Eye Exam is a scene. Eye Exam begins when play begins. Eye Exam ends when the player is in Wisconsin Avenue.
 
 After examining Amelia for the first time during Eye Exam:
 	try showing Amelia to Trevor.
@@ -1270,19 +1279,22 @@ Every turn during Eye Exam:
 				if the turnCounter is 6:
 					now messageAlert is true;
 					change the currentMessage to "[youAreLate]";
-					now the turnCounter is zero;
 			otherwise:
 				if a random chance of one in five succeeds:
 					say "A randomPhraseOfOcularTimeConsumption.";
 		otherwise:
 			if the turnCounter is 2:
 				say "[OMGLate][paragraph break]";
-				move the player to Wisconsin Avenue;
+				move the player to Wisconsin Avenue.
 					
 	
 Chapter Exterior
 
-Exterior is a scene. Exterior begins when the player is in Wisconsin Avenue. Exterior ends when the player is in the Factory.
+Exterior is a scene. Exterior begins when Eye Exam ends. Exterior ends when the player is in the Factory.
+
+Instead of going in a direction:
+	if the bike encloses the player:
+		say "You have been in Washington, DC for NASA meetings before, but you don’t know your way around."
 
 Chapter Cunning Plan
 
