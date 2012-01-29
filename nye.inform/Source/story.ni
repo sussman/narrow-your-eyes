@@ -5,7 +5,7 @@ The release number is 1.
 The story creation year is 2012.
 The story genre is "Comedy".
 
-The story description is "Your wedding rehearsal is hours away, and what do you do but sit on your glasses, crushing them beyond repair? Can you and your stylish cell phone make it through the day unscathed?"
+The story description is "Your wedding rehearsal is hours away, and what do you do but sit on your glasses, crushing them beyond repair? Can you and your stylish cell phone survive the day?"
 
 Include Menus by Emily Short.
 Include Plurality by Emily Short.
@@ -98,6 +98,8 @@ Updates is a text that varies. Updates is "".
 hasturCount is a number that varies. hasturCount is zero.
 
 lastDialed is an indexed text that varies. lastDialed is "".
+
+cowLicense is a number that varies. cowLicense is four.
 
 
 
@@ -349,12 +351,38 @@ Carry out Ameliaing:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [VoiceCommandPrompt][quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]".
 	
 Section Appsing
+[fairly hardwired for now]
 
+Appsing is an action applying to nothing.
 
+Understand "apps" or "applications" as appsing.
+
+Persuasion rule for asking Amelia to try appsing:
+	persuasion succeeds.
+
+Carry out appsing:
+	say "[errorPrompt]".
+
+Instead of Amelia appsing:
+	say "Amelia replies, [quotation mark]The following apps are available:  [if cowLicense is greater than zero]Angry Cows, [end if]Flashlight, Night Sky, and Trees versus Mummies. To launch an app, just say [bold type]Amelia, followed by the name of the application[roman type].[quotation mark][paragraph break]";
+	the rule succeeds.
+	
 	
 Section Calendaring
 
+Calendaring is an action applying to nothing.
 
+Understand "calendar" or "journal" or "date book" or "appointments" as calendaring.
+
+Persuasion rule for asking Amelia to try calendaring:
+	persuasion succeeds.
+
+Carry out calendaring:
+	say "[errorPrompt]".
+
+Instead of Amelia calendaring:
+	say "The phone surges blue, and says, [quotation mark]Next appointment at six o’clock in the evening: wedding rehearsal. Hotel at corner of 4th and I streets. Constitution ballroom.[quotation mark][paragraph break]";
+	the rule succeeds.
 	
 
 Section Caveating
@@ -390,9 +418,49 @@ Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
 	the rule succeeds.
 	
+Section Cowing
+
+Cowing is an action applying to nothing.
+
+Understand "angry cows" or "cows" as cowing when cowLicense is greater than zero.
+
+Persuasion rule for asking Amelia to try cowing:
+	persuasion succeeds.
+
+Carry out cowing:
+	say "[errorPrompt]".
+	
+Instead of Amelia cowing:
+	if cowLicense is:
+		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
+		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
+		-- 2: say "You cry havoc and let slip the cows of war.";
+		-- 1: say "Your trial license for Angry Cows has expired, and the application has been removed from your device. To purchase Angry Cows or Angry Cows 2: Bovine Retribution, please visit the Mango Intellectual Properties Store.";
+	decrease cowLicense by one;
+	the rule succeeds.
+	
+Section Flashing
+
+Flashing is an action applying to nothing.
+
+Understand "flashlight" or "flash light" or "torch" as flashing.
+
+Persuasion rule for asking Amelia to try flashing:
+	persuasion succeeds.
+
+Carry out flashing:
+	say "[errorPrompt]".
+	
+Instead of Amelia flashing:
+	say "The entire body of the phone glows with strong, white light. ";
+	if Eye Exam is happening: 
+		say "[one of][paragraph break][quotation mark]Hey, cut that out,[quotation mark] whines Trevor, [quotation mark]we’re trying to do an eye exam here.[quotation mark][paragraph break][or][stopping]You turn it off quickly to avoid interrupting the eye exam. ";
+	else if Exterior is happening:
+		say "It doesn't add much in the midday sun, though, so you turn it off to save some battery. ";
+	say paragraph break;
+	the rule succeeds.
+	
 Section Messaging
-
-
 	
 Section Phoning
 
@@ -448,15 +516,44 @@ Instead of Amelia phoneToing:
 			say "Waves of green chase each other around the phone's surface as it says, [quotation mark]Dialing [T].[quotation mark][noNetwork]";
 	the rule succeeds.
 	
+
+Section Skying
+
+Skying is an action applying to nothing.
+
+Understand "sky" or "night" or "night sky" as skying.
+
+Persuasion rule for asking Amelia to try skying:
+	persuasion succeeds.
+
+Carry out skying:
+	say "[errorPrompt]".
+	
+Instead of Amelia skying:
+	say "The dark background makes this app easier to see. You can’t distinguish individual starts, but as a professional astronomer, you have no trouble making out the shape of individual constellations. As you change orientations, the image on the phone rotates, fixed on the heavens.";
+	the rule succeeds.
+	
 Section Time
 
+Timing is an action applying to nothing.
 
+Understand "time" as Timing.
+
+Persuasion rule for asking Amelia to try timing:
+	persuasion succeeds.
+
+Carry out timing:
+	say "[errorPrompt]".
+	
+Instead of Amelia timing:
+	say "A red dot ticks back and forth playfully on the phone's surface, and it announces, [quotation mark]The current local time is [time of day in words].[quotation mark][paragraph break]";
+	the rule succeeds.
 
 Section Time Travel
 
 Timetraveling is an action applying to nothing.
 
-Understand "travel" or "time travel" as Timetraveling.
+Understand "time travel" as Timetraveling.
 
 Persuasion rule for asking Amelia to try timetraveling:
 	persuasion succeeds.
@@ -466,6 +563,43 @@ Carry out timetraveling:
 	
 Instead of Amelia timetraveling:
 	say "You feel yourself thrust forward one second in time.";
+	the rule succeeds.
+	
+Section Travel
+
+Traveling is an action applying to nothing.
+
+Understand "travel" as Traveling.
+
+Persuasion rule for asking Amelia to try Traveling:
+	persuasion succeeds.
+
+Carry out Traveling:
+	say "[errorPrompt]".
+	
+Instead of Amelia Traveling:
+	if gpsBars is zero:
+		change the gpsBars to a random number between two and five;
+		say "Amelia replies, [quotation mark]Advanced real time navigation activated. Next destination retrieved from calendar: the hotel at 4th and I Street. GPS position acquired. To deactivate navigation, repeat the same phrase.[quotation mark][paragraph break]";
+	otherwise:
+		say "Amelia replies, [quotation mark]Deactivating real time navigation.[quotation mark][paragraph break]";
+		change gpsBars to zero;
+	the rule succeeds.
+	
+Section Treeing
+
+Treeing is an action applying to nothing.
+
+Understand "trees" or "mummies" or "trees versus mummies" as treeing.
+
+Persuasion rule for asking Amelia to try treeing:
+	persuasion succeeds.
+
+Carry out treeing:
+	say "[errorPrompt]".
+	
+Instead of Amelia treeing:
+	say "A nice concept, but boring in the implementation: the mummies rest eternally in their sarcophagi and the trees grow serenely nearby, at the edge of an oasis. You turn it back off after a while.";
 	the rule succeeds.
 
 Section Tutoring
@@ -517,10 +651,6 @@ Carry out warranting:
 Instead of Amelia warranting:
 	say "All Mango Industry Products are provided with a comprehensive  [quotation mark]Caveat Emptor[quotation mark] guarantee.";
 	the rule succeeds.
-	
-
-	
-
 	
 
 Chapter General Insteads
@@ -744,11 +874,11 @@ Book 3 Characters
 
 Chapter Marv
 
-The player is Marv Spindle. Marv is a man in the Ophthalmology Office. Marv can be dilated. Marv is not dilated.
+The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. Marv Spindle can be dilated. Marv Spindle is not dilated.
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. 
 
 The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]."
 
