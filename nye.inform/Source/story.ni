@@ -90,7 +90,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, drained and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -828,9 +828,11 @@ The Hilltop is a room. The Hilltop is west of Wisconsin Avenue.
 
 Chapter Factory
 
-The Factory is a room. The description of the Factory is "As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot and a metal parts locker.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers[one of]. [paragraph break]From the far corner of the room, you hear a beep and the industrial robot takes a step forward[or][stopping]."
+The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers.[paragraph break]From the far corner of the room, you hear a beep and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
 
 Understand "man" as Professor Igneous.
+
+Instead of examining Professor Igneous, say "[one of]You recognize the man from the TV news, it is Professor Igneous, criminal master mind and global terrorist, a hi-tech madman. There was a special about him on the History Channel last week. Damn, you wish you had watched it.[paragraph break][quotation mark]Yes, take a good look at the man who will finally wipe you from the face of the Earth![quotation mark][or]Your (self-described) archnemesis.[no line break][stopping][paragraph break]". 
 
 Instead of doing something with Professor Igneous:
 	say "The professor ignores you, confident in his plan."
@@ -845,7 +847,10 @@ The spinning platforms are a fardrop. They are in the Factory.
 
 The industrial welding robot is a fardrop. It is in the Factory. Understand "Lenny" as the industrial welding robot. The laser is part of the industrial welding robot.
 
-The metal parts locker is a container. It is in the Factory.
+The metal parts locker is a container. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged lid that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[paragraph break][quotation mark][one of]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping][paragraph break]". The metal parts locker is not fuzzy.
+
+Rule for printing room description details of the metal parts locker:
+	omit contents in listing.
 
 The ultraviolet web is a furniture. It is in the Factory.
 
@@ -922,7 +927,7 @@ Instead of showing something to Amelia, say "[lackOfPhoneReply]".
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive.
+Professor Igneous is a man in the Factory. He is alive. 
 
 Chapter Giblets
 
@@ -996,7 +1001,7 @@ Table of BeforeIKillYou
 turnNumber	rant
 2	"As your eye accomodates to the light, you take notice of the tall gentleman in a white lab coat who stands in a plexiglass control booth in the far corner of the room. It seems that he notices you as well.[paragraph break][quotation mark]Ah, my archnemesis, Mr. Jeremy Flack. I see you[apostrophe]ve had some plastic surgery. Very nice work, but perhaps a bit squinty around the eyes.[quotation mark][paragraph break][quotation mark]This isn[apostrophe]t my wedding rehearsal?[quotation mark] you ask, too stunned, worried and jet-lagged to fully absorb everything that happened since leaving Doctor Giblets[apostrophe] office.  [quotation mark]Where is the rehearsal? I[apostrophe]m going to be late.[quotation mark][paragraph break][quotation mark]Yes, Mr. Flack. Humor, always humor. Well... let’s see how funny you find it when you are vaporized by my robot warrior![quotation mark][paragraph break][quotation mark]Wait...what? Not the rehearsal?[quotation mark] you stammer."
 3		"[quotation mark]I see that you followed my cunning plan to lure you to your doom, Mr. Flack.[quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]Igneous presses a button and you hear a beep. The robot rotates counterclockwise."
-4		"Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a superquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
+4		"[quotation mark]Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a superquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
 5		"[quotation mark]For now, I will have to content myself with directly controlling the kumquat-5000, I call him Lenny, as that name seems to resonate with me. I’m not sure why. I just like the sound of it. Anyhow, as I was saying... to controlling Lenny with an ingenious invention of mine that couples a matrix-scanned keyboard with two multiplexed sine wave oscillators. By merely pressing a button within my Plexiglass®-enclosed command booth, I can control his every action...the first of which will be to kill you. Now, please do cooperate and remain still, so I can get on with the day [apostrophe]s business of tracking down the aforementioned controller unit.[quotation mark]"
 6		"[quotation mark]Sorry for this aside, but henchmen remind me that I am legally obligated to mention that Plexiglass®  is a registered trademark of Altuglas International, for its polymethylmethacrylate resin and sheet products sold in the North and Latin America, whereas it is sold under the brand name Altuglas® in Asia/Pacific, Europe, Africa and the Middle East. Fine. Now, back to killing you.[quotation mark]"
 7		"[quotation mark]I hope you appreciate the irony. Your country will be the unwitting accomplice to my rise to power. You see, Lenny is not the only one of these robots. No, there are thousands of them (or, rather, there will be, when I have finished putting all the parts together). And where did they come from? I will tell you, as you are a most patient listener, even in these trying circumstances that will lead to your death.[quotation mark]"
@@ -1160,10 +1165,13 @@ To say wonText:
 	say "WonText."
 	
 To say laseredText:
-	say "laseredText."
+	say "Killed by Lenny."
 	
 To say drainedText:
 	say "drained text…dead…at end of life without Amy, all because you phone battery gave out."
+	
+To say webbedText:
+	say "Sliced and diced by a laser web.";
 	
 To say AmeliaPowerDown:
 	say "phone shuts down…now."
@@ -1360,6 +1368,20 @@ When Cunning Plan begins:
 Every turn during Cunning Plan:
 	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou:
 		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]".
+		
+Before going a direction (called the way) during cunning plan:
+	if the way is north or the way is northwest or the way is northeast:
+		say "Putting aside for a moment your deep understanding of high energy physics and everything you have learned since kindergarten about cause and effect, you step forward into the sizzling ultraviolet laser beam, which cuts through you so effortlessly that your head tumbles forward, sliced clear from the shoulders, and your last sight is various parts of your body falling in graceful arcs towards the floor.";
+		now the endgame is webbed;
+		end the game in death;
+	otherwise:
+		say "You can move back and forth a bit within the narrow area of the room to the south of the ultraviolet laser web, but it would be dangerous to move northwards.";
+		stop the action.
+	
+Before exiting during the cunning plan:
+	say "There are no exits[one of] -- the revolving door has disappeared behind you[or][stopping].";
+	stop the action.
+	
 	
 Chapter Finale
 
@@ -1380,7 +1402,9 @@ Rule for printing the player's obituary:
 		-- lasered:
 			say "[laseredText]";
 		-- drained:
-			say "[drainedText]".
+			say "[drainedText]";
+		-- webbed:
+			say "[webbedText]".
 		
 						
 Rule for amusing a victorious player:
