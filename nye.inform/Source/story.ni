@@ -57,7 +57,7 @@ geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
-phoneCharge is usually zero. phoneCharge is 100.
+phoneCharge is usually zero. phoneCharge is 220.
 
 hasturCount is a number that varies. hasturCount is zero.
 
@@ -90,7 +90,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, drained and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -105,16 +105,6 @@ Chapter General Routines
 [borrowed from example I7 documentation, example 424 Odins:]
 After printing the name of something (called the target): 
     change the last mentioned thing [quotation mark][paragraph break][quotation mark]to the target.
-
-To say is-are: 
-    if the last mentioned thing is plural-named, say "are"; 
-    otherwise say "is".
-
-To say that-those:
-	if the last mentioned thing is plural-named:
-		say "them";[note, this only works in this dialect]
-	otherwise:
-		say "that".
 
 To say it-they:
 	if the last mentioned thing is plural-named:
@@ -142,9 +132,6 @@ To say pronoun-accusative:
 
 To say (regular verb - some text) in correct agreement:
 	say "[regular verb][if the last mentioned thing is not plural-named]s".
-
-
-
 
 Chapter Verbs
 
@@ -573,7 +560,7 @@ Instead of Amelia Traveling:
 	if gpsBars is zero:
 		say "[quotation mark]Advanced real time navigation activated. [run paragraph on]";
 		if Exterior is not happening:
-			say "Attempting to acquire GPS lock.[quotation mark][paragraph break][quotation mark]Stand-by. [quotation mark][paragraph break][quotation mark]Stand-by. [quotation mark][paragraph break][quotation mark]No GPS satellites detected. Shutting down travel mode.";
+			say "Attempting to acquire GPS lock.[quotation mark][paragraph break][quotation mark]Stand-by. [quotation mark][paragraph break][quotation mark]Stand-by. [quotation mark][paragraph break][quotation mark]No GPS satellites detected. Shutting down travel mode.[quotation mark][paragraph break]";
 		otherwise:
 			change the gpsBars to a random number between two and five;
 			say "GPS position acquired. Next destination retrieved from calendar: the hotel at 4th and I Street. To deactivate navigation, repeat the same phrase.[quotation mark][paragraph break]";
@@ -664,7 +651,7 @@ Instead of examining something fuzzy (called the item):
 				-- otherwise:
 					say "Sitting in the deliberate darkness of an ophthalmologist's office, you can't see anything but the eye chart.";
 	otherwise:
-		say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] is a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
+		say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] [is-are] a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
 
 Section Taking Inventory
 
@@ -717,7 +704,17 @@ Every turn:
 	[avoid penalizing time for non-actions, a nuance]
 	if the current action is taking inventory or the current action is looking:
 		change the time of day to 1 minute before the time of day;
-	increase turnCounter by one;
+	increase turnCounter by one;[so don't do this in per-scene-everyturn]
+	decrease phoneCharge by one;
+	change powerBars to phoneCharge divided by 40;
+	if phoneCharge is zero:
+		say "[AmeliaPowerDown]";
+		if Exterior has happened:
+			do nothing;
+		otherwise:
+			change the endgame to drained;
+			end the game in death.
+		
 		
 Section Phrase Picker
 [To select a canned phrase from a table, choosing randomly amongst the less frequently said phrases. Tables need at least two entries.]
@@ -742,7 +739,7 @@ Chapter The Ophthalmology Office
 
 The Ophthalmology Office is a room. The description of the Ophthalmology office is "The room is pitch dark, except for some light coming through a device, which you are told is called a refractor, just in front of your nose."
 
-Before printing a locale paragraph about something (called the item) in the Ophthalmology Office: 
+Before printing a locale paragraph about something fuzzy (called the item): 
 	now the item is mentioned.
 
 The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart. The eye chart can be read. The eye chart is not read.
@@ -831,11 +828,44 @@ The Hilltop is a room. The Hilltop is west of Wisconsin Avenue.
 
 Chapter Factory
 
-The Factory is a room. The description of the Factory is "factory description". 
+The Factory is a room. The description of the Factory is "As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot and a metal parts locker.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers[one of]. [paragraph break]From the far corner of the room, you hear a beep and the industrial robot takes a step forward[or][stopping].". 
 
 Chapter CornerNW
 
-CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "cornernw description".
+CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "You are on a street corner next to a green metal pole and a brass door, everything in the distance is blurry."
+
+The pole is a supporter in CornerNW. The description of the pole is "The pole is studded with official traffic signs: snow emergency route, two hour parking zone 2 permit holders only, one way street, metro bus stop, dumping prohibited, loading zone, no parking, alternate parking Wednesdays, yield to pedestrians, slow children... you can only follow the pole upwards so far, before the bright sky bothers your dilated eyes." The pole is not fuzzy.
+
+The signs are a part of the pole. Understand "sign" as the signs. The signs are plural-named. The description of the signs is "The signs start fairly far up the pole. They are mostly about parking and other traffic regulations, one is about picking up after your dog, another about recycling of plastics, and another about this being a neighbor watch community."
+
+The hotel entrance is an open openable lockable unlocked enterable container in CornerNW. The description of the hotel entrance is "A revolving brass door, which leads into the hotel." Understand "brass" or "door" as the hotel entrance. The hotel entrance is not fuzzy.
+
+Instead of examining the hotel entrance:
+	say "A revolving brass door, engraved with the words [quotation mark]Hotel Entrance[quotation mark] (and presumably, on the other side, [quotation mark]Hotel Exit[quotation mark]. When you try to confirm this by narrowing your eyes and peeking around the back side of the door, [revolvingDoor].";
+	move the player to the Factory.
+	
+Rule for printing room description details of the hotel entrance:
+	omit contents in listing.
+		
+Instead of entering, pushing, pulling or climbing the hotel entrance:
+	say "You push gently on the revolving brass door, when [revolvingDoor].";
+	move the player to the Factory.
+	
+Before opening or closing the hotel entrance:
+	try entering the hotel entrance;
+	the rule succeeds.
+	
+Before locking or unlocking the hotel entrance with something:
+	try entering the hotel entrance;
+	the rule succeeds.
+
+Instead of climbing the pole, try going up.
+
+The Poletop is above CornerNW. Understand "top" as the poletop. The description of the poletop is "[one of]Your sweaty hands grip the slick, green pole as you narrow your eyes and peer towards the horizon. From somewhere below you, you hear a child ask, [quotation mark]Mommy, what is that raggedy man doing up on that pole?[quotation mark][paragraph break]You yell down, [quotation mark]I am looking for my wedding rehearsal,[quotation mark] and nearly loose your grip on the pole.[paragraph break][quotation mark]Come with me, Cynthia. Let[apostrophe]s leave him alone[quotation mark][paragraph break][quotation mark]Is he a crazy man, mommy?[quotation mark][paragraph break][quotation mark]I said come with me, Cynthia[quotation mark][paragraph break][quotation mark]Well is he?[quotation mark][no line break][or]The signs thin out up here, although one catches your attention: [quotation mark]Site of the Future Igneous Bed and Breakfast Hotel and Spa[quotation mark]. You are above the buildings here, and you realize that without any sort of visual feedback to restrain your actions, you must have climbed up almost forty feet. Your head swims. You hope you can climb back down without killing yourself.[no line break][or]You see nothing around you but a bright, hazy sky. You are relieved not to be able to see how far up you are, though.[no line break][or]You cling for dear life to the top of a green metal pole, just above rooftop level. The sky is clear and with your blurry vision, everything beyond the pole is a bright, glowing haze.[no line break][stopping]"; 
+
+In the Poletop is a supporter called the top of the pole. The description of the the top of the pole is "The top of the pole is a bit smaller in circumerference than the base, and there are no signs up this high." The top of the pole is not fuzzy.
+
+Instead of climbing the top of the pole, try going down.
 
 Chapter Limbo
 
@@ -944,36 +974,36 @@ topic		ophtho-text
 "[moi]"		"[tellMoi]"
 
 Table of BeforeIKillYou
-round		rant
-1		"[quotation mark]I see that you followed my cunning plan to lure you to your doom, Mr. Flack.[quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]Igneous presses a button and you hear a beep. The robot rotates counterclockwise."
-2		"Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a superquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark][paragraph break]"
-3		"[quotation mark]For now, I will have to content myself with directly controlling the kumquat-5000, I call him Lenny, as that name seems to resonate with me. I’m not sure why. I just like the sound of it. Anyhow, as I was saying... to controlling Lenny with an ingenious invention of mine that couples a matrix-scanned keyboard with two multiplexed sine wave oscillators. By merely pressing a button within my Plexiglass®-enclosed command booth, I can control his every action...the first of which will be to kill you. Now, please do cooperate and remain still, so I can get on with the day [apostrophe]s business of tracking down the aforementioned controller unit.[quotation mark][paragraph break]"
-4		"[quotation mark]Sorry for this aside, but henchmen remind me that I am legally obligated to mention that Plexiglass®  is a registered trademark of Altuglas International, for its polymethylmethacrylate resin and sheet products sold in the North and Latin America, whereas it is sold under the brand name Altuglas® in Asia/Pacific, Europe, Africa and the Middle East. Fine. Now, back to killing you.[quotation mark][paragraph break]"
-5		"[quotation mark]I hope you appreciate the irony. Your country will be the unwitting accomplice to my rise to power. You see, Lenny is not the only one of these robots. No, there are thousands of them (or, rather, there will be, when I have finished putting all the parts together). And where did they come from? I will tell you, as you are a most patient listener, even in these trying circumstances that will lead to your death.[quotation mark][paragraph break]"
-6		"[quotation mark]I bought Lenny and his kin from Detroit. From the rusting, derelict auto industry at the rotting core of your declining nation marches forth my mechanized army! I bought them for pennies on the dollar, as banks foreclosed on their properties and forced them to bankruptcy. As for the hardware and software designs, my horde of rabid intellectual property lawyers have made short work of the last shreds of your country’s engineering industry. Yes, with my coalition of bankers, patent attorneys, big media executives, and the congressmen they own, I have created an unstoppable circle of evil! And now, prepare to suffer at the hands of your own slothful lack of foresight and vigilance![quotation mark][paragraph break]"
-7		"[quotation mark]Pardon me for a moment, all this ranting is drying out my throat. I just need a sip of water....There, that[apostrophe]s better.  Difficult business you know, but murder without monologue is like...well... it isn’t pleasant.[quotation mark][paragraph break]"
-8		"[quotation mark]Now, where were we? Ultimate warrior...irony...downfall of American industry...ah yes, we were talking about your demise -- the first victim in a wave of necessary deaths that will ripple out from both your nation’s capital and from my base in West Ispharistan. Surely, you realize that I, Professor Igneous, am behind the war in Ispharistan -- I have studiously cultivated two decades of conflict to hone my mercenaries there to a fine edge. And yes, I am also behind the Québecois. That didn[apostrophe]t work out as explosively as one would have wished.[quotation mark][paragraph break]"
-9		"[quotation mark]Enough about me, let us talk about you (rather, I will talk and you will cling desperately to life).[quotation mark][paragraph break][quotation mark]I thought I had done you in back in Rhodesia, but of course you managed to survive with your rebreather. And then, in the Soviet Union, I assumed you had been lethally irradiated, but lead underwear was something I had not taken into consideration. Czechoslovakia, Yugoslavia...all the same story. You survived longer than the country did in each case. Well, I have learnt my lesson. This time, I will kill you with my own...or rather, Lenny[apostrophe]s own...hands, or rather, laser. That is to say, that Lenny will kill you with his laser, and I will transitively kill you because I control Lenny.[quotation mark][paragraph break]"
-10		"[quotation mark]It is not that I feel that I have anything to prove. I do not, you know. Not that it would matter. Not after I have taken over the world.[quotation mark][paragraph break]"
-11		"[quotation mark]Would you please stop working against me? I will win, you know, and you are merely delaying the inevitable and making me late for every other appointment. You know how it starts: the first kill of the day runs over fifteen minutes, and one thinks it is no big, deal, but then the next one drags on, and soon you are hours behind and it is difficult to catch up. The hours get longer, one has less time for family and hobbies, sleep suffers, the quality of one’s work goes down. No one needs that kind of stress.[quotation mark][paragraph break]"
-12		"[quotation mark]Yes, it is a stressful life, but it will all be worth it when I have the world at its knees. None of the others could shoulder the responsibility: not Moustaffa the Knife, not Edgar the Spyder (yes, I know I had promised not to kill Spyder, but I loathe ineptness). They were dabblers. They wanted to take over the world, but were only willing to go so far. Well, world domination is not a part time job. They all want to be very clever, and make a name for themselves, but the secret to effective world domination is consistency. Take over a little bit of the world each day, and before you know it, it’s in your back pocket. That is the theory, at least.[quotation mark][paragraph break]"
-13		"[quotation mark]I can see that you are rather enjoying this, and much as I do enjoy sporting reparté, I need to get down to business. So, no more chatter. Enough of entertaining you with my witty remarks and enlightening insights. From here out, it is cold, efficient, and most of all, silent, murder.[quotation mark][paragraph break]"
-14		"[quotation mark]Absolutely silent.[quotation mark][paragraph break]"
-15		"[quotation mark]Pristine silence.[quotation mark][paragraph break]"
-17		"[quotation mark]It is quiet in here, isn’t it? I mean, aside from the sound of the conveyor belts and the robot and the lasers, this room has a very hard sound to it. Nothing absorb the sound, just a lot of echoes, particularly with the high-pitched noises. Maybe I should install a drapery.[quotation mark][paragraph break]"
-18		"[quotation mark]A drapery would hold down on heating costs as well, as would a carpet, but I[apostrophe]ve held off on the carpet because Lenny runs about on small wheels, and I got tired of picking carpet fibres from them and his drive belt.[quotation mark][paragraph break][quotation mark]After you are dead, I am hoping to convert this building to a quaint bed and breakfast. Perhaps four bedrooms done up in an early colonial theme. I[apostrophe]d drain the acid from the basement vat and make a spa of it.[quotation mark][paragraph break]"
-20		"[quotation mark]This is far longer than I had expected you to survive. Very well, you have made your point -- you are a most worthy adversary. There. Are you happy? I have said it. Honor is served. Now, would you please allow me to kill you? I shalln[apostrophe]t say please again. I[apostrophe]m getting quite cross, you know.[quotation mark][paragraph break]"
-21		"[quotation mark]Just so you know, I am now turning Lenny[apostrophe]s laser power output down from [apostrophe]vaporize[apostrophe] to [apostrophe]kill[apostrophe] as a reflection of my state of irritation. Rather than blast you to oblivion and move on, I have decided to have you stuffed and mounted in my living room in a comical, but demeaning pose. Not only will you soon be dead, but ridiculed, and no doubt used to hold empty glasses and plates at my dinner parties. Just you consider that.[quotation mark][paragraph break]"
-22		"[quotation mark]The next robot I build will have *ten* lasers and make a much quicker job of it. Ten lasers, one on each arm. And the arms will not all face forward.[quotation mark][paragraph break]" 
-23		"[quotation mark]Lenny, do get on with it. I have to be somewhere.[quotation mark][paragraph break]"
-24		"[quotation mark]You know, Jeremy, I am your father.[quotation mark][paragraph break][quotation mark]Yes, you know it to be true. Search your feelings. Join me and we can rule the galaxy together as father and son![quotation mark][paragraph break][quotation mark]Nah. Just kidding.[quotation mark][paragraph break]"
-26		"[quotation mark]A strong leader is not afraid of injecting a little levity in to every day life. It keeps people sharp.[quotation mark][paragraph break][quotation mark]I often kid around with my minions, and I am told that they find my humour refreshing, a welcome bit of entertainment in the workaday business of dominating the human race.[quotation mark][paragraph break]"
-25		"[quotation mark]Note to self: ten lasers, multiple directions, smarter robot, able to move well on carpet.[quotation mark][paragraph break]"
-26		"[quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Sue?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark] Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark][paragraph break]"
-27		"[quotation mark]Quite a while, actually. I was hoping he[apostrophe]d die very quickly.[quotation mark][paragraph break][quotation mark]No, I am quite certain I can finish him off. I should say he[apostrophe]s in the throws of death even now as we speak.[quotation mark][paragraph break][quotation mark]No, no, I shall be fine. No need. Thanks you for the offer, though, my love.[quotation mark][paragraph break][quotation mark]Got to run. Good luck getting the AI controller. See you tonight! Bye.[quotation mark][paragraph break]"
-28		"[quotation mark]Nag, nag, nag. I suppose she thinks she could kill you faster without a kumquat-5000 death robot? I should say not.[quotation mark][paragraph break][quotation mark]Still, she is stunningly beautiful, statuesque woman, and knows what she wants. Me, for example. She says that she loves me for my incomparable intellect, which  must unquestionably be the case. While many would be attracted to my vast commercial resources and deathgrip on global power, she just likes me for who I am.[quotation mark][paragraph break]"
-29		"[quotation mark]I have never been good with woman. Please, don[apostrophe]t misunderstand me. I am not talking sexual prowess. I have no doubt of my capabilities in that arena, should it ever come to that, but I have never been comfortable talking with women. I think it is because I put them on a pedastle and can not relate to them on a casual basis. When it came to building a robot, many of my colleagues advocated construction of a fembot, but first of all, that is overdone, and secondly, it objectifies both women and robots.[quotation mark][paragraph break]"
-30		"[quotation mark]I am getting carpal tunnel syndrome from pressing the buttons. Next time, I use a dvorak keyboard.[quotation mark][paragraph break]"
+turnNumber	rant
+1		"From the back, lefthand corner of the factory, you spot a  elderly gentleman in a lab coat. He is standing in a plastic booth, blinking lights from a control panel painting a pattern on his coat. He speaks into a microphone, and his refined voice reverberates from every direction, [quotation mark]I see that you followed my cunning plan to lure you to your doom, Mr. Flack.[quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]Igneous presses a button and you hear a beep. The robot rotates counterclockwise."
+2		"Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a superquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
+3		"[quotation mark]For now, I will have to content myself with directly controlling the kumquat-5000, I call him Lenny, as that name seems to resonate with me. I’m not sure why. I just like the sound of it. Anyhow, as I was saying... to controlling Lenny with an ingenious invention of mine that couples a matrix-scanned keyboard with two multiplexed sine wave oscillators. By merely pressing a button within my Plexiglass®-enclosed command booth, I can control his every action...the first of which will be to kill you. Now, please do cooperate and remain still, so I can get on with the day [apostrophe]s business of tracking down the aforementioned controller unit.[quotation mark]"
+4		"[quotation mark]Sorry for this aside, but henchmen remind me that I am legally obligated to mention that Plexiglass®  is a registered trademark of Altuglas International, for its polymethylmethacrylate resin and sheet products sold in the North and Latin America, whereas it is sold under the brand name Altuglas® in Asia/Pacific, Europe, Africa and the Middle East. Fine. Now, back to killing you.[quotation mark]"
+5		"[quotation mark]I hope you appreciate the irony. Your country will be the unwitting accomplice to my rise to power. You see, Lenny is not the only one of these robots. No, there are thousands of them (or, rather, there will be, when I have finished putting all the parts together). And where did they come from? I will tell you, as you are a most patient listener, even in these trying circumstances that will lead to your death.[quotation mark]"
+6		"[quotation mark]I bought Lenny and his kin from Detroit. From the rusting, derelict auto industry at the rotting core of your declining nation marches forth my mechanized army! I bought them for pennies on the dollar, as banks foreclosed on their properties and forced them to bankruptcy. As for the hardware and software designs, my horde of rabid intellectual property lawyers have made short work of the last shreds of your country’s engineering industry. Yes, with my coalition of bankers, patent attorneys, big media executives, and the congressmen they own, I have created an unstoppable circle of evil! And now, prepare to suffer at the hands of your own slothful lack of foresight and vigilance![quotation mark]"
+7		"[quotation mark]Pardon me for a moment, all this ranting is drying out my throat. I just need a sip of water....There, that[apostrophe]s better.  Difficult business you know, but murder without monologue is like...well... it isn’t pleasant.[quotation mark]"
+8		"[quotation mark]Now, where were we? Ultimate warrior...irony...downfall of American industry...ah yes, we were talking about your demise -- the first victim in a wave of necessary deaths that will ripple out from both your nation’s capital and from my base in West Ispharistan. Surely, you realize that I, Professor Igneous, am behind the war in Ispharistan -- I have studiously cultivated two decades of conflict to hone my mercenaries there to a fine edge. And yes, I am also behind the Québecois. That didn[apostrophe]t work out as explosively as one would have wished.[quotation mark]"
+9		"[quotation mark]Enough about me, let us talk about you (rather, I will talk and you will cling desperately to life).[quotation mark][paragraph break][quotation mark]I thought I had done you in back in Rhodesia, but of course you managed to survive with your rebreather. And then, in the Soviet Union, I assumed you had been lethally irradiated, but lead underwear was something I had not taken into consideration. Czechoslovakia, Yugoslavia...all the same story. You survived longer than the country did in each case. Well, I have learnt my lesson. This time, I will kill you with my own...or rather, Lenny[apostrophe]s own...hands, or rather, laser. That is to say, that Lenny will kill you with his laser, and I will transitively kill you because I control Lenny.[quotation mark]"
+10		"[quotation mark]It is not that I feel that I have anything to prove. I do not, you know. Not that it would matter. Not after I have taken over the world.[quotation mark]"
+11		"[quotation mark]Would you please stop working against me? I will win, you know, and you are merely delaying the inevitable and making me late for every other appointment. You know how it starts: the first kill of the day runs over fifteen minutes, and one thinks it is no big, deal, but then the next one drags on, and soon you are hours behind and it is difficult to catch up. The hours get longer, one has less time for family and hobbies, sleep suffers, the quality of one’s work goes down. No one needs that kind of stress.[quotation mark]"
+12		"[quotation mark]Yes, it is a stressful life, but it will all be worth it when I have the world at its knees. None of the others could shoulder the responsibility: not Moustaffa the Knife, not Edgar the Spyder (yes, I know I had promised not to kill Spyder, but I loathe ineptness). They were dabblers. They wanted to take over the world, but were only willing to go so far. Well, world domination is not a part time job. They all want to be very clever, and make a name for themselves, but the secret to effective world domination is consistency. Take over a little bit of the world each day, and before you know it, it’s in your back pocket. That is the theory, at least.[quotation mark]"
+13		"[quotation mark]I can see that you are rather enjoying this, and much as I do enjoy sporting reparté, I need to get down to business. So, no more chatter. Enough of entertaining you with my witty remarks and enlightening insights. From here out, it is cold, efficient, and most of all, silent, murder.[quotation mark]"
+14		"[quotation mark]Absolutely silent.[quotation mark]"
+15		"[quotation mark]Pristine silence.[quotation mark]"
+17		"[quotation mark]It is quiet in here, isn’t it? I mean, aside from the sound of the conveyor belts and the robot and the lasers, this room has a very hard sound to it. Nothing absorb the sound, just a lot of echoes, particularly with the high-pitched noises. Maybe I should install a drapery.[quotation mark]"
+18		"[quotation mark]A drapery would hold down on heating costs as well, as would a carpet, but I[apostrophe]ve held off on the carpet because Lenny runs about on small wheels, and I got tired of picking carpet fibres from them and his drive belt.[quotation mark][paragraph break][quotation mark]After you are dead, I am hoping to convert this building to a quaint bed and breakfast. Perhaps four bedrooms done up in an early colonial theme. I[apostrophe]d drain the acid from the basement vat and make a spa of it.[quotation mark]"
+20		"[quotation mark]This is far longer than I had expected you to survive. Very well, you have made your point -- you are a most worthy adversary. There. Are you happy? I have said it. Honor is served. Now, would you please allow me to kill you? I shalln[apostrophe]t say please again. I[apostrophe]m getting quite cross, you know.[quotation mark]"
+21		"[quotation mark]Just so you know, I am now turning Lenny[apostrophe]s laser power output down from [apostrophe]vaporize[apostrophe] to [apostrophe]kill[apostrophe] as a reflection of my state of irritation. Rather than blast you to oblivion and move on, I have decided to have you stuffed and mounted in my living room in a comical, but demeaning pose. Not only will you soon be dead, but ridiculed, and no doubt used to hold empty glasses and plates at my dinner parties. Just you consider that.[quotation mark]"
+22		"[quotation mark]The next robot I build will have *ten* lasers and make a much quicker job of it. Ten lasers, one on each arm. And the arms will not all face forward.[quotation mark]" 
+23		"[quotation mark]Lenny, do get on with it. I have to be somewhere.[quotation mark]"
+24		"[quotation mark]You know, Jeremy, I am your father.[quotation mark][paragraph break][quotation mark]Yes, you know it to be true. Search your feelings. Join me and we can rule the galaxy together as father and son![quotation mark][paragraph break][quotation mark]Nah. Just kidding.[quotation mark]"
+25		"[quotation mark]A strong leader is not afraid of injecting a little levity in to every day life. It keeps people sharp.[quotation mark][paragraph break][quotation mark]I often kid around with my minions, and I am told that they find my humour refreshing, a welcome bit of entertainment in the workaday business of dominating the human race.[quotation mark]"
+26		"[quotation mark]Note to self: ten lasers, multiple directions, smarter robot, able to move well on carpet.[quotation mark]"
+27		"Professor Igneous reaches into his labcoat and produces a cell phone. A feature phone, you note with an air of superiority. One like your grandmother uses.[paragraph break][quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Sue?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark] Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark]"
+28		"[quotation mark]Quite a while, actually. I was hoping he[apostrophe]d die very quickly.[quotation mark][paragraph break][quotation mark]No, I am quite certain I can finish him off. I should say he[apostrophe]s in the throws of death even now as we speak.[quotation mark][paragraph break][quotation mark]No, no, I shall be fine. No need. Thanks you for the offer, though, my love.[quotation mark][paragraph break][quotation mark]Got to run. Good luck getting the AI controller. See you tonight! Bye.[quotation mark]"
+29		"[quotation mark]Nag, nag, nag. I suppose she thinks she could kill you faster without a kumquat-5000 death robot? I should say not.[quotation mark][paragraph break][quotation mark]Still, she is stunningly beautiful, statuesque woman, and knows what she wants. Me, for example. She says that she loves me for my incomparable intellect, which  must unquestionably be the case. While many would be attracted to my vast commercial resources and deathgrip on global power, she just likes me for who I am.[quotation mark]"
+30		"[quotation mark]I have never been good with woman. Please, don[apostrophe]t misunderstand me. I am not talking sexual prowess. I have no doubt of my capabilities in that arena, should it ever come to that, but I have never been comfortable talking with women. I think it is because I put them on a pedastle and can not relate to them on a casual basis. When it came to building a robot, many of my colleagues advocated construction of a fembot, but first of all, that is overdone, and secondly, it objectifies both women and robots.[quotation mark]"
+31		"[quotation mark]I am getting carpal tunnel syndrome from pressing the buttons. Next time, I use a dvorak keyboard.[quotation mark]"
 
 
 
@@ -1111,6 +1141,12 @@ To say wonText:
 	
 To say laseredText:
 	say "laseredText."
+	
+To say drainedText:
+	say "drained text…dead…at end of life without Amy, all because you phone battery gave out."
+	
+To say AmeliaPowerDown:
+	say "phone shuts down…now."
  
 To say askPhone:
 	if the noun is Doctor Giblets:
@@ -1212,6 +1248,9 @@ To say youAreLate:
 To say OMGLate:
 	say "The words roll back and forth in your mind as you puzzle out the transcript: starts at won... At one? The rehearsal starts at one? You think back to the day you very methodically entered the appointment, back at the Mauna Kea Observatory -- OMG!!! The time zones. You forgot the time zone adjustment! The rehearsal is right after lunch![paragraph break]You bound out of the exam chair, slamming your head some expensive equipment, but you don[apostrophe]t care. In your panicked state, all you can picture in the darkness is the near future scene in which you offer lame excuses to your former fiancée, while friends and family look on with pity and disgust. You race for the door, screaming, [quotation mark]I[apostrophe]ve got to get to the rehearsal right now or my life is not worth living![quotation mark][paragraph break]Doctor Giblets yells after you, [quotation mark]Hey! Those drops are still in your eyes -- don[apostrophe]t try to operate any motor vehicle for at least an hour![quotation mark][paragraph break]Trevor adds, [quotation mark]Take my bike, it[apostrophe]s right outside! I[apostrophe]ll bring your glasses as soon as they are made![quotation mark]"
 	
+To say revolvingDoor:
+	say "someone slams into it, spinning the door and ejecting you into the dim hotel lobby. Now the rug burn on your left leg matches the road burn on the right one. You are a mess, but at least you won’t be late for the rehearsal";
+	
 
 Book 5  Scenes
  
@@ -1266,7 +1305,9 @@ Chapter Exterior
 
 Exterior is a scene. Exterior begins when Eye Exam ends. Exterior ends when the player is in the Factory.
 
-Instead of going when Exterior is happening:
+Instead of going a direction (called thither) when Exterior is happening:
+	if thither is up or thither is down:
+		continue the action;
 	if the location is Wisconsin Avenue:
 		if the bike does not enclose the player:
 			say "[one of ]It[apostrophe]s a long way downtown, walking would take too long[or]There must be a faster way then schlepping down there on foot[or]You are desperate enough to try anything to get to the wedding rehearsal, but walking (even running, you suppose) wouldn't get you there in time[or]Walking is out of the question. The clock is ticking[stopping].";
@@ -1292,6 +1333,13 @@ Every turn during Exterior:
 Chapter Cunning Plan
 
 Cunning Plan is a scene. Cunning Plan begins when the player is in the Factory. Cunning Plan ends when Professor Igneous is dead.
+
+When Cunning Plan begins:
+	change the turnCounter to -1.
+	
+Every turn during Cunning Plan:
+	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou:
+		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]".
 	
 Chapter Finale
 
@@ -1310,7 +1358,9 @@ Rule for printing the player's obituary:
 		-- hastured:
 			say "[hasturedText]";
 		-- lasered:
-			say "[laseredText]".	
+			say "[laseredText]";
+		-- drained:
+			say "[drainedText]".
 		
 						
 Rule for amusing a victorious player:
