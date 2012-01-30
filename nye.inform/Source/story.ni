@@ -100,6 +100,36 @@ Mortality is a kind of value. The mortalities are alive and dead. Persons have m
 
 Focus is a kind of value. The focuses are unfocused, diplopic, blurry, and sharp.
 
+Section Chests and Lids
+
+[borrowed more or less whole cloth from example 49 in the I7 documentation, as adapted in Rover's Day Out. Instead of keeping track of whether the lid is up or down, keep track of the open/close status of the chest.]
+
+A chest is a kind of container. A chest is always openable. A chest is usually fixed in place. A chest is usually closed. The specification of a chest is "Represents a container with a separately implemented lid; the lid is itself a supporter."
+
+A lid is a kind of supporter. A lid is part of every chest. Lids can be raisable. Lids are usually raisable. The specification of a lid is "A supporter attached to a chest, which can only support things when the chest is closed."
+
+Before opening a lid which is part of a chest (called the item): 
+	try opening the item instead.
+Before closing a lid which is part of a chest (called the item): 
+	try closing the item instead.
+Before opening a chest when something is on the lid (called the obstruction) which is part of the noun: 
+	repeat with item running through things on the obstruction: 
+		say "(first removing [the item])"; 
+		try taking the item.
+
+Instead of opening a chest when something is on a lid (called the item) which is part of the noun: 
+	say "You'd have to remove [the list of things on the item] from the lid first." instead.
+	
+Instead of looking under a lid which is part of a chest (called the item): 
+    try opening the item.
+
+Before inserting something into a lid which is part of a chest (called the item): 
+	try inserting the noun into the item instead.
+	
+Before putting something on a chest when a lid (called the item) is part of the second noun: 
+	try putting the noun on the item instead.
+	
+
 Chapter General Routines
 		
 [borrowed from example I7 documentation, example 424 Odins:]
@@ -415,7 +445,7 @@ Section Messaging
 
 Messaging is an action applying to nothing.
 
-Understand "message" and "messages" as messaging.
+Understand "message" as messaging.
 
 Persuasion rule for asking Amelia to try messaging:
 	persuasion succeeds.
@@ -847,7 +877,9 @@ The spinning platforms are a fardrop. They are in the Factory.
 
 The industrial welding robot is a fardrop. It is in the Factory. Understand "Lenny" as the industrial welding robot. The laser is part of the industrial welding robot.
 
-The metal parts locker is a container. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged lid that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[paragraph break][quotation mark][one of]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping][paragraph break]". The metal parts locker is not fuzzy.
+The metal parts locker is an enterable chest. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]". The metal parts locker is not fuzzy.
+
+The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. The cover is not fuzzy.
 
 Rule for printing room description details of the metal parts locker:
 	omit contents in listing.
@@ -1055,7 +1087,7 @@ turnNumber	rant
 28		"Professor Igneous reaches into his labcoat and produces a cell phone. A feature phone, you note with an air of superiority. One like your grandmother uses.[paragraph break][quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Sue?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark] Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark]"
 29		"[quotation mark]Quite a while, actually. I was hoping he[apostrophe]d die very quickly.[quotation mark][paragraph break][quotation mark]No, I am quite certain I can finish him off. I should say he[apostrophe]s in the throws of death even now as we speak.[quotation mark][paragraph break][quotation mark]No, no, I shall be fine. No need. Thanks you for the offer, though, my love.[quotation mark][paragraph break][quotation mark]Got to run. Good luck getting the AI controller. See you tonight! Bye.[quotation mark]"
 30		"[quotation mark]Nag, nag, nag. I suppose she thinks she could kill you faster without a kumquat-5000 death robot? I should say not.[quotation mark][paragraph break][quotation mark]Still, she is stunningly beautiful, statuesque woman, and knows what she wants. Me, for example. She says that she loves me for my incomparable intellect, which  must unquestionably be the case. While many would be attracted to my vast commercial resources and deathgrip on global power, she just likes me for who I am.[quotation mark]"
-31		"[quotation mark]I have never been good with women. Please, don[apostrophe]t misunderstand me. I am not talking sexual prowess. I have no doubt of my capabilities in that arena, should it ever come to that, but I have never been comfortable talking with women. I think it is because I put them on a pedestal and can not relate to them on a casual basis. When it came to building a robot, many of my colleagues advocated construction of a fembot, but first of all, that is overdone, and secondly, it objectifies both women and robots.[quotation mark]"
+31		"[quotation mark]I have never been good with woman. Please, don[apostrophe]t misunderstand me. I am not talking sexual prowess. I have no doubt of my capabilities in that arena, should it ever come to that, but I have never been comfortable talking with women. I think it is because I put them on a pedastle and can not relate to them on a casual basis. When it came to building a robot, many of my colleagues advocated construction of a fembot, but first of all, that is overdone, and secondly, it objectifies both women and robots.[quotation mark]"
 35		"[quotation mark]I am getting carpal tunnel syndrome from pressing the buttons. Next time, I use a dvorak keyboard.[quotation mark]"
 
 
