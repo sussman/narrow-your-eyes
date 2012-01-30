@@ -57,7 +57,7 @@ geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
-phoneCharge is usually zero. phoneCharge is 220.
+phoneCharge is usually zero. phoneCharge is 170.
 
 hasturCount is a number that varies. hasturCount is zero.
 
@@ -90,7 +90,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained, jumped and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -706,7 +706,7 @@ Every turn:
 		change the time of day to 1 minute before the time of day;
 	increase turnCounter by one;[so don't do this in per-scene-everyturn]
 	decrease phoneCharge by one;
-	change powerBars to phoneCharge divided by 40;
+	change powerBars to phoneCharge divided by 30;
 	if phoneCharge is zero:
 		say "[AmeliaPowerDown]";
 		if Exterior has happened:
@@ -890,6 +890,34 @@ The Poletop is above CornerNW. Understand "top" as the poletop. The description 
 In the Poletop is a supporter called the top of the pole. The description of the the top of the pole is "The top of the pole is a bit smaller in circumerference than the base, and there are no signs up this high." The top of the pole is not fuzzy.
 
 Instead of climbing the top of the pole, try going down.
+
+To plummet: 
+	change the endgame to jumped;
+	end the game in death.
+
+Instead of jumping when the location is poletop:
+	say "You cast yourself back from the pole and enjoy several seconds of freefall.  [onTheWayDown]";
+	plummet.
+	
+Instead of waving hands when the location is the poletop:
+	say "You wave your hands at tourists, eager to make their trip to the nation's capital memorable. Surely, it will be for them.[paragraph break][onTheWayDown]";
+	plummet.
+	
+Instead of going a direction (called the way) when the location is poletop:
+	if the way is:
+		-- down:
+			continue the action;
+		-- inside:
+			continue the action;
+		-- outside:
+			continue the action;
+		-- up:
+			say  "You push off the top of the pole, striving for greater height and this strategy works. Momentarily. [onTheWayDown]";
+			plummet;
+		-- otherwise:
+			say "Tired of clinging to the dreary pole, you strike out [way]ward. For a moment, you think this is a brilliant idea. [onTheWayDown]";
+			plummet.
+		
 
 Chapter Limbo
 
@@ -1173,6 +1201,12 @@ To say drainedText:
 To say webbedText:
 	say "Sliced and diced by a laser web.";
 	
+To say onTheWayDown:
+	say "You read several traffic signs on the way down, including some that you had missed earlier. The whistling wind is replaced by a crunching sound and sudden darkness."
+	
+To say jumpedText:
+	say "Defeated by Gravity."
+	
 To say AmeliaPowerDown:
 	say "phone shuts down…now."
  
@@ -1343,7 +1377,7 @@ Instead of going a direction (called thither) when Exterior is happening:
 		otherwise:[on the bike]
 			if gpsBars is zero:[but amelia's travel function not activated]
 				say "[one of]You have been in Washington, DC for NASA meetings before, but you don’t know your way around[or]You know your way back and forth to National, Dulles and BWI airports from the metro system, but above ground, you are hopelessly lost[or]All of these roads look the same to you. Blurry[or]You are not sure which way to go[stopping].";
-	otherwise: [on the corner, just outside the hotel]
+	otherwise if the location is CornerNW:
 		say "[one of]You are not very familiar with this area, but even on a Sunday, there is a lot of traffic, and you are not keen to get run over again[or]You had enough trouble finding this place, you are reluctant to wander off blindly. Literally[or]You are right outside the hotel. Amy is pretty understanding, but you would not want to explain that you nearly died getting here and then, just for the heck of it, decided to go sight-seeing in the neighborhood, while she waited nervously inside entertaining all of your guests at the wedding rehearsal[or]The only place you are interested in going right now is into the hotel[stopping]." 
 	
 			
@@ -1404,7 +1438,9 @@ Rule for printing the player's obituary:
 		-- drained:
 			say "[drainedText]";
 		-- webbed:
-			say "[webbedText]".
+			say "[webbedText]";
+		-- jumped:
+			say "[jumpedText]".
 		
 						
 Rule for amusing a victorious player:
