@@ -1,4 +1,6 @@
 .DS_Store
 nye\.inform/.*
 nye\ Materials/Release/.*
+robotest/robotest\.inform/.*
+robotest/robotest\ Materials/Release/.*
 
