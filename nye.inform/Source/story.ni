@@ -90,7 +90,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained, jumped and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained, jumped, electricuted and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -538,8 +538,11 @@ Instead of Amelia phoneToing:
 				-- 2:say "couple";
 				-- 3:say "few";
 				-- otherwise: say "series of";
-			say " loud touch tone[if n is greater than one]s[end if].[no line break][NoNetwork]";	
+			say " loud touch tone[if n is greater than one]s[end if].[no line break]";	
 			change lastDialed to T;
+			if the cunning plan is happening:
+				do robotControl;
+			say "[noNetwork]";
 	else:	
 		if T matches the regular expression "amelia", case insensitively:
 			say "The phone flashes grey for an instant, then replies, [quotation mark]I am here, Marv. Please tell me who to call.[quotation mark][paragraph break]";
@@ -561,7 +564,7 @@ Carry out skying:
 	say "[errorPrompt]".
 	
 Instead of Amelia skying:
-	say "The dark background makes this app easier to see. You can’t distinguish individual starts, but as a professional astronomer, you have no trouble making out the shape of individual constellations. As you change orientations, the image on the phone rotates, fixed on the heavens.";
+	say "The dark background makes this app easier to see. [if Marv Spindle is dilated]You can’t distinguish individual starts, but as a professional astronomer, you have no trouble making out the shape of individual constellations[otherwise]As a professional astronmer, you immediately recognize the stars and contellations[end if]. As you change orientations, the image on the phone rotates, fixed on the heavens.";
 	the rule succeeds.
 	
 Section Time
@@ -904,7 +907,7 @@ The industrial welding robot is a fardrop. It is in the Factory. Understand "Len
 
 The metal parts locker is an enterable chest. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]". The metal parts locker is not fuzzy. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
 
-The metal parts locker contains a pile of plastic devices.  The pile of plastic devices is a fixed in place thing.  It is not fuzzy. Understand "supercapacitors" or "black" or "boxes"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
+The metal parts locker contains a pile of plastic devices.  The pile of plastic devices is a fixed in place thing.  It is not fuzzy. Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
 To say pileAppearance:
 	if Amelia is supercharged:
@@ -917,18 +920,37 @@ To say pileAppearance:
 		otherwise:
 			say "Hundreds of black plastic boxes, just like the one you picked up."
 			
+Instead of inserting something (called the insertee) into something (called the recipient):
+	if the insertee is the supercapacitor power module or the insertee is the connector:
+		if the recipient is amelia or the recipient is the interface:
+			say "The ultracapacitor clicks into place and molds seemlessly into the mangoFONE[apostrophe]s obsidian unibody. As it does so, the phone ripples with new found energy, humming a bass note so low that it shakes your intestines. ";
+			move the interface to Limbo;
+			move the supercapacitor power module to Limbo;
+			now Amelia is supercharged;
+			change phoneCharge to 2000;
+		otherwise:
+			say "Be careful what you stick you connector into.";
+	otherwise:
+		continue the action.
+			
 Instead of doing something with the pile of plastic devices:
 	if the current action is examining:
 		continue the action;
 	else if the current action is attacking:
 		say "[one of]No doubt, the pile feels intimidated now[or]Apparently, violence is just the answer when it comes to randomly rearranging a pile of plastic devices in a dark parts locker, while your evil nemesis takes pot shots at you with a robot[or]That will teach them[or]That was cathartic[or]It seems these plastic boxes are just about indestructible[at random].";
 	else if the current action is taking:
-		say "You have already taken one supercapacitor, which should be enough to power a city block for a decade. Grabbing another one won[apostrophe]t help matters.";
+		if the player holds the supercapacitor power module or amelia is supercharged:
+			say "You have already taken one supercapacitor, which should be enough to power a city block for a decade. Grabbing another one won[apostrophe]t help matters.";
+		otherwise:
+			try examining the pile of plastic devices;
 	else if the current action is entering:
 		say "You don[apostrophe]t want to be that close to the pile. If they get hit with a laser beam, there is likely to be some fallout.";
 	otherwise:
 		continue the action.
-			
+		
+Instead of throwing, dropping, or attacking the supercapacitor power module:
+	say "That could damage your precious supercapacitor power module. On reconsideration, you hold it protectively."
+				
 After searching the metal parts locker:
 	if the metal parts locker does not enclose the player:
 		say "It is too dark inside the locker to see anything."
@@ -967,6 +989,8 @@ Rule for printing room description details of the metal parts locker:
 	omit contents in listing.
 
 The ultraviolet web is a furniture. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of your perception[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
+
+
 
 Chapter CornerNW
 
@@ -1039,7 +1063,10 @@ Chapter Limbo
 
 Limbo is a room.
 
-The supercapacitor power module is a prop. It is in Limbo. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The supercapacitor power module is not fuzzy. The connector is not fuzzy. The indictor is not fuzzy.
+The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The supercapacitor power module is not fuzzy. The connector is not fuzzy. The indicator is not fuzzy.
+
+Instead of touching, tasting, eating or kissing the connector:
+	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash."
 
 The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The interface port is not fuzzy.
 
@@ -1299,7 +1326,7 @@ To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, tutor[roman type].[no line break]".
 	
 To say noNetwork:
-	say "[paragraph break]A moment later, however, the phone turns marroon, and warns, [quotation mark]No SIM card is installed. No phone network is available.[quotation mark][one of][paragraph break]You realize that in your haste to pack for the trip to Washington, DC, you didn’t move your SIM card from your old phone to the mangoFONE that Istvan gave you. Guess that explains the lack of network bars.[no line break][or][stopping][paragraph break]".
+	say "[paragraph break]The phone turns marroon, and warns, [quotation mark]No SIM card is installed. No phone network is available.[quotation mark][one of][paragraph break]You realize that in your haste to pack for the trip to Washington, DC, you didn’t move your SIM card from your old phone to the mangoFONE that Istvan gave you. Guess that explains the lack of network bars.[no line break][or][stopping][paragraph break]".
 	
 To say noSelfTalking:
 	say "You have never talked to yourself, and you are not about to start now."
@@ -1324,6 +1351,9 @@ To say onTheWayDown:
 	
 To say jumpedText:
 	say "Defeated by Gravity."
+	
+To say electrocutedText:
+	say "Shocked by a Proprietary Connector."
 	
 To say AmeliaPowerDown:
 	say "phone shuts down…now."
@@ -1515,9 +1545,12 @@ Chapter Cunning Plan
 Cunning Plan is a scene. Cunning Plan begins when the player is in the Factory. Cunning Plan ends when Professor Igneous is dead.
 
 When Cunning Plan begins:
-	change the turnCounter to 0.
+	change the turnCounter to 0;
+	change gpsBars to 0.
 	
 Every turn during Cunning Plan:
+	if the turnCounter is greater than 2:
+		do RobotAttack;
 	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou:
 		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]".
 		
@@ -1529,9 +1562,76 @@ Before going a direction (called the way) during cunning plan:
 	otherwise:
 		say "You can move back and forth a bit within the narrow area of the room to the south of the ultraviolet laser web, but it would be dangerous to move northwards.";
 		stop the action.
+		
+To do robotControl:
+	let instruction be indexed text;
+	let lastChar be the number of characters in lastDialed;
+	repeat with n running from one to lastChar:
+		let instruction be character number n in lastDialed;
+		if instruction matches the text "1":
+			do RobotOne;
+		else if instruction matches the text "2":
+			do RobotTwo;
+		else if instruction matches the text "3":
+			do RobotThree;
+		else if instruction matches the text "4":
+			do RobotFour;
+		else if instruction matches the text "5":
+			do RobotFive;
+		else if instruction matches the text "6":
+			do RobotSix;
+		else if instruction matches the text "7":
+			do RobotSeven;
+		else if instruction matches the text "8":
+			do RobotEight;
+		else if instruction matches the text "9":
+			do RobotNine;
+		else if instruction matches the text "0":
+			do RobotZero;	
+		if n is less than (lastChar minus one):
+			say ", ";
+		if n is (lastChar minus one):
+			if lastChar is greater than three:
+				say ", and finally ";
+			otherwise: 
+				say ", and ";
+	say "."
+
+
+To do RobotOne:
+	say "Doing robot one[no line break]".
+	
+To do RobotTwo:
+	say "Doing robot two[no line break]".
+	
+To do RobotThree:
+	say "Doing robot three[no line break]".
+	
+To do RobotFour:
+	say "Doing robot four[no line break]".
+	
+To do RobotFive:
+	say "Doing robot five[no line break]".
+	
+To do RobotSix:
+	say "Doing robot six[no line break]".
+	
+To do RobotSeven:
+	say "Doing robot seven[no line break]".
+	
+To do RobotEight:
+	say "Doing robot eight[no line break]".
+	
+To do RobotNine:
+	say "Doing robot nine[no line break]".
+	
+To do RobotZero:
+	say "Doing robot zero[no line break]".
+	
+To do RobotAttack:
+	say "The Robot's attack move goes here."
 	
 
-	
 	
 Chapter Finale
 
@@ -1556,7 +1656,9 @@ Rule for printing the player's obituary:
 		-- webbed:
 			say "[webbedText]";
 		-- jumped:
-			say "[jumpedText]".
+			say "[jumpedText]";
+		-- electricuted:
+			say "[electrocutedText]".
 		
 						
 Rule for amusing a victorious player:
