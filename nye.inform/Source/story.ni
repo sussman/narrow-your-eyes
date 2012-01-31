@@ -72,6 +72,14 @@ messageAlert is a truth state that varies. messageAlert is false.
 
 updated is a truth state that varies. updated is true.
 
+robotOrientation is a number that varies. The robotOrientation is 180.
+[0 N, 90 E, 180 S, 270 W]
+
+robotX is a number that varies. robotX is 2.
+robotY is a number that varies. robotY is 1.
+
+graphics is a truth state that varies. graphics is true.
+
 
 Chapter Class Definitions
 
@@ -189,6 +197,18 @@ Section Asking
 Before asking the player about something:
 	say "[noSelfTalking]";
 	stop the action.
+	
+Section Graphing
+[To accommodate non-graphics interpreters and visually-impaired users, the graphic command switches in and out of graphics mode for the Cunning Plan scene]
+
+
+Understand "graphics" as graphing.
+
+Graphing is an action out of world.
+
+Carry out graphing:
+	say "[bracket][if graphics is true]Graphics[otherwise]Text-only[end if] mode[close bracket]."
+
 	
 Section Listening
 [Listen is implemented through insteads. Override this general instead rule with more specific ones as needed]
@@ -1305,7 +1325,7 @@ To say openingLine2:
 	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark] asks Dr. Giblets.[paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]"
 	
 To say aboutText:
-	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
+	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]. This game makes use of graphics, to toggle between graphics and text-only mode, type [quotation mark]graphics[quotation mark]."
 	
 To say geeWhiz:
 	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amy's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
@@ -1461,6 +1481,31 @@ To say OMGLate:
 To say revolvingDoor:
 	say "someone slams into it, spinning the door and ejecting you into the dim hotel lobby. Now the rug burn on your left leg matches the road burn on the right one. You are a mess, but at least you won’t be late for the rehearsal";
 	
+To say spin-o-nyms:
+	say  "[one of]spins[or]rotates[or]twists[or]pivots[or]alters orientation[or]changes direction[at random]";
+	
+	
+To say ccw:
+	say "[one of]ninety-degrees [or][at random][one of]to the left[or]counterclockwise[at random]".
+	
+To say cw: [-.-.   .--]
+	say "[one of]ninety-degrees [or][at random][one of]to the right[or]clockwise[at random]".
+	
+To say volteface:
+	say "[one of]180 degrees[or]completely around[or]so it faces the opposite direction[at random]".
+	
+To say arounds:
+	say "[one of]in a full circle[or]360 degrees[or]but ends up facing its original direction[at random]".
+	
+To say goesBackwards:
+	say "[one of]retreats[or]backs up[or]moves back[or]rolls backwards[at random]".
+	
+To say goesForwards:
+	say "[one of]advances[or]steps forwards[or]rolls ahead[at random]".
+	
+To say quickly:
+	say "[one of]quickly[or]rapidly[or]at high speed[at random]".
+	
 
 Book 5  Scenes
  
@@ -1563,75 +1608,67 @@ Before going a direction (called the way) during cunning plan:
 		say "You can move back and forth a bit within the narrow area of the room to the south of the ultraviolet laser web, but it would be dangerous to move northwards.";
 		stop the action.
 		
+[ DTMF Tones:
+	
+1. CCW
+2. Back 1
+3. Spin 180
+4. CW
+5. Forward 2
+6. Foward 3
+7. Fire Lazzzzzer!
+8. scanning beam
+9. sound effects
+0. Spin 360 (effectively NOP)
+
+]
+
+
 To do robotControl:
-	let poweredDown be false;
-	let instruction be zero;
 	let lastChar be the number of characters in lastDialed;
+	let instruction be indexed text;
 	repeat with n running from one to lastChar:
 		let instruction be character number n in lastDialed;
-		if instruction matches the text "1":
-			do RobotOne;
+		say "The robot ";
+		if  instruction matches the text "1": 
+			say "[spin-o-nyms] [ccw]";
 		else if instruction matches the text "2":
-			do RobotTwo;
+			say " [goesBackwards] slowly";
 		else if instruction matches the text "3":
-			do RobotThree;
+			say "[spin-o-nyms] [volteface]";
 		else if instruction matches the text "4":
-			do RobotFour;
+			say "[spin-o-nyms] [cw]";
 		else if instruction matches the text "5":
-			do RobotFive;
+			say "[goesForwards]";
 		else if instruction matches the text "6":
-			do RobotSix;
+			say "[goesForwards] [quickly]";
 		else if instruction matches the text "7":
-			do RobotSeven;
+			say "fires the lazzzer";
+			[if the lazer hits Igneous:
+				kill him -- this triggers Finale.
+			else if the lazer hits the parts bin:
+				do PartsBinHit;
+			else if the lazer hits Marvin, endgame lasered]
 		else if instruction matches the text "8":
-			do RobotEight;
+			say "performs a sensor scan";
 		else if instruction matches the text "9":
-			do RobotNine;
+			say "makes incomprehensible noises";	
 		else if instruction matches the text "0":
-			do RobotZero;	
-		if n is less than (lastChar minus one):
-			say ", ";
-		if n is (lastChar minus one):
-			if lastChar is greater than three:
-				say ", and finally ";
-			otherwise: 
-				say ", and ";
-	say "."
+			say "[spin-o-nyms] [arounds]";
+	do FactoryPhysics.
+			
+To do PartsBinHit:
+	say "Parts Bin has been hit!".
+	[determine whether Marvin was killed or not; if so, endgame lasered]
 
-
-To do RobotOne:
-	say "spins left 90 degrees[no line break]".
-	
-To do RobotTwo:
-	say "Doing robot two[no line break]".
-	
-To do RobotThree:
-	say "Doing robot three[no line break]".
-	
-To do RobotFour:
-	say "Doing robot four[no line break]".
-	
-To do RobotFive:
-	say "Doing robot five[no line break]".
-	
-To do RobotSix:
-	say "Doing robot six[no line break]".
-	
-To do RobotSeven:
-	say "Doing robot seven[no line break]".
-	
-To do RobotEight:
-	say "Doing robot eight[no line break]".
-	
-To do RobotNine:
-	say "Doing robot nine[no line break]".
-	
-To do RobotZero:
-	say "Doing robot zero[no line break]".
 	
 To do RobotAttack:
-	say "The Robot's attack move goes here."
+	say "The Robot's attack move goes here.";
+	[test for Marv's death by laser]
+	do FactoryPhysics.
 	
+To do FactoryPhysics:
+	say "Factory Physics here." [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player].
 
 	
 Chapter Finale
