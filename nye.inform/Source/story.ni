@@ -1564,7 +1564,8 @@ Before going a direction (called the way) during cunning plan:
 		stop the action.
 		
 To do robotControl:
-	let instruction be indexed text;
+	let poweredDown be false;
+	let instruction be zero;
 	let lastChar be the number of characters in lastDialed;
 	repeat with n running from one to lastChar:
 		let instruction be character number n in lastDialed;
@@ -1599,7 +1600,7 @@ To do robotControl:
 
 
 To do RobotOne:
-	say "Doing robot one[no line break]".
+	say "spins left 90 degrees[no line break]".
 	
 To do RobotTwo:
 	say "Doing robot two[no line break]".
