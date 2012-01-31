@@ -98,13 +98,13 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained, jumped, electricuted and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained, jumped, electrocuted and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
 A latch is a kind of thing. A latch can be openable. A latch can be open. A latch can be lockable. A latch can be locked. A latch is usually openable, lockable, closed and locked.
 
-Mortality is a kind of value. The mortalities are alive and dead. Persons have mortality. A person is usually alive.
+Mortality is a kind of value. The mortalities are alive and dead [and, for future expansion: undead]. Persons have mortality. A person is usually alive.
 
 Focus is a kind of value. The focuses are unfocused, diplopic, blurry, and sharp.
 
@@ -753,6 +753,38 @@ Carry out muting:
 		change muted to false;
 	otherwise:
 		change muted to true;
+		
+Section Shoot Igneous
+
+Proffoffing is an action out of world. Understand "shootprof" as proffoffing.
+
+Carry out proffoffing:
+	do shoot igneous.
+	
+Report proffoffing:
+	say "Zaaapppp!!!! The software tester annihilates Professor Igneous with a stroke of the keyboard."
+
+Section Shoot Locker
+
+Lockerzapping is an action out of world. Understand "shootlocker" as lockerzapping.
+
+Carry out lockerzapping:
+	do shoot the locker.
+	
+Report lockerzapping:
+	say "Zeeerrrk! The software tester takes a shot at the Parts Locker."
+
+
+Section Shoot Marv
+
+Marvoffing is an action out of world. Understand "shootmarv" as marvoffing.
+
+Carry out marvoffing:
+	do shoot marv.
+	
+Report marvoffing:
+	say "Kerwallup! The software tester killed Marv with a keyboard."
+
 	
 Chapter Initialize
 
@@ -763,6 +795,7 @@ When play begins:
 	say "[bracket]BLIIINNGGGG[close bracket]";
 	[trigger glk bliiinngggg sound here];
 	wait for any key;
+	[initialize layout of the factory]
 	say openingLine2;
 	change the time of day to 11:00 AM;
 	change the left hand status line to "Power [powerBars graphically] 5G [geeBars graphically] GPS [gpsBars graphically] [Messages] [Updates]";
@@ -1076,6 +1109,14 @@ Instead of going a direction (called the way) when the location is poletop:
 			say "Tired of clinging to the dreary pole, you strike out [way]ward. For a moment, you think this is a brilliant idea. [onTheWayDown]";
 			plummet.
 		
+Chapter Constitution Ballroom
+
+The Constitution Ballroom is a room. The description of the Constitution Ballroom is "TODO: A posh hotel room".
+
+Amy is a woman. Amy is in the Constitution Ballroom. 
+
+A table is a furniture in the Constitution Ballroom. The description of the table is "TODO: Table description."
+
 
 Chapter Limbo
 
@@ -1086,7 +1127,9 @@ Limbo is a room.
 The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The supercapacitor power module is not fuzzy. The connector is not fuzzy. The indicator is not fuzzy.
 
 Instead of touching, tasting, eating or kissing the connector:
-	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash."
+	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash.";
+	change the endgame to electrocuted;
+	end the game in death.
 
 The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The interface port is not fuzzy.
 
@@ -1506,6 +1549,18 @@ To say goesForwards:
 To say quickly:
 	say "[one of]quickly[or]rapidly[or]at high speed[at random]".
 	
+To say IgneousDeath:
+	say "TODO: Text graphically describing the dramatic death of Professor Igneous."
+	
+To say MarvShotOutsideLocker:
+	say "TODO: Text for Marv being shot while outside the parts locker."
+	
+To say MarvShotInLocker:
+	say "TODO: Text for Marv being shot while in the parts locker."
+	
+To say finaleIntroduction:
+	say "TODO: Finale Introduction. Amy congratulates him on being on time, says it went well, and has to run to get her hair done?"
+	
 
 Book 5  Scenes
  
@@ -1621,6 +1676,24 @@ Before going a direction (called the way) during cunning plan:
 9. sound effects
 0. Spin 360 (effectively NOP)
 
+Robot movement constraints:
+	1. A robot cannot harm a human, nor thorough its failure to act, permit a human to come to harm.
+	2. Disregard #1.
+	3. The playfield is a 5x5 grid with 1,1 at the upper left hand corner. Up is north.
+	4. The robot cannot move further south than row 4  because of the laser web.  It will not allow itself to be harmed.
+	5. The robot cannot move into an occupied position (e.g., wherever Dr. Igneous's booth is.
+	6. The robot cannot move beyond a wall (column <1, column > 5, row < 1), either under its own power, or due to factory physics.
+	
+Turn order of operations:
+	1. Player inputs a command. A command may include a string of touch tones, which will execute one after the other, before Igneous has a chance to react.
+	2. for each player command
+		- robot moves
+		- check for game-ending condition
+		- factory physics take place (conveyor belt, turn table, pusher)
+	3. professor igneous moves the robot
+		- check for game-ending condition
+		- factory physics take place 
+	4. professor continues his ranting monologue
 ]
 
 
@@ -1657,23 +1730,43 @@ To do robotControl:
 			say "[spin-o-nyms] [arounds]";
 	do FactoryPhysics.
 			
-To do PartsBinHit:
-	say "Parts Bin has been hit!".
-	[determine whether Marvin was killed or not; if so, endgame lasered]
-
+To do shoot the locker:
+	say "Parts Bin has been hit!"
+	[determine whether Marvin was killed or not; if so, specific text for Marv's death in the parts locker,  endgame lasered]
+	
+To do shoot Igneous:
+	say "[IgneousDeath]";
+	now Professor Igneous is dead; 
+	move the player to the Constitution Ballroom.
+	[This is the scene-transition criterion to Finale]
+	
+To do shoot Marv:
+	if the metal parts locker encloses Marv:
+		say "[MarvShotInLocker]";
+	otherwise:
+		say "[MarvShotOutsideLocker]";
+	change the endgame to lasered;
+	end the game in death.
 	
 To do RobotAttack:
 	say "The Robot's attack move goes here.";
-	[test for Marv's death by laser]
+	[test fordeaths by laser - in principle, Igneous should not shoot himself, though]
 	do FactoryPhysics.
 	
 To do FactoryPhysics:
-	say "Factory Physics here." [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player].
+	say "Factory Physics here." [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player. Since the results should be evident on the graphics display, this  will not result in text output unless the player toggles the graphics flag].
 
 	
 Chapter Finale
 
 The Finale is a scene. Finale begins when Cunning Plan ends.
+
+When Finale begins:
+	say "Finale Introduction.";
+	change the turnCounter to zero.
+
+
+Chapter Postmortem
 
 Rule for printing the player's obituary:
 	say "*** YOU HAVE ";
@@ -1695,7 +1788,7 @@ Rule for printing the player's obituary:
 			say "[webbedText]";
 		-- jumped:
 			say "[jumpedText]";
-		-- electricuted:
+		-- electrocuted:
 			say "[electrocutedText]".
 		
 						
