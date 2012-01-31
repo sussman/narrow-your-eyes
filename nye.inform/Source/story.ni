@@ -215,7 +215,7 @@ Understand "look [a visible thing]" as examining.
 
 Section Mounting
 
-Understand "mount [a supporter]" as entering.
+Understand "mount [a thing]" as entering.
 		
 Section Putting
 
@@ -235,10 +235,10 @@ Carry out reading:
 	say the inscription of the noun;
 	say paragraph break.
 	
-
 Section Riding
 
-Understand "ride [a supporter]" as entering.
+Understand "ride [a thing]" as entering.
+	
 
 Section Showing
 
@@ -868,7 +868,7 @@ Chapter Wisconsin Avenue
 
 Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "[one of]It is a bright, unpleasantly sunny day. So sunny, in fact, that everything more than a few feet away is a complete blur. You narrow your eyes and recognize the outside of Doctor Giblet’s office[or]Somewhere on Wisconsin Avenue, just above Reservoir Road[stopping]."
 
-The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy. 
+The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.  
 
 Instead of climbing the bike:
 	try entering the bike.
@@ -1485,7 +1485,7 @@ Instead of going a direction (called thither) when Exterior is happening:
 	
 			
 Every turn during Exterior:
-	if gpsBars is greater than zero:
+	if gpsBars is greater than zero and the bike supports the player:
 		if location is Wisconsin Avenue:
 			say "Your mangoFONE dutifully computes your location and directs you as you get on the bike and ride down the block. You can’t quite make out the traffic signs, but you are thankful that at least the traffic lights are green as you whiz through intersections along Wisconsin Avenue. You turn left on to M Street and weave between the slow moving lines of cars, full of confidence that your phone will get you to the rehearsal on time.[paragraph break]All things considered, you are not terribly surprised when the number 30 bus clips you, crushing the bike under its massive wheels. You roll clear, tucking your body protectively around the mangoFONE, which soldiers on unphased, [quotation mark]Rerouting...rerouting…[quotation mark][paragraph break][quotation mark]Zambozay![quotation mark] Shouts the bus driver, as he clambers down to assist you. [quotation mark]I nearly flattened you like a monomolecular sheet of graphene! Sorry about the bike. I guess the least I can do is offer you a ride[quotation mark].  You are so happy to have a ride to the rehearsal that you ignore your torn clothing, roadburned right leg, and dislocated left shoulder. Moments later, the bus drops you off right outside a hotel at 4th and I Street.";
 			move the player to CornerNW;
