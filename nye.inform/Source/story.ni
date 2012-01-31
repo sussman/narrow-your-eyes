@@ -467,7 +467,7 @@ Section Messaging
 
 Messaging is an action applying to nothing.
 
-Understand "message" as messaging.
+Understand "message" or "messages" as messaging.
 
 Persuasion rule for asking Amelia to try messaging:
 	persuasion succeeds.
@@ -904,17 +904,30 @@ The industrial welding robot is a fardrop. It is in the Factory. Understand "Len
 
 The metal parts locker is an enterable chest. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]". The metal parts locker is not fuzzy. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
 
-The metal parts locker contains a pile of plastic devices.  The pile of plastic devices is a fixed in place thing.  It is not fuzzy.
+The metal parts locker contains a pile of plastic devices.  The pile of plastic devices is a fixed in place thing.  It is not fuzzy. Understand "supercapacitors" or "black" or "boxes"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
-To say the description of the plastic devices:
+To say pileAppearance:
 	if Amelia is supercharged:
 		say "A bunch of supercapacitors like the one currently installed in your mangoFONE.";
 	otherwise:
 		if the player does not hold the supercapacitor:
 			say "They are black plastic boxes, with fashionably rounded corners and some sort of connector at one end. Picking one up, you notice text on one side says [quotation mark]10 farad ultracapacitor power module. Made in West Ispharistan. Patent pending. For terrorist use only.[quotation mark] An indicator shows full power. As you bring the box near your mangoFONE, you note that the phone has opened a port, exactly the size and shape of the connector on the ultracapacitor.";
 			move the supercapacitor power module to the player;
+			now the interface port is part of Amelia;
 		otherwise:
 			say "Hundreds of black plastic boxes, just like the one you picked up."
+			
+Instead of doing something with the pile of plastic devices:
+	if the current action is examining:
+		continue the action;
+	else if the current action is attacking:
+		say "[one of]No doubt, the pile feels intimidated now[or]Apparently, violence is just the answer when it comes to randomly rearranging a pile of plastic devices in a dark parts locker, while your evil nemesis takes pot shots at you with a robot[or]That will teach them[or]That was cathartic[or]It seems these plastic boxes are just about indestructible[at random].";
+	else if the current action is taking:
+		say "You have already taken one supercapacitor, which should be enough to power a city block for a decade. Grabbing another one won[apostrophe]t help matters.";
+	else if the current action is entering:
+		say "You don[apostrophe]t want to be that close to the pile. If they get hit with a laser beam, there is likely to be some fallout.";
+	otherwise:
+		continue the action.
 			
 After searching the metal parts locker:
 	if the metal parts locker does not enclose the player:
@@ -1026,7 +1039,9 @@ Chapter Limbo
 
 Limbo is a room.
 
-The supercapacitor power module is a prop. It is in Limbo. The description of the supercapacitor is "An extremely high density power source."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector."
+The supercapacitor power module is a prop. It is in Limbo. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The supercapacitor power module is not fuzzy. The connector is not fuzzy. The indictor is not fuzzy.
+
+The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The interface port is not fuzzy.
 
 Book 3 Characters
 
@@ -1036,7 +1051,7 @@ The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. M
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. 
 
 The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]." The button is not fuzzy.
 
@@ -1132,7 +1147,7 @@ Table of BeforeIKillYou
 turnNumber	rant
 2	"As your eye accomodates to the light, you take notice of the tall gentleman in a white lab coat who stands in a plexiglass control booth in the far corner of the room. It seems that he notices you as well.[paragraph break][quotation mark]Ah, my archnemesis, Mr. Jeremy Flack. I see you[apostrophe]ve had some plastic surgery. Very nice work, but perhaps a bit squinty around the eyes.[quotation mark][paragraph break][quotation mark]This isn[apostrophe]t my wedding rehearsal?[quotation mark] you ask, too stunned, worried and jet-lagged to fully absorb everything that happened since leaving Doctor Giblets[apostrophe] office.  [quotation mark]Where is the rehearsal? I[apostrophe]m going to be late.[quotation mark][paragraph break][quotation mark]Yes, Mr. Flack. Humor, always humor. Well... let’s see how funny you find it when you are vaporized by my robot warrior![quotation mark][paragraph break][quotation mark]Wait...what? Not the rehearsal?[quotation mark] you stammer."
 3		"[quotation mark]I see that you followed my cunning plan to lure you to your doom, Mr. Flack.[quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]Igneous presses a button and you hear a beep. The robot rotates counterclockwise."
-4		"[quotation mark]Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a superquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
+4		"[quotation mark]Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a metaquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
 5		"[quotation mark]For now, I will have to content myself with directly controlling the kumquat-5000, I call him Lenny, as that name seems to resonate with me. I’m not sure why. I just like the sound of it. Anyhow, as I was saying... to controlling Lenny with an ingenious invention of mine that couples a matrix-scanned keyboard with two multiplexed sine wave oscillators. By merely pressing a button within my Plexiglass®-enclosed command booth, I can control his every action...the first of which will be to kill you. Now, please do cooperate and remain still, so I can get on with the day [apostrophe]s business of tracking down the aforementioned controller unit.[quotation mark]"
 6		"[quotation mark]Sorry for this aside, but henchmen remind me that I am legally obligated to mention that Plexiglass®  is a registered trademark of Altuglas International, for its polymethylmethacrylate resin and sheet products sold in the North and Latin America, whereas it is sold under the brand name Altuglas® in Asia/Pacific, Europe, Africa and the Middle East. Fine. Now, back to killing you.[quotation mark]"
 7		"[quotation mark]I hope you appreciate the irony. Your country will be the unwitting accomplice to my rise to power. You see, Lenny is not the only one of these robots. No, there are thousands of them (or, rather, there will be, when I have finished putting all the parts together). And where did they come from? I will tell you, as you are a most patient listener, even in these trying circumstances that will lead to your death.[quotation mark]"
@@ -1461,7 +1476,7 @@ Every turn during Eye Exam:
 				if a random chance of one in five succeeds:
 					say "A randomPhraseOfOcularTimeConsumption.";
 		otherwise:
-			if the turnCounter is 2:
+			if the turnCounter is 1:
 				say "[OMGLate][paragraph break]";
 				move the player to Wisconsin Avenue.
 					
@@ -1487,7 +1502,7 @@ Instead of going a direction (called thither) when Exterior is happening:
 Every turn during Exterior:
 	if gpsBars is greater than zero and the bike supports the player:
 		if location is Wisconsin Avenue:
-			say "Your mangoFONE dutifully computes your location and directs you as you get on the bike and ride down the block. You can’t quite make out the traffic signs, but you are thankful that at least the traffic lights are green as you whiz through intersections along Wisconsin Avenue. You turn left on to M Street and weave between the slow moving lines of cars, full of confidence that your phone will get you to the rehearsal on time.[paragraph break]All things considered, you are not terribly surprised when the number 30 bus clips you, crushing the bike under its massive wheels. You roll clear, tucking your body protectively around the mangoFONE, which soldiers on unphased, [quotation mark]Rerouting...rerouting…[quotation mark][paragraph break][quotation mark]Zambozay![quotation mark] Shouts the bus driver, as he clambers down to assist you. [quotation mark]I nearly flattened you like a monomolecular sheet of graphene! Sorry about the bike. I guess the least I can do is offer you a ride[quotation mark].  You are so happy to have a ride to the rehearsal that you ignore your torn clothing, roadburned right leg, and dislocated left shoulder. Moments later, the bus drops you off right outside a hotel at 4th and I Street.";
+			say "Your mangoFONE dutifully computes your location and directs you as you get on the bike and ride down the block. You can’t quite make out the traffic signs, but you are thankful that at least the traffic lights are green as you whiz through intersections along Wisconsin Avenue. You turn left on to M Street and weave between the slow moving lines of cars, full of confidence that your phone will get you to the rehearsal on time.[paragraph break]All things considered, you are not terribly surprised when the number 30 bus clips you, crushing the bike under its massive wheels. You roll clear, tucking your body protectively around the mangoFONE, which soldiers on unphased, [quotation mark]Rerouting...rerouting…[quotation mark][paragraph break][quotation mark]Zambozay![quotation mark] Shouts the bus driver, as he clambers down to assist you. [quotation mark]I nearly flattened you like a monomolecular sheet of graphene! Sorry about the bike. I guess the least I can do is offer you a ride[quotation mark].  You are so happy to have a ride to the rehearsal that you ignore your torn clothing, roadburned right leg, and dislocated left shoulder. Moments later, the bus drops you off at 4th and I Street.";
 			move the player to CornerNW;
 		otherwise:
 			say "Turquoise lines criss-cross the surface of your mangoFONE, which announces, [quotation mark]You have reached your destination, deactivating navigation.[quotation mark][paragraph break]";
