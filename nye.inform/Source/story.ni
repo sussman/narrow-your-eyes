@@ -441,11 +441,17 @@ Carry out flashing:
 	say "[errorPrompt]".
 	
 Instead of Amelia flashing:
-	say "The entire body of the phone glows with strong, white light. ";
 	if Eye Exam is happening: 
-		say "[one of][paragraph break][quotation mark]Hey, cut that out,[quotation mark] whines Trevor, [quotation mark]we’re trying to do an eye exam here.[quotation mark][paragraph break][or][stopping]You turn it off quickly to avoid interrupting the eye exam. ";
+		say "The entire body of the phone glows with strong, white light. [one of][paragraph break][quotation mark]Hey, cut that out,[quotation mark] whines Trevor, [quotation mark]we’re trying to do an eye exam here.[quotation mark][paragraph break][or][stopping]You turn it off quickly to avoid interrupting the eye exam. ";
 	else if Exterior is happening:
-		say "It doesn't add much in the midday sun, though, so you turn it off to save some battery. ";
+		say "The phone glows, but it doesn't add much in the midday sun, so you turn it off to save some battery. ";
+	else if Cunning plan is happening:
+		if Amelia is not lit:
+			say "The mangoPhone focuses its energy into a tight, white beam[one of]. You carefully aim it away from your eyes to avoid being blinded[or][stopping].";
+			now Amelia is lit;
+		otherwise:
+			say "The light from your phone fades out.";
+			now Amelia is not lit;
 	say paragraph break;
 	the rule succeeds.
 	
@@ -744,6 +750,8 @@ Every turn:
 		change the time of day to 1 minute before the time of day;
 	increase turnCounter by one;[so don't do this in per-scene-everyturn]
 	decrease phoneCharge by one;
+	if Amelia is lit:
+		decrease phoneCharge by one;
 	change powerBars to phoneCharge divided by 30;
 	if phoneCharge is zero:
 		say "[AmeliaPowerDown]";
@@ -1001,7 +1009,7 @@ The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. M
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit.
 
 The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]." The button is not fuzzy.
 
