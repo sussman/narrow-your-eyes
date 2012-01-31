@@ -802,7 +802,7 @@ When play begins:
 	change the right hand status line to "".
 
 After printing the banner text:
-	say "Type [quotation mark]help[quotation mark] for instructions.";
+	say "This story includes the use of graphic diplays. To toggle between graphic and text-only mode, use the command [quotation mark]graphics[quotation mark]. Type [quotation mark]help[quotation mark] for instructions.";
 
 	
 Chapter Every Turn
@@ -1015,11 +1015,22 @@ After closing the metal parts locker:
 	say "With great effort, you [one of]lift the cover to the balancing point and then let it slam thunderously down[or]close the parts locker[apostrophe]s cover[stopping]."
 	
 Instead of climbing the locker:
-	say "You recall the admonition from your youth: warning -- bin may tip. Do not play in or around."
+	say "You recall the admonition from your youth: warning -- metal bin may tip. Do not play in or around."
 	
 After entering the locker:
-	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in darkness[or][stopping].";
+	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in.  After a moment, you notice that you can see a little of what is going on outside the locker by peering through some hairline defects in the welding joints. Even so, almost none of the dim factory light enters the locker through these peepholes[or][stopping].";
 	now the metal parts locker is closed.
+	
+The peepholes are part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joins on each of the four corners of the locker. None are more than a millimeter; they barely let even light into the locker."
+
+Instead of inserting something into the peepholes:
+	say "The cracks far too small."
+	
+Instead of searching the peepholes:
+	if the metal parts locker encloses the player:
+		say "From each of the cracks, you can see a bit of the factory floor.";
+	otherwise:
+		say "[tooDarkInside]."
 	
 Before exiting during the cunning plan:
 	if the metal parts locker encloses the player:
@@ -1132,6 +1143,18 @@ Instead of touching, tasting, eating or kissing the connector:
 	end the game in death.
 
 The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The interface port is not fuzzy.
+
+The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser."
+
+Instead of inserting something (called the insertee) into the blast hole:
+	say "While powerful, the laser beam that made this hole was tightly focused, and the hole[apostrophe]s diameter is too small to accommodate [the insertee]."
+	
+Instead of searching the blast hole:
+	if the metal parts locker encloses the player:
+		say "Through the hole, you have a good view of the factory floor.";
+	otherwise:
+		say "[tooDarkInside]."
+	
 
 Book 3 Characters
 
@@ -1523,6 +1546,9 @@ To say OMGLate:
 	
 To say revolvingDoor:
 	say "someone slams into it, spinning the door and ejecting you into the dim hotel lobby. Now the rug burn on your left leg matches the road burn on the right one. You are a mess, but at least you won’t be late for the rehearsal";
+	
+To say tooDarkInside:
+	say "The inside of the locker is too dark to see anything"
 	
 To say spin-o-nyms:
 	say  "[one of]spins[or]rotates[or]twists[or]pivots[or]alters orientation[or]changes direction[at random]";
