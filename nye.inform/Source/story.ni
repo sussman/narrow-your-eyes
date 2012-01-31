@@ -212,6 +212,10 @@ Section Looking
 
 Understand "look [a visible thing]" as examining.
 ['Look outside' or 'look stool' should work.]
+
+Section Mounting
+
+Understand "mount [a supporter]" as entering.
 		
 Section Putting
 
@@ -231,6 +235,10 @@ Carry out reading:
 	say the inscription of the noun;
 	say paragraph break.
 	
+
+Section Riding
+
+Understand "ride [a supporter]" as entering.
 
 Section Showing
 
@@ -432,7 +440,7 @@ Section Flashing
 
 Flashing is an action applying to nothing.
 
-Understand "flashlight" or "flash light" or "torch" as flashing.
+Understand "flashlight" or "flash light" or "torch" or "light" as flashing.
 
 Persuasion rule for asking Amelia to try flashing:
 	persuasion succeeds.
@@ -753,6 +761,7 @@ Every turn:
 	if Amelia is lit:
 		decrease phoneCharge by one;
 	change powerBars to phoneCharge divided by 30;
+	if powerBars is greater than 5, change powerBars to five;
 	if phoneCharge is zero:
 		say "[AmeliaPowerDown]";
 		if Exterior has happened:
@@ -895,6 +904,22 @@ The industrial welding robot is a fardrop. It is in the Factory. Understand "Len
 
 The metal parts locker is an enterable chest. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]". The metal parts locker is not fuzzy. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
 
+The metal parts locker contains a pile of plastic devices.  The pile of plastic devices is a fixed in place thing.  It is not fuzzy.
+
+To say the description of the plastic devices:
+	if Amelia is supercharged:
+		say "A bunch of supercapacitors like the one currently installed in your mangoFONE.";
+	otherwise:
+		if the player does not hold the supercapacitor:
+			say "They are black plastic boxes, with fashionably rounded corners and some sort of connector at one end. Picking one up, you notice text on one side says [quotation mark]10 farad ultracapacitor power module. Made in West Ispharistan. Patent pending. For terrorist use only.[quotation mark] An indicator shows full power. As you bring the box near your mangoFONE, you note that the phone has opened a port, exactly the size and shape of the connector on the ultracapacitor.";
+			move the supercapacitor power module to the player;
+		otherwise:
+			say "Hundreds of black plastic boxes, just like the one you picked up."
+			
+After searching the metal parts locker:
+	if the metal parts locker does not enclose the player:
+		say "It is too dark inside the locker to see anything."
+
 After opening the metal parts locker:
 	say "You lift the [one of]cover of the parts locker, and find it much heavier than you would have guessed. You realize that the locker is not made from cheap sheet metal, but is almost like armor in terms of thickness. It is dark inside the locker[or]heavy cover and it remains balanced in the open position[stopping]."
 	
@@ -1001,6 +1026,8 @@ Chapter Limbo
 
 Limbo is a room.
 
+The supercapacitor power module is a prop. It is in Limbo. The description of the supercapacitor is "An extremely high density power source."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector."
+
 Book 3 Characters
 
 Chapter Marv
@@ -1009,7 +1036,7 @@ The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. M
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.
 
 The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]." The button is not fuzzy.
 
@@ -1055,7 +1082,7 @@ Table of PostChart
 turnNumber	canned-text
 1	 "[quotation mark]Marv, we should get on with this exam. Trevor -- hand me those drops, would you? Thanks.[quotation mark][paragraph break][quotation mark]Doctor Giblets leans your head back, [quotation mark]I[apostrophe]m going to put these drops in your eyes as part of the exam. Try not to blink.[quotation mark] You try, but you blink anyhow and feel the coolness on your eye lashes.[paragraph break][quotation mark]This will dilate your pupils, so I can do a better exam of your retina.[quotation mark]"
 3	"Doctor Giblets shines a bright white light first in your left eye, and then in your right eye."
-4	"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell, dinner bell, dinner bell ring![quotation mark]"
+4	"Doctor Giblets hums a song to himself, and mumbles some of the words absently, while adjusting his instruments, [quotation mark]waiting for the dinner bell to do the bell thing, dinner bell, dinner bell ring![quotation mark]"
 6	"[quotation mark]BRINK! BRINK![quotation mark] The phone rings with the tone that indicates a text message has just arrived from your fiancée."
 7	"[quotation mark]Much better, much better,[quotation mark] notes Doctor Giblets, who seems satisfied with the way the eye exam is going."
 9	"[quotation mark]See that, Trevor?[quotation mark] Doctor Giblets pulls Trevor over to where he is sitting, performing the examination.[paragraph break][quotation mark]What? The throbbing red thing?[quotation mark][paragraph break][quotation mark]Is something the matter?[quotation mark] you ask with concern.[paragraph break][quotation mark]No, no,[quotation mark] reassures Doctor Giblets with a nervous laugh. [quotation mark]Just pointing out a normal variation to Trevor.[quotation mark]"
@@ -1381,7 +1408,7 @@ To say tellMoi:
 	say "tellMoi".
 	
 To say youAreLate:
-	 say "[quotation mark]High muff, this is your finance day, a meal ear. Everyone is here and we[apostrophe]re just setting down two and early lunch. Don[apostrophe]t fork head the reversal starts at won. Hope you don[apostrophe]t half a lard time finding the oat hell. Love yew![quotation mark]"
+	 say "[quotation mark]High muff, this is your finance day, aim me. Everyone is here and we[apostrophe]re just setting down two and early lunch. Don[apostrophe]t fork head the reversal starts at won. Hope you don[apostrophe]t half a lard time finding the oat hell. Love yew![quotation mark]"
 
 To say OMGLate:
 	say "The words roll back and forth in your mind as you puzzle out the transcript: starts at won... At one? The rehearsal starts at one? You think back to the day you very methodically entered the appointment, back at the Mauna Kea Observatory -- OMG!!! The time zones. You forgot the time zone adjustment! The rehearsal is right after lunch![paragraph break]You bound out of the exam chair, slamming your head some expensive equipment, but you don[apostrophe]t care. In your panicked state, all you can picture in the darkness is the near future scene in which you offer lame excuses to your former fiancée, while friends and family look on with pity and disgust. You race for the door, screaming, [quotation mark]I[apostrophe]ve got to get to the rehearsal right now or my life is not worth living![quotation mark][paragraph break]Doctor Giblets yells after you, [quotation mark]Hey! Those drops are still in your eyes -- don[apostrophe]t try to operate any motor vehicle for at least an hour![quotation mark][paragraph break]Trevor adds, [quotation mark]Take my bike, it[apostrophe]s right outside! I[apostrophe]ll bring your glasses as soon as they are made![quotation mark]"
