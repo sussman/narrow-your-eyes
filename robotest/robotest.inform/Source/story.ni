@@ -40,7 +40,7 @@ number	figure-name
 6	Figure of RightTurn
 7	Figure of UpTurn
 8	Figure of DownTurn
-9	Figure of Robot
+
 
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
 The tile-array of the robogrid is  {
@@ -51,4 +51,21 @@ The tile-array of the robogrid is  {
      { 2, 2, 2, 2, 3 }
 }.
 
-The robosprite is a sprite.  The associated canvas of robosprite is the graphics-canvas.  The display-layer of robosprite is 2.  The image-ID is FIgure of Robot.
+A character-sprite is a kind of sprite. A character-sprite has a list of numbers called the grid-coordinate. The associated canvas of a character-sprite is the graphics-canvas.  The display-layer of a character-sprite is 2.
+
+A person has a character-sprite called the character.  [assuming robot is a person here too]
+
+Some character-sprites are defined by the Table of Characters.
+
+Table of Characters
+character-sprite	image-ID	grid-coordinate
+Robot-sprite	Figure of Robot	{ 1, 1 }
+Igneous-sprite	Figure of Robot	{ 2, 3 }
+Player-sprite	FIgure of Robot	{ 4, 4 }
+
+Element scaling rule for a character-sprite (called the character) (this is the convert origin coordinate rule):
+     now the origin of the character is the canvas coordinate equivalent of the grid-coordinate of the character in the coordinates of the the robogrid;
+     continue.
+
+
+The Robot carries a laser.  The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active.
