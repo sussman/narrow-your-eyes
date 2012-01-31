@@ -104,6 +104,14 @@ Section Chests and Lids
 
 [borrowed more or less whole cloth from example 49 in the I7 documentation, as adapted in Rover's Day Out. Instead of keeping track of whether the lid is up or down, keep track of the open/close status of the chest.]
 
+Before opening something open (called the item):
+	say "[The item] is already open.";
+	stop the action.
+	
+Before closing something closed (called the item):
+	say "[The item] is already closed.";
+	stop the action.
+
 A chest is a kind of container. A chest is always openable. A chest is usually fixed in place. A chest is usually closed. The specification of a chest is "Represents a container with a separately implemented lid; the lid is itself a supporter."
 
 A lid is a kind of supporter. A lid is part of every chest. Lids can be raisable. Lids are usually raisable. The specification of a lid is "A supporter attached to a chest, which can only support things when the chest is closed."
@@ -877,14 +885,42 @@ The spinning platforms are a fardrop. They are in the Factory.
 
 The industrial welding robot is a fardrop. It is in the Factory. Understand "Lenny" as the industrial welding robot. The laser is part of the industrial welding robot.
 
-The metal parts locker is an enterable chest. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]". The metal parts locker is not fuzzy.
+The metal parts locker is an enterable chest. It is in the Factory. The description of the metal parts locker is "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]". The metal parts locker is not fuzzy. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
 
-The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. The cover is not fuzzy.
+After opening the metal parts locker:
+	say "You lift the [one of]cover of the parts locker, and find it much heavier than you would have guessed. You realize that the locker is not made from cheap sheet metal, but is almost like armor in terms of thickness. It is dark inside the locker[or]heavy cover and it remains balanced in the open position[stopping]."
+	
+After closing the metal parts locker:
+	say "With great effort, you [one of]lift the cover to the balancing point and then let it slam thunderously down[or]close the parts locker[apostrophe]s cover[stopping]."
+	
+Instead of climbing the locker:
+	say "You recall the admonition from your youth: warning -- bin may tip. Do not play in or around."
+	
+After entering the locker:
+	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in darkness[or][stopping].";
+	now the metal parts locker is closed.
+	
+Before exiting during the cunning plan:
+	if the metal parts locker encloses the player:
+		try silently opening the cover.
+
+Instead of exiting during the cunning plan:
+	if the metal parts locker encloses the player:
+		continue the action;
+	otherwise:
+		say "There are no exits[one of] -- the revolving door has disappeared behind you[or][stopping].";
+		stop the action.
+
+After exiting during Cunning Plan:[The only thing the player can exit during this scene *is* the locker]
+	say "You clamber over the side of the locker and land awkwardly on the factory floor, back where you had started. The cover slams back down, sealing the locker.";
+	now the metal parts locker is closed.		
+
+The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the metal parts locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. The cover is not fuzzy.
 
 Rule for printing room description details of the metal parts locker:
 	omit contents in listing.
 
-The ultraviolet web is a furniture. It is in the Factory.
+The ultraviolet web is a furniture. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of your perception[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
 
 Chapter CornerNW
 
@@ -1444,9 +1480,7 @@ Before going a direction (called the way) during cunning plan:
 		say "You can move back and forth a bit within the narrow area of the room to the south of the ultraviolet laser web, but it would be dangerous to move northwards.";
 		stop the action.
 	
-Before exiting during the cunning plan:
-	say "There are no exits[one of] -- the revolving door has disappeared behind you[or][stopping].";
-	stop the action.
+
 	
 	
 Chapter Finale
