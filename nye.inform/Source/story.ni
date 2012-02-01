@@ -1448,7 +1448,7 @@ To say hasturedText:
 	say "Consumed by ancient evil."
 	
 To say wonText:
-	say "WonText."
+	say "You survived the rehearsal.[line break]Now for wedding."
 	
 To say laseredText:
 	say "Killed by Lenny,  who was[line break]operated by a madman,[line break]and backed by the 1%."
@@ -1621,7 +1621,7 @@ To say quickly:
 	say "[one of]quickly[or]rapidly[or]at high speed[at random]".
 	
 To say IgneousDeath:
-	say "The robot[apostrophe]s laser lashes out, travelling right through the Plexiglass® walls of Professor Igneous[apostrophe]s control booth, and striking him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel[quotation mark]."
+	say "The robot[apostrophe]s laser lashes out, travelling right through the Plexiglass® walls of Professor Igneous[apostrophe]s control booth, and striking him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel![quotation mark]"
 	
 	
 To say MarvShotInsideLocker:
