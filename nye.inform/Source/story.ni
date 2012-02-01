@@ -98,7 +98,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drained, jumped, electrocuted, tardyCunning, tardyPathetic, and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -741,6 +741,16 @@ Section Undoing
 
 Chapter Not Ready For Prime Time - Not for release
 
+Section Draining
+
+Draining is an action out of world. Understand "drain" as draining.
+
+Carry out draining:
+	change the phoneCharge to 5.
+	
+Report draining:
+	say "Phone drained to 5 units."
+
 Section Muting
 
 [To reduce the clutter during debugging]
@@ -828,12 +838,13 @@ Every turn:
 	change powerBars to phoneCharge divided by 30;
 	if powerBars is greater than 5, change powerBars to five;
 	if phoneCharge is zero:
-		say "[AmeliaPowerDown]";
-		if Exterior has happened:
-			do nothing;
+		if Cunning Plan is happening:
+			say cunningPowerDown;
+			change the endgame to drainedCunning;
 		otherwise:
-			change the endgame to drained;
-			end the game in death;
+			say generalPowerDown;
+			change the endgame to drainedPathetic;
+		end the game in death;
 	if the time of day is after 1 pm:
 		if Cunning Plan is happening:
 			say "[tardyCunning]";
@@ -1457,7 +1468,7 @@ To say parboiledText:
 	say "In all likelihood, your funeral will be a closed casket affair."
 	
 To say drainedText:
-	say "drained text…dead…at end of life without Amy, all because you phone battery gave out."
+	say "Killed by inadequate cell phone[line break]battery capacity."
 	
 To say webbedText:
 	say "Sliced and diced by a laser web.";
@@ -1472,13 +1483,19 @@ To say jumpedText:
 To say electrocutedText:
 	say "Shocked by a Proprietary Connector."
 	
+	
+To say timedOut:
+	say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi."
+	
+To say lateForRehearsal:
+	say "By the time you arrive at the hotel, there is no sign of the wedding party. When you inquire, the hotel doorman says, [quotation mark]Oh. You are [italic type]that[roman type] guy? I wouldn[apostrophe]t be worried about being late for the rehearsal. From what I saw today, there isn[apostrophe]t going to be a wedding.[quotation mark].[paragraph break]It turns out he was right. A text message message arrived a half hour later to that effect, and by evening you were on the plane back to Hawaii."
+	
+To say tardyPathetic:
+	 say "[timedOut][lateForRehearsal]".
+	
 To say tardyCunning:
 	say "As caught up as you are in everything that is going on around you, a tiny voice in the back of you head has been clammoring for attention. You crouch down and ask your phone for the time.[paragraph break]The color drains from your face, as your mangoFONE reveals that the time of your wedding rehearsal has already come, and you are not there. What will Amy think? You couldn[apostrophe]t even manage to get to the rehearsal on time -- what will you life together be like?[paragraph break]The answer to that question will never come now, though, because as you stand up, a laser beam cuts through the mangoFONE, which explodes not an inch in front of your face, drilling you through with fiery shrapnel."
 	
-To say tardyPathetic:
-	 say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi. By the time you arrive at the hotel, there is no sign of the wedding party. When you inquire, the hotel doorman says, [quotation mark]Oh. You are [italic type]that[roman type] guy? I wouldn[apostrophe]t be worried about being late for the rehearsal. From what I saw today, there isn[apostrophe]t going to be a wedding.[quotation mark].[paragraph break]It turns out he was right. A text message message arrived a half hour later to that effect, and by evening you were on the plane back to Hawaii."
-		
-
 
 To say tardyCunningText:
 	say "Late to your own funeral."
@@ -1486,8 +1503,11 @@ To say tardyCunningText:
 To say tardyPatheticText:
 	say "After a long life[line break]but without ever[line break]finding love."
 	
-To say AmeliaPowerDown:
-	say "phone shuts down…now."
+To say generalPowerDown:
+	say "Your mangoFONE[apostrophe]s jet black appearance becomes mottled and fades to a dull charcoal gray as its power runs out. Without your trusty companion, you are entirely lost. Disheveled and forlorn, it takes you hours to find the hotel.[paragraph break][lateForRehearsal][paragraph break]".
+	
+To say cunningPowerDown:
+	say "Your mangoFONE barely manages to whisper, [quotation mark]Sorry Marv, I tried. Give Amy my love.[quotation mark] before its turns ash gray and dies, its power reserves having been tapped to the last microwatt.[paragraph break]Left with no defense, it is a matter of mere seconds before you are cut down by Professor Igneous and his killer robot, Lenny."
  
 To say askPhone:
 	if the noun is Doctor Giblets:
@@ -1854,7 +1874,7 @@ Rule for printing the player's obituary:
 	say "*** YOU  ";
 	if the endgame is won:
 		say "HAVE WON";
-	else if the endgame is tardyPathetic:
+	else if the endgame is tardyPathetic or the endgame is drainedPathetic:
 		say "EVENTUALLY DIE";
 	otherwise:
 		say "HAVE DIED";
@@ -1868,8 +1888,10 @@ Rule for printing the player's obituary:
 			say "[laseredText]";
 		-- parboiled:
 			say "[parboiledText]";
-		-- drained:
+		-- drainedCunning:
 			say "[drainedText]";
+		-- drainedPathetic:
+			say "[drainedText]";	
 		-- tardyCunning:
 			say "[tardyCunningText]";
 		-- tardyPathetic:
@@ -1883,5 +1905,5 @@ Rule for printing the player's obituary:
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you? Here are some fun tidbits about the game:[paragraph break]* First, you should know that Marv’s adventure is not over. We hope to roll out the next installment of this story later this year.[paragraph break]* Some elements of this story were inspired by Erik Rays’ audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://   ).[paragraph break]* Did you read every line of the eye chart?"
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you? Here are some fun tidbits about the game:[paragraph break]* First, you should know that Marv’s adventure is not over. We hope to roll out the next installment of this story later this year.[paragraph break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://   ).[paragraph break]* Did you read every line of the eye chart?"
 
