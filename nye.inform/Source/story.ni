@@ -562,7 +562,6 @@ Instead of Amelia phoneToing:
 			change lastDialed to T;
 			if the cunning plan is happening:
 				do robotControl;
-			say "[noNetwork]";
 	else:	
 		if T matches the regular expression "amelia", case insensitively:
 			say "The phone flashes grey for an instant, then replies, [quotation mark]I am here, Marv. Please tell me who to call.[quotation mark][paragraph break]";
@@ -1021,16 +1020,21 @@ After entering the locker:
 	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in.  After a moment, you notice that you can see a little of what is going on outside the locker by peering through some hairline defects in the welding joints. Even so, almost none of the dim factory light enters the locker through these peepholes[or][stopping].";
 	now the metal parts locker is closed.
 	
-The peepholes are part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joins on each of the four corners of the locker. None are more than a millimeter; they barely let even light into the locker."
+The peepholes are a part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joints on each of the four corners of the locker. None are more than a millimeter[if the metal parts locker encloses the player]; they barely let even light into the locker[end if]." Understand "defect" or "defects" or "hairline" or "fissure" or "crack" or "cracks" or "seams" or  "seam" or "weld" or or "welds" or "welding" or "joint" or "joints" or "corners" or "corner" or "peephole" as the peepholes. The peepholes are not fuzzy.
 
 Instead of inserting something into the peepholes:
 	say "The cracks far too small."
 	
-Instead of searching the peepholes:
+Before examining the peepholes:
+	say the description of the peepholes;
+	stop the action.
+	
+Before searching the peepholes:
 	if the metal parts locker encloses the player:
 		say "From each of the cracks, you can see a bit of the factory floor.";
 	otherwise:
-		say "[tooDarkInside]."
+		say "[tooDarkInside].";
+	stop the action.
 	
 Before exiting during the cunning plan:
 	if the metal parts locker encloses the player:
@@ -1144,16 +1148,21 @@ Instead of touching, tasting, eating or kissing the connector:
 
 The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The interface port is not fuzzy.
 
-The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser."
+The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser." The blast hole is not fuzzy.
 
 Instead of inserting something (called the insertee) into the blast hole:
-	say "While powerful, the laser beam that made this hole was tightly focused, and the hole[apostrophe]s diameter is too small to accommodate [the insertee]."
+	say "While powerful, the laser beam that made this hole was tightly focused, and the hole[apostrophe]s diameter is too small to accommodate [the insertee]." Understand "holes" as the blast hole.
 	
-Instead of searching the blast hole:
+Before examining the blast hole:
+	say the description of the blast hole;
+	stop the action.
+	
+Before searching the blast hole:
 	if the metal parts locker encloses the player:
 		say "Through the hole, you have a good view of the factory floor.";
 	otherwise:
-		say "[tooDarkInside]."
+		say "[tooDarkInside].";
+	stop the action.
 	
 
 Book 3 Characters
@@ -1754,15 +1763,29 @@ To do robotControl:
 			say "makes incomprehensible noises";	
 		else if instruction matches the text "0":
 			say "[spin-o-nyms] [arounds]";
-	do FactoryPhysics.
+		do FactoryPhysics.
 			
 To do shoot the locker:
-	say "Parts Bin has been hit!"
-	[determine whether Marvin was killed or not; if so, specific text for Marv's death in the parts locker,  endgame lasered]
+	if the blast hole is not part of the metal parts locker:
+		if the player is in the parts locker:
+			say "The metal wall of the locker glows red, and creaks as it deforms from extreme heating. For an instant you see a blinding beam of green laser light as it penetrates the locker wall. You try to blink away the after image of the perfectly round hole it cut in the parts locker, but for the moment you are totally blind. The beam just missed you.";
+		otherwise:
+			say "The robot discharges its laser into the metal locker. Where the beam strikes, the metal grows molten hot, and the beam penetrates. You are dazzled by the brilliance of the green laser light.";
+		now the blast hole is part of the metal parts locker;
+	otherwise:
+		let outcome be a random number between one and four;
+		if outcome is:
+			-- 1: say "1";
+			-- 2: say "2";
+			-- 3: say "3";
+			-- 4: say "4".
+			
+			
 	
 To do shoot Igneous:
 	say "[IgneousDeath]";
 	now Professor Igneous is dead; 
+	say "[finaleIntroduction]";
 	move the player to the Constitution Ballroom.
 	[This is the scene-transition criterion to Finale]
 	
@@ -1775,12 +1798,12 @@ To do shoot Marv:
 	end the game in death.
 	
 To do RobotAttack:
-	say "The Robot's attack move goes here.";
+	say "The Robot's attack move goes here.[paragraph break]";
 	[test fordeaths by laser - in principle, Igneous should not shoot himself, though]
 	do FactoryPhysics.
 	
 To do FactoryPhysics:
-	say "Factory Physics here." [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player. Since the results should be evident on the graphics display, this  will not result in text output unless the player toggles the graphics flag].
+	say "Factory Physics here.[paragraph break]" [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player. Since the results should be evident on the graphics display, this  will not result in text output unless the player toggles the graphics flag].
 
 	
 Chapter Finale
@@ -1788,7 +1811,6 @@ Chapter Finale
 The Finale is a scene. Finale begins when Cunning Plan ends.
 
 When Finale begins:
-	say "Finale Introduction.";
 	change the turnCounter to zero.
 
 
