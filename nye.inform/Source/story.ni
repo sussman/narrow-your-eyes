@@ -98,7 +98,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, webbed, drained, jumped, electrocuted and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drained, jumped, electrocuted, tardyCunning, tardyPathetic, and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -783,6 +783,16 @@ Carry out marvoffing:
 	
 Report marvoffing:
 	say "Kerwallup! The software tester killed Marv with a keyboard."
+	
+Section Future
+
+Futuring is an action out of world. Understand "future" as futuring.
+
+Carry out futuring:
+	change the time of day to 12:55 PM.
+	
+Report futuring:
+	say "It is now 12:55 PM. Welcome to the future."
 
 	
 Chapter Initialize
@@ -823,7 +833,15 @@ Every turn:
 			do nothing;
 		otherwise:
 			change the endgame to drained;
-			end the game in death.
+			end the game in death;
+	if the time of day is after 1 pm:
+		if Cunning Plan is happening:
+			say "[tardyCunning]";
+			change the endgame to tardyCunning;
+		otherwise:
+			say "[tardyPathetic]";
+			change the endgame to tardyPathetic;
+		end the game in death.
 		
 		
 Section Phrase Picker
@@ -1433,13 +1451,17 @@ To say wonText:
 	say "WonText."
 	
 To say laseredText:
-	say "Killed by Lenny."
+	say "Killed by Lenny,  who was[line break]operated by a madman,[line break]and backed by the 1%."
+	
+To say parboiledText:
+	say "In all likelihood, your funeral will be a closed casket affair."
 	
 To say drainedText:
 	say "drained text…dead…at end of life without Amy, all because you phone battery gave out."
 	
 To say webbedText:
 	say "Sliced and diced by a laser web.";
+
 	
 To say onTheWayDown:
 	say "You read several traffic signs on the way down, including some that you had missed earlier. The whistling wind is replaced by a crunching sound and sudden darkness."
@@ -1449,6 +1471,20 @@ To say jumpedText:
 	
 To say electrocutedText:
 	say "Shocked by a Proprietary Connector."
+	
+To say tardyCunning:
+	say "As caught up as you are in everything that is going on around you, a tiny voice in the back of you head has been clammoring for attention. You crouch down and ask your phone for the time.[paragraph break]The color drains from your face, as your mangoFONE reveals that the time of your wedding rehearsal has already come, and you are not there. What will Amy think? You couldn[apostrophe]t even manage to get to the rehearsal on time -- what will you life together be like?[paragraph break]The answer to that question will never come now, though, because as you stand up, a laser beam cuts through the mangoFONE, which explodes not an inch in front of your face, drilling you through with fiery shrapnel."
+	
+To say tardyPathetic:
+	 say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi. By the time you arrive at the hotel, there is no sign of the wedding party. When you inquire, the hotel doorman says, [quotation mark]Oh. You are [italic type]that[roman type] guy? I wouldn[apostrophe]t be worried about being late for the rehearsal. From what I saw today, there isn[apostrophe]t going to be a wedding.[quotation mark].[paragraph break]It turns out he was right. A text message message arrived a half hour later to that effect, and by evening you were on the plane back to Hawaii."
+		
+
+
+To say tardyCunningText:
+	say "Late to your own funeral."
+	
+To say tardyPatheticText:
+	say "After a long life[line break]but without ever[line break]finding love."
 	
 To say AmeliaPowerDown:
 	say "phone shuts down…now."
@@ -1585,13 +1621,15 @@ To say quickly:
 	say "[one of]quickly[or]rapidly[or]at high speed[at random]".
 	
 To say IgneousDeath:
-	say "TODO: Text graphically describing the dramatic death of Professor Igneous."
+	say "The robot[apostrophe]s laser lashes out, travelling right through the Plexiglass® walls of Professor Igneous[apostrophe]s control booth, and striking him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel[quotation mark]."
+	
+	
+To say MarvShotInsideLocker:
+	say "The laser beam pierces the walls of the parts locker, boils off the interior paint, ricochets off the gleaming metal, and skewers your body from several directions at once. Superheated within a fraction of a second, your blood boils and your body explodes before you can think of an appropriately dramatic remark"
+	
 	
 To say MarvShotOutsideLocker:
-	say "TODO: Marv shot outside the locker text."
-	
-To say finaleIntroduction:
-	say "TODO: Finale Introduction. Amy congratulates him on being on time, says it went well, and has to run to get her hair done?"
+	say "The robot[apostrophe]s laser swings towards you. Your nostrils fill with the tantalizing smell of barbeque. [one of]This puts you in mind of summers past and vacations at the shore[or]Man, do you love a good barbeque[at random].";
 	
 
 Book 5  Scenes
@@ -1729,6 +1767,7 @@ Turn order of operations:
 ]
 
 
+[note that tests need to be added to limit robot motion -- some times, for instance, robot won't be able to move two space because he'll hit a wall after one unit]
 To do robotControl:
 	let lastChar be the number of characters in lastDialed;
 	let instruction be indexed text;
@@ -1750,14 +1789,17 @@ To do robotControl:
 		else if instruction matches the text "7":
 			say "fires the lazzzer";
 			[if the lazer hits Igneous:
-				kill him -- this triggers Finale.
+				do shoot Igneous
 			else if the lazer hits the parts bin:
-				do PartsBinHit;
-			else if the lazer hits Marvin, endgame lasered]
+				do shoot locker;
+			or if the lazer hits Marvin (outside the locker):
+				do shoot marvin;]
 		else if instruction matches the text "8":
 			say "performs a sensor scan";
+			[scan sound effect]
 		else if instruction matches the text "9":
 			say "makes incomprehensible noises";	
+			[pick a random incomprehensible noise sound effect]
 		else if instruction matches the text "0":
 			say "[spin-o-nyms] [arounds]";
 		do FactoryPhysics.
@@ -1776,23 +1818,21 @@ To do shoot the locker:
 				if the metal parts locker encloses Marv:
 					say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]jmere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
 				otherwise:
-					say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and[one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
+					say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
 			-- 2:
 				say "The laser beam strikes the metal parts locker but [one of]is deflected[or]scatters ineffectively[or]reflects towards the ceiling[or]fails to burn through[or]does not dwell in one location long enough to cut through the thick metal[or]only scores the thick metal[or]merely heats the metal to incandescence[at random].";
 			-- 3: 
 				If the metal parts locker does not enclose Marv:
 					say "The [one of]deadly[or]lethal[or]powerful[or]brilliant[or]blinding[or]intense[at random] beam [one of]barely misses[or]goes just broad of[or]passes inches from[or]strikes the wall to the side of[at random] the metal parts locker.";
 				otherwise:
-					say "The robot[apostrophe]s laser swings towards the locker, where you are crouched down. The beam slices through the metal effortlessly, and your nostrils fill with the tantalizing smell of barbeque. This puts you in mind of summers past and vacations at the shore.";
-					change the endgame to lasered;
+					say "[MarvShotInsideLocker].";
+					change the endgame to parboiled;
 					end the game in death.
 				
 To do shoot Igneous:
 	say "[IgneousDeath]";
-	now Professor Igneous is dead; 
-	say "[finaleIntroduction]";
-	move the player to the Constitution Ballroom.
-	[This is the scene-transition criterion to Finale]
+	change the endgame to won;
+	end the game in victory..
 	
 To do shoot Marv:
 	say "[MarvShotOutsideLocker]";
@@ -1807,24 +1847,18 @@ To do RobotAttack:
 To do FactoryPhysics:
 	say "Factory Physics here.[paragraph break]" [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player. Since the results should be evident on the graphics display, this  will not result in text output unless the player toggles the graphics flag].
 
-	
-Chapter Finale
-
-The Finale is a scene. Finale begins when Cunning Plan ends.
-
-When Finale begins:
-	change the turnCounter to zero.
-
 
 Chapter Postmortem
 
 Rule for printing the player's obituary:
-	say "*** YOU HAVE ";
+	say "*** YOU  ";
 	if the endgame is won:
-		say "WON ***";
+		say "HAVE WON";
+	else if the endgame is tardyPathetic:
+		say "EVENTUALLY DIE";
 	otherwise:
-		say "DIED ***";
-	say paragraph break;
+		say "HAVE DIED";
+	say " ***[paragraph break]";
 	if the endgame is:
 		-- won:
 			say "[wonText]";
@@ -1832,8 +1866,14 @@ Rule for printing the player's obituary:
 			say "[hasturedText]";
 		-- lasered:
 			say "[laseredText]";
+		-- parboiled:
+			say "[parboiledText]";
 		-- drained:
 			say "[drainedText]";
+		-- tardyCunning:
+			say "[tardyCunningText]";
+		-- tardyPathetic:
+			say "[tardyPatheticText]";	
 		-- webbed:
 			say "[webbedText]";
 		-- jumped:
