@@ -1588,10 +1588,7 @@ To say IgneousDeath:
 	say "TODO: Text graphically describing the dramatic death of Professor Igneous."
 	
 To say MarvShotOutsideLocker:
-	say "TODO: Text for Marv being shot while outside the parts locker."
-	
-To say MarvShotInLocker:
-	say "TODO: Text for Marv being shot while in the parts locker."
+	say "TODO: Marv shot outside the locker text."
 	
 To say finaleIntroduction:
 	say "TODO: Finale Introduction. Amy congratulates him on being on time, says it went well, and has to run to get her hair done?"
@@ -1773,15 +1770,23 @@ To do shoot the locker:
 			say "The robot discharges its laser into the metal locker. Where the beam strikes, the metal grows molten hot, and the beam penetrates. You are dazzled by the brilliance of the green laser light.";
 		now the blast hole is part of the metal parts locker;
 	otherwise:
-		let outcome be a random number between one and four;
+		let outcome be a random number between one and three;
 		if outcome is:
-			-- 1: say "1";
-			-- 2: say "2";
-			-- 3: say "3";
-			-- 4: say "4".
-			
-			
-	
+			-- 1: 
+				if the metal parts locker encloses Marv:
+					say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]jmere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
+				otherwise:
+					say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and[one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
+			-- 2:
+				say "The laser beam strikes the metal parts locker but [one of]is deflected[or]scatters ineffectively[or]reflects towards the ceiling[or]fails to burn through[or]does not dwell in one location long enough to cut through the thick metal[or]only scores the thick metal[or]merely heats the metal to incandescence[at random].";
+			-- 3: 
+				If the metal parts locker does not enclose Marv:
+					say "The [one of]deadly[or]lethal[or]powerful[or]brilliant[or]blinding[or]intense[at random] beam [one of]barely misses[or]goes just broad of[or]passes inches from[or]strikes the wall to the side of[at random] the metal parts locker.";
+				otherwise:
+					say "The robot[apostrophe]s laser swings towards the locker, where you are crouched down. The beam slices through the metal effortlessly, and your nostrils fill with the tantalizing smell of barbeque. This puts you in mind of summers past and vacations at the shore.";
+					change the endgame to lasered;
+					end the game in death.
+				
 To do shoot Igneous:
 	say "[IgneousDeath]";
 	now Professor Igneous is dead; 
@@ -1790,10 +1795,7 @@ To do shoot Igneous:
 	[This is the scene-transition criterion to Finale]
 	
 To do shoot Marv:
-	if the metal parts locker encloses Marv:
-		say "[MarvShotInLocker]";
-	otherwise:
-		say "[MarvShotOutsideLocker]";
+	say "[MarvShotOutsideLocker]";
 	change the endgame to lasered;
 	end the game in death.
 	
