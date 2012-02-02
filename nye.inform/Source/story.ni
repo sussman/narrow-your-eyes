@@ -1276,7 +1276,7 @@ topic		ophtho-text
 Table of OphthoTelling
 topic		ophtho-text
 "[phone]"		"[tellPhone]"
-"Amy" or "Amy Boulot"		"[tellAmy]"
+"Amy" or "Amy Boulot" or "fiancee"		"[tellAmy]"
 "hawaii"		"[tellHawaii]"
 "astronomy" or "nasa"		"[tellAstronomy]"
 "observatory" or "Mauna Kea"		"[tellObservatory]"
@@ -1544,13 +1544,13 @@ To say askBike:
 	say "[quotation mark][if the noun is Giblets]Trevor sure has put a lot of work into that bike of his -- it can practically drive itself[otherwise]It[apostrophe]s the latest -- three speeds! I painted it myself: bright red. You must have seen it when you came in[end if].[quotation mark][paragraph break]".
 	
 To say askIstvan:
-	say "[quotation mark][if the noun is Giblets]He was a strange child, but I'm quite proud of my brother and his company, mangoIndustries[otherwise]I[apostrophe]m sure he[apostrophe] will make a great father-in-law. The always say what a tough boss he is, but Amy says that her dad is only like that at work[end if].[quotation mark][paragraph break]".
+	say "[quotation mark][if the noun is Giblets]He was a strange child, but I'm quite proud of my brother and his company, mangoIndustries[otherwise]I[apostrophe]m sure he[apostrophe] will make a great father-in-law. Everyone always says what a tough boss he is, but Amy says that her dad is only like that at work[end if].[quotation mark][paragraph break]".
 	
 To say askAmy:
-	say "askAmy".
+	say "[quotation mark][if the noun is Giblets]She grew up in the area. Her dad moved mangoIndustries from Phoenix to DC about twenty years ago, and since then they have lived in Nortern Virginia. When she went to graduate school in Berkeley, her parents moved into the District, proper.[quotation mark][paragraph break][quotation mark]She is every bit as smart as Istvan, just in a different direction. I remember helping her with math when she was a kid, but the stuff she showed me in her thesis on gamma flashes just blew me away[otherwise]Amy is like a half generation ahead of me, so we didn[apostrophe]t hang out much growing up. In fact, I remember that when I was young (okay, younger, I suppose), she would sometimes babysit me. In the last year, I[apostrophe]ve chatted with her more often while making my college plans. She has some good advice[end if].[quotation mark][paragraph break]"
 	
 To say askTrevor:
-	say "[if the noun is Giblets]Doctor Giblets says, [quotation mark]He[apostrophe]s a good kid, and big help around the office. Who knows, some day, maybe he[apostrophe]ll grow up to be an ophthomologist like his dad![quotation mark] Somewhat at odds with his chipper disposition, he leans in and whispers in a more serious tone, [quotation mark]Though...he has been acting odd lately. Not quite himself[otherwise]I[apostrophe]m the youngest of Amy[apostrophe]s cousins. I haven[apostrophe]t seen her much since she moved to Arecibo, and then out to Hawaii. I help dad out in the Ophtho office over the summers[end if].[quotation mark][paragraph break]".
+	say "[if the noun is Giblets]Doctor Giblets says, [quotation mark]He[apostrophe]s a good kid, and big help around the office. Who knows, some day, maybe he[apostrophe]ll grow up to be an ophthomologist like his dad![quotation mark] Somewhat at odds with his chipper disposition, he leans in and whispers in a more serious tone, [quotation mark]Though...he has been acting odd lately. Not quite himself[otherwise]I[apostrophe]m the youngest of Amy[apostrophe]s cousins, although I haven[apostrophe]t seen her much since she moved to Arecibo, and then out to Hawaii. I help dad out in the Ophtho office over the summers[end if].[quotation mark][paragraph break]".
 	
 To say askGiblets:
 	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]".
@@ -1566,22 +1566,22 @@ To say OcularTimeConsumption:
 	
 	
 To say askEyeChart:
-	say "askEyeChart".
+	say "[quotation mark][if the noun is Giblets]Every year, there is a big ophthalmology convention. I think this year it is in Vancouver. I could tell you some stories about those conventions -- they get pretty wild![quotation mark][paragraph break][quotation mark]Anyhow, back when drug companies used to be able to ply doctors with all sorts of swag at those conventions, I got this eye chart as a prize for filling out some kind of survey. I[apostrophe]ve been using it ever since[otherwise]I have heard people read that chart so many times that I have dreams about it[end if].[quotation mark][paragraph break]"
 	
 To say askRefractor:
-	say "askRefractor".
+	say "[quotation mark][if the noun is Giblets]It[apostrophe]s a serious piece of optical hardware, Marv, and frankly it set me back quite a chunk of change when I opened the practice, but it is long since been paid off. It[apostrophe]s not like I go out and buy one every other day. It has a bunch of knobs and settings, all of which are pretty technical.[quotation mark] Doctor Giblets thinks for a moment and then adds, [quotation mark]Although, I suppose not so technical to you. I imagine that the optics in your telescopes out at Mauna Kea put my old refractor to shame in terms of complexity[otherwise]It[apostrophe]s a complicated machine that checks out your eyes. Dad doesn't let me touch it.[quotation  mark][paragraph break][quotation mark]Trevor,[quotation mark] corrects Doctor Giblets, [quotation mark]you can touch it, just not this year. You need to observe for a bit more before operating it yourself.[quotation  mark][paragraph break][quotation mark]See?[quotation mark] whispers Trevor, [quotation mark]I[apostrophe]ll never get my hands on it[end if].[quotation mark][paragraph break]".
 	
 To say askAtropine:
-	say "askAtropine".
+	say "[quotation mark][if the noun is Giblets]It is a drug that blocks the receptor for the nerves that make your pupil constrict. So, when I put a drop or two in each eye, the pupils dilate and I can get a good look at the back of your eye, where all the fun stuff is[otherwise]It makes it easier for pop to look in your eyes[end if].[quotation mark][paragraph break]".
 	
 To say askRehearsal:
-	say "askRehearsal".
+	say "[quotation mark][if the noun is Giblets]Amy and her mom have been planning the wedding weeks. It is a really important to her that eventhing goes off just perfectly. Trevor and I won[apostrophe]t be at the rehearsal today because it[apostrophe]s just for the immediate wedding party, but we[apostrophe]ll certainly see you tomorrow[otherwise]Amy has been super nervous about all the wedding preparations, but I[apostrophe]m sure it will all be fine. I mean, it[apostrophe]s not like putting on a wedding is a big deal[end if].[quotation mark][paragraph break]".
 	
 To say askOffice:
-	say "askOffice".
+	say "[quotation mark][if the noun is Giblets]This is the only office I have every worked out of, for more than 25 years now. We get a lot of people from the university, some from the embassies, the occassional tourist, and some walk-ins. I have no complaint about the location except the rent[otherwise]I[apostrophe]ve been trying to convince pop that we would do better in a mall, but he wants to stay here[end if].[quotation mark][paragraph break]".
 	
 To say askOphthalmology:
-	say "askOphthalmology".
+	say "[quotation mark][if the noun is Giblets]I challenge you to find more rewarding, a more worthwhile, a more adventuresome career than ophthalmology. I have it all: exciting clientelle, fascinating subject matter, and I feel like I am making a difference. I couldn[apostrophe]t ask for more[otherwise]Well, it[apostrophe]s okay,[quotation mark] says Trevor tentatively. [quotation mark]Although, when I grow up I think I might like to be an artist.[quotation mark][paragraph break][quotation mark]There's no money in that,[quotation mark] remarks Doctor Giblets, some what sternly. [quotation mark]Ophthalmology is what you want. It[apostrophe]s secure and endlessly interesting. You[apostrophe]ll never regret it as a career.[quotation mark][paragraph break][quotation mark]Maybe. I guess[end if].[quotation mark][paragraph break]".
 	
 To say askHimselfOphtho:
 	if the noun is Doctor Giblets:
