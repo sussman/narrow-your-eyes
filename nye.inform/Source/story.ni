@@ -957,7 +957,7 @@ The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The
 Instead of climbing the bike:
 	try entering the bike.
 	
-The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the office-proxy is "office". The description of the office-proxy is "The front of the Doctor Giblet[apostrophe]s small ophthalmology office." Understand "office" as the office-proxy.
+The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the office-proxy is "office". The description of the office-proxy is "The front of the Doctor Giblet[apostrophe]s small ophthalmology office. A sign hangs in the front window: [quotation mark]Closed Sundays[quotation mark]." Understand "office" or "sign" or "window" as the office-proxy. The office-proxy is not fuzzy.
 
 
 Chapter Factory
