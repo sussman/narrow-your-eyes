@@ -1253,6 +1253,8 @@ Understand "phone" or "mangofone" or "mangophone" or "Amelia" or "cell" or "cell
 
 Understand "me" or "myself" or "Marv" or "Marvin" or "Marvin Spindle" or "Marv Spindle" or "Spindle" as "[moi]".
 
+Understand "Amy" or "Amy Boulot" or "fiancee" or "fiancée" as "[futureWife]".
+
 Table of OphthoAsking
 topic		ophtho-text
 "[phone]"		"[askPhone]"
@@ -1261,7 +1263,7 @@ topic		ophtho-text
 "girls"		"[askGirls]"
 "bike" or "bicycle"		"[askBike]"
 "Istvan" or "Istvan Boulot"		"[askIstvan]"
-"Amy" or "fiancee" or "fiancée"		"[askAmy]"
+"[futureWife]"		"[askAmy]"
 "Doctor" or "Giblets" or "Doctor Giblets"		"[askGiblets]"
 "Trevor" or "Trev" or "Trevor Giblets"		"[askTrevor]"
 "eye chart" or "chart"		"[askEyeChart]"
@@ -1276,7 +1278,7 @@ topic		ophtho-text
 Table of OphthoTelling
 topic		ophtho-text
 "[phone]"		"[tellPhone]"
-"Amy" or "Amy Boulot" or "fiancee"		"[tellAmy]"
+"[futureWife]"		"[tellAmy]"
 "hawaii"		"[tellHawaii]"
 "astronomy" or "nasa"		"[tellAstronomy]"
 "observatory" or "Mauna Kea"		"[tellObservatory]"
@@ -1286,6 +1288,19 @@ topic		ophtho-text
 "engagement"		"[tellEngagement]"
 "wedding" or "wedding plans" or "plans"		"[tellPlans]"
 "[moi]"		"[tellMoi]"
+
+
+Table of CunningAsking
+topic					asking-text
+"[phone]"					"temp"
+
+Table of CunningTelling			
+topic			telling-text			
+"[phone]"			"temp"
+
+Table of CunningShowing			
+thing			showing-text		
+Amelia			"temp"
 
 Table of BeforeIKillYou
 turnNumber	rant
@@ -1776,6 +1791,18 @@ Before going a direction (called the way) during cunning plan:
 	otherwise:
 		say "You can move back and forth a bit within the narrow area of the room to the south of the ultraviolet laser web, but it would be dangerous to move northwards.";
 		stop the action.
+		
+
+Instead of asking Professor Igneous about a topic listed in the Table of CunningAsking:
+	say "[asking-text entry]".
+		
+Instead of telling Professor Igneous about a topic listed in the Table of CunningTelling:
+	say  "[telling-text entry]".
+
+Instead of showing a thing listed in the Table of CunningShowing to Professor Igneous:
+	say  "[showing-text entry]".
+
+
 		
 [ DTMF Tones:
 	
