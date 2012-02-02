@@ -366,6 +366,7 @@ Persuasion rule for asking Amelia to try ameliaing:
 	
 Carry out Ameliaing:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [VoiceCommandPrompt][quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]".
+
 	
 Section Appsing
 [fairly hardwired for now]
@@ -1147,15 +1148,6 @@ Instead of going a direction (called the way) when the location is poletop:
 		-- otherwise:
 			say "Tired of clinging to the dreary pole, you strike out [way]ward. For a moment, you think this is a brilliant idea. [onTheWayDown]";
 			plummet.
-		
-Chapter Constitution Ballroom
-
-The Constitution Ballroom is a room. The description of the Constitution Ballroom is "TODO: A posh hotel room".
-
-Amy is a woman. Amy is in the Constitution Ballroom. 
-
-A table is a furniture in the Constitution Ballroom. The description of the table is "TODO: Table description."
-
 
 Chapter Limbo
 
@@ -1197,7 +1189,21 @@ The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. M
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. 
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
+
+Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
+Amy. This will get complicated if the actual Amy is around.]
+
+Before doing something to Amy:
+	say "You don't see your fiancée here."
+	
+Persuasion rule for asking Amy to try doing something:
+	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
+	persuasion succeeds. [to suppress refusal to do what is asked]
+	
+Instead of Amy doing something:
+	the rule succeeds. [this suppresses Amy actually doing what was asked.]
+	
 
 The button is part of Amelia. The description of the button is "[one of]The button pulses on and off, on and off, a deep, deep orange glow. So pretty. So hypnotic[or]The shiny button draws you in with its rhythmic pulsing, a comforting, warm orange glow that makes you feel content. Tension melts out of you as you sink deeper into its welcoming throb. Deeper, and deeper[or]You caress the beautiful orange button and let the pleasant orange light shine warmly on your face. Your attention fixes on the light, its singular glow fills your vision and displaces all other interests. You stare into the burning heart of a pulsing nebula, filled with the majestic beauty of creation, and unable to look away. Everything else feels remote and unconnected, the phone is everything[or]You feel your soul slipping away into the embracing glow of the mangoFONE[or]The phone now owns your soul[or]For cripes sake, it’s just a button. An amazingly well designed button, but a button nonetheless[or]A faintly pulsing orange glow, almost imperceptibly raised above phone's glassy surface[stopping]." The button is not fuzzy.
 
