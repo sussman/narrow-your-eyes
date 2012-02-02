@@ -1066,7 +1066,11 @@ The cover is a lid which is part of the metal parts locker. The description of t
 Rule for printing room description details of the metal parts locker:
 	omit contents in listing.
 
-The ultraviolet web is a furniture. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of your perception[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
+The ultraviolet web is fixed in place thing. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of your perception[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
+
+Instead of touching, taking, eating, or kissing the ultraviolet web:
+	change the endgame to webbed;
+	end the game in death.
 
 
 
@@ -1255,6 +1259,14 @@ Understand "me" or "myself" or "Marv" or "Marvin" or "Marvin Spindle" or "Marv S
 
 Understand "Amy" or "Amy Boulot" or "fiancee" or "fiancée" as "[futureWife]".
 
+Understand "Istvan" or "Istvan Boulot" as "[dadInLaw]".
+
+Understand "Doctor" or "Doctor Giblets" or "Giblets" as "[doc]".
+
+Understand "Trevor" or "Trev" or "Trevor Giblets" as "[kid]".
+
+Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "archnemesis" or "enemy" or "madman" or "mad scientist" as "[iggi]".
+
 Table of OphthoAsking
 topic		ophtho-text
 "[phone]"		"[askPhone]"
@@ -1262,10 +1274,10 @@ topic		ophtho-text
 "music"		"[askMusic]"
 "girls"		"[askGirls]"
 "bike" or "bicycle"		"[askBike]"
-"Istvan" or "Istvan Boulot"		"[askIstvan]"
+"[dadInLaw]"		"[askIstvan]"
 "[futureWife]"		"[askAmy]"
-"Doctor" or "Giblets" or "Doctor Giblets"		"[askGiblets]"
-"Trevor" or "Trev" or "Trevor Giblets"		"[askTrevor]"
+"[doc]"		"[askGiblets]"
+"[kid]"		"[askTrevor]"
 "eye chart" or "chart"		"[askEyeChart]"
 "refractor"		"[askRefractor]"
 "atropine"		"[askAtropine]"
@@ -1273,6 +1285,7 @@ topic		ophtho-text
 "office" or "ophthalmology office"		"[askOffice]"
 "ophthalmology"		"[askOphthalmology]"
 "himself"		"[askHimselfOphtho]"
+"[iggi]"		"[askIggi]"
 		
 
 Table of OphthoTelling
@@ -1291,16 +1304,37 @@ topic		ophtho-text
 
 
 Table of CunningAsking
-topic					asking-text
-"[phone]"					"temp"
+topic		asking-text
+"[phone]"		"askProfPhone"
+"mangoIndustries"		"askProfMangoIndustries"
+"[futureWife]"		"askProfAmy"
+"Jessica"		"askProfJessica"
+"[DadInLaw]"		"askProfIstvan"
+"[kid]"		"askProfTrevor"
+"rehearsal" or "engagement" or "wedding"		"askProfWedding"
+"robot" or "Lenny"		"askProfRobot"
+"factory" or "hotel" or "spa" or "bed and breakfast"		"askProfHotel"
+"plan" or "conspiracy" or "evil plan"		"askProfPlan"
+"himself" or "[iggi]"		"askProfProf"	
 
 Table of CunningTelling			
-topic			telling-text			
-"[phone]"			"temp"
+topic		telling-text		
+"[phone]"		"tellProfPhone"
+"mangoIndustries"		"tellProfMangoIndustries"
+"[futureWife]"		"tellProfAmy"
+"Jessica"		"tellProfJessica"
+"[DadInLaw]"		"tellProfIstvan"
+"[kid]"		"tellProfTrevor"
+"rehearsal" or "engagement" or "wedding"		"tellProfWedding"
+"robot" or "Lenny"		"tellProfRobot"
+"factory" or "hotel" or "spa" or "bed and breakfast"		"tellProfHotel"
+"plan" or "conspiracy" or "evil plan"		"tellProfPlan"
+"himself" or "[iggi]"		"tellProfProf"
 
 Table of CunningShowing			
 thing			showing-text		
-Amelia			"temp"
+Amelia			"showProfPhone"
+supercapacitor power module			"showProfCapacitor"
 
 Table of BeforeIKillYou
 turnNumber	rant
@@ -1603,6 +1637,9 @@ To say askHimselfOphtho:
 		say askGiblets;
 	otherwise:
 		say askTrevor.
+
+To say askIggi:
+	say "askIggi".
 	
 To say tellPhone:
 	say "tellPhone".
@@ -1636,6 +1673,80 @@ To say tellPlans:
 	
 To say tellMoi:
 	say "tellMoi".
+	
+
+To say askProfPhone:
+	say "asProfPhone".
+
+To say askProfMangoIndustries:
+	say "askProfMangoIndustries".
+
+To say askProfAmy:
+	say "askProfAmy".
+
+To say askProfJessica:
+	say "askProfJessica".
+
+To say askProfIstvan:
+	say "askProfIstvan".
+
+To say askProfTrevor:
+	say "askProfTrevor".
+
+To say askProfWedding:
+	say "askProfWedding".
+
+To say askProfRobot:
+	say "askProfRobot".
+
+To say askProfHotel:
+	say "askProfHotel".
+
+To say askProfPlan:
+	say "askProfPlan".
+
+To say askProfProf:
+	say "askProfProf".
+
+To say tellProfPhone:
+	say "tellProfPhone".
+
+To say tellProfMangoIndustries:
+	say "tellProfMangoIndustries".
+
+To say tellProfAmy:
+	say "tellProfAmy".
+	
+To say tellProfJessica:
+	say "tellProfJessica".
+	
+To say tellProfIstvan:
+	say "tellProfIstvan".
+	
+To say tellProfTrevor:
+	say "tellProfTrevor".
+	
+To say tellProfWedding:
+	say "tellProfWedding".
+	
+To say tellProfRobot:
+	say "tellProfRobot".
+	
+To say tellProfHotel:
+	say "tellProfHotel".
+	
+To say tellProfPlan:
+	say "tellProfPlan".
+	
+To say tellProfProf:
+	say "tellProfProf".
+
+To say showProfPhone:
+	say "showProfPhone".
+
+To say showProfCapacitor:
+	say "showProfCapacitor".
+
 	
 To say youAreLate:
 	 say "[quotation mark]High muff, this is your finance day, aim me. Everyone is here and we[apostrophe]re just setting down two and early lunch. Don[apostrophe]t fork head the reversal starts at won. Hope you don[apostrophe]t half a lard time finding the oat hell. Love yew![quotation mark]"
