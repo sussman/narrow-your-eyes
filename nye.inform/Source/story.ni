@@ -1305,36 +1305,35 @@ topic		ophtho-text
 
 Table of CunningAsking
 topic		asking-text
-"[phone]"		"askProfPhone"
-"mangoIndustries"		"askProfMangoIndustries"
-"[futureWife]"		"askProfAmy"
-"Jessica"		"askProfJessica"
-"[DadInLaw]"		"askProfIstvan"
-"[kid]"		"askProfTrevor"
-"rehearsal" or "engagement" or "wedding"		"askProfWedding"
-"robot" or "Lenny"		"askProfRobot"
-"factory" or "hotel" or "spa" or "bed and breakfast"		"askProfHotel"
-"plan" or "conspiracy" or "evil plan"		"askProfPlan"
-"himself" or "[iggi]"		"askProfProf"	
+"[phone]"		"[askProfPhone]"
+"mangoIndustries"		"[askProfMangoIndustries]"
+"[futureWife]"		"[askProfAmy]"
+"Jessica"		"[askProfJessica]"
+"[DadInLaw]"		"[askProfIstvan]"
+"[kid]"		"[askProfTrevor]"
+"rehearsal" or "engagement" or "wedding"		"[askProfWedding]"
+"robot" or "Lenny"		"[askProfRobot]"
+"factory" or "hotel" or "spa" or "bed and breakfast"		"[askProfHotel]"
+"plan" or "conspiracy" or "evil plan"		"[askProfPlan]"
+"himself" or "[iggi]"		"[askProfProf]"	
 
 Table of CunningTelling			
 topic		telling-text		
-"[phone]"		"tellProfPhone"
-"mangoIndustries"		"tellProfMangoIndustries"
-"[futureWife]"		"tellProfAmy"
-"Jessica"		"tellProfJessica"
-"[DadInLaw]"		"tellProfIstvan"
-"[kid]"		"tellProfTrevor"
-"rehearsal" or "engagement" or "wedding"		"tellProfWedding"
-"robot" or "Lenny"		"tellProfRobot"
-"factory" or "hotel" or "spa" or "bed and breakfast"		"tellProfHotel"
-"plan" or "conspiracy" or "evil plan"		"tellProfPlan"
-"himself" or "[iggi]"		"tellProfProf"
+"[phone]"		"[tellProfPhone]"
+"mangoIndustries"		"[tellProfMangoIndustries]"
+"[futureWife]"		"[tellProfAmy]"
+"[DadInLaw]"		"[tellProfIstvan]"
+"[kid]" or "bike" or "bicycle"		"[tellProfTrevor]"
+"rehearsal" or "engagement" or "wedding"		"[tellProfHotel]"
+"robot" or "Lenny"		"[tellProfRobot]"
+"factory" or "hotel" or "spa" or "bed and breakfast"		"[tellProfHotel]"
+"plan" or "conspiracy" or "evil plan"		"[tellProfPlan]"
+"himself" or "[iggi]"		"[tellProfProf]"
 
 Table of CunningShowing			
 thing			showing-text		
-Amelia			"showProfPhone"
-supercapacitor power module			"showProfCapacitor"
+Amelia			"[showProfPhone]"
+supercapacitor power module			"[showProfCapacitor]"
 
 Table of BeforeIKillYou
 turnNumber	rant
@@ -1712,40 +1711,34 @@ To say tellProfPhone:
 	say "tellProfPhone".
 
 To say tellProfMangoIndustries:
-	say "tellProfMangoIndustries".
+	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts Professor Igneous.[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
 
 To say tellProfAmy:
-	say "tellProfAmy".
-	
-To say tellProfJessica:
-	say "tellProfJessica".
+	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] Professor Igneous pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else? I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark]"
 	
 To say tellProfIstvan:
-	say "tellProfIstvan".
+	say "[quotation mark]You are messing with the wrong guy, Professor. Do you know who Istvan Boulet is? Istvan Boulet of mangoIndustries? That Istvan Boulet?[quotation mark][paragraph break][quotation mark]In fact, yes. I am quite familiar with his work, and equally that you are not he.[quotation mark][paragraph break][quotation mark]Well, yes. That wasn[apostrophe]t where I was going with this -- Istvan Boulet-- entrepreneur, innovator, business tycoon -- is my soon-to-be father-in-law. When you take on me, you also take on his corporate empire.[quotation mark][paragraph break][quotation mark]Preposterous. No matter how many hyphens you work into a sentence, you threats fail to impress me.[quotation mark][paragraph break]".
 	
 To say tellProfTrevor:
-	say "tellProfTrevor".
-	
-To say tellProfWedding:
-	say "tellProfWedding".
+	say "[quotation mark]Just this morning, I borrowed a bike from a very astute young man. No doubt, he is already wondering where his bicycle is. If I don[apostrophe]t report back to him within a certain amount of time, I have no doubt that he will initiate a search. That search can only lead to one place -- here, and when that happens, you will be defeated.[quotation mark] You put on your best poker face.[paragraph break][quotation mark]Yes, I live in constant fear that someone searching for a child[apostrophe]s bicycle will stumble upon my fiendishly well-designed lair, defeat my countless ingenious defenses, and overcome my laser-wielding robot. Tell, me, Mr. Flack, does this bicycle of yours have training wheels?[quotation mark][paragraph break]".
 	
 To say tellProfRobot:
-	say "tellProfRobot".
-	
+	say "[quotation mark]I[apostrophe]m no expert on this sort of thing, but I am a little skeptical of your robot army. That[apostrophe]s an assembly line robot, not a battlefield drone.[quotation mark][paragraph break][quotation mark]Quite observant, and correct on every count. I am not unleashing a fleet of factory robots to rivet and weld America into submiss ion -- my plan is to build an army of construction robots to build an army of invincible fighting robots. You see, you and I are once again playing the same game, but I play it one level deeper.[quotation mark] Professor Igneous cracks his knuckles in satisfaction."		
+				
 To say tellProfHotel:
-	say "tellProfHotel".
+	say "[quotation mark]I thought this was a hotel, and that I was coming here for my wedding rehearsal,[quotation mark] you explain.[paragraph break][quotation mark]How rich! You do make a most amusing adversary![quotation mark][paragraph break]".
 	
 To say tellProfPlan:
-	say "tellProfPlan".
+	say "[quotation mark]Your plan will never work, Professor. Your assumptions are unfounded, your logic spurious and you have lost touch with reality. What do you say we just shake hands and call it a day?[quotation mark][paragraph break]Professor Igneous steps back from the control panel and strokes his chin. [quotation mark]Yes. Yes, I can see your point. I have acted rashly. We are not truly enemies are we? Why don[apostrophe]t we do just as you say? If you would be so good as to walk out the center of the factory floor, I would certainly shake your hand and forget about all this world domination rubbish.[quotation mark][paragraph break]".
 	
 To say tellProfProf:
-	say "tellProfProf".
+	say "[quotation mark]I[apostrophe]ve read about you, Igneous. I know who you are,[quotation mark] you yell with as much authority as you can muster.[paragraph break][quotation mark]Of course you know me. I should say that, to my great dissatisfaction, we are intimately famliar with each other. I will admit to a certain curiousity about your recent activities, though. As you know, I have an excellent intelligence network, but even they lost track of you after München. It is las if you have not existed for the past three years -- but now here you are. I suppose it is my welcome duty to ensure that you continue to not exist, if you take my meaning.[quotation mark] Professor Igneous smirks."
 
 To say showProfPhone:
-	say "showProfPhone".
+	say "[quotation mark]Ah, yes. A mangoFONE. Wait a minute. Have I seen that model? Is that the new model?[quotation mark] Professor Igneous[apostrophe] eyes glow with excitement.[paragraph break][quotation mark]It[apostrophe]s the a prototype for the next generation mangoFONE,[quotation mark] you yell, hopeful that this will somehow appease Professor Igneous.[paragraph break][quotation mark]My word, I suppose it is. Look at that marvelous form factor.[quotation mark] He seems mesmerized, but only for a moment. [quotation mark]Lenny, [quotation mark] says the Professor to the industrial robot, [quotation mark]in dispatching Mr. Flack, do try to avoid destroying the phone with your laser, if at all possible. Thank you, Lenny.[quotation mark][paragraph break]".
 
 To say showProfCapacitor:
-	say "showProfCapacitor".
+	say "[quotation mark]Yes, that would be an ultracapacitor power module. Lots of power, small package. You are going to die anyhow, so I don[apostrophe]t mind telling you that those modules will power the metaquantum AI controllers in my army of robot warriors. Individually, the modules are devastatingly expensive to fabricate, but I got a good deal with a bulk purchase.[quotation mark][paragraph break]Now, if you would be good enough to hold onto that module, it should add some interesting pyrotechnics when my robot destroys you with its laser.[quotation mark][paragraph break]".
 
 	
 To say youAreLate:
