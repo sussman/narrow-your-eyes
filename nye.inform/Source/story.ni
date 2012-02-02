@@ -956,14 +956,9 @@ The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The
 
 Instead of climbing the bike:
 	try entering the bike.
+	
+The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the office-proxy is "office". The description of the office-proxy is "The front of the Doctor Giblet[apostrophe]s small ophthalmology office." Understand "office" as the office-proxy.
 
-
-Chapter Nonlocations
-
-The Russian Embassy is a room. The Russian Embassy is north of Wisconsin Avenue. 
-M Street is a room. M Street is south of Wisconsin Avenue. 
-Dupont Circle is a room. Dupont Circle is east of Wisconsin Avenue. 
-The Hilltop is a room. The Hilltop is west of Wisconsin Avenue.
 
 Chapter Factory
 
@@ -1721,17 +1716,18 @@ Chapter Exterior
 
 Exterior is a scene. Exterior begins when Eye Exam ends. Exterior ends when the player is in the Factory.
 
-Instead of going a direction (called thither) when Exterior is happening:
+Before going a direction when the location is Wisconsin Avenue:
+	if the bike does not enclose the player:
+		say "[one of ]It[apostrophe]s a long way downtown, walking would take too long[or]There must be a faster way then schlepping down there on foot[or]You are desperate enough to try anything to get to the wedding rehearsal, but walking (even running, you suppose) wouldn't get you there in time[or]Walking is out of the question. The clock is ticking[stopping].";
+	otherwise:[on the bike]
+		if gpsBars is zero:[but amelia's travel function not activated]
+			say "[one of]You have been in Washington, DC for NASA meetings before, but you don’t know your way around[or]You know your way back and forth to National, Dulles and BWI airports from the metro system, but above ground, you are hopelessly lost[or]All of these roads look the same to you. Blurry[or]You are not sure which way to go[stopping].";
+ 	stop the action.
+
+Instead of going a direction (called thither) when the location is CornerNW:
 	if thither is up or thither is down:
 		continue the action;
-	if the location is Wisconsin Avenue:
-		if the bike does not enclose the player:
-			say "[one of ]It[apostrophe]s a long way downtown, walking would take too long[or]There must be a faster way then schlepping down there on foot[or]You are desperate enough to try anything to get to the wedding rehearsal, but walking (even running, you suppose) wouldn't get you there in time[or]Walking is out of the question. The clock is ticking[stopping].";
-			the rule succeeds;
-		otherwise:[on the bike]
-			if gpsBars is zero:[but amelia's travel function not activated]
-				say "[one of]You have been in Washington, DC for NASA meetings before, but you don’t know your way around[or]You know your way back and forth to National, Dulles and BWI airports from the metro system, but above ground, you are hopelessly lost[or]All of these roads look the same to you. Blurry[or]You are not sure which way to go[stopping].";
-	otherwise if the location is CornerNW:
+	otherwise:
 		say "[one of]You are not very familiar with this area, but even on a Sunday, there is a lot of traffic, and you are not keen to get run over again[or]You had enough trouble finding this place, you are reluctant to wander off blindly. Literally[or]You are right outside the hotel. Amy is pretty understanding, but you would not want to explain that you nearly died getting here and then, just for the heck of it, decided to go sight-seeing in the neighborhood, while she waited nervously inside entertaining all of your guests at the wedding rehearsal[or]The only place you are interested in going right now is into the hotel[stopping]." 
 	
 			
