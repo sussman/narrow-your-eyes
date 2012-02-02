@@ -1180,7 +1180,8 @@ Amy is a woman. Amy is part of Amelia. [A work around for now, because some play
 Amy. This will get complicated if the actual Amy is around.]
 
 Before doing something to Amy:
-	say "You don't see your fiancée here."
+	say "[noAmy].";
+	stop the action.
 	
 Persuasion rule for asking Amy to try doing something:
 	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
@@ -1207,6 +1208,12 @@ Instead of pushing the button:
 Instead of asking Amelia about something, say "[lackOfPhoneReply]".
 Instead of telling Amelia about something, say "[lackOfPhoneReply]".
 Instead of showing something to Amelia, say "[lackOfPhoneReply]".
+
+Instead of asking Amy about something, say "[noAmy]."
+Instead of telling Amy about something, say "[noAmy]."
+Instead of showing something to Amy, say "[noAmy]."
+
+
 
 Chapter Igneous
 
@@ -1393,7 +1400,7 @@ title	subtable	description	toggle
 
 Table of Acknowledgements
 title	subtable	description	toggle
-"Beta Testers"	--	"Some day, when we actually have beta testers, we'll proudly list them here."	--
+"Beta Testers"	--	"John Lodder."	--
 "Giant Shoulders"	--	"This game was written in a mere 4 weeks thanks to the excellent tools available to the interactive fiction community. It was written in the Inform 7 language which has a proud heritage traceable back to the first games of this genre, but which is overwhelming attributable to its creator, Graham Nelson. In addition, we gleefully employed a number of modules written by Emily Short, also a major contributor to the Inform 7 language itself. Doubtless, we also extensively picked some tasty bits out of the Inform 7 documentation and examples, written by both Graham and Emily.[paragraph break]This game is written for the Glulx interpreter, so we also owe Andrew Plotkin thanks for developing the Glulx virtual machine, as well as the Glk library which makes the game playable on so many platforms.[paragraph break]Finally, we'd like to the People's Republic of Interactive Fiction for coming up with the idea of a 20th anniversary tribute to the They Might be Giants album Apollo 18. Obviously, at the bottom of the this stack of turtles are TMBG themselves. Without them and their ground-breaking music, there never could have been an anniversary of themselves (without resorting to universe-threatening paradoxes)."		--
 
 Table of Revisions
@@ -1475,6 +1482,9 @@ To say jumpedText:
 	
 To say electrocutedText:
 	say "Shocked by a Proprietary Connector."
+	
+To say noAmy:
+	say "You don't see your fiancée here"
 	
 To say boomStick:
 	say "A previously hidden secret door opens in the wall behind the plexiglass control booth. As if this day could get any more surreal, your crazy former girlfriend-turned-internet-stalker Peggy Sue steps through the doorway. She is toting a bottle of champagne and some sort of shoulder-launched weapon.[paragraph break]Briefly -- very briefly -- you are filled with hope. Before you can get even the first syllable out, Professor Igneous greets her, [quotation mark]Priscilla, I told you that I was just finishing him off. I just need a moment more.[quotation mark] She gives him that withering look that you know so well. She is not pleased.[paragraph break]Priscilla? You think. Again, before you can ask, she confronts Professor Igneous, [quotation mark]Your methods are tedious and ineffective. I can no longer tolerate your nonsense.[quotation mark] For a moment, you actually feel sorry for the Professor.[paragraph break][quotation mark]But [italic type]honey[roman type],[quotation mark] he begins. You wince. You know just how much that particular phrase irks her, and true to form, she raises the rocket launcher to her shoulder and a second later, Professor Igneous is a mere memory.[paragraph break][quotation mark]As for you,[quotation mark] she says, [quotation mark]I don[apostrophe]t know what you see in that tramp, Amy.[quotation mark] She sets a slender champagne glass down on what is left of the Professor[apostrophe]s former control panel and half fills it. Effortlessly, she shifts the champagne bottle to her other hand, flips the weapon to the opposite shoulder and launches a rocket at you."
@@ -1671,19 +1681,19 @@ After examining Amelia for the first time during Eye Exam:
 	try showing Amelia to Trevor.
 		
 Instead of asking someone (called the reporter) about a topic listed in the Table of OphthoAsking during the Eye Exam:
-	if the reporter is Amelia:
+	if the reporter is Amelia or the reporter is Amy:
 		continue the action;
 	otherwise:
 		say "[ophtho-text entry]".
 		
 Instead of telling someone (called the auditor) about a topic listed in the Table of OphthoTelling during the Eye Exam:
-	if the auditor is Amelia:
+	if the auditor is Amelia or the auditor is Amy:
 		continue the action;
 	otherwise:
 		say "[ophtho-text entry]".
 		
 Instead of showing Amelia to someone (called the spectator) during Eye Exam:
-	try asking the spectator about "amelia".
+	say "[noAmy]."
 	
 Every turn during Eye Exam:
 	if the eye chart is not read:
