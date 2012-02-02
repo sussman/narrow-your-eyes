@@ -660,21 +660,6 @@ Instead of Amelia treeing:
 	say "A nice concept, but boring in the implementation: the mummies rest eternally in their sarcophagi and the trees grow serenely nearby, at the edge of an oasis. You turn it back off after a while.";
 	the rule succeeds.
 
-Section Tutoring
-
-Tutoring is an action applying to nothing.
-
-Understand "tutor" as tutoring.
-
-Persuasion rule for asking Amelia to try tutoring:
-	persuasion succeeds.
-
-Carry out tutoring:
-	say "[errorPrompt]".
-	
-Instead of Amelia tutoring:
-	say "[quotation mark]Tutor mode. The phone recognizes the following  basic commands: apps calendar messages phone time travel tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
-	the rule succeeds.
 	
 Section Updating
 
@@ -1243,7 +1228,7 @@ Table of PreChart
 turnNumber		canned-text
 3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
 4		"Pop? Who says pop?"
-6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
+6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break][quotation mark]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
 
 Table of PostChart
 turnNumber	canned-text
@@ -1335,13 +1320,20 @@ Chapter Menus
 
 Understand "help" or "info" as asking for help.
 
-Asking for help is an action out of world.
+Asking for help is an action applying to nothing.
 
 Carry out asking for help:
 	change the current menu to the Table of Options;
 	carry out the displaying activity;
 	clear the screen;
 	try looking.
+	
+Persuasion rule for asking Amelia to try asking for help:
+	persuasion succeeds.
+	
+Instead of Amelia asking for help:
+	say "[quotation mark]Help mode. The phone recognizes the following  basic commands: apps calendar messages phone time travel tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]".
+
 
 Table of Options
 title	subtable	description	toggle
@@ -1448,7 +1440,7 @@ To say errorPrompt:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]".
 	
 To say tutorPrompt:
-	say "For a list of available functions, you can say [bold type]Amelia, tutor[roman type].[no line break]".
+	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
 	
 To say noNetwork:
 	say "[paragraph break]The phone turns marroon, and warns, [quotation mark]No SIM card is installed. No phone network is available.[quotation mark][one of][paragraph break]You realize that in your haste to pack for the trip to Washington, DC, you didn’t move your SIM card from your old phone to the mangoFONE that Istvan gave you. Guess that explains the lack of network bars.[no line break][or][stopping][paragraph break]".
