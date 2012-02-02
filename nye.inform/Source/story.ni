@@ -98,7 +98,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -1317,12 +1317,12 @@ turnNumber	rant
 21		"[quotation mark]This is far longer than I had expected you to survive. Very well, you have made your point -- you are a most worthy adversary. There. Are you happy? I have said it. Honor is served. Now, would you please allow me to kill you? I shalln[apostrophe]t say please again. I[apostrophe]m getting quite cross, you know.[quotation mark]"
 22		"[quotation mark]Just so you know, I am now turning Lenny[apostrophe]s laser power output down from [apostrophe]vaporize[apostrophe] to [apostrophe]kill[apostrophe] as a reflection of my state of irritation. Rather than blast you to oblivion and move on, I have decided to have you stuffed and mounted in my living room in a comical, but demeaning pose. Not only will you soon be dead, but ridiculed, and no doubt used to hold empty glasses and plates at my dinner parties. Just you consider that.[quotation mark]"
 23		"[quotation mark]The next robot I build will have *ten* lasers and make a much quicker job of it. Ten lasers, one on each arm. And the arms will not all face forward.[quotation mark]" 
-24		"[quotation mark]Lenny, do get on with it. I have to be somewhere.[quotation mark]"
-25		"[quotation mark]You know, Jeremy, I am your father.[quotation mark][paragraph break][quotation mark]Yes, you know it to be true. Search your feelings. Join me and we can rule the galaxy together as father and son![quotation mark][paragraph break][quotation mark]Nah. Just kidding.[quotation mark]"
-26		"[quotation mark]A strong leader is not afraid of injecting a little levity in to every day life. It keeps people sharp.[quotation mark][paragraph break][quotation mark]I often kid around with my minions, and I am told that they find my humour refreshing, a welcome bit of entertainment in the workaday business of dominating the human race.[quotation mark]"
-27		"[quotation mark]Note to self: ten lasers, multiple directions, smarter robot, able to move well on carpet.[quotation mark]"
-28		"Professor Igneous reaches into his labcoat and produces a cell phone. A feature phone, you note with an air of superiority. One like your grandmother uses.[paragraph break][quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Sue?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark] Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark]"
-29		"[quotation mark]Quite a while, actually. I was hoping he[apostrophe]d die very quickly.[quotation mark][paragraph break][quotation mark]No, I am quite certain I can finish him off. I should say he[apostrophe]s in the throws of death even now as we speak.[quotation mark][paragraph break][quotation mark]No, no, I shall be fine. No need. Thanks you for the offer, though, my love.[quotation mark][paragraph break][quotation mark]Got to run. Good luck getting the AI controller. See you tonight! Bye.[quotation mark]"
+24		"Professor Igneous reaches into his labcoat and produces a cell phone. A feature phone, you note with an air of superiority. One like your grandmother uses.[paragraph break][quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Priscilla?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark] Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark]"
+25		"[quotation mark]Quite a while, actually. I was hoping he[apostrophe]d die very quickly.[quotation mark][paragraph break][quotation mark]No, I am quite certain I can finish him off. I should say he[apostrophe]s in the throws of death even now as we speak.[quotation mark][paragraph break][quotation mark]No, no, I shall be fine. No need. Thanks you for the offer, though, my love.[quotation mark][paragraph break][quotation mark]Got to run. Good luck getting the AI controller. See you tonight! Bye.[quotation mark]"
+26		"[quotation mark]Lenny, do get on with it. I have to be somewhere.[quotation mark]"
+27		"[quotation mark]You know, Jeremy, I am your father.[quotation mark][paragraph break][quotation mark]Yes, you know it to be true. Search your feelings. Join me and we can rule the galaxy together as father and son![quotation mark][paragraph break][quotation mark]Nah. Just kidding.[quotation mark]"
+28		"[quotation mark]A strong leader is not afraid of injecting a little levity in to every day life. It keeps people sharp.[quotation mark][paragraph break][quotation mark]I often kid around with my minions, and I am told that they find my humour refreshing, a welcome bit of entertainment in the workaday business of dominating the human race.[quotation mark]"
+29		"[quotation mark]Note to self: ten lasers, multiple directions, smarter robot, able to move well on carpet.[quotation mark]"
 30		"[quotation mark]Nag, nag, nag. I suppose she thinks she could kill you faster without a kumquat-5000 death robot? I should say not.[quotation mark][paragraph break][quotation mark]Still, she is stunningly beautiful, statuesque woman, and knows what she wants. Me, for example. She says that she loves me for my incomparable intellect, which  must unquestionably be the case. While many would be attracted to my vast commercial resources and deathgrip on global power, she just likes me for who I am.[quotation mark]"
 31		"[quotation mark]I have never been good with woman. Please, don[apostrophe]t misunderstand me. I am not talking sexual prowess. I have no doubt of my capabilities in that arena, should it ever come to that, but I have never been comfortable talking with women. I think it is because I put them on a pedastle and can not relate to them on a casual basis. When it came to building a robot, many of my colleagues advocated construction of a fembot, but first of all, that is overdone, and secondly, it objectifies both women and robots.[quotation mark]"
 35		"[quotation mark]I am getting carpal tunnel syndrome from pressing the buttons. Next time, I use a dvorak keyboard.[quotation mark]"
@@ -1483,6 +1483,12 @@ To say jumpedText:
 To say electrocutedText:
 	say "Shocked by a Proprietary Connector."
 	
+To say boomStick:
+	say "A previously hidden secret door opens in the wall behind the plexiglass control booth. As if this day could get any more surreal, your crazy former girlfriend-turned-internet-stalker Peggy Sue steps through the doorway. She is toting a bottle of champagne and some sort of shoulder-launched weapon.[paragraph break]Briefly -- very briefly -- you are filled with hope. Before you can get even the first syllable out, Professor Igneous greets her, [quotation mark]Priscilla, I told you that I was just finishing him off. I just need a moment more.[quotation mark] She gives him that withering look that you know so well. She is not pleased.[paragraph break]Priscilla? You think. Again, before you can ask, she confronts Professor Igneous, [quotation mark]Your methods are tedious and ineffective. I can no longer tolerate your nonsense.[quotation mark] For a moment, you actually feel sorry for the Professor.[paragraph break][quotation mark]But [italic type]honey[roman type],[quotation mark] he begins. You wince. You know just how much that particular phrase irks her, and true to form, she raises the rocket launcher to her shoulder and a second later, Professor Igneous is a mere memory.[paragraph break][quotation mark]As for you,[quotation mark] she says, [quotation mark]I don[apostrophe]t know what you see in that tramp, Amy.[quotation mark] She sets a slender champagne glass down on what is left of the Professor[apostrophe]s former control panel and half fills it. Effortlessly, she shifts the champagne bottle to her other hand, flips the weapon to the opposite shoulder and launches a rocket at you."
+	
+To say spitefulText:
+	say "She toasts the sad cold fact, her loves are never coming back and races to the bottom of the glass."
+	
 	
 To say timedOut:
 	say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi."
@@ -1504,7 +1510,7 @@ To say tardyPatheticText:
 	say "After a long life[line break]but without ever[line break]finding love."
 	
 To say generalPowerDown:
-	say "Your mangoFONE[apostrophe]s jet black appearance becomes mottled and fades to a dull charcoal gray as its power runs out. Without your trusty companion, you are entirely lost. Disheveled and forlorn, it takes you hours to find the hotel.[paragraph break][lateForRehearsal][paragraph break]".
+	say "Your mangoFONE[if Eye Exam has ended][apostrophe]s jet black appearance becomes mottled and fades to a dull charcoal gray [otherwise] stops glowing [end if]as its power runs out. Without your trusty companion, you are entirely lost. Disheveled and forlorn, it takes you hours to find the hotel.[paragraph break][lateForRehearsal][paragraph break]".
 	
 To say cunningPowerDown:
 	say "Your mangoFONE barely manages to whisper, [quotation mark]Sorry Marv, I tried. Give Amy my love.[quotation mark] before its turns ash gray and dies, its power reserves having been tapped to the last microwatt.[paragraph break]Left with no defense, it is a matter of mere seconds before you are cut down by Professor Igneous and his killer robot, Lenny."
@@ -1544,7 +1550,17 @@ To say askTrevor:
 	say "[if the noun is Giblets]Doctor Giblets says, [quotation mark]He[apostrophe]s a good kid, and big help around the office. Who knows, some day, maybe he[apostrophe]ll grow up to be an ophthomologist like his dad![quotation mark] Somewhat at odds with his chipper disposition, he leans in and whispers in a more serious tone, [quotation mark]Though...he has been acting odd lately. Not quite himself[otherwise]I[apostrophe]m the youngest of Amy[apostrophe]s cousins. I haven[apostrophe]t seen her much since she moved to Arecibo, and then out to Hawaii. I help dad out in the Ophtho office over the summers[end if].[quotation mark][paragraph break]".
 	
 To say askGiblets:
-	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]”.
+	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]".
+			
+To say OcularEncouragement:
+	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark]implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell dad what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
+							
+
+To say eyeDisease:
+	say "[one of]arterial nicking[or]narrow angle glaucoma[or]papillary edema[or]macular degeneration[or]a detached retina[or]loa loa[or]retinitis pigmentosa[or]ocular albinism[or]a cataract due to excessive exposure to ultraviolet radiation[in random order]".										
+To say OcularTimeConsumption:
+	say "[quotation mark][one of]Is that [eyeDisease]?[quotation mark], asks Trevor with some concern.[paragraph break][quotation mark]No,[quotation mark] replies his father, [quotation mark]that[apostrophe]s just an eye lash on the lens. See?[quotation mark][or]These drops will make your eyes blurry for a while, and you[apostrophe]ll be photosensitive, but all that should go away in the first hour after the exam,[quotation mark] reassures Doctor Giblets.[or]Marv, did your phone make another one of those noises? It didn't sound like the update noise. Man, I love that phone of yours![quotation mark] remarks Trevor.[or]Hey Trev,[quotation mark] calls Doctor Giblets, [quotation mark] have you ever seen [eyeDisease]?[quotation mark][paragraph break][quotation mark]No, dad. Not ever. Why, does Marv have it?[quotation mark][paragraph break][quotation mark]Oh, sakes no. I was just wondering.[quotation mark][or]Dad,[quotation mark] asks Trevor, [quotation mark]do you think we[apostrophe]ll be much longer? I promised [randomGirl] that I[apostrophe]d take her to the sock hop tonight[quotation mark][paragraph break][quotation mark]No, not too much longer[quotation mark][in random order]".	
+	
 	
 To say askEyeChart:
 	say "askEyeChart".
@@ -1683,7 +1699,7 @@ Every turn during Eye Exam:
 				 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PreChart][paragraph break]";
 		otherwise:
 			if a random chance of one in five succeeds:
-				say "A randomPhraseOfOcularEncouragement.";	
+				say "[OcularEncouragement]";	
 	otherwise:
 		if Amelia is not message-played:
 			if the turnCounter is less than 13:
@@ -1694,7 +1710,7 @@ Every turn during Eye Exam:
 					change the currentMessage to "[youAreLate]";
 			otherwise:
 				if a random chance of one in five succeeds:
-					say "A randomPhraseOfOcularTimeConsumption.";
+					say "[OcularTimeConsumption][paragraph break]";
 		otherwise:
 			if the turnCounter is 1:
 				say "[OMGLate][paragraph break]";
@@ -1742,7 +1758,11 @@ Every turn during Cunning Plan:
 	if the turnCounter is greater than 2:
 		do RobotAttack;
 	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou:
-		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]".
+		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]";
+	if the turnCounter is 36:
+		say "[boomStick]";
+		change the endgame to spiteful;
+		end the game in death.
 		
 Before going a direction (called the way) during cunning plan:
 	if the way is north or the way is northwest or the way is northeast:
@@ -1901,7 +1921,9 @@ Rule for printing the player's obituary:
 		-- jumped:
 			say "[jumpedText]";
 		-- electrocuted:
-			say "[electrocutedText]".
+			say "[electrocutedText]";
+		-- spiteful:
+			say "[spitefulText]".
 		
 						
 Rule for amusing a victorious player:
