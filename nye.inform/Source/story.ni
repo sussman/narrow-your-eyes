@@ -80,6 +80,58 @@ robotY is a number that varies. robotY is 1.
 
 graphics is a truth state that varies. graphics is true.
 
+Chapter Declare Resources
+
+Section Figures
+
+Section Sounds
+
+[Sound of the dtmf-zero is the file "0.ogg".
+Sound of the dtmf-one is the file "1.ogg".
+Sound of the dtmf-two is the file "2.ogg".
+Sound of the dtmf-three  is the file "3.ogg".
+Sound of the dtmf-four  is the file "4.ogg".
+Sound of the dtmf-five  is the file "5.ogg".
+Sound of the dtmf-six  is the file "6.ogg".
+Sound of the dtmf-seven  is the file "7.ogg".
+Sound of the dtmf-eight  is the file "8.ogg".
+Sound of the dtmf-nine  is the file "9.ogg".
+Sound of the beeps  is the file "beeps1(44613).ogg".
+Sound of the conveyor  is the file "conveyor(523440.ogg)".
+Sound of the error  is the file "error(36896).ogg".
+Sound of the laser  is the file "laser(103239&52598).ogg".
+Sound of the message  is the file "message(80921).ogg".
+Sound of the okay  is the file "okay(103586).ogg".
+Sound of the random  is the file "random(3647).ogg".
+Sound of the swivel  is the file "swivel(101439).ogg".
+Sound of the trunk  is the file "trunk.ogg".
+Sound of the asterisk  is the file "asterisk.ogg".
+Sound of the update  is the file "update(51645).ogg".]
+
+Chapter Capabilities
+
+[These tests are carry forwards from RDO. WIthout unicode support, I think
+ we'd be pretty hosed, as indexed text, regular expression matching, etc. requires it]
+
+To decide whether unicodage is disabled:
+	(-  ~~glk_gestalt(gestalt_Unicode, 0) -)
+	
+To decide whether unicodage is enabled:
+	(-  glk_gestalt(gestalt_Unicode, 0) -)
+
+[For compatibility with Club Floyd & adaptive technologies:]
+To decide whether status is disabled:
+	(- ~~gg_statuswin -)
+	
+To decide whether graphics is enabled:
+	(- glk_gestalt(gestalt_Graphics, 0) -)
+	
+[So we can suppress the "I'm now playing a sound effect but you can't hear it
+ message on terps that don't support sound]
+
+To decide whether sound is enabled:
+	(- glk_gestalt(gestalt_Sound, 0) -)
+	
 
 Chapter Class Definitions
 
@@ -798,7 +850,8 @@ When play begins:
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
-	[trigger glk bliiinngggg sound here];
+	[if sound is enabled:
+		play(the sound of the update); ]
 	wait for any key;
 	[initialize layout of the factory]
 	say openingLine2;
@@ -1285,7 +1338,6 @@ topic		ophtho-text
 "office" or "ophthalmology office"		"[askOffice]"
 "ophthalmology"		"[askOphthalmology]"
 "himself"		"[askHimselfOphtho]"
-"[iggi]"		"[askIggi]"
 		
 
 Table of OphthoTelling
@@ -1636,9 +1688,6 @@ To say askHimselfOphtho:
 		say askGiblets;
 	otherwise:
 		say askTrevor.
-
-To say askIggi:
-	say "askIggi".
 	
 To say tellPhone:
 	say "tellPhone".
@@ -1714,10 +1763,10 @@ To say tellProfMangoIndustries:
 	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts Professor Igneous.[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
 
 To say tellProfAmy:
-	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] Professor Igneous pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else? I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark]"
+	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] Professor Igneous pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else approaching this building.  I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark]"
 	
 To say tellProfIstvan:
-	say "[quotation mark]You are messing with the wrong guy, Professor. Do you know who Istvan Boulet is? Istvan Boulet of mangoIndustries? That Istvan Boulet?[quotation mark][paragraph break][quotation mark]In fact, yes. I am quite familiar with his work, and equally that you are not he.[quotation mark][paragraph break][quotation mark]Well, yes. That wasn[apostrophe]t where I was going with this -- Istvan Boulet-- entrepreneur, innovator, business tycoon -- is my soon-to-be father-in-law. When you take on me, you also take on his corporate empire.[quotation mark][paragraph break][quotation mark]Preposterous. No matter how many hyphens you work into a sentence, you threats fail to impress me.[quotation mark][paragraph break]".
+	say "[quotation mark]You are messing with the wrong guy, Professor. Do you know who Istvan Boulet is? Istvan Boulet of mangoIndustries? That Istvan Boulet?[quotation mark][paragraph break][quotation mark]In fact, yes. I am quite familiar with his work, and equally that you are not he.[quotation mark][paragraph break][quotation mark]Well, yes. That wasn[apostrophe]t where I was going with this -- Istvan Boulet-- entrepreneur, innovator, business tycoon -- is my soon-to-be father-in-law. When you take on me, you also take on his corporate empire.[quotation mark][paragraph break][quotation mark]Preposterous. No matter how many hyphens you work into a sentence, your threats fail to impress me.[quotation mark][paragraph break]".
 	
 To say tellProfTrevor:
 	say "[quotation mark]Just this morning, I borrowed a bike from a very astute young man. No doubt, he is already wondering where his bicycle is. If I don[apostrophe]t report back to him within a certain amount of time, I have no doubt that he will initiate a search. That search can only lead to one place -- here, and when that happens, you will be defeated.[quotation mark] You put on your best poker face.[paragraph break][quotation mark]Yes, I live in constant fear that someone searching for a child[apostrophe]s bicycle will stumble upon my fiendishly well-designed lair, defeat my countless ingenious defenses, and overcome my laser-wielding robot. Tell, me, Mr. Flack, does this bicycle of yours have training wheels?[quotation mark][paragraph break]".
