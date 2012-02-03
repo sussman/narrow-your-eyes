@@ -574,7 +574,7 @@ Carry out messaging:
 Instead of Amelia messaging:
 	say "The phone twinkles pink and light green, then announces, [quotation mark][run paragraph on]";
 	if currentMessage is "":
-		say "No messages have been received. Sorry, Marv.";
+		say "No messages have been received. Sorry, Marv.[quotation mark][paragraph break]";
 	otherwise:
 		if messageAlert is true:
 			say "Now playing new transcribed voice message:";
@@ -1678,7 +1678,7 @@ To say Messages:
 		
 To say Updates:
 	if updates are available:
-		say "UPDATED".
+		say "UPDATES: [updateNumber minus currentUpdateLevel]".
 		
 To say openingLine1:
 	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
