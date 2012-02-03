@@ -784,7 +784,6 @@ To perform update:
 			say "Installing [title corresponding to the patchLevel of i in the Table of Updates][run paragraph on]";
 			say "............. [run paragraph on]";
 			say "installed.";
-		say "[quotation mark][paragraph break]";	
 	change currentUpdateLevel to updateNumber;
 	change lastUpdateTime to the time of day;	
 
@@ -933,7 +932,73 @@ Carry out futuring:
 Report futuring:
 	say "It is now 12:55 PM. Welcome to the future."
 	
-Section No
+Section Toggle Sound Support
+
+Soundtoggling is an action out of world. Understand "togglesound" as soundtoggling.
+
+Carry out soundtoggling:
+	if sound_suppress is false:
+		now sound_suppress is true;
+	otherwise:
+		now sound_suppress is false.
+		
+Report soundtoggling:
+	say "Sound suppression is now [if sound_suppress is true]on[otherwise]off[end if]."
+
+
+Section Toggle Graphics Support
+
+Graphicstoggling is an action out of world. Understand "togglegraphics" as graphicstoggling.
+
+Carry out graphicstoggling:
+	if graphics_suppress is false:
+		now graphics_suppress is true;
+	otherwise:
+		now graphics_suppress is false.
+		
+Report graphicstoggling:
+	say "Graphics suppression is now [if graphics_suppress is true]on[otherwise]off[end if]."
+
+
+Section Toggle Unicode Support
+
+Unicodetoggling is an action out of world. Understand "toggleunicode" as unicodetoggling.
+
+Carry out unicodetoggling:
+	if unicode_suppress is false:
+		now unicode_suppress is true;
+	otherwise:
+		now unicode_suppress is false.
+		
+Report unicodetoggling:
+	say "Unicode suppression is now [if unicode_suppress is true]on[otherwise]off[end if]."
+
+Section Toggle Status Support
+
+Statustoggling is an action out of world. Understand "togglestatus" as statustoggling.
+
+Carry out statustoggling:
+	if status_suppress is false:
+		now status_suppress is true;
+	otherwise:
+		now status_suppress is false.
+		
+Report soundtoggling:
+	say "Status suppression is now [if status_suppress is true]on[otherwise]off[end if]."
+
+Section Toggle Timekeeping Support
+
+Timertoggling is an action out of world. Understand "toggletimer" as timertoggling.
+
+Carry out timertoggling:
+	if timekeeping_suppress is false:
+		now timekeeping_suppress is true;
+	otherwise:
+		now timekeeping_suppress is false.
+		
+Report timertoggling:
+	say "Timekeeping suppression is now [if timekeeping_suppress is true]on[otherwise]off[end if]."
+
 
 	
 Chapter Initialize
