@@ -9,6 +9,7 @@ The story description is "Your wedding rehearsal is hours away, and what do you 
 
 Include Menus by Emily Short.
 Include Plurality by Emily Short. 
+Include Glulx Entry Points by Emily Short.
 
 Use full-length room descriptions, american dialect and the serial comma.
 
@@ -81,6 +82,17 @@ robotX is a number that varies. robotX is 2.
 robotY is a number that varies. robotY is 1.
 
 graphics is a truth state that varies. graphics is true.
+
+Timer mode is a number that varies. Timer mode is zero.
+Reps is a number that varies. Reps is zero.
+tempUpdateLevel is a number that varies. tempUpdateLevel is zero.
+
+[some flags for testing]
+graphics_suppress is a truth state that varies. graphics_suppress is false.
+sound_suppress is a truth state that varies. sound_suppress is false.
+unicode_suppress is a truth state that varies. unicode_suppress is false.
+status_suppress is a truth state that varies. status_suppress is false.
+timekeeping_suppress is a truth state that varies. timekeeping_suppress is false.
 
 Chapter Declare Resources
 
@@ -737,18 +749,10 @@ Carry out updating:
 	say "[errorPrompt]".
 
 Instead of Amelia updating:
-	say "Tiny blue dots of light dance under the smooth, black glass skin of the phone.  ";
 	if updates are available:
-		say "It says, [quotation mark]";
-		repeat with i running from (the currentUpdateLevel plus one) to updateNumber:
-			say "Installing [title corresponding to the patchLevel of i in the Table of Updates]";
-			say "... [no line break]";
-			say "[title corresponding to the patchLevel of i in the Table of Updates] installed.[no line break]";
-		change currentUpdateLevel to updateNumber;
-		say "[quotation mark][paragraph break]";	
-		change lastUpdateTime to the time of day;	
+		perform update;
 	otherwise: 
-		say "The phone reports, [quotation mark]No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[quotation mark][paragraph break]";
+		say "No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[paragraph break]";
 	the rule succeeds.
 	
 	
@@ -756,6 +760,66 @@ Table of Updates
 patchLevel	title	description	
 1	"Travel Module"	"which provides context-sensitive turn by turn directions"
 2	"Trees versus Mummies"	"a diverting new game"
+
+
+
+
+To perform update:
+	[glulx timed events-related code builds on the Glulx Entry Points Extension]
+	if glulx timekeeping is supported and timekeeping_suppress is false: 
+		change reps to 20 times (updateNumber minus currentUpdateLevel);
+		change tempUpdateLevel to currentUpdateLevel;
+		[a temp value because the time event is fired off asynchronously; this block would already have
+		set the final value of currentUpdateLevel, while the timed procedure is working its way through
+		updates]
+		change the command prompt to "";
+		[we have to hide the command prompt, or it will print before the timed event is finished. At 
+		the end of the timed event, it prints a fake command prompt to keep everything looking right
+		and re-enables the standard command prompt for later turns.]
+		change timer mode to 1;
+		set timer to 150;
+	otherwise:
+		say "Tiny blue dots of light dance under the smooth, black glass skin of the phone.  The phone reports:[paragraph break]";
+		repeat with i running from (the currentUpdateLevel plus one) to updateNumber:
+			say "Installing [title corresponding to the patchLevel of i in the Table of Updates][run paragraph on]";
+			say "............. [run paragraph on]";
+			say "installed.";
+		say "[quotation mark][paragraph break]";	
+	change currentUpdateLevel to updateNumber;
+	change lastUpdateTime to the time of day;	
+
+	
+To set timer to (delay - number):
+	(- glk_request_timer_events({delay}); -)
+	[starts time with delay milliseconds between events]
+	
+To stop timer:
+	(-  glk_request_timer_events(0); -)
+
+A glulx timed activity rule (this is the countdown rule):
+	[adapted from the shutdown time in RDO]
+	if the timer mode is 1:
+		if the remainder after dividing reps by 20 is:
+			-- 1: 
+				say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
+			-- 0:
+				 if reps is zero:
+					stop timer;
+					change command prompt to ">";
+				otherwise:
+					increase the tempUpdateLevel by one;
+					say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
+			-- otherwise: 
+				say ".[run paragraph on]";
+		decrease reps by one;
+		the rule succeeds.
+
+
+
+
+
+
+
 
 	
 Section Warranting
@@ -868,6 +932,8 @@ Carry out futuring:
 	
 Report futuring:
 	say "It is now 12:55 PM. Welcome to the future."
+	
+Section No
 
 	
 Chapter Initialize
