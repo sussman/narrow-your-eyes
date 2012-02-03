@@ -59,6 +59,10 @@ gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
 phoneCharge is usually zero. phoneCharge is 170.
 
+lastUpdateTime is a time that varies. The lastUpdateTime is 11 AM.
+updateNumber is a number that varies. The updateNumber is 1.
+currentUpdateLevel is a number that varies. currentUpdateLevel is 0.
+
 hasturCount is a number that varies. hasturCount is zero.
 
 lastDialed is an indexed text that varies. lastDialed is "".
@@ -69,8 +73,6 @@ turnCounter is a number that varies. turnCounter is zero.
 
 currentMessage is a text that varies. currentMessage is "".
 messageAlert is a truth state that varies. messageAlert is false.
-
-updated is a truth state that varies. updated is true.
 
 robotOrientation is a number that varies. The robotOrientation is 180.
 [0 N, 90 E, 180 S, 270 W]
@@ -120,6 +122,7 @@ To decide whether unicodage is enabled:
 	(-  glk_gestalt(gestalt_Unicode, 0) -)
 
 [For compatibility with Club Floyd & adaptive technologies:]
+
 To decide whether status is disabled:
 	(- ~~gg_statuswin -)
 	
@@ -159,6 +162,11 @@ A latch is a kind of thing. A latch can be openable. A latch can be open. A latc
 Mortality is a kind of value. The mortalities are alive and dead [and, for future expansion: undead]. Persons have mortality. A person is usually alive.
 
 Focus is a kind of value. The focuses are unfocused, diplopic, blurry, and sharp.
+
+To decide whether updates are available:
+	if currentUpdateLevel is not updateNumber, decide yes;
+	decide no.
+
 
 Section Chests and Lids
 
@@ -384,14 +392,17 @@ Section Xyzzying
 
 Xyzzying is an action applying to nothing.  Understand "xyzzy" as xyzzying.
 
-The xyzzy-flag is a truth state that varies. The xyzzy-flag is false.
-
 Carry out xyzzying:
-	if the xyzzy-flag is false:
-		say "Something arcanes happens, or so you think.";
-		now the xyzzy-flag is true;
+	if the updateNumber is less than 2:
+		change the updateNumber to 2;
+		if Eye Exam is happening:
+			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
+		otherwise if Exterior is happening:
+			say "In the distance, you see a large, blue thing. You can[apostrophe]t quite tell what it is, and then it is gone.";
+		otherwise if Cunning Plan is happening:
+			say "The ultraviolet laser web ripples with energy.";
 	otherwise:
-		say "Absolutely nothing happens.".
+		say "Nothing happens."
 		
 
 Chapter Phone Actions
@@ -434,7 +445,7 @@ Carry out appsing:
 	say "[errorPrompt]".
 
 Instead of Amelia appsing:
-	say "Amelia replies, [quotation mark]The following apps are available:  [if cowLicense is greater than zero]Angry Cows, [end if]Flashlight, Night Sky, and Trees versus Mummies. To launch an app, just say [bold type]Amelia, followed by the name of the application[roman type].[quotation mark][paragraph break]";
+	say "Amelia replies, [quotation mark]The following apps are available:  [if cowLicense is greater than zero]Angry Cows, [end if]Flashlight, [if currentUpdateLevel is 1]and [end if]Night Sky[if currentUpdateLevel is greater than 1], and Trees versus Mummies[end if]. To launch an app, just say [bold type]Amelia, followed by the name of the application[roman type].[quotation mark][paragraph break]";
 	the rule succeeds.
 	
 	
@@ -476,7 +487,7 @@ Section Commanding
 
 Commanding is an action applying to nothing.
 
-Understand "command" as commanding.
+Understand "command" or "commands" as commanding.
 
 Persuasion rule for asking Amelia to try commanding:
 	persuasion succeeds.
@@ -675,7 +686,7 @@ Section Travel
 
 Traveling is an action applying to nothing.
 
-Understand "travel" as Traveling.
+Understand "travel" as Traveling when the currentUpdateLevel is greater than zero.
 
 Persuasion rule for asking Amelia to try Traveling:
 	persuasion succeeds.
@@ -700,7 +711,7 @@ Section Treeing
 
 Treeing is an action applying to nothing.
 
-Understand "trees" or "mummies" or "trees versus mummies" as treeing.
+Understand "trees" or "mummies" or "trees versus mummies" as treeing when the currentUpdateLevel is greater than 1.
 
 Persuasion rule for asking Amelia to try treeing:
 	persuasion succeeds.
@@ -717,19 +728,35 @@ Section Updating
 
 Updating is an action applying to nothing.
 
-Understand "update" as updating.
+Understand "update" or "updates" as updating.
 
 Persuasion rule for asking Amelia to try updating:
 	persuasion succeeds.
 
 Carry out updating:
 	say "[errorPrompt]".
-	
-[For now, this is hardcoded, but we could generalize with a list of updates with time, description,etc.]
 
 Instead of Amelia updating:
-	say "Tiny blue dots of light dance under the smooth, black glass skin of the phone, and it replies, [quotation mark]The most recent update occurred ten minutes ago and installed the travel module, which provides context-sensitive turn by turn directions. No additional updates are available at this time.[quotation mark][paragraph break]";
+	say "Tiny blue dots of light dance under the smooth, black glass skin of the phone.  ";
+	if updates are available:
+		say "It says, [quotation mark]";
+		repeat with i running from (the currentUpdateLevel plus one) to updateNumber:
+			say "Installing [title corresponding to the patchLevel of i in the Table of Updates]";
+			say "... [no line break]";
+			say "[title corresponding to the patchLevel of i in the Table of Updates] installed.[no line break]";
+		change currentUpdateLevel to updateNumber;
+		say "[quotation mark][paragraph break]";	
+		change lastUpdateTime to the time of day;	
+	otherwise: 
+		say "The phone reports, [quotation mark]No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[quotation mark][paragraph break]";
 	the rule succeeds.
+	
+	
+Table of Updates
+patchLevel	title	description	
+1	"Travel Module"	"which provides context-sensitive turn by turn directions"
+2	"Trees versus Mummies"	"a diverting new game"
+
 	
 Section Warranting
 
@@ -1439,7 +1466,8 @@ Persuasion rule for asking Amelia to try asking for help:
 	persuasion succeeds.
 	
 Instead of Amelia asking for help:
-	say "[quotation mark]Help mode. The phone recognizes the following  basic commands: apps calendar messages phone time travel tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]".
+	say "[quotation mark]Help mode. The phone recognizes the following  basic commands: apps calendar messages phone time [if the currentUpdateLevel is greater than zero]travel [end if]tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
+	the rule succeeds.
 
 
 Table of Options
@@ -1518,10 +1546,9 @@ To say Messages:
 		say "MESSAGE".
 		
 To say Updates:
-	if updated is true:
-		say "UPDATED";
-		now updated is false.
-
+	if updates are available:
+		say "UPDATED".
+		
 To say openingLine1:
 	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
 	
@@ -1629,7 +1656,7 @@ To say askPhone:
 			say "[quotation mark]They are amazing, uncle Istvan certainly has a flair for design. I would love to get my hands on one![quotation mark][paragraph break]".
 	
 To say askMangoIndustries:
-	say "[quotation mark][if the noun is Giblets]Istvan[apostrophe]s company makes mostly consumer electronics, but not just cheap throwaway gizmos! Nope, every product is built to military spec. It[apostrophe]s just how he does business[otherwise]Dad[apostrophe]s the one to ask about that sort of stuff. Mostly, I[apostrophe]m into music, girls and my bike[end if].[quotation mark][paragraph break]".
+	say "[quotation mark][if the noun is Giblets]Istvan[apostrophe]s company makes mostly consumer electronics, but not just cheap throwaway gizmos! Nope, every product is built to military spec. It[apostrophe]s just how he does business[otherwise]Pop[apostrophe]s the one to ask about that sort of stuff. Mostly, I[apostrophe]m into music, girls and my bike[end if].[quotation mark][paragraph break]".
 	
 To say askMusic:
 	say "[quotation mark][if the noun is Giblets]I prefer They Might Be Giants[otherwise][one of]Perry Como[or]Mario Lanza[or]Nat King Cole[or]Tony Bennett[or]Elvis Presley[or]Chuck Berry[or]Jerry Lee Lewis[or]Johnny Cash[or]Ella Fitzgerald[or]Dean Martin[or]Doris Day[or]Frank Sinatra[or]Connie Francis[or]Jim Reeves[or]Cliff Richard[at random] sure is [one of]swell[or]spiff[or]snazzy[or]the cat's potatoes[at random][end if].[quotation mark][paragraph break]".
@@ -1650,26 +1677,26 @@ To say askAmy:
 	say "[quotation mark][if the noun is Giblets]She grew up in the area. Her dad moved mangoIndustries from Phoenix to DC about twenty years ago, and since then they have lived in Nortern Virginia. When she went to graduate school in Berkeley, her parents moved into the District, proper.[quotation mark][paragraph break][quotation mark]She is every bit as smart as Istvan, just in a different direction. I remember helping her with math when she was a kid, but the stuff she showed me in her thesis on gamma flashes just blew me away[otherwise]Amy is like a half generation ahead of me, so we didn[apostrophe]t hang out much growing up. In fact, I remember that when I was young (okay, younger, I suppose), she would sometimes babysit me. In the last year, I[apostrophe]ve chatted with her more often while making my college plans. She has some good advice[end if].[quotation mark][paragraph break]"
 	
 To say askTrevor:
-	say "[if the noun is Giblets]Doctor Giblets says, [quotation mark]He[apostrophe]s a good kid, and big help around the office. Who knows, some day, maybe he[apostrophe]ll grow up to be an ophthomologist like his dad![quotation mark] Somewhat at odds with his chipper disposition, he leans in and whispers in a more serious tone, [quotation mark]Though...he has been acting odd lately. Not quite himself[otherwise]I[apostrophe]m the youngest of Amy[apostrophe]s cousins, although I haven[apostrophe]t seen her much since she moved to Arecibo, and then out to Hawaii. I help dad out in the Ophtho office over the summers[end if].[quotation mark][paragraph break]".
+	say "[if the noun is Giblets]Doctor Giblets says, [quotation mark]He[apostrophe]s a good kid, and big help around the office. Who knows, some day, maybe he[apostrophe]ll grow up to be an ophthomologist like his dad![quotation mark] Somewhat at odds with his chipper disposition, he leans in and whispers in a more serious tone, [quotation mark]Though...he has been acting odd lately. Not quite himself[otherwise]I[apostrophe]m the youngest of Amy[apostrophe]s cousins, although I haven[apostrophe]t seen her much since she moved to Arecibo, and then out to Hawaii. I help pop out in the Ophtho office over the summers[end if].[quotation mark][paragraph break]".
 	
 To say askGiblets:
 	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]".
 			
 To say OcularEncouragement:
-	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark]implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell dad what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
+	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark]implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell pop what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
 							
 
 To say eyeDisease:
 	say "[one of]arterial nicking[or]narrow angle glaucoma[or]papillary edema[or]macular degeneration[or]a detached retina[or]loa loa[or]retinitis pigmentosa[or]ocular albinism[or]a cataract due to excessive exposure to ultraviolet radiation[in random order]".										
 To say OcularTimeConsumption:
-	say "[quotation mark][one of]Is that [eyeDisease]?[quotation mark], asks Trevor with some concern.[paragraph break][quotation mark]No,[quotation mark] replies his father, [quotation mark]that[apostrophe]s just an eye lash on the lens. See?[quotation mark][or]These drops will make your eyes blurry for a while, and you[apostrophe]ll be photosensitive, but all that should go away in the first hour after the exam,[quotation mark] reassures Doctor Giblets.[or]Marv, did your phone make another one of those noises? It didn't sound like the update noise. Man, I love that phone of yours![quotation mark] remarks Trevor.[or]Hey Trev,[quotation mark] calls Doctor Giblets, [quotation mark] have you ever seen [eyeDisease]?[quotation mark][paragraph break][quotation mark]No, dad. Not ever. Why, does Marv have it?[quotation mark][paragraph break][quotation mark]Oh, sakes no. I was just wondering.[quotation mark][or]Dad,[quotation mark] asks Trevor, [quotation mark]do you think we[apostrophe]ll be much longer? I promised [randomGirl] that I[apostrophe]d take her to the sock hop tonight[quotation mark][paragraph break][quotation mark]No, not too much longer[quotation mark][in random order]".	
+	say "[quotation mark][one of]Is that [eyeDisease]?[quotation mark], asks Trevor with some concern.[paragraph break][quotation mark]No,[quotation mark] replies his father, [quotation mark]that[apostrophe]s just an eye lash on the lens. See?[quotation mark][or]These drops will make your eyes blurry for a while, and you[apostrophe]ll be photosensitive, but all that should go away in the first hour after the exam,[quotation mark] reassures Doctor Giblets.[or]Marv, did your phone make another one of those noises? It didn't sound like the update noise. Man, I love that phone of yours![quotation mark] remarks Trevor.[or]Hey Trev,[quotation mark] calls Doctor Giblets, [quotation mark] have you ever seen [eyeDisease]?[quotation mark][paragraph break][quotation mark]No, pop. Not ever. Why, does Marv have it?[quotation mark][paragraph break][quotation mark]Oh, sakes no. I was just wondering.[quotation mark][or]Pop,[quotation mark] asks Trevor, [quotation mark]do you think we[apostrophe]ll be much longer? I promised [randomGirl] that I[apostrophe]d take her to the sock hop tonight[quotation mark][paragraph break][quotation mark]No, not too much longer[quotation mark][in random order]".	
 	
 	
 To say askEyeChart:
 	say "[quotation mark][if the noun is Giblets]Every year, there is a big ophthalmology convention. I think this year it is in Vancouver. I could tell you some stories about those conventions -- they get pretty wild![quotation mark][paragraph break][quotation mark]Anyhow, back when drug companies used to be able to ply doctors with all sorts of swag at those conventions, I got this eye chart as a prize for filling out some kind of survey. I[apostrophe]ve been using it ever since[otherwise]I have heard people read that chart so many times that I have dreams about it[end if].[quotation mark][paragraph break]"
 	
 To say askRefractor:
-	say "[quotation mark][if the noun is Giblets]It[apostrophe]s a serious piece of optical hardware, Marv, and frankly it set me back quite a chunk of change when I opened the practice, but it is long since been paid off. It[apostrophe]s not like I go out and buy one every other day. It has a bunch of knobs and settings, all of which are pretty technical.[quotation mark] Doctor Giblets thinks for a moment and then adds, [quotation mark]Although, I suppose not so technical to you. I imagine that the optics in your telescopes out at Mauna Kea put my old refractor to shame in terms of complexity[otherwise]It[apostrophe]s a complicated machine that checks out your eyes. Dad doesn't let me touch it.[quotation  mark][paragraph break][quotation mark]Trevor,[quotation mark] corrects Doctor Giblets, [quotation mark]you can touch it, just not this year. You need to observe for a bit more before operating it yourself.[quotation  mark][paragraph break][quotation mark]See?[quotation mark] whispers Trevor, [quotation mark]I[apostrophe]ll never get my hands on it[end if].[quotation mark][paragraph break]".
+	say "[quotation mark][if the noun is Giblets]It[apostrophe]s a serious piece of optical hardware, Marv, and frankly it set me back quite a chunk of change when I opened the practice, but it is long since been paid off. It[apostrophe]s not like I go out and buy one every other day. It has a bunch of knobs and settings, all of which are pretty technical.[quotation mark] Doctor Giblets thinks for a moment and then adds, [quotation mark]Although, I suppose not so technical to you. I imagine that the optics in your telescopes out at Mauna Kea put my old refractor to shame in terms of complexity[otherwise]It[apostrophe]s a complicated machine that checks out your eyes. Pop doesn't let me touch it.[quotation  mark][paragraph break][quotation mark]Trevor,[quotation mark] corrects Doctor Giblets, [quotation mark]you can touch it, just not this year. You need to observe for a bit more before operating it yourself.[quotation  mark][paragraph break][quotation mark]See?[quotation mark] whispers Trevor, [quotation mark]I[apostrophe]ll never get my hands on it[end if].[quotation mark][paragraph break]".
 	
 To say askAtropine:
 	say "[quotation mark][if the noun is Giblets]It is a drug that blocks the receptor for the nerves that make your pupil constrict. So, when I put a drop or two in each eye, the pupils dilate and I can get a good look at the back of your eye, where all the fun stuff is[otherwise]It makes it easier for pop to look in your eyes[end if].[quotation mark][paragraph break]".
@@ -1690,7 +1717,7 @@ To say askHimselfOphtho:
 		say askTrevor.
 	
 To say tellPhone:
-	say "tellPhone".
+	say "[quotation mark]Right after I landed last night, Amy showed up with her dad in one of the mangoIndustries limos and I got the royal treatment back to their place in Virginia. On the way, Istvan asked me if I[apostrophe]d like to field test one of their phones.[quotation mark][paragraph break][quotation mark]And you said, yes?[quotation mark] suggests Doctor Giblets.[paragraph break][quotation mark]Of course I said yes! Can you imagine how insanely jealous my graduate students at the obervatory are going to be when I tell them that I was one of the first people in the world to try out the new mangoFONE?[quotation mark][paragraph break][quotation mark]I know they[apostrophe]re amazing phones, but what is so special about this new model?[quotation mark] asks Trevor.[paragraph break][quotation mark]So far, with all the wedding stuff going on, I haven[apostrophe]t had much change to play with it. Istvan did mention that the phone has some special heuristics built in, meaning that it can learn and he lost with when he started talking about genetic algorithms and evolving q-ware, but I got the impression that the phone somehow improves itself over time.[quotation mark][paragraph break][quotation mark]Spiff![quotation mark] exclaims Trevor."
 	
 To say tellAmy:
 	say "tellAmy".
@@ -1860,8 +1887,11 @@ Instead of telling someone (called the auditor) about a topic listed in the Tabl
 	otherwise:
 		say "[ophtho-text entry]".
 		
-Instead of showing Amelia to someone (called the spectator) during Eye Exam:
+Instead of showing Amy to someone (called the spectator) during Eye Exam:
 	say "[noAmy]."
+	
+Instead of showing Amelia to someone (called the auditor) during the Eye Exam:
+	try asking the auditor about "amelia".
 	
 Every turn during Eye Exam:
 	if the eye chart is not read:
