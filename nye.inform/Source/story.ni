@@ -137,16 +137,9 @@ To decide whether unicodage is enabled:
 
 To decide whether status is disabled:
 	(- ~~gg_statuswin -)
-	
-To decide whether graphics is enabled:
-	(- glk_gestalt(gestalt_Graphics, 0) -)
-	
-[So we can suppress the "I'm now playing a sound effect but you can't hear it
- message on terps that don't support sound]
 
-To decide whether sound is enabled:
-	(- glk_gestalt(gestalt_Sound, 0) -)
-	
+[note that tests that determine whether sound is supported or graphics is supported
+ are defined in the Glulx Entry Points Extension, so no need to write our own here.]	
 
 Chapter Class Definitions
 
@@ -1008,7 +1001,7 @@ When play begins:
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
-	[if sound is enabled:
+	[if sound is supported:
 		play(the sound of the update); ]
 	wait for any key;
 	[initialize layout of the factory]
