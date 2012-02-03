@@ -119,8 +119,8 @@ Sound of the okay  is the file "okay(103586).ogg".
 Sound of the random  is the file "random(3647).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
 Sound of the trunk  is the file "trunk.ogg".
-Sound of the asterisk  is the file "asterisk.ogg".
-Sound of the update  is the file "update(51645).ogg".]
+Sound of the asterisk  is the file "asterisk.ogg".]
+Sound of the update  is the file "update(51645).ogg".
 
 Chapter Capabilities
 
@@ -400,6 +400,8 @@ Xyzzying is an action applying to nothing.  Understand "xyzzy" as xyzzying.
 Carry out xyzzying:
 	if the updateNumber is less than 2:
 		change the updateNumber to 2;
+		if glulx sound is supported and sound_suppress is false:
+			play(the sound of the update); 
 		if Eye Exam is happening:
 			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
 		otherwise if Exterior is happening:
@@ -1001,8 +1003,8 @@ When play begins:
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
-	[if sound is supported:
-		play(the sound of the update); ]
+	if glulx sound is supported and sound_suppress is false:
+		play(the sound of the update); 
 	wait for any key;
 	[initialize layout of the factory]
 	say openingLine2;
