@@ -100,7 +100,7 @@ Section Figures
 
 Section Sounds
 
-[Sound of the dtmf-zero is the file "0.ogg".
+Sound of the dtmf-zero is the file "0.ogg".
 Sound of the dtmf-one is the file "1.ogg".
 Sound of the dtmf-two is the file "2.ogg".
 Sound of the dtmf-three  is the file "3.ogg".
@@ -110,7 +110,8 @@ Sound of the dtmf-six  is the file "6.ogg".
 Sound of the dtmf-seven  is the file "7.ogg".
 Sound of the dtmf-eight  is the file "8.ogg".
 Sound of the dtmf-nine  is the file "9.ogg".
-Sound of the beeps  is the file "beeps1(44613).ogg".
+
+[Sound of the beeps  is the file "beeps1(44613).ogg".
 Sound of the conveyor  is the file "conveyor(523440.ogg)".
 Sound of the error  is the file "error(36896).ogg".
 Sound of the laser  is the file "laser(103239&52598).ogg".
@@ -120,7 +121,7 @@ Sound of the random  is the file "random(3647).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
 Sound of the trunk  is the file "trunk.ogg".
 Sound of the asterisk  is the file "asterisk.ogg".]
-Sound of the update  is the file "update(51645).ogg".
+Sound of the update is the file "update(51645).ogg".
 
 Chapter Capabilities
 
@@ -139,7 +140,28 @@ To decide whether status is disabled:
 	(- ~~gg_statuswin -)
 
 [note that tests that determine whether sound is supported or graphics is supported
- are defined in the Glulx Entry Points Extension, so no need to write our own here.]	
+ are defined in the Glulx Entry Points Extension, so no need to write our own here]
+
+[Use these in conditionals before trying to use funky glulx capabilities. This checks both the
+system-reported status of these capabilities and any flags that the user might have set during
+a test session.]
+
+To decide if sound is available:
+	if glulx sound is supported and sound_suppress is false, decide yes.
+	
+To decide if timekeeping is available:
+	if glulx timekeeping is supported and timekeeping_suppress is false, decide yes.
+	
+To decide if unicode is available:
+	if unicodage is enabled and unicode_suppress is false, decide yes.
+	
+To decide if status is available:
+	if status is disabled or status_suppress is true, decide no;
+	decide yes.
+	
+To decide if graphics is available:
+	if glulx graphics is supported and graphics_suppress is false, decide yes.
+	
 
 Chapter Class Definitions
 
@@ -400,7 +422,7 @@ Xyzzying is an action applying to nothing.  Understand "xyzzy" as xyzzying.
 Carry out xyzzying:
 	if the updateNumber is less than 2:
 		change the updateNumber to 2;
-		if glulx sound is supported and sound_suppress is false:
+		if sound is available:
 			play(the sound of the update); 
 		if Eye Exam is happening:
 			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
@@ -617,20 +639,25 @@ Instead of Amelia phoneToing:
 	let T be the player's command;
 	replace the regular expression "^amelia\s*,\s*" in T with "";
 	replace the regular expression "(dial|phone|call)\s*" in T with "";
-	if T matches the regular expression "^<0-9><0-9>*<0-9>$":
+	if T matches the regular expression "^<0-9>+$":
 		let n be the number of characters in T;
 		if n is greater than 10:
 			say "Your mangoFONE fades to a deep purple and says, [quotation mark]Error: Phone numbers are limited to ten digits.[quotation mark][paragraph break]";
 			change lastDialed to "";
 		otherwise:
-			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]You hear a ";
-			if n is:
-				-- 1:say "single";
-				-- 2:say "couple";
-				-- 3:say "few";
-				-- otherwise: say "series of";
-			say " loud touch tone[if n is greater than one]s[end if].[no line break]";	
+			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]";
 			change lastDialed to T;
+			if sound is available and timekeeping is available:
+				change reps to n;
+				change timer mode to 2;
+				set timer to 110;
+			say "You hear a ";
+			if n is:
+				-- 1: say "single";
+				-- 2: say "couple";
+				-- 3: say "few";
+				-- otherwise: say "series of";
+			say " loud touch tone[if n is greater than one]s[end if].";	
 			if the cunning plan is happening:
 				do robotControl;
 	else:	
@@ -761,7 +788,7 @@ patchLevel	title	description
 
 To perform update:
 	[glulx timed events-related code builds on the Glulx Entry Points Extension]
-	if glulx timekeeping is supported and timekeeping_suppress is false: 
+	if timekeeping is available: 
 		change reps to 20 times (updateNumber minus currentUpdateLevel);
 		change tempUpdateLevel to currentUpdateLevel;
 		[a temp value because the time event is fired off asynchronously; this block would already have
@@ -780,7 +807,8 @@ To perform update:
 			say "............. [run paragraph on]";
 			say "installed.";
 	change currentUpdateLevel to updateNumber;
-	change lastUpdateTime to the time of day;	
+	change lastUpdateTime to the time of day;
+	change the command prompt to ">".	[would like to eliminate this one- don't need in zoom]
 
 	
 To set timer to (delay - number):
@@ -792,21 +820,50 @@ To stop timer:
 
 A glulx timed activity rule (this is the countdown rule):
 	[adapted from the shutdown time in RDO]
-	if the timer mode is 1:
-		if the remainder after dividing reps by 20 is:
-			-- 1: 
-				say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
-			-- 0:
-				 if reps is zero:
-					stop timer;
-					change command prompt to ">";
-				otherwise:
-					increase the tempUpdateLevel by one;
-					say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
-			-- otherwise: 
-				say ".[run paragraph on]";
-		decrease reps by one;
-		the rule succeeds.
+	if the timer mode is:
+		--  1:
+			if the remainder after dividing reps by 20 is:
+				-- 1: 
+					say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
+				-- 0:
+					 if reps is zero:
+						stop timer;
+						change command prompt to ">";
+					otherwise:
+						increase the tempUpdateLevel by one;
+						say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
+				-- otherwise: 
+					say ".[run paragraph on]";
+			decrease reps by one;
+			the rule succeeds;
+		-- 2:
+			let n be (the number of characters in lastDialed minus reps) plus one;
+			let c be character number n in lastDialed;
+			if c is "1":
+				play(the sound of the dtmf-one); 
+			else if c is "2":
+				play(the sound of the dtmf-two);
+			else if c is "3":
+				play(the sound of the dtmf-three);
+			else if c is "4":
+				play(the sound of the dtmf-four);
+			else if c is "5":
+				play(the sound of the dtmf-five);
+			else if c is "6":
+				play(the sound of the dtmf-six);
+			else if c is "7":
+				play(the sound of the dtmf-seven);
+			else if c is "8":
+				play(the sound of the dtmf-eight);
+			else if c is "9":
+				play(the sound of the dtmf-nine);
+			else if c is "0":
+				play(the sound of the dtmf-zero);	
+			decrease reps by one;
+			if reps is zero:
+				stop timer;
+				say "[paragraph break]>";
+			the rule succeeds.
 
 
 
