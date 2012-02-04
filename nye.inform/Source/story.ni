@@ -183,7 +183,7 @@ Sound of the asterisk  is the file "asterisk.ogg".]
 
 Chapter Capabilities
 
-[These tests are carry forwards from RDO. WIthout unicode support, I think
+[These tests have been carried forwards from RDO. WIthout unicode support, I think
  we'd be pretty hosed, as indexed text, regular expression matching, etc. requires it]
 
 To decide whether unicodage is disabled:
@@ -1715,6 +1715,7 @@ title	subtable	description	toggle
 Table of Acknowledgements
 title	subtable	description	toggle
 "Beta Testers"	--	"John Lodder."	--
+"Sound Effects"	--	"All of the sounds used in this story were rendered as monaural sounds at their original sample rate. These files, in  Ogg Vorbis format, as well as the story source code, are available at http://code.google.com/p/narrow-your-eyes/.[paragraph break]DTMF (telephone touch tone) sounds were generated using an online tool at http://www.dialabc.com. Each tone is 100 milliseconds of 16-bit sound sampled at 8000 Hz.[paragraph break]Other sound effects were downloaded from http://freesound.org.  All of these sounds were contributed to the site under the Creative Commons Attribution License, although in some case, we can only attribute their username, as not all have indicated their real names. In some cases, these sounds were slightly modified from the version on that site. To find these sounds on that site, search for the index number, which is provided, below:[paragraph break]* The three tone error sound #36896 contributed by user icmusic (James Hart).[line break]* The message notification sound #80921 contributed by user JustinBW (Justin Wasack).[line break]* The update notification sound #51645 contributed by user reinsamba.[line break]* The okay sound #103586 contributed by steveygos93."	--
 "Giant Shoulders"	--	"This game was written in a mere 4 weeks thanks to the excellent tools available to the interactive fiction community. It was written in the Inform 7 language which has a proud heritage traceable back to the first games of this genre, but which is overwhelming attributable to its creator, Graham Nelson. In addition, we gleefully employed a number of modules written by Emily Short, also a major contributor to the Inform 7 language itself. Doubtless, we also extensively picked some tasty bits out of the Inform 7 documentation and examples, written by both Graham and Emily.[paragraph break]This game is written for the Glulx interpreter, so we also owe Andrew Plotkin thanks for developing the Glulx virtual machine, as well as the Glk library which makes the game playable on so many platforms.[paragraph break]Finally, we'd like to the People's Republic of Interactive Fiction for coming up with the idea of a 20th anniversary tribute to the They Might be Giants album Apollo 18. Obviously, at the bottom of the this stack of turtles are TMBG themselves. Without them and their ground-breaking music, there never could have been an anniversary of themselves (without resorting to universe-threatening paradoxes)."		--
 
 Table of Revisions
@@ -1725,7 +1726,7 @@ Table of License
 title	subtable	description	toggle
 "Creative Commons License"	--	"This game is released under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States license. As a consequence, you are free to copy, distribute, display, and use this work and to make derivative works under the following conditions:[paragraph break]Attribution. You must attribute such works mentioning our names [story author] and the title of this work [quotation mark][story title].[quotation mark] This can appear in the title, with the Release Information, or in the acknowledgements section of a menu system. Attribution does not suggest my endorsement of derivative works or their authors.[paragraph break]Noncommercial. You may not use this work for commercial purposes.[paragraph break]Share Alike. If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.[paragraph break]If you would like a copy of the Inform7 source for this game, please let us know by email: nye@red-bean.com"	--
 
-Chapter Boxed Text`
+Chapter Boxed Text
 
 To say Messages:[for now, hardwired]
 	if messageAlert is true:
