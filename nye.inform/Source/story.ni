@@ -20,6 +20,62 @@ Release along with cover art.
 
 Book 1 Mechanics
 
+Chapter Timekeeping Events
+	
+To set timer to (delay - number):
+	(- glk_request_timer_events({delay}); -)
+	[starts time with delay milliseconds between events]
+	
+To stop timer:
+	(-  glk_request_timer_events(0); -)
+
+A glulx timed activity rule (this is the countdown rule):
+	[adapted from the shutdown time in RDO]
+	if the timer mode is:
+		--  1: [Display progression text while the phone updates]
+			if the remainder after dividing reps by 20 is:
+				-- 1: 
+					say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
+				-- 0:
+					 if reps is zero:
+						stop timer;
+						change command prompt to ">";
+					otherwise:
+						increase the tempUpdateLevel by one;
+						say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
+				-- otherwise: 
+					say ".[run paragraph on]";
+			decrease reps by one;
+			the rule succeeds;
+		-- 2:	[touchtones every 100 ms]
+			let n be (the number of characters in lastDialed minus reps) plus one;
+			let c be character number n in lastDialed;
+			if c is "1":
+				play(the sound of the dtmf-one); 
+			else if c is "2":
+				play(the sound of the dtmf-two);
+			else if c is "3":
+				play(the sound of the dtmf-three);
+			else if c is "4":
+				play(the sound of the dtmf-four);
+			else if c is "5":
+				play(the sound of the dtmf-five);
+			else if c is "6":
+				play(the sound of the dtmf-six);
+			else if c is "7":
+				play(the sound of the dtmf-seven);
+			else if c is "8":
+				play(the sound of the dtmf-eight);
+			else if c is "9":
+				play(the sound of the dtmf-zero);
+			else if c is "0":
+				play(the sound of the dtmf-zero);	
+			decrease reps by one;
+			if reps is zero:
+				stop timer;
+				say "[paragraph break]>";
+			the rule succeeds.
+
 Chapter Bars
 
 To say (bars - a number) graphically:
@@ -110,18 +166,20 @@ Sound of the dtmf-six  is the file "6.ogg".
 Sound of the dtmf-seven  is the file "7.ogg".
 Sound of the dtmf-eight  is the file "8.ogg".
 Sound of the dtmf-nine  is the file "9.ogg".
+Sound of the okay is the file "okay(103586).ogg".
+Sound of the error is the file "error(36896).ogg".
+Sound of the message is the file "message(80921).ogg".
+Sound of the update is the file "update(51645).ogg".
+
 
 [Sound of the beeps  is the file "beeps1(44613).ogg".
 Sound of the conveyor  is the file "conveyor(523440.ogg)".
-Sound of the error  is the file "error(36896).ogg".
 Sound of the laser  is the file "laser(103239&52598).ogg".
-Sound of the message  is the file "message(80921).ogg".
-Sound of the okay  is the file "okay(103586).ogg".
 Sound of the random  is the file "random(3647).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
 Sound of the trunk  is the file "trunk.ogg".
 Sound of the asterisk  is the file "asterisk.ogg".]
-Sound of the update is the file "update(51645).ogg".
+
 
 Chapter Capabilities
 
@@ -526,6 +584,8 @@ Carry out commanding:
 	
 Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
+	if sound is available:
+		play(sound of the error);
 	the rule succeeds.
 	
 Section Cowing
@@ -772,7 +832,10 @@ Carry out updating:
 
 Instead of Amelia updating:
 	if updates are available:
+		say paragraph break;
 		perform update;
+		if sound is available:
+			play(the sound of the okay);
 	otherwise: 
 		say "No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[paragraph break]";
 	the rule succeeds.
@@ -811,73 +874,11 @@ To perform update:
 	change the command prompt to ">".	[would like to eliminate this one- don't need in zoom]
 
 	
-To set timer to (delay - number):
-	(- glk_request_timer_events({delay}); -)
-	[starts time with delay milliseconds between events]
-	
-To stop timer:
-	(-  glk_request_timer_events(0); -)
-
-A glulx timed activity rule (this is the countdown rule):
-	[adapted from the shutdown time in RDO]
-	if the timer mode is:
-		--  1:
-			if the remainder after dividing reps by 20 is:
-				-- 1: 
-					say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
-				-- 0:
-					 if reps is zero:
-						stop timer;
-						change command prompt to ">";
-					otherwise:
-						increase the tempUpdateLevel by one;
-						say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
-				-- otherwise: 
-					say ".[run paragraph on]";
-			decrease reps by one;
-			the rule succeeds;
-		-- 2:
-			let n be (the number of characters in lastDialed minus reps) plus one;
-			let c be character number n in lastDialed;
-			if c is "1":
-				play(the sound of the dtmf-one); 
-			else if c is "2":
-				play(the sound of the dtmf-two);
-			else if c is "3":
-				play(the sound of the dtmf-three);
-			else if c is "4":
-				play(the sound of the dtmf-four);
-			else if c is "5":
-				play(the sound of the dtmf-five);
-			else if c is "6":
-				play(the sound of the dtmf-six);
-			else if c is "7":
-				play(the sound of the dtmf-seven);
-			else if c is "8":
-				play(the sound of the dtmf-eight);
-			else if c is "9":
-				play(the sound of the dtmf-nine);
-			else if c is "0":
-				play(the sound of the dtmf-zero);	
-			decrease reps by one;
-			if reps is zero:
-				stop timer;
-				say "[paragraph break]>";
-			the rule succeeds.
-
-
-
-
-
-
-
-
-	
 Section Warranting
 
 Warranting is an action applying to nothing.
 
-Understand "warantee" as warranting.
+Understand "warranty" or " guaranty" or "warrantee" or "guarantee" as warranting.
 
 Persuasion rule for asking Amelia to try warranting:
 	persuasion succeeds.
@@ -1452,6 +1453,8 @@ Before doing something to Amy:
 	
 Persuasion rule for asking Amy to try doing something:
 	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
+	if sound is available:
+		play(sound of the error);
 	persuasion succeeds. [to suppress refusal to do what is asked]
 	
 Instead of Amy doing something:
@@ -1724,13 +1727,13 @@ title	subtable	description	toggle
 
 Chapter Boxed Text`
 
-To say Messages:
+To say Messages:[for now, hardwired]
 	if messageAlert is true:
-		say "MESSAGE".
+		say "MESSAGES:1".
 		
 To say Updates:
 	if updates are available:
-		say "UPDATES: [updateNumber minus currentUpdateLevel]".
+		say "UPDATES:[updateNumber minus currentUpdateLevel]".
 		
 To say openingLine1:
 	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
@@ -1754,7 +1757,9 @@ To say voiceCommandPrompt:
 	say "Say a voice command in the form of [bold type]Amelia, command[roman type].[no line break]".
 	
 To say errorPrompt:
-	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]".
+	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]";
+	if sound is available:
+		play(sound of the error).
 	
 To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
@@ -1866,7 +1871,7 @@ To say askGiblets:
 	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]".
 			
 To say OcularEncouragement:
-	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark]implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell pop what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
+	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark] implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell pop what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
 							
 
 To say eyeDisease:
@@ -2090,8 +2095,10 @@ Every turn during Eye Exam:
 				if there is a turnNumber of turnCounter in the Table of PostChart:
 					 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PostChart][paragraph break]";
 				if the turnCounter is 6:
+					if sound is available:
+						play(sound of the message);
 					now messageAlert is true;
-					change the currentMessage to "[youAreLate]";
+					change the currentMessage to "[youAreLate]";	
 			otherwise:
 				if a random chance of one in five succeeds:
 					say "[OcularTimeConsumption][paragraph break]";
