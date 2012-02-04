@@ -1,9 +1,7 @@
 "Robotest" by Ben Collins-Sussman
 
-Include Flexible Windows by Jon Ingold.
-Include Fixed Point Maths by Michael Callaghan.
-Include Glimmr Drawing Commands by Erik Temple.
 Include Glimmr Canvas-Based Drawing by Erik Temple.
+[other includes removed because GCBD includes these itself]
 
 The Big White Room is a room.  "My, this is a large, white, featureless room."
 
@@ -19,6 +17,8 @@ GOALS to ACHIEVE:
 
 ]
 
+
+Use Glimmr debugging.
 
 Book 1 Roborally Test Mechanics
 
