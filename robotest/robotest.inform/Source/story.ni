@@ -24,6 +24,8 @@ Book 1 Roborally Test Mechanics
 
 Chapter Diagnostics - Not for release
 
+[Note: Use command "image-map robogrid" to display the tile array as a text matrix within the game] 
+
 Diagnostics mode is a truth state that varies. Diagnostics mode is false.  
 
 Diagnosticking is an action out of world.  Understand "diagnostics"  as diagnosticking.
@@ -123,8 +125,10 @@ Robot-sprite	Figure of RobotHither	{ 3, 3 }
 [TODO Add igneous and player sprites here]
 
 Element scaling rule for a character-sprite (called the character) (this is the convert origin coordinate rule):
-     now the origin of the character is the canvas coordinate equivalent of the grid-coordinate of the character in the coordinates of the the robogrid;
-     continue.
+	now the origin of the character is the canvas coordinate equivalent of the grid-coordinate of the character in the coordinates of the robogrid;
+	if diagnostics mode is true:
+		say "[italic type]Element scaling rule firing:[line break]Origin of the character (canvas coordinates): [origin of the character][line break]Grid Coordinates of the character: ([entry 1 of the grid-coordinate of the character],[entry 2 of the grid-coordinate of the character])[roman type][paragraph break]";
+	continue.
 
 
 Chapter Character Setup
@@ -155,7 +159,7 @@ Carry out forwarding:
 	otherwise if the facing-direction of the robot is yonder:
 		if entry 2 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
 		otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
-	follow the convert origin coordinate rule;
+	[follow the convert origin coordinate rule;  <--- this is an implicit component of the window-drawing rules]
 	follow the window-drawing rules for the graphics-window;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 	
@@ -176,8 +180,8 @@ Carry out backwarding:
 		otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
 	otherwise if the facing-direction of the robot is yonder:
 		if entry 2 of the grid-coordinate of the character of the robot is 5, say "Oops, the robot hit a wall.";
-		otherwise increment entry 2 of the grid-coordinate of the character of the robot;
-	follow the convert origin coordinate rule;
+		otherwise increment entry 2 of the grid-coordinate of the character of the robot;		
+	[follow the convert origin coordinate rule;  <--- this is an implicit component of the window-drawing rules]
 	follow the window-drawing rules for the graphics-window;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 	
