@@ -26,14 +26,14 @@ Chapter Diagnostics - Not for release
 
 Diagnostics mode is a truth state that varies. Diagnostics mode is false.  
 
-Diagnosticking is an action out of world.  Understand "diagnostics" as diagnosticking.
+Diagnosticking is an action out of world.  Understand "diagnostics"  as diagnosticking.
 
 Carry out diagnosticking:
 	if diagnostics mode is true:
 		change diagnostics mode to false;
 	otherwise:
 		change diagnostics mode to true;
-	say "Swithcing diagnostics mode to [if diagnostics mode is true]on[otherwise]off[end if][if diagnostics mode is true]. The current robot [robot details][end if]."
+	say "Switching diagnostics mode to [if diagnostics mode is true]on[otherwise]off[end if][if diagnostics mode is true]. The current robot [robot details][end if]." in diagnostics mode.
 	
 To say robot details:
 	say "position is x=[entry 1 of the grid-coordinate of the character of the robot], y=[entry 2 of the grid-coordinate of the character of the robot] and the robot is facing [run paragraph on]";
