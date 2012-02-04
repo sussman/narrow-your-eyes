@@ -20,6 +20,62 @@ Release along with cover art.
 
 Book 1 Mechanics
 
+Chapter Timekeeping Events
+	
+To set timer to (delay - number):
+	(- glk_request_timer_events({delay}); -)
+	[starts time with delay milliseconds between events]
+	
+To stop timer:
+	(-  glk_request_timer_events(0); -)
+
+A glulx timed activity rule (this is the countdown rule):
+	[adapted from the shutdown time in RDO]
+	if the timer mode is:
+		--  1: [Display progression text while the phone updates]
+			if the remainder after dividing reps by 20 is:
+				-- 1: 
+					say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
+				-- 0:
+					 if reps is zero:
+						stop timer;
+						change command prompt to ">";
+					otherwise:
+						increase the tempUpdateLevel by one;
+						say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
+				-- otherwise: 
+					say ".[run paragraph on]";
+			decrease reps by one;
+			the rule succeeds;
+		-- 2:	[touchtones every 100 ms]
+			let n be (the number of characters in lastDialed minus reps) plus one;
+			let c be character number n in lastDialed;
+			if c is "1":
+				play(the sound of the dtmf-one); 
+			else if c is "2":
+				play(the sound of the dtmf-two);
+			else if c is "3":
+				play(the sound of the dtmf-three);
+			else if c is "4":
+				play(the sound of the dtmf-four);
+			else if c is "5":
+				play(the sound of the dtmf-five);
+			else if c is "6":
+				play(the sound of the dtmf-six);
+			else if c is "7":
+				play(the sound of the dtmf-seven);
+			else if c is "8":
+				play(the sound of the dtmf-eight);
+			else if c is "9":
+				play(the sound of the dtmf-zero);
+			else if c is "0":
+				play(the sound of the dtmf-zero);	
+			decrease reps by one;
+			if reps is zero:
+				stop timer;
+				say "[paragraph break]>";
+			the rule succeeds.
+
 Chapter Bars
 
 To say (bars - a number) graphically:
@@ -100,7 +156,7 @@ Section Figures
 
 Section Sounds
 
-[Sound of the dtmf-zero is the file "0.ogg".
+Sound of the dtmf-zero is the file "0.ogg".
 Sound of the dtmf-one is the file "1.ogg".
 Sound of the dtmf-two is the file "2.ogg".
 Sound of the dtmf-three  is the file "3.ogg".
@@ -110,21 +166,24 @@ Sound of the dtmf-six  is the file "6.ogg".
 Sound of the dtmf-seven  is the file "7.ogg".
 Sound of the dtmf-eight  is the file "8.ogg".
 Sound of the dtmf-nine  is the file "9.ogg".
-Sound of the beeps  is the file "beeps1(44613).ogg".
+Sound of the okay is the file "okay(103586).ogg".
+Sound of the error is the file "error(36896).ogg".
+Sound of the message is the file "message(80921).ogg".
+Sound of the update is the file "update(51645).ogg".
+
+
+[Sound of the beeps  is the file "beeps1(44613).ogg".
 Sound of the conveyor  is the file "conveyor(523440.ogg)".
-Sound of the error  is the file "error(36896).ogg".
 Sound of the laser  is the file "laser(103239&52598).ogg".
-Sound of the message  is the file "message(80921).ogg".
-Sound of the okay  is the file "okay(103586).ogg".
 Sound of the random  is the file "random(3647).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
 Sound of the trunk  is the file "trunk.ogg".
-Sound of the asterisk  is the file "asterisk.ogg".
-Sound of the update  is the file "update(51645).ogg".]
+Sound of the asterisk  is the file "asterisk.ogg".]
+
 
 Chapter Capabilities
 
-[These tests are carry forwards from RDO. WIthout unicode support, I think
+[These tests have been carried forwards from RDO. WIthout unicode support, I think
  we'd be pretty hosed, as indexed text, regular expression matching, etc. requires it]
 
 To decide whether unicodage is disabled:
@@ -137,15 +196,29 @@ To decide whether unicodage is enabled:
 
 To decide whether status is disabled:
 	(- ~~gg_statuswin -)
-	
-To decide whether graphics is enabled:
-	(- glk_gestalt(gestalt_Graphics, 0) -)
-	
-[So we can suppress the "I'm now playing a sound effect but you can't hear it
- message on terps that don't support sound]
 
-To decide whether sound is enabled:
-	(- glk_gestalt(gestalt_Sound, 0) -)
+[note that tests that determine whether sound is supported or graphics is supported
+ are defined in the Glulx Entry Points Extension, so no need to write our own here]
+
+[Use these in conditionals before trying to use funky glulx capabilities. This checks both the
+system-reported status of these capabilities and any flags that the user might have set during
+a test session.]
+
+To decide if sound is available:
+	if glulx sound is supported and sound_suppress is false, decide yes.
+	
+To decide if timekeeping is available:
+	if glulx timekeeping is supported and timekeeping_suppress is false, decide yes.
+	
+To decide if unicode is available:
+	if unicodage is enabled and unicode_suppress is false, decide yes.
+	
+To decide if status is available:
+	if status is disabled or status_suppress is true, decide no;
+	decide yes.
+	
+To decide if graphics is available:
+	if glulx graphics is supported and graphics_suppress is false, decide yes.
 	
 
 Chapter Class Definitions
@@ -407,6 +480,8 @@ Xyzzying is an action applying to nothing.  Understand "xyzzy" as xyzzying.
 Carry out xyzzying:
 	if the updateNumber is less than 2:
 		change the updateNumber to 2;
+		if sound is available:
+			play(the sound of the update); 
 		if Eye Exam is happening:
 			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
 		otherwise if Exterior is happening:
@@ -509,6 +584,8 @@ Carry out commanding:
 	
 Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
+	if sound is available:
+		play(sound of the error);
 	the rule succeeds.
 	
 Section Cowing
@@ -574,7 +651,7 @@ Carry out messaging:
 Instead of Amelia messaging:
 	say "The phone twinkles pink and light green, then announces, [quotation mark][run paragraph on]";
 	if currentMessage is "":
-		say "No messages have been received. Sorry, Marv.";
+		say "No messages have been received. Sorry, Marv.[quotation mark][paragraph break]";
 	otherwise:
 		if messageAlert is true:
 			say "Now playing new transcribed voice message:";
@@ -622,20 +699,25 @@ Instead of Amelia phoneToing:
 	let T be the player's command;
 	replace the regular expression "^amelia\s*,\s*" in T with "";
 	replace the regular expression "(dial|phone|call)\s*" in T with "";
-	if T matches the regular expression "^<0-9><0-9>*<0-9>$":
+	if T matches the regular expression "^<0-9>+$":
 		let n be the number of characters in T;
 		if n is greater than 10:
 			say "Your mangoFONE fades to a deep purple and says, [quotation mark]Error: Phone numbers are limited to ten digits.[quotation mark][paragraph break]";
 			change lastDialed to "";
 		otherwise:
-			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]You hear a ";
-			if n is:
-				-- 1:say "single";
-				-- 2:say "couple";
-				-- 3:say "few";
-				-- otherwise: say "series of";
-			say " loud touch tone[if n is greater than one]s[end if].[no line break]";	
+			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]";
 			change lastDialed to T;
+			if sound is available and timekeeping is available:
+				change reps to n;
+				change timer mode to 2;
+				set timer to 110;
+			say "You hear a ";
+			if n is:
+				-- 1: say "single";
+				-- 2: say "couple";
+				-- 3: say "few";
+				-- otherwise: say "series of";
+			say " loud touch tone[if n is greater than one]s[end if].";	
 			if the cunning plan is happening:
 				do robotControl;
 	else:	
@@ -750,7 +832,10 @@ Carry out updating:
 
 Instead of Amelia updating:
 	if updates are available:
+		say paragraph break;
 		perform update;
+		if sound is available:
+			play(the sound of the okay);
 	otherwise: 
 		say "No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[paragraph break]";
 	the rule succeeds.
@@ -766,7 +851,7 @@ patchLevel	title	description
 
 To perform update:
 	[glulx timed events-related code builds on the Glulx Entry Points Extension]
-	if glulx timekeeping is supported and timekeeping_suppress is false: 
+	if timekeeping is available: 
 		change reps to 20 times (updateNumber minus currentUpdateLevel);
 		change tempUpdateLevel to currentUpdateLevel;
 		[a temp value because the time event is fired off asynchronously; this block would already have
@@ -785,47 +870,15 @@ To perform update:
 			say "............. [run paragraph on]";
 			say "installed.";
 	change currentUpdateLevel to updateNumber;
-	change lastUpdateTime to the time of day;	
-
-	
-To set timer to (delay - number):
-	(- glk_request_timer_events({delay}); -)
-	[starts time with delay milliseconds between events]
-	
-To stop timer:
-	(-  glk_request_timer_events(0); -)
-
-A glulx timed activity rule (this is the countdown rule):
-	[adapted from the shutdown time in RDO]
-	if the timer mode is 1:
-		if the remainder after dividing reps by 20 is:
-			-- 1: 
-				say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
-			-- 0:
-				 if reps is zero:
-					stop timer;
-					change command prompt to ">";
-				otherwise:
-					increase the tempUpdateLevel by one;
-					say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
-			-- otherwise: 
-				say ".[run paragraph on]";
-		decrease reps by one;
-		the rule succeeds.
-
-
-
-
-
-
-
+	change lastUpdateTime to the time of day;
+	change the command prompt to ">".	[would like to eliminate this one- don't need in zoom]
 
 	
 Section Warranting
 
 Warranting is an action applying to nothing.
 
-Understand "warantee" as warranting.
+Understand "warranty" or " guaranty" or "warrantee" or "guarantee" as warranting.
 
 Persuasion rule for asking Amelia to try warranting:
 	persuasion succeeds.
@@ -1008,8 +1061,8 @@ When play begins:
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
-	[if sound is enabled:
-		play(the sound of the update); ]
+	if glulx sound is supported and sound_suppress is false:
+		play(the sound of the update); 
 	wait for any key;
 	[initialize layout of the factory]
 	say openingLine2;
@@ -1400,6 +1453,8 @@ Before doing something to Amy:
 	
 Persuasion rule for asking Amy to try doing something:
 	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
+	if sound is available:
+		play(sound of the error);
 	persuasion succeeds. [to suppress refusal to do what is asked]
 	
 Instead of Amy doing something:
@@ -1660,6 +1715,7 @@ title	subtable	description	toggle
 Table of Acknowledgements
 title	subtable	description	toggle
 "Beta Testers"	--	"John Lodder."	--
+"Sound Effects"	--	"All of the sounds used in this story were rendered as monaural sounds at their original sample rate. These files, in  Ogg Vorbis format, as well as the story source code, are available at http://code.google.com/p/narrow-your-eyes/.[paragraph break]DTMF (telephone touch tone) sounds were generated using an online tool at http://www.dialabc.com. Each tone is 100 milliseconds of 16-bit sound sampled at 8000 Hz.[paragraph break]Other sound effects were downloaded from http://freesound.org.  All of these sounds were contributed to the site under the Creative Commons Attribution License, although in some case, we can only attribute their username, as not all have indicated their real names. In some cases, these sounds were slightly modified from the version on that site. To find these sounds on that site, search for the index number, which is provided, below:[paragraph break]* The three tone error sound #36896 contributed by user icmusic (James Hart).[line break]* The message notification sound #80921 contributed by user JustinBW (Justin Wasack).[line break]* The update notification sound #51645 contributed by user reinsamba.[line break]* The okay sound #103586 contributed by steveygos93."	--
 "Giant Shoulders"	--	"This game was written in a mere 4 weeks thanks to the excellent tools available to the interactive fiction community. It was written in the Inform 7 language which has a proud heritage traceable back to the first games of this genre, but which is overwhelming attributable to its creator, Graham Nelson. In addition, we gleefully employed a number of modules written by Emily Short, also a major contributor to the Inform 7 language itself. Doubtless, we also extensively picked some tasty bits out of the Inform 7 documentation and examples, written by both Graham and Emily.[paragraph break]This game is written for the Glulx interpreter, so we also owe Andrew Plotkin thanks for developing the Glulx virtual machine, as well as the Glk library which makes the game playable on so many platforms.[paragraph break]Finally, we'd like to the People's Republic of Interactive Fiction for coming up with the idea of a 20th anniversary tribute to the They Might be Giants album Apollo 18. Obviously, at the bottom of the this stack of turtles are TMBG themselves. Without them and their ground-breaking music, there never could have been an anniversary of themselves (without resorting to universe-threatening paradoxes)."		--
 
 Table of Revisions
@@ -1670,15 +1726,15 @@ Table of License
 title	subtable	description	toggle
 "Creative Commons License"	--	"This game is released under the Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States license. As a consequence, you are free to copy, distribute, display, and use this work and to make derivative works under the following conditions:[paragraph break]Attribution. You must attribute such works mentioning our names [story author] and the title of this work [quotation mark][story title].[quotation mark] This can appear in the title, with the Release Information, or in the acknowledgements section of a menu system. Attribution does not suggest my endorsement of derivative works or their authors.[paragraph break]Noncommercial. You may not use this work for commercial purposes.[paragraph break]Share Alike. If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.[paragraph break]If you would like a copy of the Inform7 source for this game, please let us know by email: nye@red-bean.com"	--
 
-Chapter Boxed Text`
+Chapter Boxed Text
 
-To say Messages:
+To say Messages:[for now, hardwired]
 	if messageAlert is true:
-		say "MESSAGE".
+		say "MESSAGES:1".
 		
 To say Updates:
 	if updates are available:
-		say "UPDATED".
+		say "UPDATES:[updateNumber minus currentUpdateLevel]".
 		
 To say openingLine1:
 	say "[quotation mark]Narrow the eyes a little.[quotation mark][paragraph break]Dr. Giblet[apostrophe]s son Trevor complies, gently settling the refractor on the bridge of your nose. As he pushes inward on the two halves of the instrument, the lenses align and you find yourself staring through the device at a blurry eye chart.[paragraph break]"
@@ -1702,7 +1758,9 @@ To say voiceCommandPrompt:
 	say "Say a voice command in the form of [bold type]Amelia, command[roman type].[no line break]".
 	
 To say errorPrompt:
-	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]".
+	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]";
+	if sound is available:
+		play(sound of the error).
 	
 To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
@@ -1814,7 +1872,7 @@ To say askGiblets:
 	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]".
 			
 To say OcularEncouragement:
-	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark]implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell pop what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
+	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark] implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell pop what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
 							
 
 To say eyeDisease:
@@ -2038,8 +2096,10 @@ Every turn during Eye Exam:
 				if there is a turnNumber of turnCounter in the Table of PostChart:
 					 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PostChart][paragraph break]";
 				if the turnCounter is 6:
+					if sound is available:
+						play(sound of the message);
 					now messageAlert is true;
-					change the currentMessage to "[youAreLate]";
+					change the currentMessage to "[youAreLate]";	
 			otherwise:
 				if a random chance of one in five succeeds:
 					say "[OcularTimeConsumption][paragraph break]";
