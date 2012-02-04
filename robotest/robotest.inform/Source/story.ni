@@ -15,12 +15,44 @@ GOALS to ACHIEVE:
 
 1.  Make 'robofire' draw a blinky line across the screen
 2.  Create a ruleset to make the factory move the robot (explicit window refresh, after a 2 sec pause)
+3.  World domination by means of a cybernetic army written in Inform 7
 
 ]
 
 
-
 Book 1 Roborally Test Mechanics
+
+Chapter Diagnostics - Not for release
+
+Diagnostics mode is a truth state that varies. Diagnostics mode is false.  
+
+Diagnosticking is an action out of world.  Understand "diagnostics" as diagnosticking.
+
+Carry out diagnosticking:
+	if diagnostics mode is true:
+		change diagnostics mode to false;
+	otherwise:
+		change diagnostics mode to true;
+	say "Swithcing diagnostics mode to [if diagnostics mode is true]on[otherwise]off[end if][if diagnostics mode is true]. The current robot [robot details][end if]."
+	
+To say robot details:
+	say "position is x=[entry 1 of the grid-coordinate of the character of the robot], y=[entry 2 of the grid-coordinate of the character of the robot] and the robot is facing [run paragraph on]";
+	if the facing-direction of the robot is:
+		-- right: say "right";
+		-- left: say "left";
+		-- hither: say "hither";
+		-- yonder: say "yonder";
+		-- otherwise: say "undefined".
+	
+To say start of command:
+	say "At the beginning of the command [quotation mark][player's command][quotation mark], the robot [robot details]."
+	
+To say end of command:
+	say "At the end of the command [quotation mark][player's command][quotation mark], the robot [robot details]."
+	
+To say (phrase - text) in diagnostics mode:
+	say "[italic type][the phrase][roman type][paragraph break]".
+	
 
 Chapter Windows
 
@@ -29,7 +61,9 @@ The graphics-window is a graphics g-window spawned by the main-window.  The meas
 The graphics-canvas is a g-canvas.  The associated canvas of the graphics-window is the graphics-canvas.
 The canvas-width of the graphics-canvas is 400. The canvas-height of the graphics-canvas is 400.
 
-After examining the flyer:  open up the graphics-window.
+After examining the flyer:  
+	open up the graphics-window;
+	if diagnostics mode is true, say "Opening graphics window." in diagnostics mode.
 
 [TODO:  why does this line cause the graphics window to be blank when it opens??
 
@@ -102,13 +136,12 @@ A facing-direction is a kind of value.  The facing-directions are right, left, h
 The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
 
-
-
 Chapter Movement Rules
 
 Forwarding is an action applying to nothing.  Understand "forward" as forwarding.
 
 Carry out forwarding:
+	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
 	say "The robot takes a step forward.";
 	if the facing-direction of the robot is right:
 		if entry 1 of the grid-coordinate of the character of the robot is 5,  say "Oops, the robot hit a wall.";
@@ -123,12 +156,14 @@ Carry out forwarding:
 		if entry 2 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
 		otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
 	follow the convert origin coordinate rule;
-	follow the window-drawing rules for the graphics-window.
+	follow the window-drawing rules for the graphics-window;
+	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 	
 
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
 Carry out backwarding:
+	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
 	say "The robot takes a step backward.";
 	if the facing-direction of the robot is right:
 		if entry 1 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
@@ -143,12 +178,14 @@ Carry out backwarding:
 		if entry 2 of the grid-coordinate of the character of the robot is 5, say "Oops, the robot hit a wall.";
 		otherwise increment entry 2 of the grid-coordinate of the character of the robot;
 	follow the convert origin coordinate rule;
-	follow the window-drawing rules for the graphics-window.
+	follow the window-drawing rules for the graphics-window;
+	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 	
 
 Righting is an action applying to nothing.  Understand "right" as righting.
 
 Carry out righting:
+	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
 	say "The robot turns to its right.";
 	if the facing-direction of the robot is right:
 		now the facing-direction of the robot is hither;
@@ -162,12 +199,14 @@ Carry out righting:
 	otherwise if the facing-direction of the robot is yonder:
 		now the facing-direction of the robot is right;
 		now the image-ID of the character of the robot is Figure of RobotRight;
-	follow the window-drawing rules for the graphics-window.
+	follow the window-drawing rules for the graphics-window;
+	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
 
 Lefting is an action applying to nothing.  Understand "left" as lefting.
 
 Carry out lefting:
+	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
 	say "The robot turns to its left.";
 	if the facing-direction of the robot is left:
 		now the facing-direction of the robot is hither;
@@ -181,7 +220,8 @@ Carry out lefting:
 	otherwise if the facing-direction of the robot is hither:
 		now the facing-direction of the robot is right;
 		now the image-ID of the character of the robot is Figure of RobotRight;
-	follow the window-drawing rules for the graphics-window.
+	follow the window-drawing rules for the graphics-window;
+	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
 
 Chapter Firing
