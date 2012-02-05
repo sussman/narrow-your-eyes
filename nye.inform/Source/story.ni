@@ -893,6 +893,9 @@ Chapter General Insteads
 
 Section Examining
 
+
+[TOCONSIDER: Limit this to scenes other than the cunning plan, as vision has had time to clear up by then, and Marv needs to be able to examine more items in that scene. This would obviate explicitly saying that items appearing in that scene are not fuzzy]
+
 Instead of examining something fuzzy (called the item):
 	if Eye Exam is happening:
 		if Marv Spindle is dilated:
@@ -1952,28 +1955,28 @@ To say askProfJessica:
 	say "[quotation mark]Ah, Jessica. Beautiful, beautiful and deadly Jessica. We met only two weeks ago, but my how my world has changed! I could go on at length about her virtues, but given the limited amount of time you and I have together in this brief interlude before your well-deserved death, let me just say that she is quite the catch![quotation mark][paragraph break]".
 
 To say askProfIstvan:
-	say "The professor narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The professor tugs at the industrial rubber gloves covering his forearms, and adjusts his goggles."
+	say "The professor narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The professor tugs at the industrial rubber gloves covering his forearms, and he adjusts his goggles."
 
 To say askProfTrevor:
-	say "askProfTrevor".
+	say "[quotation mark]Trevor? What kind of a name is Trevor? I wouldn[apostrophe]t even give that name to my laboratory assistant[apostrophe]s rat.[quotation mark][paragraph break]"
 
 To say askProfWedding:
-	say "askProfWedding".
+	say "[quotation mark]Well,[quotation mark] begins Professor Igneous with a hint of hesitation, [quotation mark] I hadn[apostrophe]t given it much thought. Things have been moving quickly between Jessica and myself, but I don[apostrophe]t think either of us are really ready to commit or settle down. Maybe after I take over the world.[quotation mark][paragraph break]The professor stares off into space for a moment, and then his eyes return to the control panel, [quotation mark]But why am I discussing this with you? You will be too dead to attend the ceremony.[quotation mark][paragraph break]".
 
 To say askProfRobot:
-	say "askProfRobot".
+	say "Professor Igneous takes a step back from the control panel, crosses his arms across his lab coat, and launches into a lecture. [quotation mark]Well,[quotation mark] he begins, clearing his throat, [quotation mark]the whole trick in developing an army of robot soldiers, is to strike the right balance between mindless, enemy-slaying automatons that are proficient weapons, but cannot adjust to new situations, versus clever, problem solving autonomous agents. The latter are marvelously adaptive, but unfailingly evolve to destroy the human race (based on simulations, of course).[quotation mark][paragraph break][quotation mark]What I have arrived at in my research, the very core of my genius, you might say, is a perfect balance. My rampaging robot horde will not only be efficient killers, but will follow a moral code of my own superior design.[quotation mark]. His lecture over, the professor returns to the task of killing you."
 
 To say askProfHotel:
-	say "askProfHotel".
+	say "[quotation mark]This was, in fact, a hotel in the 1920s. It was owned by my great uncle, who was an aspiring mad scientist in his own right, and used the hotel as a cover. Unfortunately, the Great Depression wiped him out, and the building was sold. In subsequent years, it was divided into offices, used as a homeless shelter, and finally converted into a parking structure, before I purchased it as a base to build my robots. The interesting thing is that through this entire period, the basement laboratories and torture chambers survived in excellent condition. Remarkable, really.[quotation mark][paragraph break][quotation mark]After I bring down world governments and am secure in my position as world dictator, I am looking forward to remodeling the space and restoring the hotel in the Art Deco style of the 1920s.[quotation mark][paragraph break]"
 
 To say askProfPlan:
-	say "askProfPlan".
+	say "[quotation mark]Plan, Mr. Flack? Plan? My plan is for you to die![quotation mark] Professor Igneous leans forward and tries to appear threatening.[paragraph break][quotation mark]I do, of course, have an ingenious plan, but I am not foolhardy enough to share it with anyone![quotation mark][paragraph break]He lets that sink in for a minute, and then continues, [quotation mark]Except, of course, for people who are about to die! Yes, I have a plan -- to conquer the world with my robot army and then retire to a lifetime of leisure and perhaps start an Indy rock band. The latter is not a formal part of my plan, but something I[apostrophe]ve been considering lately. I am reluctant to go into details about my plan, but I suppose I shall do so to make the time pass more pleasurably until my robot completes its task of terminating your life![quotation mark] [paragraph break]".
 
 To say askProfProf:
-	say "askProfProf".
+	say "[quotation mark]Are you serious? I am amongst the best know evil geniuses in the world. I am infamous -- meaning, famous, but not for good things rather than not famous. If you are not familiar with my past, you have lived an intellecutally impoverished life. One would think that the least you could do before confronting me in my layer would be to pick up a copy of Who[apostrophe]s Who in Evil or to at least Google me. I do keep my Wikipedia page up to date. Someone keeps defacing it, but I keep putting it back. As soon as I get some henchmen, that will be amongt their first jobs. That and social media.[quotation mark][paragraph break]"
 
 To say tellProfPhone:
-	say "tellProfPhone".
+	say "[quotation mark]Doctor Igneous,[quotation mark] you yell, trying to get his attention. [quotation mark]Doctor Igneous, I want you to know something. I will defeat you. I will defeat you with this:[quotation mark] and you hold up your mangoFONE. Emboldened by his lack of response, you continue, [quotation mark]This is the most advanced design ever to come out of mangoIndustries. With it, you will surely be defeated.[quotation mark][paragraph break][quotation mark]First of all,[quotation mark] says Igneous flatly, [quotation mark]It is Professor Igneous. Not Doctor, Professor, although I am hoping to finish my disseration after I take over the world. . Second, I find your threat laughable. What are you going to do? Dial me to death with your cell phone?[quotation mark] Igneous glows with confidence."
 
 To say tellProfMangoIndustries:
 	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts Professor Igneous.[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
