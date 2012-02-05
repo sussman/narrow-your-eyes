@@ -439,9 +439,7 @@ Before telling the player about something:
 	stop the action.
 	
 Section Touch
-[ Jan 15, 2012  Jack comment - I commented out this section, as it would not compile, possibly due to changes in Inform, extensions, etc.
-
-Touching is implemented through an after rule, which is nice in terms of making use of existing relationships about whether something is touchable or not. If an item has a texture attribute, this rule makes use of it.]
+[ Touching is implemented through an after rule, which is nice in terms of making use of existing relationships about whether something is touchable or not. If an item has a texture attribute, this rule makes use of it.]
 
 Instead of touching a fardrop:
 	say "[The noun] is too far away to touch."
@@ -1487,7 +1485,7 @@ Instead of showing something to Amy, say "[noAmy]."
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. 
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. . The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser." The gloves, goggles and lab coat are not fuzzy. Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles.
 
 Chapter Giblets
 
@@ -1533,6 +1531,8 @@ Understand "Trevor" or "Trev" or "Trevor Giblets" as "[kid]".
 
 Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "archnemesis" or "enemy" or "madman" or "mad scientist" as "[iggi]".
 
+Understand "observatory" or "Mauna Kea" or "telescope" or "IR" or "IR scope" or "IR telescope" or "MKIRT" or "volcano" or "scope" or "infra-red" or "infrared" or "infra-red telescope" or "infrared telescope" as "[observatory]".
+
 Table of OphthoAsking
 topic		ophtho-text
 "[phone]"		"[askPhone]"
@@ -1557,15 +1557,15 @@ Table of OphthoTelling
 topic		ophtho-text
 "[phone]"		"[tellPhone]"
 "[futureWife]"		"[tellAmy]"
-"hawaii"		"[tellHawaii]"
+"hawaii" or "home"		"[tellHawaii]"
 "astronomy" or "nasa"		"[tellAstronomy]"
-"observatory" or "Mauna Kea"		"[tellObservatory]"
+"[observatory]"		"[tellObservatory]"
 "Istvan" or "Istvan Boulot"		"[tellIstvan]"
 "glasses"		"[tellGlasses]"
 "rehearsal"		"[tellRehearsal]"
 "engagement"		"[tellEngagement]"
 "wedding" or "wedding plans" or "plans"		"[tellPlans]"
-"[moi]"		"[tellMoi]"
+"[moi]" or "work"		"[tellMoi]"
 
 
 Table of CunningAsking
@@ -1611,7 +1611,7 @@ turnNumber	rant
 8		"[quotation mark]I bought Lenny and his kin from Detroit. From the rusting, derelict auto industry at the rotting core of your declining nation marches forth my mechanized army! I bought them for pennies on the dollar, as banks foreclosed on their properties and forced them to bankruptcy. As for the hardware and software designs, my horde of rabid intellectual property lawyers have made short work of the last shreds of your country’s engineering industry. Yes, with my coalition of bankers, patent attorneys, big media executives, and the congressmen they own, I have created an unstoppable circle of evil! And now, prepare to suffer at the hands of your own slothful lack of foresight and vigilance![quotation mark]"
 9		"[quotation mark]Pardon me for a moment, all this ranting is drying out my throat. I just need a sip of water....There, that[apostrophe]s better.  Difficult business you know, but murder without monologue is like...well... it isn’t pleasant.[quotation mark]"
 10		"[quotation mark]Now, where were we? Ultimate warrior...irony...downfall of American industry...ah yes, we were talking about your demise -- the first victim in a wave of necessary deaths that will ripple out from both your nation’s capital and from my base in West Ispharistan. Surely, you realize that I, Professor Igneous, am behind the war in Ispharistan -- I have studiously cultivated two decades of conflict to hone my mercenaries there to a fine edge. And yes, I am also behind the Québecois. That didn[apostrophe]t work out as explosively as one would have wished.[quotation mark]"
-11		"[quotation mark]Enough about me, let us talk about you (rather, I will talk and you will cling desperately to life).[quotation mark][paragraph break][quotation mark]I thought I had done you in back in Rhodesia, but of course you managed to survive with your rebreather. And then, in the Soviet Union, I assumed you had been lethally irradiated, but lead underwear was something I had not taken into consideration. Czechoslovakia, Yugoslavia...all the same story. You survived longer than the country did in each case. Well, I have learnt my lesson. This time, I will kill you with my own...or rather, Lenny[apostrophe]s own...hands, or rather, laser. That is to say, that Lenny will kill you with his laser, and I will transitively kill you because I control Lenny.[quotation mark]"
+11		"[quotation mark]Enough about me, let us talk about you (rather, I will talk and you will cling desperately to life).[quotation mark][paragraph break][quotation mark]I thought I had done you in back in Rhodesia, but of course you managed to survive with your rebreather. And then, in the Soviet Union, I assumed you had been lethally irradiated, but your undergarments were not a factor I had taken into consideration. Czechoslovakia, Yugoslavia...all the same story. You survived longer than the country did in each case. Well, I have learnt my lesson. This time, I will kill you with my own...or rather, Lenny[apostrophe]s own...hands, or rather, laser. That is to say, that Lenny will kill you with his laser, and I will transitively kill you because I control Lenny.[quotation mark]"
 12		"[quotation mark]It is not that I feel that I have anything to prove. I do not, you know. Not that it would matter. Not after I have taken over the world.[quotation mark]"
 13		"[quotation mark]Would you please stop working against me? I will win, you know, and you are merely delaying the inevitable and making me late for every other appointment. You know how it starts: the first kill of the day runs over fifteen minutes, and one thinks it is no big, deal, but then the next one drags on, and soon you are hours behind and it is difficult to catch up. The hours get longer, one has less time for family and hobbies, sleep suffers, the quality of one’s work goes down. No one needs that kind of stress.[quotation mark]"
 14		"[quotation mark]Yes, it is a stressful life, but it will all be worth it when I have the world at its knees. None of the others could shoulder the responsibility: not Moustaffa the Knife, not Edgar the Spyder (yes, I know I had promised not to kill Spyder, but I loathe ineptness). They were dabblers. They wanted to take over the world, but were only willing to go so far. Well, world domination is not a part time job. They all want to be very clever, and make a name for themselves, but the secret to effective world domination is consistency. Take over a little bit of the world each day, and before you know it, it’s in your back pocket. That is the theory, at least.[quotation mark]"
@@ -1909,50 +1909,50 @@ To say tellPhone:
 	say "[quotation mark]Right after I landed last night, Amy showed up with her dad in one of the mangoIndustries limos and I got the royal treatment back to their place in Virginia. On the way, Istvan asked me if I[apostrophe]d like to field test one of their phones.[quotation mark][paragraph break][quotation mark]And you said, yes?[quotation mark] suggests Doctor Giblets.[paragraph break][quotation mark]Of course I said yes! Can you imagine how insanely jealous my graduate students at the obervatory are going to be when I tell them that I was one of the first people in the world to try out the new mangoFONE?[quotation mark][paragraph break][quotation mark]I know they[apostrophe]re amazing phones, but what is so special about this new model?[quotation mark] asks Trevor.[paragraph break][quotation mark]So far, with all the wedding stuff going on, I haven[apostrophe]t had much change to play with it. Istvan did mention that the phone has some special heuristics built in, meaning that it can learn and he lost with when he started talking about genetic algorithms and evolving q-ware, but I got the impression that the phone somehow improves itself over time.[quotation mark][paragraph break][quotation mark]Spiff![quotation mark] exclaims Trevor."
 	
 To say tellAmy:
-	say "tellAmy".
-	
+	say "[quotation mark]I met Amy a few years ago at a high energy physics conference in Amsterdam. She had finished her graduate work out in Berkeley and was doing a postdoc at Fermi. After the conference, we went out for coffee and got talking. We actually blew off the last day of the conference to visit the Van Gogh Museum.[quotation mark][paragraph break][quotation mark]Is that when she moved out to Hawaii with you?[quotation mark] asks Trevor.[paragraph break][quotation mark]No, not until about two years later. I visited her a few times in Chicago, and she visited me once in Hawaii. That was enough for her to decide that she preferred the sun and surf to deep dish pizza and good jazz.[quotation mark][paragraph break]".
+		
 To say tellHawaii:
-	say "tellHawaii".
+	say "[quotation mark]I[apostrophe]ve lived out there for so long, that I consider it my home. [quotation mark][paragraph break][quotation mark]Which island?[quotation mark] asks Doctor Giblets, intent on demonstrating that he knows there is more than one.[paragraph break][quotation mark]The main one, Hawai[apostrophe]i -- that[apostrophe]s Hawai[apostrophe]i with an apostrophe. The Mauna Kea is the northeast quadrant of the island, and I live fairly far down its slope.[quotation mark][paragraph break][quotation mark]Do you surf?[quotation mark] asks Trevor with excitement.[paragraph break][quotation mark]Only the internet.[quotation mark] you reply.[paragraph break]".
 	
 To say tellAstronomy:
-	say "tellAstronomy".
+	say "[quotation mark]Both Amy and I have worked in the field of astronomy our entire professional careers. I spend my time working on the infrared telescope at Mauna Kea, but Amy[apostrophe]s interests tend towards the more theoretical. Her dad had wanted her to become computer scientist and carry some day as head of mangoIndustries, but she grew up thinking that would be too boring. Ironically, now she spends most of her day crunching numbers on computer.[quotation mark][paragraph break]".
 	
 To say tellObservatory:
-	say "tellObservatory".
+	say "[quotation mark]What can I say? It[apostrophe]s a big telescope on top of a (mostly) inactive (I hope) volcanco. We are about 1,500 meters above sea level. I spend most of my time on the IR scope that mangoIndustries was generous enough to upgrade last year. [quotation mark][paragraph break]".
 	
 To say tellIstvan:
-	say "tellIstvan"
+	say "[quotation mark]Istvan is very protective of his time -- everyone wants to talk to the inventor of the mangoFONE. I think that[apostrophe]s why he puts on such a façade. The irritable, judgemental genius persona is a way of keeping people at some distance.[quotation mark][paragraph break][quotation mark]No it[apostrophe]s not. My brother is an irritable, judgemental genius, and I am not sure about the genius part. Most of the genius in mangoIndustries is wrung out of the junior engineering staff,[quotation mark] huffs Doctor Giblets."
 	
 To say tellGlasses:
-	say "tellGlasses".
+	say "[quotation mark]I lose my glasses pretty frequently, but this is the first time since highschool that I have broken a pair. Usually, I'd just call my ophthlmologist in Hawaii for the prescription, but their office is closed today.Too bad I can[apostrophe]t tolerate contact lenses.[quotation mark][paragraph break][quotation mark]We have some new types, [quotation mark] offers Doctor Giblets, [quotation mark]and some of them are much more comfortable. Maybe you could stop back during the week, and you could try some samples.[quotation mark][paragraph break][quotation mark]I don[apostrophe]t think Amy would approve of that -- we[apostrophe]ll be on our honeymoon for the next two weeks. I[apostrophe]ll have to get by with glasses for now. Maybe after we come back.[quotation mark][paragraph break][quotation mark]Sure, happy to have you stop by whenever you are back in DC.[quotation mark][paragraph break]".
 	
 To say tellRehearsal:
-	say "tellRehearsal".
+	say "[quotation mark]Amy has been very worked up about the wedding and the rehearsal. She was a nervous wreck that something would go wrong at the scope, and that I[apostrophe]d get stuck at the observatory, or that my flight would be delayed, or that some how things would derail. I keep telling her that there is no reason to worry, but I don[apostrophe]t think she[apostrophe]ll believe me until the whole thing is over. We[apostrophe]ll have the rehearsal today, the wedding tomorrow, and then off on the honeymoon.[quotation mark][paragraph break]".
 	
 To say tellEngagement:
-	say "tellEngagement".
+	say "[quotation mark]Amy surprised me last year. We visiting the Sudbury Neutrino Observatory, and were sitting in complete darkness when she asked.[quotation mark][paragraph break][quotation mark]And you said yes?[quotation mark] asks Trevor.[paragraph break][quotation mark]I couldn[apostrophe]t see a thing, and I sort of reflexively asked if she was talking to me. She whacked me so hard that I leaned against the detector, and we had to spend the rest of the evening realigning it. But yeah, eventually I did say yes.[quotation mark][paragraph break]".
 	
 To say tellPlans:
-	say "tellPlans".
+	say "[quotation mark]We are having the rehearsal today at a downtown hotel, and the wedding itself tomorrow in the corporate auditorium at mangoIndustries. Istvan is springing for an elaborate reception, and if it is anything like the shindigs they throw for product launches, it should be spectacular. Afterwards, we[apostrophe]ll be on our honeymoon for two weeks, and then back to the observatory.[quotation mark][paragraph break][quotation mark]What about a bachelor party?[quotation mark] asks Trevor eagerly.[paragraph break][quotation mark]It[apostrophe]s tonight... sorry, Trevor. I[apostrophe]m afraid it is rated M-for mature, or I[apostrophe]d invite you.[quotation mark][paragraph break][quotation mark]No problem. I already had some plans for tonight with [randomGirl]. We[apostrophe]re going to [one of]work on our stamp collections[or]play scrabble[or]learn the ancient art of scrimshaw, but not on real whale bone[or]take a class in dirigible design[in random order].[quotation mark][paragraph break]".
 	
 To say tellMoi:
-	say "tellMoi".
+	say "[quotation mark]I[apostrophe]m not entirely sure who I work for,[quotation mark] you admit. [quotation mark]I am on a bunch of government subcontracts and grants with NASA, the Department of Energy, DARPA, and I even have one with the Department of Agriculture[apostrophe]s Center for Nutrition Policy and Promotion. As they say, I[apostrophe]ve never met a funding source that I don[apostrophe]t like. Regardless of the funding source, most of my research is about studying star formation in distance galaxies.[quotation mark][paragraph break][quotation mark]But, what do you do for fun?[quotation mark] asks Trevor.[paragraph break][quotation mark]Study star formation in distant galaxies,[quotation mark] you reply. [quotation mark]The work part is getting and keeping the funding.[quotation mark][paragraph break]".
 	
 
 To say askProfPhone:
-	say "asProfPhone".
+	say "[quotation mark]A nice enough phone, but too busy for my taste,[quotation mark] replies the Professor. [quotation mark]I prefer a phone that is just a phone: An on/off button and some number keys. I have enough to do in plotting my take over of the world to be bothered keeping up with the latest smart phone gadgets.[quotation mark][paragraph break]".
 
 To say askProfMangoIndustries:
-	say "askProfMangoIndustries".
+	say "[quotation mark]A marketing giant and a cornerstone of the world economy. MangoIndustries will be crushed by my new world order, and the surviving bits and pieces will incorporated into the industrial machine that wil churn out my robot warriors.[quotation mark][paragraph break]".
 
 To say askProfAmy:
-	say "askProfAmy".
+	say "The professor looks perplexed. The question has put him off the straight course of his rant. [quotation mark]Amy?[quotation mark] he asks. [quotation mark]I knew an Amy once, back in the day. She was in a personnel department, I think, or rather with human resources, recruiting for one of the mercenary groups I employed in Rhodesia. Or was it Rwanda? One of the R[apostrophe]s. I think she was killed in either a dirigible accident, or perhaps in a submarine off the coast of New Zealand. Is that the Amy about whom you are inquiring?[quotation mark] asks Professor Igneous.[paragraph break][quotation mark]No,[quotation mark] you reply. [quotation mark]No, it[apostrophe]s not at all.[quotation mark][paragraph break]".
 
 To say askProfJessica:
-	say "askProfJessica".
+	say "[quotation mark]Ah, Jessica. Beautiful, beautiful and deadly Jessica. We met only two weeks ago, but my how my world has changed! I could go on at length about her virtues, but given the limited amount of time you and I have together in this brief interlude before your well-deserved death, let me just say that she is quite the catch![quotation mark][paragraph break]".
 
 To say askProfIstvan:
-	say "askProfIstvan".
+	say "The professor narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The professor tugs at the industrial rubber gloves covering his forearms, and adjusts his goggles."
 
 To say askProfTrevor:
 	say "askProfTrevor".
