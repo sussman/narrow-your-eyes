@@ -18,7 +18,7 @@ GOALS to ACHIEVE:
 ]
 
 
-Use Glimmr debugging.
+[Use Glimmr debugging.]
 
 Book 1 Roborally Test Mechanics
 
@@ -67,9 +67,8 @@ After examining the flyer:
 	open up the graphics-window;
 	if diagnostics mode is true, say "Opening graphics window." in diagnostics mode.
 
-[TODO:  why does this line cause the graphics window to be blank when it opens??
+[TODO:  why does this line cause the graphics window to be blank when it opens??]
 
-Every turn: follow the refresh windows rule.  [standard rule built into library]]
 
 
 Chapter Figures, Tiles, and Sprites
@@ -231,6 +230,12 @@ Carry out lefting:
 Chapter Firing
 
 [TODO:  implement 'fire', and draw a blinky line in the right direction, all the way to the wall.]
+
+
+Chapter Every Turn
+
+Every turn: follow the refresh windows rule.
+	
 
 
 
