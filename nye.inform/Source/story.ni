@@ -11,6 +11,9 @@ Include Menus by Emily Short.
 Include Adaptive Hints by Eric Eve.
 Include Plurality by Emily Short. 
 Include Glulx Entry Points by Emily Short.
+Include Fixed Point Maths by Michael Callaghan.
+Include Real-Time Delays by Erik Temple.
+
 
 Use full-length room descriptions, american dialect and the serial comma.
 
@@ -173,16 +176,42 @@ Sound of the okay is the file "okay(103586).ogg".
 Sound of the error is the file "error(36896).ogg".
 Sound of the message is the file "message(80921).ogg".
 Sound of the update is the file "update(51645).ogg".
-
-
-[Sound of the beeps  is the file "beeps1(44613).ogg".
-Sound of the conveyor  is the file "conveyor(523440.ogg)".
+Sound of the beeps  is the file "beeps1(44613).ogg".
+Sound of the conveyor  is the file "conveyor(523440).ogg".
 Sound of the laser  is the file "laser(103239&52598).ogg".
 Sound of the random  is the file "random(3647).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
-Sound of the trunk  is the file "trunk.ogg".
+[Sound of the trunk  is the file "trunk.ogg".
 Sound of the asterisk  is the file "asterisk.ogg".]
 
+Table of Sounds
+Sound		Duration  [millisencond]
+The sound of the dtmf-zero		100
+The sound of the dtmf-one		100
+The sound of the dtmf-two		100
+The sound of the dtmf-three  		100
+The sound of the dtmf-four  		100
+The sound of the dtmf-five		100	
+The sound of the dtmf-six		100
+The sound of the dtmf-seven		100
+The sound of the dtmf-eight		100
+The sound of the dtmf-nine		100
+The sound of the okay		500
+The sound of the error		1100
+The sound of the message		2000
+The sound of the update		5500
+The sound of the beeps		800
+The sound of the conveyor		1400
+The sound of the laser		1900
+The sound of the random		750
+The sound of the swivel		1250	
+
+To playback (effect - a sound name):
+	if sound is available and timekeeping is available:
+		let n be the duration corresponding to the sound of effect in the Table of Sounds;
+		now n is n plus 10;
+		play(effect);
+		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
 
 Chapter Capabilities
 
@@ -490,8 +519,7 @@ Carry out xyzzying:
 		otherwise if Cunning Plan is happening:
 			say "The ultraviolet laser web ripples with energy.";
 	otherwise:
-		say "Nothing happens."
-		
+		say "Nothing happens."		
 
 Chapter Phone Actions
 
@@ -848,7 +876,24 @@ patchLevel	title	description
 2	"Trees versus Mummies"	"a diverting new game"
 
 
+To perform update:
+	say "Tiny blue dots of light dance under the smooth, black glass skin of the phone.  The phone reports:[paragraph break]";
+	repeat with i running from (the currentUpdateLevel plus one) to updateNumber:
+		say "Installing [title corresponding to the patchLevel of i in the Table of Updates][run paragraph on]";
+		if timekeeping is available:
+			repeat with x running from 1 to 20:
+				say ".[run paragraph on]";
+				wait 100 ms before continuing, strictly;
+		otherwise:
+			say "............. [run paragraph on]";
+		say "installed.";
+	change currentUpdateLevel to updateNumber;
+	change lastUpdateTime to the time of day.
 
+
+
+
+[
 
 To perform update:
 	[glulx timed events-related code builds on the Glulx Entry Points Extension]
@@ -873,7 +918,7 @@ To perform update:
 	change currentUpdateLevel to updateNumber;
 	change lastUpdateTime to the time of day;
 	change the command prompt to ">".	[would like to eliminate this one- don't need in zoom]
-
+]
 	
 Section Warranting
 
