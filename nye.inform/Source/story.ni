@@ -150,6 +150,12 @@ The sound of the laser		1900
 The sound of the random		750
 The sound of the swivel		1250	
 
+[Sounds given one after the other will not form a queue and play sequentially. For this reason, it is necessary to play one, wait the duration of that sound, and give the command to play another. The other issue is that while a sound is playing, if timing does not lock out input, new commands could be typed in. These new commands could be at odds with the sounds that are playing, and cause confusion, or they could kick off new sounds, which would be suppressed by the currently playing sound.
+
+So, when you want to play a sound, but aren't worried about accepting more player input, use "play(sound)", but when you want to assure that a sound will play in its entirety, but suspend other operations, use "playback(sound)". Obviously, these sounds should be short, so that the player doesn't get upset about waiting to enter commands.
+
+]
+
 To playback (effect - a sound name):
 	if sound is available and timekeeping is available:
 		let n be the duration corresponding to the sound of effect in the Table of Sounds;
@@ -1203,7 +1209,12 @@ The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the offi
 
 Chapter Factory
 
-The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers.[paragraph break]From the far corner of the room, you hear a beep and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
+The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
+
+To say command beep:
+	say "beep[run paragraph on]";
+	playback the sound of the dtmf-five;
+	playback the sound of the conveyor.
 
 Understand "man" as Professor Igneous.
 
@@ -1445,7 +1456,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. It[apostrophe]s single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
@@ -1494,7 +1505,7 @@ Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears 
 
 Chapter Giblets
 
-Doctor Giblets is a man in the Ophthalmology Office. 
+Doctor Giblets is a man in the Ophthalmology Office. Understand "pop" as Doctor Giblets.
 
 Chapter Trevor
 
@@ -2394,14 +2405,20 @@ To do robotControl:
 		say "The robot ";
 		if  instruction matches the text "1": 
 			say "[spin-o-nyms] [ccw]";
+			playback the sound of the swivel;
 		else if instruction matches the text "2":
 			say " [goesBackwards] slowly";
+			playback the sound of the conveyor;
 		else if instruction matches the text "3":
 			say "[spin-o-nyms] [volteface]";
+			playback the sound of the swivel;
+			playback the sound of the swivel;
 		else if instruction matches the text "4":
 			say "[spin-o-nyms] [cw]";
+			playback the sound of the swivel;
 		else if instruction matches the text "5":
 			say "[goesForwards]";
+			playback the sound of the conveyor;
 		else if instruction matches the text "6":
 			say "[goesForwards] [quickly]";
 		else if instruction matches the text "7":
@@ -2412,14 +2429,18 @@ To do robotControl:
 				do shoot locker;
 			or if the lazer hits Marvin (outside the locker):
 				do shoot marvin;]
+			playback the sound of the laser;	
 		else if instruction matches the text "8":
 			say "performs a sensor scan";
 			[scan sound effect]
+			playback the sound of the beeps;
 		else if instruction matches the text "9":
 			say "makes incomprehensible noises";	
+			playback the sound of the random;
 			[pick a random incomprehensible noise sound effect]
 		else if instruction matches the text "0":
 			say "[spin-o-nyms] [arounds]";
+			playback the sound of the swivel;
 		do FactoryPhysics.
 			
 To do shoot the locker:
