@@ -71,7 +71,7 @@ After examining the flyer:
 
 
 
-Chapter Figures, Tiles, and Sprites
+Chapter Figures, Tiles, Sprites, Colors, Primitives
 
 Figure of RobotYonder is the file "robotback.png".
 Figure of RobotHither is the file "robotfront.png".
@@ -134,6 +134,15 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 	if diagnostics mode is true:
 		say "[italic type]Element scaling rule firing:[line break]Origin of the character (canvas coordinates): [origin of the character][line break]Grid Coordinates of the character: ([entry 1 of the grid-coordinate of the character],[entry 2 of the grid-coordinate of the character])[roman type][paragraph break]";
 	continue.
+
+
+
+[building on the g-color table in Glulx Text Effects...]
+Table of Common Color Values (continued)
+glulx color value	assigned number
+g-ultraviolet-laser	14647551 [0xDF80FF]
+
+The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The endpoint of the UVLaser is { 400, 320 }.  The line-weight of the UVLaser is 4.  The tint of the UVLaser is g-ultraviolet-laser.  The associated canvas of the UVLaser is the graphics-canvas.  The display-layer of the UVLaser is 1.
 
 
 Chapter Character Setup
