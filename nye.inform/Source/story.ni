@@ -24,62 +24,6 @@ Release along with cover art.
 
 Book 1 Mechanics
 
-Chapter Timekeeping Events
-	
-To set timer to (delay - number):
-	(- glk_request_timer_events({delay}); -)
-	[starts time with delay milliseconds between events]
-	
-To stop timer:
-	(-  glk_request_timer_events(0); -)
-
-A glulx timed activity rule (this is the countdown rule):
-	[adapted from the shutdown time in RDO]
-	if the timer mode is:
-		--  1: [Display progression text while the phone updates]
-			if the remainder after dividing reps by 20 is:
-				-- 1: 
-					say "installed.[paragraph break][if reps is one]>[run paragraph on][end if]";
-				-- 0:
-					 if reps is zero:
-						stop timer;
-						change command prompt to ">";
-					otherwise:
-						increase the tempUpdateLevel by one;
-						say "Installing [title corresponding to the patchLevel of tempUpdateLevel in the Table of Updates][run paragraph on]";
-				-- otherwise: 
-					say ".[run paragraph on]";
-			decrease reps by one;
-			the rule succeeds;
-		-- 2:	[touchtones every 100 ms]
-			let n be (the number of characters in lastDialed minus reps) plus one;
-			let c be character number n in lastDialed;
-			if c is "1":
-				play(the sound of the dtmf-one); 
-			else if c is "2":
-				play(the sound of the dtmf-two);
-			else if c is "3":
-				play(the sound of the dtmf-three);
-			else if c is "4":
-				play(the sound of the dtmf-four);
-			else if c is "5":
-				play(the sound of the dtmf-five);
-			else if c is "6":
-				play(the sound of the dtmf-six);
-			else if c is "7":
-				play(the sound of the dtmf-seven);
-			else if c is "8":
-				play(the sound of the dtmf-eight);
-			else if c is "9":
-				play(the sound of the dtmf-zero);
-			else if c is "0":
-				play(the sound of the dtmf-zero);	
-			decrease reps by one;
-			if reps is zero:
-				stop timer;
-				say "[paragraph break]>";
-			the rule succeeds.
-
 Chapter Bars
 
 To say (bars - a number) graphically:
@@ -736,10 +680,6 @@ Instead of Amelia phoneToing:
 		otherwise:
 			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]";
 			change lastDialed to T;
-			if sound is available and timekeeping is available:
-				change reps to n;
-				change timer mode to 2;
-				set timer to 110;
 			say "You hear a ";
 			if n is:
 				-- 1: say "single";
@@ -747,6 +687,7 @@ Instead of Amelia phoneToing:
 				-- 3: say "few";
 				-- otherwise: say "series of";
 			say " loud touch tone[if n is greater than one]s[end if].";	
+			playTouchToneString;
 			if the cunning plan is happening:
 				do robotControl;
 	else:	
@@ -755,6 +696,31 @@ Instead of Amelia phoneToing:
 		otherwise:
 			say "Waves of green chase each other around the phone's surface as it says, [quotation mark]Dialing [T].[quotation mark][noNetwork]";
 	the rule succeeds.
+	
+To playTouchToneString:
+	repeat with n running from 1 to the number of characters in lastDialed:
+		let c be character number n in lastDialed;
+		if c is "1":
+			playback(the sound of the dtmf-one); 
+		else if c is "2":
+			playback(the sound of the dtmf-two);
+		else if c is "3":
+			playback(the sound of the dtmf-three);
+		else if c is "4":
+			playback(the sound of the dtmf-four);
+		else if c is "5":
+			playback(the sound of the dtmf-five);
+		else if c is "6":
+			playback(the sound of the dtmf-six);
+		else if c is "7":
+			playback(the sound of the dtmf-seven);
+		else if c is "8":
+			playback(the sound of the dtmf-eight);
+		else if c is "9":
+			playback(the sound of the dtmf-zero);
+		else if c is "0":
+			playback(the sound of the dtmf-zero).
+	
 	
 
 Section Skying
@@ -890,35 +856,6 @@ To perform update:
 	change currentUpdateLevel to updateNumber;
 	change lastUpdateTime to the time of day.
 
-
-
-
-[
-
-To perform update:
-	[glulx timed events-related code builds on the Glulx Entry Points Extension]
-	if timekeeping is available: 
-		change reps to 20 times (updateNumber minus currentUpdateLevel);
-		change tempUpdateLevel to currentUpdateLevel;
-		[a temp value because the time event is fired off asynchronously; this block would already have
-		set the final value of currentUpdateLevel, while the timed procedure is working its way through
-		updates]
-		change the command prompt to "";
-		[we have to hide the command prompt, or it will print before the timed event is finished. At 
-		the end of the timed event, it prints a fake command prompt to keep everything looking right
-		and re-enables the standard command prompt for later turns.]
-		change timer mode to 1;
-		set timer to 150;
-	otherwise:
-		say "Tiny blue dots of light dance under the smooth, black glass skin of the phone.  The phone reports:[paragraph break]";
-		repeat with i running from (the currentUpdateLevel plus one) to updateNumber:
-			say "Installing [title corresponding to the patchLevel of i in the Table of Updates][run paragraph on]";
-			say "............. [run paragraph on]";
-			say "installed.";
-	change currentUpdateLevel to updateNumber;
-	change lastUpdateTime to the time of day;
-	change the command prompt to ">".	[would like to eliminate this one- don't need in zoom]
-]
 	
 Section Warranting
 
