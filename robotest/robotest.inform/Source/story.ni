@@ -56,7 +56,7 @@ To say (phrase - text) in diagnostics mode:
 	say "[italic type][the phrase][roman type][paragraph break]".
 	
 
-Chapter Windows
+Chapter Windows and Colors
 
 The graphics-window is a graphics g-window spawned by the main-window.  The measurement of the graphics-window is 400.
 
@@ -69,9 +69,15 @@ After examining the flyer:
 
 [TODO:  why does this line cause the graphics window to be blank when it opens??]
 
+[building on the g-color table in Glulx Text Effects...]
+Table of Common Color Values (continued)
+glulx color value	assigned number
+g-ultraviolet-laser	14647551 [0xDF80FF]
+g-red-laser	13737216 [0xD19D00]
 
 
-Chapter Figures, Tiles, Sprites, Colors, Primitives
+
+Chapter Figures, Tiles, Sprites
 
 Figure of RobotYonder is the file "robotback.png".
 Figure of RobotHither is the file "robotfront.png".
@@ -135,15 +141,6 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 	if diagnostics mode is true:
 		say "[italic type]Element scaling rule firing:[line break]Origin of the character (canvas coordinates): [origin of the character][line break]Grid Coordinates of the character: ([entry 1 of the grid-coordinate of the character],[entry 2 of the grid-coordinate of the character])[roman type][paragraph break]";
 	continue.
-
-
-
-[building on the g-color table in Glulx Text Effects...]
-Table of Common Color Values (continued)
-glulx color value	assigned number
-g-ultraviolet-laser	14647551 [0xDF80FF]
-
-The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The endpoint of the UVLaser is { 400, 320 }.  The line-weight of the UVLaser is 4.  The tint of the UVLaser is g-ultraviolet-laser.  The associated canvas of the UVLaser is the graphics-canvas.  The display-layer of the UVLaser is 1.
 
 
 Chapter Character Setup
@@ -243,9 +240,39 @@ Carry out lefting:
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
 
-Chapter Firing
+Chapter Firing the Laser
 
-[TODO:  implement 'fire', and draw a blinky line in the right direction, all the way to the wall.]
+
+The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The endpoint of the UVLaser is { 400, 320 }.  The line-weight of the UVLaser is 4.  The tint of the UVLaser is g-ultraviolet-laser.  The associated canvas of the UVLaser is the graphics-canvas.  The display-layer of the UVLaser is 1.
+	
+The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  The endpoint of the RobotLaser is { 400, 320 }.  The line-weight of the RobotLaser is 4.  The tint of the RobotLaser is g-red-laser.  The associated canvas of the RobotLaser is the graphics-canvas.  The display-layer of the RobotLaser is 3.  The display status of the RobotLaser is g-inactive.
+
+
+[THIS WON'T COMPILE, NOT SURE WHY:
+
+
+Firing is an action applying to nothing.  Understand "fire" as firing.
+
+Carry out firing:
+	let originX be entry 1 of the origin of the character of the robot plus 40;
+	let originY be entry 2 of the origin of the character of the robot plus 40;
+	if the facing-direction of the robot is left:
+		let endX be 0;
+		let endY be originY;
+	otherwise if the facing-direction of the robot is right:
+		let endX be 400;
+		let endY be originY;
+	otherwise if the facing-direction of the robot is hither:
+		let endX be originX;
+		let endY be 400;
+	otherwise if the facing-direction of the robot is yonder:
+		let endX be originX;
+		let endY be 0;
+	now the origin of the RobotLaser is { originX, originY };
+	now the endpoint of the RobotLaser is { endX, endY };
+	now the display status of the RobotLaser is g-active;
+	follow the window-drawing rules for the graphics-window.
+]
 
 Chapter Factory Movement
 
