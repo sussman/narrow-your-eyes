@@ -259,21 +259,25 @@ To decide which number is the current robot tile:
 To shift right:
 	if entry 1 of the grid-coordinate of the character of the robot is 5,  say "The factory tried to push the robot into a wall.";
 	otherwise increment entry 1 of the grid-coordinate of the character of the robot;
+	follow the window-drawing rules for the graphics-window;
 	say "...the robot is shifted to the right!";
 
 To shift left:
 	if entry 1 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
 	otherwise decrement entry 1 of the grid-coordinate of the character of the robot;
+	follow the window-drawing rules for the graphics-window;
 	say "...the robot is shifted to the left!";
 
 To shift up:
 	if entry 2 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
 	otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
+	follow the window-drawing rules for the graphics-window;
 	say "…the robot is shifted further away from you!";
 	
 To shift down:
 	if entry 2 of the grid-coordinate of the character of the robot is 5,  say "The factory tried to push the robot into a wall.";
 	otherwise increment entry 2 of the grid-coordinate of the character of the robot;
+	follow the window-drawing rules for the graphics-window;
 	say "...robot is shifted closer to you!";
 
 This is the factory movement rule:
@@ -293,10 +297,10 @@ This is the factory movement rule:
 		try righting;
 		shift left;
 	otherwise if the current robot tile is 7: [down right]
-		try righting;
+		try lefting;
 		shift right;
 	otherwise if the current robot tile is 8: [down left]
-		try lefting;
+		try righting;
 		shift left;
 	otherwise if the current robot tile is 9: [right up]
 		try righting;
@@ -318,6 +322,7 @@ Chapter Every Turn
 
 [Presumably the player's robot command executes before these two rules]
 Every turn:
+	follow the refresh windows rule;
 	follow the factory movement rule; 
 	follow the refresh windows rule.
 	
