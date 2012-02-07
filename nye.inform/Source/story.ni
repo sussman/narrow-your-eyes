@@ -1143,7 +1143,10 @@ Instead of reading or examining the first line:
 	say "[one of]You have no trouble reading the large letters of the first line: [quotation mark]hv[quotation mark]. Oh wait, that's a greek nu. Ah, some optics humor[or]It says [quotation mark]h nu[quotation mark]. You wonder how many of Doctor Giblets patients are famliar with the Planck constant[or]There[apostrophe]s no challenge in reading such large letters[stopping]."
 	
 Instead of reading or examining the second line:
-	say "[one of]You read the second line, but Trevor replies, [quotation mark]One more line down, Marv. That's the second line[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets[or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor[or][quotation mark]Right[quotation mark][stopping]."
+	if the eye chart is read:
+		say "Right, that[apostrophe]s the second line. Don[apostrophe]t wear it out. ";
+	otherwise:
+		say "[one of]You read the second line, but Trevor replies, [quotation mark]One more line down, Marv. That's the second line[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets[or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor[or][quotation mark]Right[quotation mark][stopping]."
 	
 Instead of reading or examining the third line:
 	say "[thirdLineDescription]".
@@ -1446,6 +1449,17 @@ Book 3 Characters
 Chapter Marv
 
 The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. Marv Spindle can be dilated. Marv Spindle is not dilated.
+
+Instead of examining Marv Spindle:
+	if Eye Exam is happening:
+		continue the action;
+	if Exterior is happening:
+		if the location is Wisconsin Avenue:
+			say "You are, of course, Marv Spindle. A man who is in danger of being late to his own wedding rehearsal. In terms of physical description, your eyes were just dilated by an ophthalmologist, so you can[apostrophe]t see much detail beyond the observation that you appear to have limbs.";
+		otherwise:
+			say "Your vision is still blurry, but you recognize that you are not at your best. After the incident with the bus, your clothes are torn and bloodstained,  and you are covered in dirt and grime from the road. Also, since you didn't have time to apply conditioner this morning, your hair is also probably a mess.";
+	otherwise:
+		say "It is fortunate for you that the lighting is too low in here for you to fully appreciate the extent of your own injuries."
 
 Chapter mangoFONE
 
