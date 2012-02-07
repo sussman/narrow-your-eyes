@@ -899,7 +899,7 @@ Section Examining
 
 [TOCONSIDER: Limit this to scenes other than the cunning plan, as vision has had time to clear up by then, and Marv needs to be able to examine more items in that scene. This would obviate explicitly saying that items appearing in that scene are not fuzzy]
 
-Instead of examining something fuzzy (called the item):
+Instead of examining something fuzzy (called the item) when the Cunning Plan is not happening:
 	if Eye Exam is happening:
 		if Marv Spindle is dilated:
 			say "It must be an effect of those drops. Everything is blurry.[no line break][one of][quotation mark]Doc? Everything[apostrophe]s blurry.[quotation mark][paragraph break][quotation mark]Yes, it[apostrophe]s those drops.[quotation mark][paragraph break]Just as you had suspected.[no line break][or][stopping][paragraph break]";
@@ -1230,16 +1230,17 @@ Instead of doing something with Professor Igneous:
 The plastic control booth is a fardrop in the Factory.
 
 The floor is a fardrop. It is in the the Factory.
+Instead of examining the floor, try looking.
 
-The convenyor belts are a fardrop. They are in the Factory.
+The conveyor belts are a fardrop. They are in the Factory. Understand "belt" as the conveyor belts. The description of the conveyor belts is "Intermeshed metal platforms, like steps in an escalator. They move constantly in one direction."
 
-The spinning platforms are a fardrop. They are in the Factory.
+The spinning platforms are a fardrop. They are in the Factory. Understand "platform" as the spinning platforms. The description of the spinning platforms is "About a meter in diameter, these platforms spin in one direction or another."
 
-The industrial welding robot is a fardrop. It is in the Factory. Understand "Lenny" as the industrial welding robot. The laser is part of the industrial welding robot.
+The industrial welding robot is a fardrop. It is in the Factory. Understand "Lenny" as the industrial welding robot. The laser is part of the industrial welding robot. The description of the robot is "An assembly line robot that has been modified for greater speed, flexibility and strength." The description of the laser is "Offhand, it looks like a neodymium yttrium-aluminum-garnet laser designed to cut through thick metal." 
 
-The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker is not fuzzy. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
+The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
 
-The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  It is not fuzzy. Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
+The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
 To say pileAppearance:
 	if Amelia is supercharged:
@@ -1300,7 +1301,7 @@ After entering the locker:
 	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in.  After a moment, you notice that you can see a little of what is going on outside the locker by peering through some hairline defects in the welding joints. Even so, almost none of the dim factory light enters the locker through these peepholes[or][stopping].";
 	now the metal parts locker is closed.
 	
-The peepholes are a part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joints on each of the four corners of the locker. None are more than a millimeter[if the metal parts locker encloses the player]; they barely let even light into the locker[end if]." Understand "defect" or "defects" or "hairline" or "fissure" or "crack" or "cracks" or "seams" or  "seam" or "weld" or or "welds" or "welding" or "joint" or "joints" or "corners" or "corner" or "peephole" as the peepholes. The peepholes are not fuzzy.
+The peepholes are a part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joints on each of the four corners of the locker. None are more than a millimeter[if the metal parts locker encloses the player]; they barely let even light into the locker[end if]." Understand "defect" or "defects" or "hairline" or "fissure" or "crack" or "cracks" or "seams" or  "seam" or "weld" or or "welds" or "welding" or "joint" or "joints" or "corners" or "corner" or "peephole" as the peepholes. 
 
 Instead of inserting something into the peepholes:
 	say "The cracks far too small."
@@ -1331,7 +1332,7 @@ After exiting during Cunning Plan:[The only thing the player can exit during thi
 	say "You clamber over the side of the locker and land awkwardly on the factory floor, back where you had started. The cover slams back down, sealing the locker.";
 	now the metal parts locker is closed.		
 
-The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the metal parts locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. The cover is not fuzzy.
+The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the metal parts locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. 
 
 Rule for printing room description details of the metal parts locker:
 	omit contents in listing.
@@ -1414,16 +1415,16 @@ Chapter Limbo
 
 Limbo is a room.
 
-The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The supercapacitor power module is not fuzzy. The connector is not fuzzy. The indicator is not fuzzy.
+The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." 
 
 Instead of touching, tasting, eating or kissing the connector:
 	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash.";
 	change the endgame to electrocuted;
 	end the game in death.
 
-The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The interface port is not fuzzy.
+The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. 
 
-The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser." The blast hole is not fuzzy.
+The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser." 
 
 Instead of inserting something (called the insertee) into the blast hole:
 	say "While powerful, the laser beam that made this hole was tightly focused, and the hole[apostrophe]s diameter is too small to accommodate [the insertee]." Understand "holes" as the blast hole.
@@ -1493,7 +1494,7 @@ Instead of showing something to Amy, say "[noAmy]."
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. . The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser." The gloves, goggles and lab coat are not fuzzy. Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles.
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. . The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles.
 
 Chapter Giblets
 
@@ -2087,6 +2088,7 @@ title		subtable
 "How can I move around?"		Table of Biking
 "How can I navigate to the rehearsal?"		Table of Navigation
 "Why is the world so blurry?"		Table of Blurriness
+"How can I avoid being killed."		Table of Cunningness
 
 
 Table of Orientation
@@ -2206,8 +2208,29 @@ A hint deactivation rule (this is the suck up the blindness hint deactivation ru
 	if Cunning Plan is happening:
 		deactivate the Table of Blurriness.
 		
+Table of Cunningness
+hint		used
+"Professor Igneous seems intent on killing you. You better do something!"
+"The professor is using the robot to shoot you with a laser. You need to defeat him first."
+"You might get some protection if you hide in something strong."
+"The parts locker is made of heavy metal and provides protection, albeit not total."
+"Can you use the Professor[apostrophe]s own technology against him?"
+"The Professor is controlling the robot with a series of tones."
+"You can use the touchtones on your own phone to control the robot."
+"To emita touchtone, entering AMELIA, DIAL #, where # is a number." 
+"The factory floor also affects the robot[apostrophe]s movement, so you have to factor that in."
+"Your phone is used to dialing ten digit phone numbers."
+"You can enter multiple robot commands per turn by entering AMELIA, DIAL ##########, where # are numbers."
+"You need to fire the robot[apostrophe]s laser while it is pointed at Professor Igneous."
+"To know which touch tone corresponds to which command (like go left, go back, fire laser), you will have to experiement."
 
-
+A hint activation rule (this is the lets kill professor igneous hint activation rule):
+	if Cunning Plan is happening:
+		activate the Table of Cunningness.
+		
+A hint deactivation rule (this is the professorial demise hint deactivation rule):
+	if Professor Igneous is dead:
+		deactivate the Table of Cunningness.		
 
 Book 6  Scenes
  
@@ -2486,5 +2509,5 @@ Rule for printing the player's obituary:
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you? Here are some fun tidbits about the game:[paragraph break]* First, you should know that Marv’s adventure is not over. We hope to roll out the next installment of this story later this year.[paragraph break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://   ).[paragraph break]* Did you read every line of the eye chart?"
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you? Here are some fun tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not. [paragraph break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://   ).[paragraph break]* Did you read every line of the eye chart?[paragraph break]* Did you try talking to the other characters? They know a lot about Marv and his world."
 
