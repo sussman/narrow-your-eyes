@@ -89,6 +89,7 @@ Figure of RightUpTurn is the file "right2up.png".
 Figure of RightDownTurn is the file "right2down.png".
 Figure of LeftUpTurn is the file "left2up.png".
 Figure of LeftDownTurn is the file "left2down.png".
+Figure of Blank is the file "blank.png".
 
 Robo is a tileset.  The translation-table is the Table of Robo Tiles.  The tile-width is 80.  The tile-height is 80.
 
@@ -107,7 +108,7 @@ number	figure-name
 10	Figure of RightDownTurn
 11	Figure of LeftUpTurn
 12	Figure of LeftDownTurn
-
+13	Figure of Blank
 
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
 The tile-array of the robogrid is  {
@@ -115,7 +116,7 @@ The tile-array of the robogrid is  {
      { 4, 10, 1, 1, 6 },
      { 4, 7, 2, 2, 3 },
      { 7, 2, 2, 2, 11 },
-     { 2, 2, 3, 1, 1 }
+     { 2, 2, 3, 13, 13 }
 }.
 
 A character-sprite is a kind of sprite. A character-sprite has a list of numbers called the grid-coordinate. The associated canvas of a character-sprite is the graphics-canvas.  The display-layer of a character-sprite is 2.
@@ -246,10 +247,79 @@ Chapter Firing
 
 [TODO:  implement 'fire', and draw a blinky line in the right direction, all the way to the wall.]
 
+Chapter Factory Movement
+
+[Is this really the best way to accomplish this??  Bleh.]
+To decide which number is the current robot tile:
+	let X be entry 1 of the grid-coordinate of the robot-sprite;
+	let Y be entry 2 of the grid-coordinate of the robot-sprite;
+	let gridrow be entry Y of the tile-array of the robogrid;
+	decide on entry X of gridrow.
+	
+To shift right:
+	if entry 1 of the grid-coordinate of the character of the robot is 5,  say "The factory tried to push the robot into a wall.";
+	otherwise increment entry 1 of the grid-coordinate of the character of the robot;
+	say "...the robot is shifted to the right!";
+
+To shift left:
+	if entry 1 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
+	otherwise decrement entry 1 of the grid-coordinate of the character of the robot;
+	say "...the robot is shifted to the left!";
+
+To shift up:
+	if entry 2 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
+	otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
+	say "…the robot is shifted further away from you!";
+	
+To shift down:
+	if entry 2 of the grid-coordinate of the character of the robot is 5,  say "The factory tried to push the robot into a wall.";
+	otherwise increment entry 2 of the grid-coordinate of the character of the robot;
+	say "...robot is shifted closer to you!";
+
+This is the factory movement rule:
+	say "The factory floor moves...";
+	if the current robot tile is 1: [left]
+		shift left;
+	otherwise if the current robot tile is 2: [right]
+		shift right;
+	otherwise if the current robot tile is 3: [up]
+		shift up;
+	otherwise if the current robot tile is 4: [down]
+		shift down;
+	otherwise if the current robot tile is 5: [up right]
+		try lefting;
+		shift right;
+	otherwise if the current robot tile is 6: [up left]
+		try righting;
+		shift left;
+	otherwise if the current robot tile is 7: [down right]
+		try righting;
+		shift right;
+	otherwise if the current robot tile is 8: [down left]
+		try lefting;
+		shift left;
+	otherwise if the current robot tile is 9: [right up]
+		try righting;
+		shift up;
+	otherwise if the current robot tile is 10: [right down]
+		try lefting;
+		shift down;
+	otherwise if the current robot tile is 11: [left up]
+		try lefting;
+		shift up;
+	otherwise if the current robot tile is 12: [left down]
+		try righting;
+		shift down.
+	
+
+
 
 Chapter Every Turn
 
-Every turn: follow the refresh windows rule.
+[Presumably the player's robot command executes before these two rules]
+Every turn:
+	follow the factory movement rule; 
+	follow the refresh windows rule.
 	
 
 
