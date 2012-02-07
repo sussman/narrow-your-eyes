@@ -8,6 +8,7 @@ The story genre is "Comedy".
 The story description is "Your wedding rehearsal is hours away, and what do you do but sit on your glasses, crushing them beyond repair? Can you and your stylish cell phone survive the day?"
 
 Include Menus by Emily Short.
+Include Adaptive Hints by Eric Eve.
 Include Plurality by Emily Short. 
 Include Glulx Entry Points by Emily Short.
 
@@ -1061,6 +1062,7 @@ Chapter Initialize
 
 
 When play begins:
+	activate the Table of Orientation;
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
@@ -1074,7 +1076,8 @@ When play begins:
 	change the right hand status line to "".
 
 After printing the banner text:
-	say "This story includes the use of graphic diplays. To toggle between graphic and text-only mode, use the command [quotation mark]graphics[quotation mark]. Type [quotation mark]help[quotation mark] for instructions.";
+	say "Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them."
+		[Temporarily commented out: This story includes the use of graphic diplays. To toggle between graphic and text-only mode, use the command [quotation mark]graphics[quotation mark]]
 
 	
 Chapter Every Turn
@@ -1205,7 +1208,7 @@ Chapter Wisconsin Avenue
 
 Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "[one of]It is a bright, unpleasantly sunny day. So sunny, in fact, that everything more than a few feet away is a complete blur. You narrow your eyes and recognize the outside of Doctor Giblet’s office[or]Somewhere on Wisconsin Avenue, just above Reservoir Road[stopping]."
 
-The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.  
+The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.   Understand "red" or "bicycle" as the bike.
 
 Instead of climbing the bike:
 	try entering the bike.
@@ -1352,7 +1355,7 @@ The signs are a part of the pole. Understand "sign" as the signs. The signs are 
 The hotel entrance is an open openable lockable unlocked enterable container in CornerNW. The description of the hotel entrance is "A revolving brass door, which leads into the hotel." Understand "brass" or "door" as the hotel entrance. The hotel entrance is not fuzzy.
 
 Instead of examining the hotel entrance:
-	say "A revolving brass door, engraved with the words [quotation mark]Hotel Entrance[quotation mark] (and presumably, on the other side, [quotation mark]Hotel Exit[quotation mark]. When you try to confirm this by narrowing your eyes and peeking around the back side of the door, [revolvingDoor].";
+	say "The most notable feature of the hotel, and the only one that you can see with some level of detail, is the revolving brass door. It is engraved with the words [quotation mark]Hotel Entrance[quotation mark] (and presumably, on the other side, [quotation mark]Hotel Exit[quotation mark]. When you try to confirm this by narrowing your eyes and peeking around the back side of the door, [revolvingDoor].";
 	move the player to the Factory.
 	
 Rule for printing room description details of the hotel entrance:
@@ -2066,8 +2069,147 @@ To say lockerDescription:
 	
 To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
+	
 
-Book 5  Scenes
+
+Book 5 Hints
+
+Table of Active Hints (continued)
+title		subtable		description	toggle
+text		table-name		text	a rule
+
+
+Table of Potential Hints (continued)
+title		subtable
+"What is this? How do I play?"		Table of Orientation
+"What is going on? I am soooooo lost."		Table of WTF
+"When does this eye exam end?"		Table of Deofficing
+"How can I move around?"		Table of Biking
+"How can I navigate to the rehearsal?"		Table of Navigation
+"Why is the world so blurry?"		Table of Blurriness
+
+
+Table of Orientation
+hint		used
+"General help and instructions are available through the [quotation mark]help[quotation mark] command."
+"Get out of this menu and then enter HELP at the prompt, [quotation mark]>[quotation mark]."
+"To get out of this menu, enter a space and then [quotation mark]q[quotation mark]."
+"Good luck!"
+
+[This table is activated in when play begins]
+
+A hint deactivation rule (this is the player must have the hang of it now hint deactivation rule):
+	if the eye chart is read:
+		deactivate the Table of Orientation.
+
+Table of WTF
+hint		used
+"Who you are, where you are, and your goals will be slowly revealed as part of the story."
+"In the hint system, capitalized words denote some of the useful words understood by the game."
+"If you are new to interactive fiction, you might want to take a look at the HELP menu."
+"Try to EXAMINE your environment, yourself, and anything you are carrying."
+"You can talk to people around you by ASKing or TELLing them ABOUT something."
+"Sometimes the people around you will mention useful information in conversation; be patient."
+"You are Marv, the main character in this story. Tomorrow is your wedding."
+"It is dark because you are having a medical exam that requires darkness."
+"You are at the ophthalmologist[apostrophe]s office to have an eye exam."
+"You sat on your glasses and need a new pair, but first, the doctor must determine your prescription."
+"You need to follow his instructions to complete the eye exam."
+"Can you see the eye chart?"
+"Can you read the third line of the eye chart?"
+"If you don[apostrophe]t read the eye chart perfectly, Doctor Giblets adjusts the equipment -- keep trying."
+"Read the third line of the eye chart until Doctor Giblets is satisfied that you did it correctly."
+
+A hint activation rule (this is the why am I in the dark hint activation rule):
+	if eye exam is happening and the eye chart is not read and the turnCounter is greater than 10:
+		activate the Table of WTF.
+						
+A hint deactivation rule (this is the now I get the eye exam bit hint deactivation rule):
+	if the eye chart is read:
+		deactivate the Table of WTF.
+		
+Table of Deofficing
+hint		used
+"Doctor Giblets is very thorough and will try to complete a full ophthalmological exam."
+"To leave the office, you need to respond to an event that has occurred."
+"You only have one tool at your disposal."
+"To list the items you are carrying, enter INVENTORY."
+"Have you tried to EXAMINE your mangoFONE?"
+"How do you operate the mangoFONE? It doesn't have a lot of controls."
+"Did you try to EXAMINE the button on the mangoFONE?"
+"Did you do what comes naturally when confronted with a button?"
+"After you PRESS the button, your phone will give you some instructions."
+"Try experimenting with various functions of your phone."
+"Your phone[apostrophe]s name is AMELIA."
+"To get some help from your phone, enter AMELIA, HELP. "
+"Amelia accepts additional commands like AMELIA, APPS which lists all applications available on the mangoFONE."
+"The status bar (which begins with the word [quotation mark]Power[quotation mark]) shows the state of your mangoFONE. Has it changed?"
+"Looks like you have a message waiting for you."
+"Instruct Amelia to play the message back to you."
+"To retrieve a message, enter AMELIA, MESSAGE."
+
+A hint activation rule (this is the how do I get out of this office hint activation rule):
+	if eye exam is happening and the eye chart is read and the turnCounter is greater than 10:
+		activate the Table of Deofficing.
+		
+A hint deactivation rule (this is the got out of the office hint deactivation rule):
+	if the Ophthalmology Office does not enclose the player:
+		deactivate the Table of Deofficing.
+		
+
+Table of Biking
+hint		used
+"It is too far to walk to the hotel where the reception will be held. Time is of the essence."
+"Doctor Giblets said not drive anything motorized."
+"As you left the office, Trevor had a suggestion."
+"You can borrow Trevor[apostrophe]s fancy bike."
+"To get on the bike enter something like RIDE BIKE or GET ON BIKE."
+
+A hint activation rule (this is the getting on the bike hint activation rule):
+	if the location is Wisconsin Avenue:
+		activate the Table of Biking.
+		
+A hint deactivation rule (this is the sat on bike hint deactivation rule):
+	if the bike has enclosed the player:
+		deactivate the Table of Biking.
+		
+
+Table of Navigation
+hint		used
+"You need to figure out how to get to the hotel. If only someone could navigate for you."
+"Does your phone have a navigation function?"
+"Is your phone up to date?"
+"If you have not done so already, enter AMELIA, UPDATE to install the latest updates on your phone."
+"Try activating the phone[apostrophe]s navigation feature. It can guide you."
+"Enter AMELIA, TRAVEL to engage turn-by-turn navigation."
+
+A hint activation rule (this is the turning on navigation hint activation rule):
+	if the location is Wisconsin Avenue and the bike has enclosed the player:
+		activate the Table of Navigation.
+		
+A hint deactivation rule (this is the turned on navigation hint deactivation rule):
+	if the location is not Wisconsin Avenue:
+		deactivate the Table of Navigation.
+		
+Table of Blurriness
+hint		used
+"What kind of exam did you just have?"
+"Did Doctor Giblets put something in your eyes?"
+"The eye drops you received during the exam cause blurry vision and make you sensitive to light."
+"The drops will wear off… it is just a matter of time."
+
+A hint activation rule (this is the why am I somewhat blind hint activation rule):
+	if Exterior is happening:
+		activate the Table of Blurriness.
+		
+A hint deactivation rule (this is the suck up the blindness hint deactivation rule):
+	if Cunning Plan is happening:
+		deactivate the Table of Blurriness.
+		
+
+
+
+Book 6  Scenes
  
 Chapter Eye Exam
 
