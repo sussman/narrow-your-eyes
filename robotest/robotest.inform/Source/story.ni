@@ -73,8 +73,6 @@ After examining the flyer:
 
 Chapter Figures, Tiles, and Sprites
 
-[TODO:  we'll need sprits for the robot facing all 4 directions.]
-
 Figure of RobotYonder is the file "robotback.png".
 Figure of RobotHither is the file "robotfront.png".
 Figure of RobotLeft is the file "robotleft.png".
