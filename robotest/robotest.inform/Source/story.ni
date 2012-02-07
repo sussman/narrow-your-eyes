@@ -77,14 +77,18 @@ Figure of RobotYonder is the file "robotback.png".
 Figure of RobotHither is the file "robotfront.png".
 Figure of RobotLeft is the file "robotleft.png".
 Figure of RobotRight is the file "robotright.png".
-Figure of LeftBelt is the file "leftbelt.png".
-Figure of RightBelt is the file "rightbelt.png".
-Figure of UpBelt is the file "upbelt.png".
-Figure of DownBelt is the file "downbelt.png".
-Figure of RightTurn is the file "rightturn.png".
-Figure of LeftTurn is the file "leftturn.png".
-Figure of UpTurn is the file "upturn.png".
-Figure of DownTurn is the file "downturn.png".
+Figure of LeftBelt is the file "left.png".
+Figure of RightBelt is the file "right.png".
+Figure of UpBelt is the file "up.png".
+Figure of DownBelt is the file "down.png".
+Figure of UpRightTurn is the file "up2right.png".
+Figure of UpLeftTurn is the file "up2left.png".
+Figure of DownRightTurn is the file "down2right.png".
+Figure of DownLeftTurn is the file "down2left.png".
+Figure of RightUpTurn is the file "right2up.png".
+Figure of RightDownTurn is the file "right2down.png".
+Figure of LeftUpTurn is the file "left2up.png".
+Figure of LeftDownTurn is the file "left2down.png".
 
 Robo is a tileset.  The translation-table is the Table of Robo Tiles.  The tile-width is 80.  The tile-height is 80.
 
@@ -95,19 +99,23 @@ number	figure-name
 2	Figure of RightBelt
 3	Figure of UpBelt
 4	Figure of DownBelt
-5	Figure of LeftTurn
-6	Figure of RightTurn
-7	Figure of UpTurn
-8	Figure of DownTurn
+5	Figure of UpRightTurn
+6	Figure of UpLeftTurn
+7	Figure of DownRightTurn
+8	Figure of DownLeftTurn
+9	Figure of RightUpTurn
+10	Figure of RightDownTurn
+11	Figure of LeftUpTurn
+12	Figure of LeftDownTurn
 
 
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
 The tile-array of the robogrid is  {
-     { 2, 2, 2, 2, 8 },
-     { 8, 1, 1, 1, 1 },
-     { 2, 2, 2, 2, 8 },
-     { 8, 1, 1, 1, 1 },
-     { 2, 2, 2, 2, 3 }
+     { 10, 1, 1, 1, 1 },
+     { 4, 10, 1, 1, 6 },
+     { 4, 7, 2, 2, 3 },
+     { 7, 2, 2, 2, 11 },
+     { 2, 2, 3, 1, 1 }
 }.
 
 A character-sprite is a kind of sprite. A character-sprite has a list of numbers called the grid-coordinate. The associated canvas of a character-sprite is the graphics-canvas.  The display-layer of a character-sprite is 2.
