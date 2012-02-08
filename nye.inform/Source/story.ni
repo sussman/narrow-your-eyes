@@ -10,8 +10,7 @@ The story description is "Your wedding rehearsal is hours away, and what do you 
 Include Menus by Emily Short.
 Include Adaptive Hints by Eric Eve.
 Include Plurality by Emily Short. 
-Include Glulx Entry Points by Emily Short.
-Include Fixed Point Maths by Michael Callaghan.
+Include Glimmr Canvas-Based Drawing by Erik Temple.
 Include Real-Time Delays by Erik Temple.
 
 
