@@ -8,6 +8,8 @@ The Big White Room is a room.  "My, this is a large, white, featureless room."
 
 The flyer is in the Big White Room.  "The flyer seems to have a fascinating picture on it."
 
+Robot delay is a number that varies. Robot delay is 400. [milliseconds]
+
 
 [
 GOALS to ACHIEVE:
@@ -162,8 +164,6 @@ The Robot is a person.  The character of the Robot is the Robot-sprite.  The dis
 A facing-direction is a kind of value.  The facing-directions are right, left, hither, and yonder.
 The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-A conveyor-direction is a kind of value. The conveyor-directions are upwards, downwards, leftwards and rightwards.
-
 
 Chapter Movement Rules
 
@@ -197,6 +197,7 @@ To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
 	if diagnostics mode is true:
 		say "Finalizing position ([startx],[starty]).";
 	follow the window-drawing rules for the graphics-window;
+	follow the refresh windows rule;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
 
@@ -335,9 +336,10 @@ Carry out firing:
 	[these rules redraw the laser within this block]
 	follow the window-drawing rules for the graphics-window.
 
-	
 
 Chapter Factory Movement
+
+A conveyor-direction is a kind of value. The conveyor-directions are upwards, downwards, leftwards and rightwards.
 
 [Is this really the best way to accomplish this??  Bleh.]
 To decide which number is the current robot tile:
@@ -346,66 +348,74 @@ To decide which number is the current robot tile:
 	let gridrow be entry Y of the tile-array of the robogrid;
 	decide on entry X of gridrow.
 	
-To shift right:
+To shift (way - a conveyor-direction):
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "The factory attempts to shift the robot right.";
-	increment startx;
+	say "The factory attempts to shift the robot [run paragraph on]";
+	if way is:
+		-- rightwards:
+			say "to the right.";
+			increment startx;
+		-- leftwards:
+			say "to the left.";
+			decrement startx;
+		-- upwards:
+			say "away from you.";
+			decrement starty;
+		-- downwards:
+			say "towards you.";
+			increment starty;	
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
-		say "...the robot is shifted to the right!"
-
-To shift left:
-	if entry 1 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
-	otherwise decrement entry 1 of the grid-coordinate of the character of the robot;
-	follow the window-drawing rules for the graphics-window;
-	say "...the robot is shifted to the left!";
-
-To shift up:
-	if entry 2 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
-	otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
-	follow the window-drawing rules for the graphics-window;
-	say "…the robot is shifted further away from you!";
-	
-To shift down:
-	if entry 2 of the grid-coordinate of the character of the robot is 5,  say "The factory tried to push the robot into a wall.";
-	otherwise increment entry 2 of the grid-coordinate of the character of the robot;
-	follow the window-drawing rules for the graphics-window;
-	say "...robot is shifted closer to you!";
-
+		say "...the robot is moved by the conveyor belt!"
+		
+To robodelay:
+	if glulx timekeeping is supported:
+		wait robot delay ms before continuing, strictly.
+		[in production, this would be hooked up with swivel sound]
+			
 This is the factory movement rule:
 	say "The factory floor moves...";
-	if the current robot tile is 1: [left]
-		shift left;
-	otherwise if the current robot tile is 2: [right]
-		shift right;
-	otherwise if the current robot tile is 3: [up]
-		shift up;
-	otherwise if the current robot tile is 4: [down]
-		shift down;
-	otherwise if the current robot tile is 5: [up right]
-		try lefting;
-		shift right;
-	otherwise if the current robot tile is 6: [up left]
-		try righting;
-		shift left;
-	otherwise if the current robot tile is 7: [down right]
-		try lefting;
-		shift right;
-	otherwise if the current robot tile is 8: [down left]
-		try righting;
-		shift left;
-	otherwise if the current robot tile is 9: [right up]
-		try righting;
-		shift up;
-	otherwise if the current robot tile is 10: [right down]
-		try lefting;
-		shift down;
-	otherwise if the current robot tile is 11: [left up]
-		try lefting;
-		shift up;
-	otherwise if the current robot tile is 12: [left down]
-		try righting;
-		shift down;
+	if the current robot tile is:
+		-- 1: [left]
+			shift leftwards;
+		-- 2: [right]
+			shift rightwards;
+		-- 3: [up]
+			shift upwards;
+		-- 4: [down]
+			shift downwards;
+		-- 5: [up right]
+			try lefting;
+			robodelay;
+			shift rightwards;
+		-- 6: [up left]
+			try righting;
+			robodelay;
+			shift leftwards;
+		-- 7: [down right]
+			try lefting;
+			robodelay;
+			shift rightwards;
+		-- 8: [down left]
+			try righting;
+			robodelay;
+			shift leftwards;
+		-- 9: [right up]
+			try righting;
+			robodelay;
+			shift upwards;
+		-- 10: [right down]
+			try lefting;
+			robodelay;
+			shift downwards;
+		-- 11: [left up]
+			try lefting;
+			robodelay;
+			shift upwards;
+		-- 12: [left down]
+			try righting;
+			robodelay;
+			shift downwards;
 	if glulx timekeeping is supported:
 		[if glulx sound is supported:
 			play the sound of the conveyor;]
@@ -413,12 +423,9 @@ This is the factory movement rule:
 	[this sound/timing stuff is wrapped up more nicely in nye, but you get the idea.]
 		
 	
-
-
-
 Chapter Every Turn
 
-[Presumably the player's robot command executes before these two rules]
+[We might back off on these very turn rules, if the screen is updated atomically after each movement.]
 Every turn:
 	follow the refresh windows rule;
 	follow the factory movement rule; 
