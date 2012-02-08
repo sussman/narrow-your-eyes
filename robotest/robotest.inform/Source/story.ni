@@ -149,9 +149,10 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 	continue.
 	
 Chapter Sound
-
+[
 Sound of the conveyor  is the file "conveyor(523440).ogg".
 Sound of the laser  is the file "laser(103239&52598).ogg".
+]
 
 Chapter Character Setup
 
@@ -161,70 +162,92 @@ The Robot is a person.  The character of the Robot is the Robot-sprite.  The dis
 A facing-direction is a kind of value.  The facing-directions are right, left, hither, and yonder.
 The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
+A conveyor-direction is a kind of value. The conveyor-directions are upwards, downwards, leftwards and rightwards.
+
 
 Chapter Movement Rules
+
+To say wall detected:
+	say "The robot holds position to avoid hitting a wall."
+
+startx is a number that varies. starty is a number that varies.
+
+To decide whether the destination of (xcoord - a number) and (ycoord - a number) is valid:
+	if xcoord is 0 or xcoord is 6 or ycoord is 0:
+		say "[wall detected]";
+		decide no;
+	otherwise if xcoord is 1 and ycoord is 1:
+		say "The robot holds position to avoid collision with Professor Igneous.";
+		decide no;
+	otherwise if ycoord is 5:
+		say "The robot holds position to avoid contact with the deathly energy of web of UV laser light.";
+		decide no;
+	decide yes.		
+
+	
+To set starting coordinates of (xcoord - a number) and (ycoord - a number):
+	change startx to xcoord;
+	change starty to ycoord;
+	if diagnostics mode is true:
+		say "Starting positions is ([startx],[starty])".
+	
+To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
+	change entry 1 of the grid-coordinate of the character of the robot to startx;
+	change entry 2 of the grid-coordinate of the character of the robot to starty;
+	if diagnostics mode is true:
+		say "Finalizing position ([startx],[starty]).";
+	follow the window-drawing rules for the graphics-window;
+	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
+
+
 
 Forwarding is an action applying to nothing.  Understand "forward" as forwarding.
 
 Carry out forwarding:
 	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
+	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
 	say "The robot takes a step forward.";
-	if the facing-direction of the robot is right:
-		if entry 1 of the grid-coordinate of the character of the robot is 5,  say "Oops, the robot hit a wall.";
-		otherwise increment entry 1 of the grid-coordinate of the character of the robot;
-	otherwise if the facing-direction of the robot is left:
-		if entry 1 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
-		otherwise decrement entry 1 of the grid-coordinate of the character of the robot;
-	otherwise if the facing-direction of the robot is hither:
-		if entry 2 of the grid-coordinate of the character of the robot is 5, say "Oops, the robot hit a wall.";
-		otherwise increment entry 2 of the grid-coordinate of the character of the robot;
-	otherwise if the facing-direction of the robot is yonder:
-		if entry 2 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
-		otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
-	[follow the convert origin coordinate rule;  <--- this is an implicit component of the window-drawing rules]
-	follow the window-drawing rules for the graphics-window;
-	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
+	if the facing-direction of the robot is:
+		-- right: increment startx;
+		-- left: decrement startx;
+		-- hither: increment starty;
+		-- yonder: decrement starty;
+	if the destination of startx and starty is valid:
+		finalize the coordinates of startx and starty.
 	
-
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
 Carry out backwarding:
 	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
+	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
 	say "The robot takes a step backward.";
-	if the facing-direction of the robot is right:
-		if entry 1 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
-		otherwise decrement entry 1 of the grid-coordinate of the character of the robot;
-	otherwise if the facing-direction of the robot is left:
-		if entry 1 of the grid-coordinate of the character of the robot is 5,  say "Oops, the robot hit a wall.";
-		otherwise increment entry 1 of the grid-coordinate of the character of the robot;
-	otherwise if the facing-direction of the robot is hither:
-		if entry 2 of the grid-coordinate of the character of the robot is 1, say "Oops, the robot hit a wall.";
-		otherwise decrement entry 2 of the grid-coordinate of the character of the robot;
-	otherwise if the facing-direction of the robot is yonder:
-		if entry 2 of the grid-coordinate of the character of the robot is 5, say "Oops, the robot hit a wall.";
-		otherwise increment entry 2 of the grid-coordinate of the character of the robot;		
-	[follow the convert origin coordinate rule;  <--- this is an implicit component of the window-drawing rules]
-	follow the window-drawing rules for the graphics-window;
-	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
+	if the facing-direction of the robot is:
+		-- right: decrement startx;
+		-- left: increment startx;
+		-- hither: decrement starty;
+		-- yonder: increment starty;
+	if the destination of startx and starty is valid:
+		finalize the coordinates of startx and starty.		
+		
 	
 
 Righting is an action applying to nothing.  Understand "right" as righting.
 
 Carry out righting:
 	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
-	say "The robot turns to its right.";
-	if the facing-direction of the robot is right:
-		now the facing-direction of the robot is hither;
-		now the image-ID of the character of the robot is Figure of RobotHither;
-	otherwise if the facing-direction of the robot is hither:
-		now the facing-direction of the robot is left;
-		now the image-ID of the character of the robot is Figure of RobotLeft;
-	otherwise if the facing-direction of the robot is left:
-		now the facing-direction of the robot is yonder;
-		now the image-ID of the character of the robot is Figure of RobotYonder;
-	otherwise if the facing-direction of the robot is yonder:
-		now the facing-direction of the robot is right;
-		now the image-ID of the character of the robot is Figure of RobotRight;
+	if the facing-direction of the robot is:
+		-- right:
+			now the facing-direction of the robot is hither;
+			now the image-ID of the character of the robot is Figure of RobotHither;
+		-- left: 
+			now the facing-direction of the robot is yonder;
+			now the image-ID of the character of the robot is Figure of RobotYonder;
+		-- hither:
+			now the facing-direction of the robot is left;
+			now the image-ID of the character of the robot is Figure of RobotLeft;
+		-- yonder:
+			now the facing-direction of the robot is right;
+			now the image-ID of the character of the robot is Figure of RobotRight;
 	follow the window-drawing rules for the graphics-window;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
@@ -234,18 +257,19 @@ Lefting is an action applying to nothing.  Understand "left" as lefting.
 Carry out lefting:
 	if diagnostics mode is true, say "[start of command]" in diagnostics mode;
 	say "The robot turns to its left.";
-	if the facing-direction of the robot is left:
-		now the facing-direction of the robot is hither;
-		now the image-ID of the character of the robot is Figure of RobotHither;
-	otherwise if the facing-direction of the robot is yonder:
-		now the facing-direction of the robot is left;
-		now the image-ID of the character of the robot is Figure of RobotLeft;
-	otherwise if the facing-direction of the robot is right:
-		now the facing-direction of the robot is yonder;
-		now the image-ID of the character of the robot is Figure of RobotYonder;
-	otherwise if the facing-direction of the robot is hither:
-		now the facing-direction of the robot is right;
-		now the image-ID of the character of the robot is Figure of RobotRight;
+	if the facing-direction of the robot is:
+		-- right:
+			now the facing-direction of the robot is yonder;
+			now the image-ID of the character of the robot is Figure of RobotYonder;
+		-- left:
+			now the facing-direction of the robot is hither;
+			now the image-ID of the character of the robot is Figure of RobotHither;
+		-- hither:
+			now the facing-direction of the robot is right;
+			now the image-ID of the character of the robot is Figure of RobotRight;
+		-- yonder:
+			now the facing-direction of the robot is left;
+			now the image-ID of the character of the robot is Figure of RobotLeft;
 	follow the window-drawing rules for the graphics-window;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
@@ -288,10 +312,10 @@ Carry out firing:
 	now the display status of the RobotLaser is g-active;
 	follow the window-drawing rules for the graphics-window;
 	if glulx timekeeping is supported:
-		if glulx sound is supported:
+		[if glulx sound is supported:
 			play the sound of the laser;
-		otherwise:
-			say "Zotttt! The laser fires![paragraph break]";
+		otherwise:]
+		say "Zotttt! The laser fires![paragraph break]";
 		wait 1900 ms before continuing, strictly;
 	[laser persists on screen for duration of sound effect]
 	change originX to entry 1 of the origin of the character of the robot plus 40;
@@ -323,10 +347,12 @@ To decide which number is the current robot tile:
 	decide on entry X of gridrow.
 	
 To shift right:
-	if entry 1 of the grid-coordinate of the character of the robot is 5,  say "The factory tried to push the robot into a wall.";
-	otherwise increment entry 1 of the grid-coordinate of the character of the robot;
-	follow the window-drawing rules for the graphics-window;
-	say "...the robot is shifted to the right!";
+	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
+	say "The factory attempts to shift the robot right.";
+	increment startx;
+	if the destination of startx and starty is valid:
+		finalize the coordinates of startx and starty;
+		say "...the robot is shifted to the right!"
 
 To shift left:
 	if entry 1 of the grid-coordinate of the character of the robot is 1,  say "The factory tried to push the robot into a wall.";
@@ -381,8 +407,8 @@ This is the factory movement rule:
 		try righting;
 		shift down;
 	if glulx timekeeping is supported:
-		if glulx sound is supported:
-			play the sound of the conveyor;
+		[if glulx sound is supported:
+			play the sound of the conveyor;]
 		wait 1400 ms before continuing, strictly.
 	[this sound/timing stuff is wrapped up more nicely in nye, but you get the idea.]
 		
