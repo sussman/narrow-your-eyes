@@ -250,9 +250,11 @@ The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  
 Firing is an action applying to nothing.  Understand "fire" as firing.
 
 Carry out firing:
+	let endX be a number;
+	let endY be a number;
 	let originX be entry 1 of the origin of the character of the robot plus 40;
 	let originY be entry 2 of the origin of the character of the robot plus 40;
-	say "entry 1 is [entry 1 of the origin of the character of the robot][paragraph break], entry 2 is [entry 2 of the origin of the character of the robot][paragraph break]originX is [originX], originY is [originY][paragraph break]";
+	[say "entry 1 is [entry 1 of the origin of the character of the robot][paragraph break], entry 2 is [entry 2 of the origin of the character of the robot][paragraph break]originX is [originX], originY is [originY][paragraph break]";]
 	if the facing-direction of the robot is left:
 		let endX be 0;
 		let endY be originY;
@@ -268,7 +270,11 @@ Carry out firing:
 	let L be a list of numbers;
 	add originX to L;
 	add originY to L;
+	let M be a list of numbers;
+	add endX to M;
+	add endY to M;
 	change the origin of the RobotLaser to L;
+	change the endpoint of the RobotLaser to M;
 	now the display status of the RobotLaser is g-active;
 	follow the window-drawing rules for the graphics-window.
 
