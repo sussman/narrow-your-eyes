@@ -2,6 +2,7 @@
 
 Include Glimmr Canvas-Based Drawing by Erik Temple.
 [other includes removed because GCBD includes these itself]
+Include Real-Time Delays by Erik Temple.
 
 The Big White Room is a room.  "My, this is a large, white, featureless room."
 
@@ -22,11 +23,16 @@ GOALS to ACHIEVE:
 
 Book 1 Roborally Test Mechanics
 
-Chapter Diagnostics - Not for release
+Chapter Globals
+
+
+
+Chapter Diagnostics 
+[I've made this releasable so we have diagnostics in any test release blorbs]
 
 [Note: Use command "image-map robogrid" to display the tile array as a text matrix within the game] 
 
-Diagnostics mode is a truth state that varies. Diagnostics mode is false.  
+Diagnostics mode is a truth state that varies. Diagnostics mode is false. 
 
 Diagnosticking is an action out of world.  Understand "diagnostics"  as diagnosticking.
 
@@ -73,9 +79,9 @@ After examining the flyer:
 Table of Common Color Values (continued)
 glulx color value	assigned number
 g-ultraviolet-laser	14647551 [0xDF80FF]
-g-red-laser	13737216 [0xD19D00]
+g-green-laser	6750003 [0x33FF66]
 
-
+[g-red-laser	13737216 [0xD19D00]]
 
 Chapter Figures, Tiles, Sprites
 
@@ -141,7 +147,11 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 	if diagnostics mode is true:
 		say "[italic type]Element scaling rule firing:[line break]Origin of the character (canvas coordinates): [origin of the character][line break]Grid Coordinates of the character: ([entry 1 of the grid-coordinate of the character],[entry 2 of the grid-coordinate of the character])[roman type][paragraph break]";
 	continue.
+	
+Chapter Sound
 
+Sound of the conveyor  is the file "conveyor(523440).ogg".
+Sound of the laser  is the file "laser(103239&52598).ogg".
 
 Chapter Character Setup
 
@@ -245,7 +255,7 @@ Chapter Firing the Laser
 
 The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The endpoint of the UVLaser is { 400, 320 }.  The line-weight of the UVLaser is 4.  The tint of the UVLaser is g-ultraviolet-laser.  The associated canvas of the UVLaser is the graphics-canvas.  The display-layer of the UVLaser is 1.
 	
-The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  The endpoint of the RobotLaser is { 400, 320 }.  The line-weight of the RobotLaser is 4.  The tint of the RobotLaser is g-red-laser.  The associated canvas of the RobotLaser is the graphics-canvas.  The display-layer of the RobotLaser is 3.  The display status of the RobotLaser is g-inactive.
+The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  The endpoint of the RobotLaser is { 400, 320 }.  The line-weight of the RobotLaser is 4.  The tint of the RobotLaser is g-green-laser.  The associated canvas of the RobotLaser is the graphics-canvas.  The display-layer of the RobotLaser is 3.  The display status of the RobotLaser is g-inactive.
 
 Firing is an action applying to nothing.  Understand "fire" as firing.
 
@@ -276,7 +286,32 @@ Carry out firing:
 	change the origin of the RobotLaser to L;
 	change the endpoint of the RobotLaser to M;
 	now the display status of the RobotLaser is g-active;
+	follow the window-drawing rules for the graphics-window;
+	if glulx timekeeping is supported:
+		if glulx sound is supported:
+			play the sound of the laser;
+		otherwise:
+			say "Zotttt! The laser fires![paragraph break]";
+		wait 1900 ms before continuing, strictly;
+	[laser persists on screen for duration of sound effect]
+	change originX to entry 1 of the origin of the character of the robot plus 40;
+	change originY to entry 2 of the origin of the character of the robot plus 40;
+	[kind of cheesy way of shrinking the beam to zero length; in practice we could condense this
+	down to a subroutine]
+	change endX to originX;
+	change endY to originY;
+	change L to have 0 entries;
+	change M to have 0 entries;
+	add originX to L;
+	add originY to L;
+	add endX to M;
+	add endY to M;
+	change the origin of RobotLaser to L;
+	change the endpoint of RobotLaser to M;
+	[these rules redraw the laser within this block]
 	follow the window-drawing rules for the graphics-window.
+
+	
 
 Chapter Factory Movement
 
@@ -344,7 +379,13 @@ This is the factory movement rule:
 		shift up;
 	otherwise if the current robot tile is 12: [left down]
 		try righting;
-		shift down.
+		shift down;
+	if glulx timekeeping is supported:
+		if glulx sound is supported:
+			play the sound of the conveyor;
+		wait 1400 ms before continuing, strictly.
+	[this sound/timing stuff is wrapped up more nicely in nye, but you get the idea.]
+		
 	
 
 
