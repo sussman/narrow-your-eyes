@@ -247,15 +247,12 @@ The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The 
 	
 The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  The endpoint of the RobotLaser is { 400, 320 }.  The line-weight of the RobotLaser is 4.  The tint of the RobotLaser is g-red-laser.  The associated canvas of the RobotLaser is the graphics-canvas.  The display-layer of the RobotLaser is 3.  The display status of the RobotLaser is g-inactive.
 
-
-[THIS WON'T COMPILE, NOT SURE WHY:
-
-
 Firing is an action applying to nothing.  Understand "fire" as firing.
 
 Carry out firing:
 	let originX be entry 1 of the origin of the character of the robot plus 40;
 	let originY be entry 2 of the origin of the character of the robot plus 40;
+	say "entry 1 is [entry 1 of the origin of the character of the robot][paragraph break], entry 2 is [entry 2 of the origin of the character of the robot][paragraph break]originX is [originX], originY is [originY][paragraph break]";
 	if the facing-direction of the robot is left:
 		let endX be 0;
 		let endY be originY;
@@ -268,11 +265,12 @@ Carry out firing:
 	otherwise if the facing-direction of the robot is yonder:
 		let endX be originX;
 		let endY be 0;
-	now the origin of the RobotLaser is { originX, originY };
-	now the endpoint of the RobotLaser is { endX, endY };
+	let L be a list of numbers;
+	add originX to L;
+	add originY to L;
+	change the origin of the RobotLaser to L;
 	now the display status of the RobotLaser is g-active;
 	follow the window-drawing rules for the graphics-window.
-]
 
 Chapter Factory Movement
 
