@@ -8,7 +8,7 @@ The Big White Room is a room.  "My, this is a large, white, featureless room."
 
 The flyer is in the Big White Room.  "The flyer seems to have a fascinating picture on it."
 
-Robot delay is a number that varies. Robot delay is 400. [milliseconds]
+Robot delay is a number that varies. Robot delay is 1000. [milliseconds]
 
 
 [
@@ -214,6 +214,7 @@ Carry out forwarding:
 		-- hither: increment starty;
 		-- yonder: decrement starty;
 	if the destination of startx and starty is valid:
+		robodelay;
 		finalize the coordinates of startx and starty.
 	
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
@@ -228,6 +229,7 @@ Carry out backwarding:
 		-- hither: decrement starty;
 		-- yonder: increment starty;
 	if the destination of startx and starty is valid:
+		robodelay;
 		finalize the coordinates of startx and starty.		
 		
 	
@@ -249,7 +251,9 @@ Carry out righting:
 		-- yonder:
 			now the facing-direction of the robot is right;
 			now the image-ID of the character of the robot is Figure of RobotRight;
+	robodelay;
 	follow the window-drawing rules for the graphics-window;
+	follow the refresh windows rule;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
 
@@ -271,7 +275,9 @@ Carry out lefting:
 		-- yonder:
 			now the facing-direction of the robot is left;
 			now the image-ID of the character of the robot is Figure of RobotLeft;
+	robodelay;
 	follow the window-drawing rules for the graphics-window;
+	follow the refresh windows rule;
 	if diagnostics mode is true, say "[end of command]" in diagnostics mode.
 
 
@@ -427,9 +433,9 @@ Chapter Every Turn
 
 [We might back off on these very turn rules, if the screen is updated atomically after each movement.]
 Every turn:
-	follow the refresh windows rule;
+	[follow the refresh windows rule;]
 	follow the factory movement rule; 
-	follow the refresh windows rule.
+	[follow the refresh windows rule.]
 	
 
 
