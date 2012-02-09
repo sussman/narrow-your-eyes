@@ -439,7 +439,7 @@ Carry out forwarding:
 		-- hither: increment starty;
 		-- yonder: decrement starty;
 	if the destination of startx and starty is valid:
-		robodelay;
+		playback("robot movement sound");
 		finalize the coordinates of startx and starty.
 	
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
@@ -453,7 +453,7 @@ Carry out backwarding:
 		-- hither: decrement starty;
 		-- yonder: increment starty;
 	if the destination of startx and starty is valid:
-		robodelay;
+		playback("robot movement sound");
 		finalize the coordinates of startx and starty.		
 		
 Righting is an action applying to nothing.  Understand "right" as righting.
@@ -473,7 +473,7 @@ Carry out righting:
 		-- yonder:
 			now the facing-direction of the robot is right;
 			now the image-ID of the character of the robot is Figure of RobotRight;
-	robodelay;
+	playback "swivel sound";
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
@@ -495,7 +495,7 @@ Carry out lefting:
 		-- yonder:
 			now the facing-direction of the robot is left;
 			now the image-ID of the character of the robot is Figure of RobotLeft;
-	robodelay;
+	playback "swivel sound";
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
@@ -541,8 +541,16 @@ Carry out firing:
 		[if glulx sound is supported:
 			play the sound of the laser;
 		otherwise:]
-		say "Zotttt! The laser fires![paragraph break]";
-		wait 1900 ms before continuing, strictly;
+		playback("laser pre-fire sound");
+		playback("laser zaapppppping sound");
+	[Check for game-ending conditions here -- the beam persists on the final target]
+	if entry 1 of M is 0 and entry 2 of M is 40:
+		do shoot Igneous;
+	otherwise if entry 1 of M is 360 and entry 2 of M is 400:
+		if the metal parts locker encloses Marv:
+			do shoot locker;
+		otherwise:
+			do shoot Marv;
 	[laser persists on screen for duration of sound effect]
 	change originX to entry 1 of the origin of the character of the robot plus 40;
 	change originY to entry 2 of the origin of the character of the robot plus 40;
@@ -589,15 +597,11 @@ To shift (way - a conveyor-direction):
 			increment starty;	
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
-		say "...the robot is moved by the conveyor belt!"
-		
-To robodelay:
-	if glulx timekeeping is supported:
-		wait robot delay ms before continuing, strictly.
-		[in production, this would be hooked up with appropriate sounds]
+		playback("the conveybelt sound");
+		say "debugging: ...the robot is moved by the conveyor belt!"
 			
 This is the factory movement rule:
-	say "The factory floor moves...";
+	say "debugging: The factory floor moves...";
 	if the current robot tile is:
 		-- 1: [left]
 			shift leftwards;
@@ -609,43 +613,30 @@ This is the factory movement rule:
 			shift downwards;
 		-- 5: [up right]
 			try lefting;
-			robodelay;
 			shift rightwards;
 		-- 6: [up left]
 			try righting;
-			robodelay;
 			shift leftwards;
 		-- 7: [down right]
 			try lefting;
-			robodelay;
 			shift rightwards;
 		-- 8: [down left]
 			try righting;
-			robodelay;
 			shift leftwards;
 		-- 9: [right up]
 			try righting;
-			robodelay;
 			shift upwards;
 		-- 10: [right down]
 			try lefting;
-			robodelay;
 			shift downwards;
 		-- 11: [left up]
 			try lefting;
-			robodelay;
 			shift upwards;
 		-- 12: [left down]
 			try righting;
-			robodelay;
 			shift downwards;
 		-- 13: [blank -- for purposes of generalizability]
-			do nothing;	
-	if glulx timekeeping is supported:
-		[if glulx sound is supported:
-			play the sound of the conveyor;]
-		wait 1400 ms before continuing, strictly.
-	[this sound/timing stuff is wrapped up more nicely in nye, but you get the idea.]
+			do nothing.
 
 
 Chapter AI Logic
@@ -1406,7 +1397,7 @@ Section Shoot Locker
 Lockerzapping is an action out of world. Understand "shootlocker" as lockerzapping.
 
 Carry out lockerzapping:
-	do shoot the locker.
+	do shoot locker.
 	
 Report lockerzapping:
 	say "Zeeerrrk! The software tester takes a shot at the Parts Locker."
@@ -1564,7 +1555,7 @@ Every turn:
 			say "[tardyPathetic]";
 			change the endgame to tardyPathetic;
 		end the game in death;
-	if the Cunning Plan is happening:
+	if the Cunning Plan is happening :
 		follow the factory movement rule.
 		
 		
@@ -2847,7 +2838,7 @@ Instead of showing a thing listed in the Table of CunningShowing to Professor Ig
 2. Back 1
 3. Spin 180
 4. CW
-5. Forward 2
+5. Forward 1
 6. Foward 3
 7. Fire Lazzzzzer!
 8. scanning beam
@@ -2881,46 +2872,35 @@ To do robotControl:
 		let instruction be character number n in lastDialed;
 		say "The robot ";
 		if  instruction matches the text "1": 
-			say "[spin-o-nyms] [ccw]";
-			playback "the sound of the swivel";
+			try lefting;
 		else if instruction matches the text "2":
-			say " [goesBackwards] slowly";
-			playback "the sound of the conveyor";
+			try backwarding;
 		else if instruction matches the text "3":
-			say "[spin-o-nyms] [volteface]";
-			playback "the sound of the swivel";
-			playback the "sound of the swivel";
+			try lefting;
+			try lefting; [must use left: two rights might make a wrong.]
 		else if instruction matches the text "4":
-			say "[spin-o-nyms] [cw]";
-			playback "the sound of the swivel";
+			try righting;
 		else if instruction matches the text "5":
-			say "[goesForwards]";
-			playback "the sound of the conveyor";
+			try forwarding;
 		else if instruction matches the text "6":
-			say "[goesForwards] [quickly]";
+			try forwarding;
+			try forwarding;
+			try forwarding;
 		else if instruction matches the text "7":
-			say "fires the lazzzer";
-			[if the lazer hits Igneous:
-				do shoot Igneous
-			else if the lazer hits the parts bin:
-				do shoot locker;
-			or if the lazer hits Marvin (outside the locker):
-				do shoot marvin;]
-			playback "the sound of the laser";	
+			try firing;	
 		else if instruction matches the text "8":
-			say "performs a sensor scan";
-			[scan sound effect]
-			playback "the sound of the beeps";
+			playback("beeping sound");
 		else if instruction matches the text "9":
-			say "makes incomprehensible noises";	
-			playback "the sound of the random";
-			[pick a random incomprehensible noise sound effect]
+			playback("sound of randomness");
 		else if instruction matches the text "0":
-			say "[spin-o-nyms] [arounds]";
-			playback "the sound of the swivel";
-		do FactoryPhysics.
+			try righting;
+			try righting;
+			try righting;
+			try righting;
+		if n is less than lastChar:
+			follow the factory movement rule.
 			
-To do shoot the locker:
+To do shoot locker:
 	if the blast hole is not part of the metal parts locker:
 		if the player is in the parts locker:
 			say "The metal wall of the locker glows red, and creaks as it deforms from extreme heating. For an instant you see a blinding beam of green laser light as it penetrates the locker wall. You try to blink away the after image of the perfectly round hole it cut in the parts locker, but for the moment you are totally blind. The beam just missed you.";
