@@ -2700,12 +2700,16 @@ Every turn during Cunning Plan:
 		end the game in death.
 		
 Before going a direction (called the way) during cunning plan:
-	if the way is north or the way is northwest or the way is northeast:
+	if the way is north or the way is northeast:
 		say "Putting aside for a moment your deep understanding of high energy physics and everything you have learned since kindergarten about cause and effect, you step forward into the sizzling ultraviolet laser beam, which cuts through you so effortlessly that your head tumbles forward, sliced clear from the shoulders, and your last sight is various parts of your body falling in graceful arcs towards the floor.";
 		now the endgame is webbed;
 		end the game in death;
+	if the way is west or the way is northwest or the way is southwest:
+		say "You step on the conveyor belt to the west of the parts lockers and are whisked tout de suite into the web of ultraviolet laser beams. The conveyor belt continues to feed in any bits of you that fall backwards on it, until you are reduced to vapor. This is not how you were hoping the day would end.";
+		now the endgame is webbed;
+		end the game in death;
 	otherwise:
-		say "You can move back and forth a bit within the narrow area of the room to the south of the ultraviolet laser web, but it would be dangerous to move northwards.";
+		say "You can[apostrophe]t.";
 		stop the action.
 		
 
@@ -2837,10 +2841,8 @@ To do shoot Marv:
 	end the game in death.
 	
 To do RobotAttack:
-	say "The Robot's attack move goes here.[paragraph break]";
-	[test fordeaths by laser - in principle, Igneous should not shoot himself, though]
-	do FactoryPhysics.
-	
+	say "The Robot's attack move goes here. The robot attack will use subroutines to move, check for death conditions, do factory movements, etc.[paragraph break]".
+		
 To do FactoryPhysics:
 	say "Factory Physics here.[paragraph break]" [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player. Since the results should be evident on the graphics display, this  will not result in text output unless the player toggles the graphics flag].
 
