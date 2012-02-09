@@ -80,8 +80,6 @@ messageAlert is a truth state that varies. messageAlert is false.
 
 graphics is a truth state that varies. graphics is true.
 
-Timer mode is a number that varies. Timer mode is zero.
-Reps is a number that varies. Reps is zero.
 tempUpdateLevel is a number that varies. tempUpdateLevel is zero.
 
 onFamiliarTerms is a truth state that varies. onFamiliarTerms is false.
@@ -89,6 +87,8 @@ onFamiliarTerms is a truth state that varies. onFamiliarTerms is false.
 Robot delay is a number that varies. Robot delay is 400. [milliseconds]
 
 startx is a number that varies. starty is a number that varies.
+
+finalJump is a truth state that varies. finalJump is false.
 
 
 [some flags for testing]
@@ -178,7 +178,7 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 
 Section Sounds
 
-Sound of the dtmf-zero is the file "0.ogg".
+[Sound of the dtmf-zero is the file "0.ogg".
 Sound of the dtmf-one is the file "1.ogg".
 Sound of the dtmf-two is the file "2.ogg".
 Sound of the dtmf-three  is the file "3.ogg".
@@ -197,8 +197,8 @@ Sound of the conveyor  is the file "conveyor(523440).ogg".
 Sound of the laser  is the file "laser(103239&52598).ogg".
 Sound of the random  is the file "random(3647).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
-[Sound of the trunk  is the file "trunk.ogg".
-Sound of the asterisk  is the file "asterisk.ogg".]
+Sound of the trunk  is the file "trunk.ogg".
+Sound of the asterisk  is the file "asterisk.ogg".
 
 Table of Sounds
 Sound		Duration  [millisencond]
@@ -220,7 +220,7 @@ The sound of the beeps		800
 The sound of the conveyor		1400
 The sound of the laser		1900
 The sound of the random		750
-The sound of the swivel		1250	
+The sound of the swivel		1250]	
 
 [Sounds given one after the other will not form a queue and play sequentially. For this reason, it is necessary to play one, wait the duration of that sound, and give the command to play another. The other issue is that while a sound is playing, if timing does not lock out input, new commands could be typed in. These new commands could be at odds with the sounds that are playing, and cause confusion, or they could kick off new sounds, which would be suppressed by the currently playing sound.
 
@@ -228,12 +228,24 @@ So, when you want to play a sound, but aren't worried about accepting more playe
 
 ]
 
-To playback (effect - a sound name):
+
+[soundcomment: this is the fake playback routine for modal sounds - when restoring sound, remember to remove the quotation marks in all of the playback calls]
+
+To playback (effect - text):
+	if timekeeping is available:
+		let n be the 500;
+		now n is n plus 10;
+		say "sound disabled for testing: playing sound: [effect].";
+		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
+
+[To playback (effect - a sound name):
 	if sound is available and timekeeping is available:
 		let n be the duration corresponding to the sound of effect in the Table of Sounds;
 		now n is n plus 10;
-		play(effect);
+		play(effect); 
 		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
+		
+souncomment]
 
 Chapter Capabilities
 
@@ -782,7 +794,8 @@ Carry out xyzzying:
 	if the updateNumber is less than 2:
 		change the updateNumber to 2;
 		if sound is available:
-			play(the sound of the update); 
+			do nothing;
+			[play(the sound of the update);  soundcomment]
 		if Eye Exam is happening:
 			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
 		otherwise if Exterior is happening:
@@ -885,7 +898,8 @@ Carry out commanding:
 Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
 	if sound is available:
-		play(sound of the error);
+		do nothing;
+		[play(sound of the error);soundcomment]
 	the rule succeeds.
 	
 Section Cowing
@@ -1028,26 +1042,25 @@ To playTouchToneString:
 	repeat with n running from 1 to the number of characters in lastDialed:
 		let c be character number n in lastDialed;
 		if c is "1":
-			playback(the sound of the dtmf-one); 
+			playback("the sound of the dtmf-one"); 
 		else if c is "2":
-			playback(the sound of the dtmf-two);
+			playback("the sound of the dtmf-two");
 		else if c is "3":
-			playback(the sound of the dtmf-three);
+			playback("the sound of the dtmf-three");
 		else if c is "4":
-			playback(the sound of the dtmf-four);
+			playback("the sound of the dtmf-four");
 		else if c is "5":
-			playback(the sound of the dtmf-five);
+			playback("the sound of the dtmf-five");
 		else if c is "6":
-			playback(the sound of the dtmf-six);
+			playback("the sound of the dtmf-six");
 		else if c is "7":
-			playback(the sound of the dtmf-seven);
+			playback("the sound of the dtmf-seven");
 		else if c is "8":
-			playback(the sound of the dtmf-eight);
+			playback("the sound of the dtmf-eight");
 		else if c is "9":
-			playback(the sound of the dtmf-zero);
+			playback("the sound of the dtmf-nine");
 		else if c is "0":
-			playback(the sound of the dtmf-zero).
-	
+			playback("the sound of the dtmf-zero").
 	
 
 Section Skying
@@ -1157,7 +1170,8 @@ Instead of Amelia updating:
 		say paragraph break;
 		perform update;
 		if sound is available:
-			play(the sound of the okay);
+			do nothing;
+			[play(the sound of the okay); soundcomment]
 	otherwise: 
 		say "No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[paragraph break]";
 	the rule succeeds.
@@ -1291,6 +1305,17 @@ Carry out marvoffing:
 Report marvoffing:
 	say "Kerwallup! The software tester killed Marv with a keyboard."
 	
+Section Final
+
+Finaling is an action out of world. Understand "final" or "end" as finaling.
+
+Carry out finaling:
+		change finalJump to true;
+		move the player to the factory.
+	
+Report finaling:
+	say "Now playing the scene [quotation mark]Cunning Plan[quotation mark]."
+	
 Section Future
 
 Futuring is an action out of world. Understand "future" as futuring.
@@ -1379,7 +1404,8 @@ When play begins:
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
 	if glulx sound is supported and sound_suppress is false:
-		play(the sound of the update); 
+		do nothing;
+		[play(the sound of the update);  soundcomment]
 	wait for any key;
 	[initialize layout of the factory]
 	say openingLine2;
@@ -1539,8 +1565,8 @@ The Factory is a room. The description of the Factory is "[one of]As your eyes a
 
 To say command beep:
 	say "beep[run paragraph on]";
-	playback the sound of the dtmf-five;
-	playback the sound of the conveyor.
+	playback "the sound of the dtmf-five";
+	playback "the sound of the conveyor".
 
 Understand "man" as Professor Igneous.
 
@@ -1796,7 +1822,8 @@ Before doing something to Amy:
 Persuasion rule for asking Amy to try doing something:
 	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
 	if sound is available:
-		play(sound of the error);
+		do nothing;
+		[play(sound of the error); soundcomment]
 	persuasion succeeds. [to suppress refusal to do what is asked]
 	
 Instead of Amy doing something:
@@ -2104,7 +2131,8 @@ To say voiceCommandPrompt:
 To say errorPrompt:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]";
 	if sound is available:
-		play(sound of the error).
+		do nothing;
+		[play(sound of the error). soundcomment]
 	
 To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
@@ -2571,7 +2599,7 @@ Book 6  Scenes
  
 Chapter Eye Exam
 
-Eye Exam is a scene. Eye Exam begins when play begins. Eye Exam ends when the player is in Wisconsin Avenue.
+Eye Exam is a scene. Eye Exam begins when play begins. Eye Exam ends when the player is in Wisconsin Avenue or finalJump is true.
 
 After examining Amelia for the first time during Eye Exam:
 	try showing Amelia to Trevor.
@@ -2609,7 +2637,8 @@ Every turn during Eye Exam:
 					 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PostChart][paragraph break]";
 				if the turnCounter is 6:
 					if sound is available:
-						play(sound of the message);
+						do nothing;
+						[play(sound of the message); soundcomment]
 					now messageAlert is true;
 					change the currentMessage to "[youAreLate]";	
 			otherwise:
@@ -2734,20 +2763,20 @@ To do robotControl:
 		say "The robot ";
 		if  instruction matches the text "1": 
 			say "[spin-o-nyms] [ccw]";
-			playback the sound of the swivel;
+			playback "the sound of the swivel";
 		else if instruction matches the text "2":
 			say " [goesBackwards] slowly";
-			playback the sound of the conveyor;
+			playback "the sound of the conveyor";
 		else if instruction matches the text "3":
 			say "[spin-o-nyms] [volteface]";
-			playback the sound of the swivel;
-			playback the sound of the swivel;
+			playback "the sound of the swivel";
+			playback the "sound of the swivel";
 		else if instruction matches the text "4":
 			say "[spin-o-nyms] [cw]";
-			playback the sound of the swivel;
+			playback "the sound of the swivel";
 		else if instruction matches the text "5":
 			say "[goesForwards]";
-			playback the sound of the conveyor;
+			playback "the sound of the conveyor";
 		else if instruction matches the text "6":
 			say "[goesForwards] [quickly]";
 		else if instruction matches the text "7":
@@ -2758,18 +2787,18 @@ To do robotControl:
 				do shoot locker;
 			or if the lazer hits Marvin (outside the locker):
 				do shoot marvin;]
-			playback the sound of the laser;	
+			playback "the sound of the laser";	
 		else if instruction matches the text "8":
 			say "performs a sensor scan";
 			[scan sound effect]
-			playback the sound of the beeps;
+			playback "the sound of the beeps";
 		else if instruction matches the text "9":
 			say "makes incomprehensible noises";	
-			playback the sound of the random;
+			playback "the sound of the random";
 			[pick a random incomprehensible noise sound effect]
 		else if instruction matches the text "0":
 			say "[spin-o-nyms] [arounds]";
-			playback the sound of the swivel;
+			playback "the sound of the swivel";
 		do FactoryPhysics.
 			
 To do shoot the locker:
