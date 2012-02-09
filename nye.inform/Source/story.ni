@@ -399,20 +399,19 @@ To say pronoun-accusative:
 To say (regular verb - some text) in correct agreement:
 	say "[regular verb][if the last mentioned thing is not plural-named]s".
 
-Chapter Movement Rules
 
-To say wall detected:
-	say "The robot holds position to avoid hitting a wall."
+Chapter Movement Rules  
+
 
 To decide whether the destination of (xcoord - a number) and (ycoord - a number) is valid:
 	if xcoord is 0 or xcoord is 6 or ycoord is 0:
-		say "[wall detected]";
+		playback "Sound of the robot straining to avoid hitting a wall.";
 		decide no;
 	otherwise if xcoord is 1 and ycoord is 1:
-		say "The robot holds position to avoid collision with Professor Igneous.";
+		playback "Sound of the robot straining to avoid hitting Igneous.";
 		decide no;
 	otherwise if ycoord is 5:
-		say "The robot holds position to avoid contact with the deathly energy of web of UV laser light.";
+		playback "Sound of the robot straining to avoid contact with the deathly energy of web of UV laser light.";
 		decide no;
 	decide yes.		
 
@@ -427,11 +426,13 @@ To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
+[TODO:  In release, disable these command tokens; the actions themselves need to persist as they do the actual moving around of the robot -- people should just not be able to say "forward", "back", etc., but will have to use the touchtones.]
+
 Forwarding is an action applying to nothing.  Understand "forward" as forwarding.
 
 Carry out forwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "The robot takes a step forward.";
+	say "debugging: The robot takes a step forward.";
 	if the facing-direction of the robot is:
 		-- right: increment startx;
 		-- left: decrement startx;
@@ -445,7 +446,7 @@ Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
 Carry out backwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "The robot takes a step backward.";
+	say "debugging: The robot takes a step backward.";
 	if the facing-direction of the robot is:
 		-- right: decrement startx;
 		-- left: increment startx;
@@ -458,6 +459,7 @@ Carry out backwarding:
 Righting is an action applying to nothing.  Understand "right" as righting.
 
 Carry out righting:
+	say "debugging: The robot turns to the right.";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is hither;
@@ -479,7 +481,7 @@ Carry out righting:
 Lefting is an action applying to nothing.  Understand "left" as lefting.
 
 Carry out lefting:
-	say "The robot turns to its left.";
+	say "debugging: The robot turns to its left.";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is yonder;
@@ -571,7 +573,7 @@ To decide which number is the current robot tile:
 	
 To shift (way - a conveyor-direction):
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "The factory attempts to shift the robot [run paragraph on]";
+	say "debugging: The factory attempts to shift the robot [run paragraph on]";
 	if way is:
 		-- rightwards:
 			say "to the right.";
@@ -592,7 +594,7 @@ To shift (way - a conveyor-direction):
 To robodelay:
 	if glulx timekeeping is supported:
 		wait robot delay ms before continuing, strictly.
-		[in production, this would be hooked up with swivel sound]
+		[in production, this would be hooked up with appropriate sounds]
 			
 This is the factory movement rule:
 	say "The factory floor moves...";
@@ -637,6 +639,8 @@ This is the factory movement rule:
 			try righting;
 			robodelay;
 			shift downwards;
+		-- 13: [blank -- for purposes of generalizability]
+			do nothing;	
 	if glulx timekeeping is supported:
 		[if glulx sound is supported:
 			play the sound of the conveyor;]
@@ -2752,18 +2756,16 @@ Robot movement constraints:
 	
 Turn order of operations:
 	1. Player inputs a command. A command may include a string of touch tones, which will execute one after the other, before Igneous has a chance to react.
-	2. for each player command
-		- robot moves
-		- check for game-ending condition
+	2. for each player command (up to x 10)
+		- robot moves (e.g., like Han, the robot fires first)
+		- check for game-ending condition. Can the player kill himself? Why, yes.
 		- factory physics take place (conveyor belt, turn table, pusher)
-	3. professor igneous moves the robot
+	3. professor igneous  (AI) moves the robot (x 2)
 		- check for game-ending condition
 		- factory physics take place 
 	4. professor continues his ranting monologue
 ]
 
-
-[note that tests need to be added to limit robot motion -- some times, for instance, robot won't be able to move two space because he'll hit a wall after one unit]
 To do robotControl:
 	let lastChar be the number of characters in lastDialed;
 	let instruction be indexed text;
