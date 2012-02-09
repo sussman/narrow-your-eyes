@@ -612,10 +612,10 @@ This is the factory movement rule:
 		-- 4: [down]
 			shift downwards;
 		-- 5: [up right]
-			try lefting;
+			try righting;
 			shift rightwards;
 		-- 6: [up left]
-			try righting;
+			try lefting;
 			shift leftwards;
 		-- 7: [down right]
 			try lefting;
