@@ -132,6 +132,9 @@ Figure of RightDownTurn is the file "right2down.png".
 Figure of LeftUpTurn is the file "left2up.png".
 Figure of LeftDownTurn is the file "left2down.png".
 Figure of Blank is the file "blank.png".
+Figure of PartsLocker is the file "partsLocker.png".
+Figure of Igneous is the file "Igneous.png".
+Figure of Marv is the file "Marv.png".
 
 Robo is a tileset.  The translation-table is the Table of Robo Tiles.  The tile-width is 80.  The tile-height is 80.
 
@@ -151,6 +154,7 @@ number	figure-name
 11	Figure of LeftUpTurn
 12	Figure of LeftDownTurn
 13	Figure of Blank
+14	Figure of PartsLocker
 
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
 The tile-array of the robogrid is  {
@@ -158,7 +162,7 @@ The tile-array of the robogrid is  {
      { 4, 10, 1, 1, 6 },
      { 4, 7, 2, 2, 3 },
      { 7, 2, 2, 2, 11 },
-     { 2, 2, 3, 13, 13 }
+     { 2, 2, 2, 3, 14 }
 }.
 
 A character-sprite is a kind of sprite. A character-sprite has a list of numbers called the grid-coordinate. The associated canvas of a character-sprite is the graphics-canvas.  The display-layer of a character-sprite is 2.
@@ -170,7 +174,8 @@ Some character-sprites are defined by the Table of Characters.
 Table of Characters
 character-sprite	image-ID	grid-coordinate
 Robot-sprite	Figure of RobotHither	{ 3, 3 }
-[TODO Add igneous and player sprites here]
+Marv-sprite	Figure of Marv	{ 5, 5 }
+Igneous-sprite	Figure of Igneous	{ 1, 1 }
 
 Element scaling rule for a character-sprite (called the character) (this is the convert origin coordinate rule):
 	now the origin of the character is the canvas coordinate equivalent of the grid-coordinate of the character in the coordinates of the robogrid;
@@ -1795,7 +1800,7 @@ Book 3 Characters
 
 Chapter Marv
 
-The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. Marv Spindle can be dilated. Marv Spindle is not dilated.
+The player is Marv Spindle. Marv Spindle is a man in the Ophthalmology Office. Marv Spindle can be dilated. Marv Spindle is not dilated. The character of Marv Spindle is Marv-sprite. The display status of Marv-sprite is g-active. 
 
 Instead of examining Marv Spindle:
 	if Eye Exam is happening:
@@ -1856,7 +1861,7 @@ Instead of showing something to Amy, say "[noAmy]."
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. . The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles.
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. . The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. 
 
 Chapter Giblets
 
