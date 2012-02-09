@@ -639,6 +639,114 @@ This is the factory movement rule:
 	[this sound/timing stuff is wrapped up more nicely in nye, but you get the idea.]
 
 
+Chapter AI Logic
+
+A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.
+
+A Choice is a kind of thing.  A Choice has a Movement called the proposed move.   A Choice has a number called Goodness.  A Choice has a facing-direction.
+
+To decide which number is the Goodness of (move - a movement):
+	let X be entry 1 of the grid-coordinate of the character of the robot;
+	let Y be entry 2 of the grid-coordinate of the character of the robot;
+	let D be the facing-direction of the robot;
+	if the move is:  [TODO:  immediately follow this with floor movement, THEN check bounds and such afterwards]
+		-- m-forward:
+			if D is:
+				-- right:
+					increment X;
+				-- left:
+					decrement X;
+				-- hither:
+					increment Y;
+				-- yonder:
+					decrement Y;
+		-- m-back:
+			if D is:
+				-- right:
+					decrement X;
+				-- left:
+					increment X;
+				-- hither:
+					decrement Y;
+				-- yonder:
+					increment Y;
+		-- m-right:
+			if D is:
+				-- right:
+					now D is hither;
+				-- left:
+					now D is yonder;
+				-- hither:
+					now D is left;
+				-- yonder:
+					now D is right;
+		-- m-left:
+			if D is:
+				-- right:
+					now D is yonder;
+				-- left:
+					now D is hither;
+				-- hither:
+					now D is right;
+				-- yonder:
+					now D is left;
+	if the destination of X and Y is valid and Y is not 5:
+		let PX be 4;  [TODO:  actually read the Marv-sprite's X value here later on]
+		decide on the absolute value of (X - PX);  [the distance to Marv's column]
+	otherwise:
+		decide on 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
+			
+
+To decide which movement is the best from (choicelist - a list of Choices):
+	let L be a list of numbers;  [GoodnessList]
+	repeat with C running through choicelist:
+		add the Goodness of C to L;
+	decide on the proposed move of entry 1 of choicelist.
+
+
+
+[
+
+[Igneous has 5 possible moves he can make.]
+A movement is one of {forward, back, left, right, pass}.
+
+Define a Choice to be a list of { move, Goodness, facing-direction }.
+
+[ if Igneous is allowed 2 moves in a row, execute this twice ]
+Main Algorithm:
+  if robot is facing hither:
+     fire laser;
+  otherwise:
+    for each of the 5 possible moves:
+      calculate the Goodness of the move;
+      add { move, facing-direction of BoardState, Goodness} to list of Choices;
+    compare all 5 Choices and choose the best;
+    execute the move of the best Choice.
+
+
+[0 is best, larger values are worse]
+To decide on the Goodness of (move - a movement):
+  apply the move tho the robot's coords/direction;
+  apply hypothetical board rotation on top of that;
+  if y==5:  return 1000   [UV laser would kill us!]
+  otherwise:
+    calculate x-distance from Marv's x coord.
+    return distance.
+
+To decide on the best move from (list - a list of Choices):
+  select the Choice with the minimum Goodness value.
+  if two Choices have the same Goodness value:
+    compare their facing-directions:
+      hinder is best; left/right is neutral; yonder is worst.
+  return the best Choice.
+
+]
+
+
+
+
+
+
 Chapter Verbs
 
 Section Abouting
