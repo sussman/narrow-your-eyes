@@ -8,10 +8,10 @@ The story genre is "Comedy".
 The story description is "Your wedding rehearsal is hours away, and what do you do but sit on your glasses, crushing them beyond repair? Can you and your stylish cell phone survive the day?"
 
 Include Menus by Emily Short.
-Include Adaptive Hints by Eric Eve.
 Include Plurality by Emily Short. 
-Include Glimmr Canvas-Based Drawing by Erik Temple.
 Include Real-Time Delays by Erik Temple.
+Include Glimmr Canvas-Based Drawing by Erik Temple.
+Include Adaptive Hints by Eric Eve.
 
 
 Use full-length room descriptions, american dialect and the serial comma.
@@ -78,12 +78,6 @@ turnCounter is a number that varies. turnCounter is zero.
 currentMessage is a text that varies. currentMessage is "".
 messageAlert is a truth state that varies. messageAlert is false.
 
-robotOrientation is a number that varies. The robotOrientation is 180.
-[0 N, 90 E, 180 S, 270 W]
-
-robotX is a number that varies. robotX is 2.
-robotY is a number that varies. robotY is 1.
-
 graphics is a truth state that varies. graphics is true.
 
 Timer mode is a number that varies. Timer mode is zero.
@@ -91,6 +85,11 @@ Reps is a number that varies. Reps is zero.
 tempUpdateLevel is a number that varies. tempUpdateLevel is zero.
 
 onFamiliarTerms is a truth state that varies. onFamiliarTerms is false.
+
+Robot delay is a number that varies. Robot delay is 400. [milliseconds]
+
+startx is a number that varies. starty is a number that varies.
+
 
 [some flags for testing]
 graphics_suppress is a truth state that varies. graphics_suppress is false.
@@ -101,7 +100,81 @@ timekeeping_suppress is a truth state that varies. timekeeping_suppress is false
 
 Chapter Declare Resources
 
-Section Figures
+Chapter Windows and Colors
+
+The graphics-window is a graphics g-window spawned by the main-window.  The measurement of the graphics-window is 400.
+
+The graphics-canvas is a g-canvas.  The associated canvas of the graphics-window is the graphics-canvas.
+The canvas-width of the graphics-canvas is 400. The canvas-height of the graphics-canvas is 400.
+
+[building on the g-color table in Glulx Text Effects...]
+Table of Common Color Values (continued)
+glulx color value	assigned number
+g-ultraviolet-laser	14647551 [0xDF80FF]
+g-green-laser	6750003 [0x33FF66]
+
+Chapter Figures, Tiles, Sprites
+
+Figure of RobotYonder is the file "robotback.png".
+Figure of RobotHither is the file "robotfront.png".
+Figure of RobotLeft is the file "robotleft.png".
+Figure of RobotRight is the file "robotright.png".
+Figure of LeftBelt is the file "left.png".
+Figure of RightBelt is the file "right.png".
+Figure of UpBelt is the file "up.png".
+Figure of DownBelt is the file "down.png".
+Figure of UpRightTurn is the file "up2right.png".
+Figure of UpLeftTurn is the file "up2left.png".
+Figure of DownRightTurn is the file "down2right.png".
+Figure of DownLeftTurn is the file "down2left.png".
+Figure of RightUpTurn is the file "right2up.png".
+Figure of RightDownTurn is the file "right2down.png".
+Figure of LeftUpTurn is the file "left2up.png".
+Figure of LeftDownTurn is the file "left2down.png".
+Figure of Blank is the file "blank.png".
+
+Robo is a tileset.  The translation-table is the Table of Robo Tiles.  The tile-width is 80.  The tile-height is 80.
+
+Table of Robo Tiles
+Char	Tile
+number	figure-name
+1	Figure of LeftBelt
+2	Figure of RightBelt
+3	Figure of UpBelt
+4	Figure of DownBelt
+5	Figure of UpRightTurn
+6	Figure of UpLeftTurn
+7	Figure of DownRightTurn
+8	Figure of DownLeftTurn
+9	Figure of RightUpTurn
+10	Figure of RightDownTurn
+11	Figure of LeftUpTurn
+12	Figure of LeftDownTurn
+13	Figure of Blank
+
+The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
+The tile-array of the robogrid is  {
+     { 10, 1, 1, 1, 1 },
+     { 4, 10, 1, 1, 6 },
+     { 4, 7, 2, 2, 3 },
+     { 7, 2, 2, 2, 11 },
+     { 2, 2, 3, 13, 13 }
+}.
+
+A character-sprite is a kind of sprite. A character-sprite has a list of numbers called the grid-coordinate. The associated canvas of a character-sprite is the graphics-canvas.  The display-layer of a character-sprite is 2.
+
+A person has a character-sprite called the character.  [assuming robot is a person here too]
+
+Some character-sprites are defined by the Table of Characters.
+
+Table of Characters
+character-sprite	image-ID	grid-coordinate
+Robot-sprite	Figure of RobotHither	{ 3, 3 }
+[TODO Add igneous and player sprites here]
+
+Element scaling rule for a character-sprite (called the character) (this is the convert origin coordinate rule):
+	now the origin of the character is the canvas coordinate equivalent of the grid-coordinate of the character in the coordinates of the robogrid;
+	continue.
 
 Section Sounds
 
@@ -232,6 +305,10 @@ Focus is a kind of value. The focuses are unfocused, diplopic, blurry, and sharp
 To decide whether updates are available:
 	if currentUpdateLevel is not updateNumber, decide yes;
 	decide no.
+	
+A facing-direction is a kind of value.  The facing-directions are right, left, hither, and yonder.
+
+A conveyor-direction is a kind of value. The conveyor-directions are upwards, downwards, leftwards and rightwards.
 
 
 Section Chests and Lids
@@ -304,6 +381,251 @@ To say pronoun-accusative:
 
 To say (regular verb - some text) in correct agreement:
 	say "[regular verb][if the last mentioned thing is not plural-named]s".
+
+Chapter Movement Rules
+
+To say wall detected:
+	say "The robot holds position to avoid hitting a wall."
+
+To decide whether the destination of (xcoord - a number) and (ycoord - a number) is valid:
+	if xcoord is 0 or xcoord is 6 or ycoord is 0:
+		say "[wall detected]";
+		decide no;
+	otherwise if xcoord is 1 and ycoord is 1:
+		say "The robot holds position to avoid collision with Professor Igneous.";
+		decide no;
+	otherwise if ycoord is 5:
+		say "The robot holds position to avoid contact with the deathly energy of web of UV laser light.";
+		decide no;
+	decide yes.		
+
+	
+To set starting coordinates of (xcoord - a number) and (ycoord - a number):
+	change startx to xcoord;
+	change starty to ycoord.
+	
+To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
+	change entry 1 of the grid-coordinate of the character of the robot to startx;
+	change entry 2 of the grid-coordinate of the character of the robot to starty;
+	follow the window-drawing rules for the graphics-window;
+	follow the refresh windows rule.
+
+Forwarding is an action applying to nothing.  Understand "forward" as forwarding.
+
+Carry out forwarding:
+	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
+	say "The robot takes a step forward.";
+	if the facing-direction of the robot is:
+		-- right: increment startx;
+		-- left: decrement startx;
+		-- hither: increment starty;
+		-- yonder: decrement starty;
+	if the destination of startx and starty is valid:
+		robodelay;
+		finalize the coordinates of startx and starty.
+	
+Backwarding is an action applying to nothing.  Understand "back" as backwarding.
+
+Carry out backwarding:
+	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
+	say "The robot takes a step backward.";
+	if the facing-direction of the robot is:
+		-- right: decrement startx;
+		-- left: increment startx;
+		-- hither: decrement starty;
+		-- yonder: increment starty;
+	if the destination of startx and starty is valid:
+		robodelay;
+		finalize the coordinates of startx and starty.		
+		
+Righting is an action applying to nothing.  Understand "right" as righting.
+
+Carry out righting:
+	if the facing-direction of the robot is:
+		-- right:
+			now the facing-direction of the robot is hither;
+			now the image-ID of the character of the robot is Figure of RobotHither;
+		-- left: 
+			now the facing-direction of the robot is yonder;
+			now the image-ID of the character of the robot is Figure of RobotYonder;
+		-- hither:
+			now the facing-direction of the robot is left;
+			now the image-ID of the character of the robot is Figure of RobotLeft;
+		-- yonder:
+			now the facing-direction of the robot is right;
+			now the image-ID of the character of the robot is Figure of RobotRight;
+	robodelay;
+	follow the window-drawing rules for the graphics-window;
+	follow the refresh windows rule.
+
+
+Lefting is an action applying to nothing.  Understand "left" as lefting.
+
+Carry out lefting:
+	say "The robot turns to its left.";
+	if the facing-direction of the robot is:
+		-- right:
+			now the facing-direction of the robot is yonder;
+			now the image-ID of the character of the robot is Figure of RobotYonder;
+		-- left:
+			now the facing-direction of the robot is hither;
+			now the image-ID of the character of the robot is Figure of RobotHither;
+		-- hither:
+			now the facing-direction of the robot is right;
+			now the image-ID of the character of the robot is Figure of RobotRight;
+		-- yonder:
+			now the facing-direction of the robot is left;
+			now the image-ID of the character of the robot is Figure of RobotLeft;
+	robodelay;
+	follow the window-drawing rules for the graphics-window;
+	follow the refresh windows rule.
+
+
+Chapter Firing the Laser
+
+
+The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The endpoint of the UVLaser is { 400, 320 }.  The line-weight of the UVLaser is 4.  The tint of the UVLaser is g-ultraviolet-laser.  The associated canvas of the UVLaser is the graphics-canvas.  The display-layer of the UVLaser is 1.
+	
+The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  The endpoint of the RobotLaser is { 400, 320 }.  The line-weight of the RobotLaser is 4.  The tint of the RobotLaser is g-green-laser.  The associated canvas of the RobotLaser is the graphics-canvas.  The display-layer of the RobotLaser is 3.  The display status of the RobotLaser is g-inactive.
+
+Firing is an action applying to nothing.  Understand "fire" as firing.
+
+Carry out firing:
+	let endX be a number;
+	let endY be a number;
+	let originX be entry 1 of the origin of the character of the robot plus 40;
+	let originY be entry 2 of the origin of the character of the robot plus 40;
+	[say "entry 1 is [entry 1 of the origin of the character of the robot][paragraph break], entry 2 is [entry 2 of the origin of the character of the robot][paragraph break]originX is [originX], originY is [originY][paragraph break]";]
+	if the facing-direction of the robot is left:
+		let endX be 0;
+		let endY be originY;
+	otherwise if the facing-direction of the robot is right:
+		let endX be 400;
+		let endY be originY;
+	otherwise if the facing-direction of the robot is hither:
+		let endX be originX;
+		let endY be 400;
+	otherwise if the facing-direction of the robot is yonder:
+		let endX be originX;
+		let endY be 0;
+	let L be a list of numbers;
+	add originX to L;
+	add originY to L;
+	let M be a list of numbers;
+	add endX to M;
+	add endY to M;
+	change the origin of the RobotLaser to L;
+	change the endpoint of the RobotLaser to M;
+	now the display status of the RobotLaser is g-active;
+	follow the window-drawing rules for the graphics-window;
+	if glulx timekeeping is supported:
+		[if glulx sound is supported:
+			play the sound of the laser;
+		otherwise:]
+		say "Zotttt! The laser fires![paragraph break]";
+		wait 1900 ms before continuing, strictly;
+	[laser persists on screen for duration of sound effect]
+	change originX to entry 1 of the origin of the character of the robot plus 40;
+	change originY to entry 2 of the origin of the character of the robot plus 40;
+	[kind of cheesy way of shrinking the beam to zero length; in practice we could condense this
+	down to a subroutine]
+	change endX to originX;
+	change endY to originY;
+	change L to have 0 entries;
+	change M to have 0 entries;
+	add originX to L;
+	add originY to L;
+	add endX to M;
+	add endY to M;
+	change the origin of RobotLaser to L;
+	change the endpoint of RobotLaser to M;
+	[these rules redraw the laser within this block]
+	follow the window-drawing rules for the graphics-window.
+
+
+Chapter Factory Movement
+
+[Is this really the best way to accomplish this??  Bleh.]
+To decide which number is the current robot tile:
+	let X be entry 1 of the grid-coordinate of the robot-sprite;
+	let Y be entry 2 of the grid-coordinate of the robot-sprite;
+	let gridrow be entry Y of the tile-array of the robogrid;
+	decide on entry X of gridrow.
+	
+To shift (way - a conveyor-direction):
+	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
+	say "The factory attempts to shift the robot [run paragraph on]";
+	if way is:
+		-- rightwards:
+			say "to the right.";
+			increment startx;
+		-- leftwards:
+			say "to the left.";
+			decrement startx;
+		-- upwards:
+			say "away from you.";
+			decrement starty;
+		-- downwards:
+			say "towards you.";
+			increment starty;	
+	if the destination of startx and starty is valid:
+		finalize the coordinates of startx and starty;
+		say "...the robot is moved by the conveyor belt!"
+		
+To robodelay:
+	if glulx timekeeping is supported:
+		wait robot delay ms before continuing, strictly.
+		[in production, this would be hooked up with swivel sound]
+			
+This is the factory movement rule:
+	say "The factory floor moves...";
+	if the current robot tile is:
+		-- 1: [left]
+			shift leftwards;
+		-- 2: [right]
+			shift rightwards;
+		-- 3: [up]
+			shift upwards;
+		-- 4: [down]
+			shift downwards;
+		-- 5: [up right]
+			try lefting;
+			robodelay;
+			shift rightwards;
+		-- 6: [up left]
+			try righting;
+			robodelay;
+			shift leftwards;
+		-- 7: [down right]
+			try lefting;
+			robodelay;
+			shift rightwards;
+		-- 8: [down left]
+			try righting;
+			robodelay;
+			shift leftwards;
+		-- 9: [right up]
+			try righting;
+			robodelay;
+			shift upwards;
+		-- 10: [right down]
+			try lefting;
+			robodelay;
+			shift downwards;
+		-- 11: [left up]
+			try lefting;
+			robodelay;
+			shift upwards;
+		-- 12: [left down]
+			try righting;
+			robodelay;
+			shift downwards;
+	if glulx timekeeping is supported:
+		[if glulx sound is supported:
+			play the sound of the conveyor;]
+		wait 1400 ms before continuing, strictly.
+	[this sound/timing stuff is wrapped up more nicely in nye, but you get the idea.]
+
 
 Chapter Verbs
 
@@ -886,7 +1208,7 @@ Section Examining
 
 [TOCONSIDER: Limit this to scenes other than the cunning plan, as vision has had time to clear up by then, and Marv needs to be able to examine more items in that scene. This would obviate explicitly saying that items appearing in that scene are not fuzzy]
 
-Instead of examining something fuzzy (called the item) when the Cunning Plan is not happening:
+Instead of examining something fuzzy (called the item):
 	if Eye Exam is happening:
 		if Marv Spindle is dilated:
 			say "It must be an effect of those drops. Everything is blurry.[no line break][one of][quotation mark]Doc? Everything[apostrophe]s blurry.[quotation mark][paragraph break][quotation mark]Yes, it[apostrophe]s those drops.[quotation mark][paragraph break]Just as you had suspected.[no line break][or][stopping][paragraph break]";
@@ -897,7 +1219,10 @@ Instead of examining something fuzzy (called the item) when the Cunning Plan is 
 				-- otherwise:
 					say "Sitting in the deliberate darkness of an ophthalmologist's office, you can't see anything but the eye chart.";
 	otherwise:
-		say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] [is-are] a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
+		if Cunning Plan is happening:
+			continue the action;
+		otherwise:
+			say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] [is-are] a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
 
 Section Taking Inventory
 
@@ -1095,7 +1420,9 @@ Every turn:
 		otherwise:
 			say "[tardyPathetic]";
 			change the endgame to tardyPathetic;
-		end the game in death.
+		end the game in death;
+	if the Cunning Plan is happening:
+		follow the factory movement rule.
 		
 		
 Section Phrase Picker
@@ -1231,7 +1558,9 @@ The conveyor belts are a fardrop. They are in the Factory. Understand "belt" as 
 
 The spinning platforms are a fardrop. They are in the Factory. Understand "platform" as the spinning platforms. The description of the spinning platforms is "About a meter in diameter, these platforms spin in one direction or another."
 
-The industrial welding robot is a fardrop. It is in the Factory. Understand "Lenny" as the industrial welding robot. The laser is part of the industrial welding robot. The description of the robot is "An assembly line robot that has been modified for greater speed, flexibility and strength." The description of the laser is "Offhand, it looks like a neodymium yttrium-aluminum-garnet laser designed to cut through thick metal." 
+The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" or "welding" as the robot. The laser is part of the robot. The description of the robot is "An assembly line robot that has been modified for greater speed, flexibility and strength." The description of the laser is "Offhand, it looks like a neodymium yttrium-aluminum-garnet laser designed to cut through thick metal." 
+
+The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
 The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
 
@@ -2328,7 +2657,8 @@ Cunning Plan is a scene. Cunning Plan begins when the player is in the Factory. 
 
 When Cunning Plan begins:
 	change the turnCounter to 0;
-	change gpsBars to 0.
+	change gpsBars to 0;
+	open up the graphics-window.
 	
 Every turn during Cunning Plan:
 	if the turnCounter is greater than 2:
