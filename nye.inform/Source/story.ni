@@ -1788,6 +1788,7 @@ Instead of climbing the locker:
 	
 After entering the locker:
 	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in.  After a moment, you notice that you can see a little of what is going on outside the locker by peering through some hairline defects in the welding joints. Even so, almost none of the dim factory light enters the locker through these peepholes[or][stopping].";
+	change the display status of Marv-sprite to g-inactive;
 	now the metal parts locker is closed.
 	
 The peepholes are a part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joints on each of the four corners of the locker. None are more than a millimeter[if the metal parts locker encloses the player]; they barely let even light into the locker[end if]." Understand "defect" or "defects" or "hairline" or "fissure" or "crack" or "cracks" or "seams" or  "seam" or "weld" or or "welds" or "welding" or "joint" or "joints" or "corners" or "corner" or "peephole" as the peepholes. 
@@ -1819,6 +1820,7 @@ Instead of exiting during the cunning plan:
 
 After exiting during Cunning Plan:[The only thing the player can exit during this scene *is* the locker]
 	say "You clamber over the side of the locker and land awkwardly on the factory floor, back where you had started. The cover slams back down, sealing the locker.";
+	change the display status of Marv-sprite to g-active;
 	now the metal parts locker is closed.		
 
 The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the metal parts locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. 
@@ -1949,7 +1951,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glowing like a fusion reactor. It hurts your eyes to look anywhere near it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
