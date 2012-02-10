@@ -54,7 +54,7 @@ Chapter Declare Global Variables
 
 The last mentioned thing is a thing that varies.
 
-Muted is a truth state that varies. Muted is false.
+
 
 MAXBARS is a number that varies. MAXBARS is five.
 geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
@@ -97,6 +97,9 @@ sound_suppress is a truth state that varies. sound_suppress is false.
 unicode_suppress is a truth state that varies. unicode_suppress is false.
 status_suppress is a truth state that varies. status_suppress is false.
 timekeeping_suppress is a truth state that varies. timekeeping_suppress is false.
+
+Muted is a truth state that varies. Muted is true.
+autopilot is a truth state that varies. autopilot is true. 
 
 Chapter Declare Resources
 
@@ -240,7 +243,7 @@ To playback (effect - text):
 	if timekeeping is available:
 		let n be the 500;
 		now n is n plus 10;
-		say "sound disabled for testing: playing sound: [effect].";
+		say "playing sound: [effect].";
 		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
 
 [To playback (effect - a sound name):
@@ -369,8 +372,12 @@ Before putting something on a chest when a lid (called the item) is part of the 
 Chapter General Routines
 		
 [borrowed from example I7 documentation, example 424 Odins:]
+Section Last Mentioned Thing 
+
 After printing the name of something (called the target): 
     change the last mentioned thing [quotation mark][paragraph break][quotation mark]to the target.
+
+Section It-They
 
 To say it-they:
 	if the last mentioned thing is plural-named:
@@ -383,7 +390,9 @@ To say it-they:
 				say "she";
 		otherwise:
 			say "it".
-			
+
+Section Pronoun-Accusative		
+	
 To say pronoun-accusative:
 	if the last mentioned thing is plural-named:
 		say "them";
@@ -396,9 +405,16 @@ To say pronoun-accusative:
 		otherwise:
 			say "it".
 
+Section Regular Verb Agreement
+
 To say (regular verb - some text) in correct agreement:
 	say "[regular verb][if the last mentioned thing is not plural-named]s".
+	
+Section String Concatenation
 
+To decide what indexed text is the concatenation of (X - indexed text) and
+		(Y - indexed text) (this is concatenation):
+		decide on "[X][Y]".
 
 Chapter Movement Rules  
 
@@ -432,7 +448,7 @@ Forwarding is an action applying to nothing.  Understand "forward" as forwarding
 
 Carry out forwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "debugging: The robot takes a step forward.";
+	say "[if muted is false]: The robot takes a step forward.[end if]";
 	if the facing-direction of the robot is:
 		-- right: increment startx;
 		-- left: decrement startx;
@@ -446,7 +462,7 @@ Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
 Carry out backwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "debugging: The robot takes a step backward.";
+	say "[if muted is false]The robot takes a step backward.[end if]";
 	if the facing-direction of the robot is:
 		-- right: decrement startx;
 		-- left: increment startx;
@@ -459,7 +475,7 @@ Carry out backwarding:
 Righting is an action applying to nothing.  Understand "right" as righting.
 
 Carry out righting:
-	say "debugging: The robot turns to the right.";
+	say "[if muted is false]The robot turns to the right.[end if]";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is hither;
@@ -481,7 +497,7 @@ Carry out righting:
 Lefting is an action applying to nothing.  Understand "left" as lefting.
 
 Carry out lefting:
-	say "debugging: The robot turns to its left.";
+	say "[if muted is false]The robot turns to its left.[end if]";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is yonder;
@@ -581,27 +597,27 @@ To decide which number is the current robot tile:
 	
 To shift (way - a conveyor-direction):
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "debugging: The factory attempts to shift the robot [run paragraph on]";
+	say "[if muted is false]The factory attempts to shift the robot [run paragraph on][end if]";
 	if way is:
 		-- rightwards:
-			say "to the right.";
+			say "[if muted is false]to the right.[end if]";
 			increment startx;
 		-- leftwards:
-			say "to the left.";
+			say "[if muted is false]to the left.[end if]";
 			decrement startx;
 		-- upwards:
-			say "away from you.";
+			say "[if muted is false]away from you.[end if]";
 			decrement starty;
 		-- downwards:
-			say "towards you.";
+			say "[if muted is false]towards you.[end if]";
 			increment starty;	
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
 		playback("the conveybelt sound");
-		say "debugging: ...the robot is moved by the conveyor belt!"
+		say "[if muted is false]...the robot is moved by the conveyor belt![end if]"
 			
 This is the factory movement rule:
-	say "debugging: The factory floor moves...";
+	say "[if muted is false]The factory floor moves…[end if]";
 	if the current robot tile is:
 		-- 1: [left]
 			shift leftwards;
@@ -743,9 +759,24 @@ To decide on the best move from (list - a list of Choices):
 ]
 
 
-
-
-
+[this is a temporary substitute to simulate professor igneous's moves until the AI routines are writen - movement is randomish]
+To do RobotAttack: 
+	if autopilot is true:
+		say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+		change lastDialed to "";
+		repeat with i running from 1 to 2:
+			let r be a random number between 1 and 4;
+			if r is:
+				-- 1: change lastDialed to the concatenation of lastDialed and "4";
+				-- 2:  change lastDialed to the concatenation of lastDialed and "5";
+				-- 3:  change lastDialed to the concatenation of lastDialed and "1";
+				-- 4:  change lastDialed to the concatenation of lastDialed and "2";
+		playTouchToneString;
+		do RobotControl;
+		say "[if muted is false]The professors move: [lastDialed].[end if]";
+	otherwise:
+		follow the factory movement rule. [because factory movement occurs after robot movements; if there is no AI robot movement, and the player didn't move the robot, this assures that at last one cranking of the factory floor occurs.]
+		
 
 Chapter Verbs
 
@@ -1360,6 +1391,20 @@ Section Undoing
 
 Chapter Not Ready For Prime Time - Not for release
 
+Section Autopilot
+
+Autopiloting is an action out of world. Understand "autopilot" as autopiloting.
+
+Carry out autopiloting:
+	if autopilot is true:
+		change autopilot to false;
+	otherwise:
+		change autopilot to true.
+	
+		
+Report autopiloting:
+	say "[bracket]Autopilot is [if autopilot is true]On[otherwise]Off[end if][close bracket][line break]".
+
 Section Draining
 
 Draining is an action out of world. Understand "drain" as draining.
@@ -1369,18 +1414,20 @@ Carry out draining:
 	
 Report draining:
 	say "Phone drained to 5 units."
-
+	
 Section Muting
 
 [To reduce the clutter during debugging]
 Muting is an action out of world. Understand "mute" as muting.
 
 Carry out muting:
-	say "[bracket]Mute[if muted is true]Off[otherwise]On[end if][close bracket][line break]";
 	if muted is true:
 		change muted to false;
 	otherwise:
-		change muted to true;
+		change muted to true.
+		
+Report muting:
+	say "[bracket]Mute[if muted is true]On[otherwise]Off[end if][close bracket][line break]".
 		
 Section Shoot Igneous
 
@@ -1554,9 +1601,7 @@ Every turn:
 		otherwise:
 			say "[tardyPathetic]";
 			change the endgame to tardyPathetic;
-		end the game in death;
-	if the Cunning Plan is happening :
-		follow the factory movement rule.
+		end the game in death.
 		
 		
 Section Phrase Picker
@@ -2082,7 +2127,7 @@ supercapacitor power module			"[showProfCapacitor]"
 Table of BeforeIKillYou
 turnNumber	rant
 2	"As your eye accomodates to the light, you take notice of the tall gentleman in a white lab coat who stands in a plexiglass control booth in the far corner of the room. It seems that he notices you as well.[paragraph break][quotation mark]Ah, my archnemesis, Mr. Jeremy Flack. I see you[apostrophe]ve had some plastic surgery. Very nice work, but perhaps a bit squinty around the eyes.[quotation mark][paragraph break][quotation mark]This isn[apostrophe]t my wedding rehearsal?[quotation mark] you ask, too stunned, worried and jet-lagged to fully absorb everything that happened since leaving Doctor Giblets[apostrophe] office.  [quotation mark]Where is the rehearsal? I[apostrophe]m going to be late.[quotation mark][paragraph break][quotation mark]Yes, Mr. Flack. Humor, always humor. Well... let’s see how funny you find it when you are vaporized by my robot warrior![quotation mark][paragraph break][quotation mark]Wait...what? Not the rehearsal?[quotation mark] you stammer."
-3		"[quotation mark]I see that you followed my cunning plan to lure you to your doom, [Jeremy][quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]Igneous presses a button and you hear a beep. The robot rotates counterclockwise."
+3		"[quotation mark]I see that you followed my cunning plan to lure you to your doom, [Jeremy][quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]"
 4		"[quotation mark]Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a metaquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
 5		"[quotation mark]For now, I will have to content myself with directly controlling the kumquat-5000, I call him Lenny, as that name seems to resonate with me. I’m not sure why. I just like the sound of it. Anyhow, as I was saying... to controlling Lenny with an ingenious invention of mine that couples a matrix-scanned keyboard with two multiplexed sine wave oscillators. By merely pressing a button within my Plexiglass®-enclosed command booth, I can control his every action...the first of which will be to kill you. Now, please do cooperate and remain still, so I can get on with the day [apostrophe]s business of tracking down the aforementioned controller unit.[quotation mark]"
 6		"[quotation mark]Sorry for this aside, but henchmen remind me that I am legally obligated to mention that Plexiglass®  is a registered trademark of Altuglas International, for its polymethylmethacrylate resin and sheet products sold in the North and Latin America, whereas it is sold under the brand name Altuglas® in Asia/Pacific, Europe, Africa and the Middle East. Fine. Now, back to killing you.[quotation mark]"
@@ -2870,7 +2915,7 @@ To do robotControl:
 	let instruction be indexed text;
 	repeat with n running from one to lastChar:
 		let instruction be character number n in lastDialed;
-		say "The robot ";
+		say "[if muted is false]The robot moves[end if]";
 		if  instruction matches the text "1": 
 			try lefting;
 		else if instruction matches the text "2":
@@ -2897,8 +2942,7 @@ To do robotControl:
 			try righting;
 			try righting;
 			try righting;
-		if n is less than lastChar:
-			follow the factory movement rule.
+		follow the factory movement rule.
 			
 To do shoot locker:
 	if the blast hole is not part of the metal parts locker:
@@ -2935,12 +2979,6 @@ To do shoot Marv:
 	change the endgame to lasered;
 	end the game in death.
 	
-To do RobotAttack:
-	say "The Robot's attack move goes here. The robot attack will use subroutines to move, check for death conditions, do factory movements, etc.[paragraph break]".
-		
-To do FactoryPhysics:
-	say "Factory Physics here.[paragraph break]" [TODO, stub: this is where the factor floor mechanisms have their effect on the robot. This is called after every move, whether directed by Professor Igneous or the player. Since the results should be evident on the graphics display, this  will not result in text output unless the player toggles the graphics flag].
-
 
 Chapter Postmortem
 
