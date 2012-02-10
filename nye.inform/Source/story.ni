@@ -160,8 +160,9 @@ number	figure-name
 14	Figure of PartsLocker
 
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
+
 The tile-array of the robogrid is  {
-     { 10, 1, 1, 1, 1 },
+     { 13, 1, 1, 1, 1 },
      { 4, 10, 1, 1, 6 },
      { 4, 7, 2, 2, 3 },
      { 7, 2, 2, 2, 11 },
@@ -1023,7 +1024,7 @@ Section Cowing
 
 Cowing is an action applying to nothing.
 
-Understand "angry cows" or "cows" as cowing when cowLicense is greater than zero.
+Understand "angry cows" or "cows"  or "cow" or "bovine" or "moo" as cowing when cowLicense is greater than zero.
 
 Persuasion rule for asking Amelia to try cowing:
 	persuasion succeeds.
@@ -1033,7 +1034,7 @@ Carry out cowing:
 	
 Instead of Amelia cowing:
 	if cowLicense is greater than 1:
-		playback "A cow sound.";
+		playback "A cow sound";
 	if cowLicense is:
 		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
 		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
@@ -1191,7 +1192,45 @@ To playTouchToneString:
 		else if c is "0":
 			playback("the sound of the dtmf-zero").
 	
+Section Remapping
 
+CoordinateMaker is a thing. The CoordinateMaker has a list of numbers called the coordinates.
+
+To makeCoordinates of (x - a number) and (y - a number):
+	change the coordinates of CoordinateMaker to {};
+	add x to the coordinates of the CoordinateMaker;
+	add y to the coordinates of the CoordinateMaker.
+	
+Remapping is an action applying to nothing. Understand "allotheria" as remapping.
+
+Carry out remapping:
+	let L be a list of numbers;
+	let neighbor be a number;
+	let t be a number;	
+	let StartTiles be { 1, 2, 5, 12};
+	repeat with row running from 1 to 4:
+		repeat with column running from 1 to 5:
+			makeCoordinates of column and row;
+			let L be the coordinates of the CoordinateMaker;
+			if row is 1:
+				if column is 1:
+					change t to 13;
+				otherwise if column is 2:
+					let r be a random number between 1 and the number of entries in StartTiles;
+					change t to entry r of StartTiles;
+				otherwise: [top row]
+					let neighbor be entry (column minus 1) of entry row of the tile-array of robogrid;
+					say "neighbor is [neighbor]";
+					let t be neighbor;
+			otherwise:
+				change t to 10;		
+			place tile t at coordinate L of robogrid;
+	follow the window-drawing rules for the graphics-window.
+
+	
+Report remapping:
+	say "Remapped."
+	
 Section Skying
 
 Skying is an action applying to nothing.
