@@ -568,21 +568,7 @@ Carry out firing:
 		otherwise:
 			do shoot Marv;
 	[laser persists on screen for duration of sound effect]
-	change originX to entry 1 of the origin of the character of the robot plus 40;
-	change originY to entry 2 of the origin of the character of the robot plus 40;
-	[kind of cheesy way of shrinking the beam to zero length; in practice we could condense this
-	down to a subroutine]
-	change endX to originX;
-	change endY to originY;
-	change L to have 0 entries;
-	change M to have 0 entries;
-	add originX to L;
-	add originY to L;
-	add endX to M;
-	add endY to M;
-	change the origin of RobotLaser to L;
-	change the endpoint of RobotLaser to M;
-	[these rules redraw the laser within this block]
+	now the display status of the RobotLaser is g-inactive;
 	follow the window-drawing rules for the graphics-window.
 
 
@@ -2845,6 +2831,8 @@ When Cunning Plan begins:
 Every turn during Cunning Plan:
 	if the turnCounter is greater than 2:
 		do RobotAttack;
+	otherwise:
+		follow the factory movement rule;
 	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou:
 		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]";
 	if the turnCounter is 36:
