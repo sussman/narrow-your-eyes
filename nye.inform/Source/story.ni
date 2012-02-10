@@ -130,10 +130,10 @@ Figure of UpRightTurn is the file "up2right.png".
 Figure of UpLeftTurn is the file "up2left.png".
 Figure of DownRightTurn is the file "down2right.png".
 Figure of DownLeftTurn is the file "down2left.png".
-Figure of RightUpTurn is the file "right2up.png".
-Figure of RightDownTurn is the file "right2down.png".
-Figure of LeftUpTurn is the file "left2up.png".
-Figure of LeftDownTurn is the file "left2down.png".
+Figure of RightUpTurn is the file "rt2up.png".
+Figure of RightDownTurn is the file "rt2down.png".
+Figure of LeftUpTurn is the file "lt2up.png".
+Figure of LeftDownTurn is the file "lt2down.png".
 Figure of Blank is the file "blank.png".
 Figure of PartsLocker is the file "partsLocker.png".
 Figure of Igneous is the file "Igneous.png".
@@ -168,6 +168,16 @@ The tile-array of the robogrid is  {
      { 7, 2, 2, 2, 11 },
      { 2, 2, 2, 3, 14 }
 }.
+
+[ The variety pack board, for testing:
+
+The tile-array of the robogrid is  {
+     { 13, 1, 2, 3, 4 },
+     { 5, 6, 7, 8, 9 },
+     { 10, 11, 12, 1, 1 },
+     { 7, 2, 2, 2, 11 },
+     { 2, 2, 2, 3, 14 }
+}.]
 
 A character-sprite is a kind of sprite. A character-sprite has a list of numbers called the grid-coordinate. The associated canvas of a character-sprite is the graphics-canvas.  The display-layer of a character-sprite is 2.
 
@@ -627,16 +637,16 @@ This is the factory movement rule:
 			try righting;
 			shift leftwards;
 		-- 9: [right up]
-			try righting;
+			try lefting;
 			shift upwards;
 		-- 10: [right down]
-			try lefting;
+			try righting;
 			shift downwards;
 		-- 11: [left up]
-			try lefting;
+			try righting;
 			shift upwards;
 		-- 12: [left down]
-			try righting;
+			try lefting;
 			shift downwards;
 		-- 13: [blank -- for purposes of generalizability]
 			do nothing.
