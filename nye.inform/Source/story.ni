@@ -312,7 +312,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -1138,6 +1138,16 @@ Instead of Amelia phoneToing:
 	let T be the player's command;
 	replace the regular expression "^amelia\s*,\s*" in T with "";
 	replace the regular expression "(dial|phone|call)\s*" in T with "";
+	if T matches the regular expression "7183876962":
+		if Cunning Plan is Happening:
+			change lastDialed to T;
+			playTouchToneString;
+			say "[rapture]";
+			change the endgame to rapture;
+			end the game in victory;
+			stop;
+		otherwise:
+			say "Your mangoFONE pulses red briefly, but remains strangely silent.";
 	if T matches the regular expression "^<0-9>+$":
 		let n be the number of characters in T;
 		if n is greater than 10:
@@ -2289,6 +2299,9 @@ To say hasturedText:
 	
 To say wonText:
 	say "You survived the rehearsal.[line break]Now for wedding."
+
+To say raptureText:
+	say "Your call was answered."
 	
 To say laseredText:
 	say "Killed by Lenny,  who was[line break]operated by a madman,[line break]and backed by the 1%."
@@ -2571,6 +2584,10 @@ To say MarvShotOutsideLocker:
 To say lockerDescription:
 	say "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]";
 	now onFamiliarTerms is true.
+	
+To say rapture:
+	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a spreadspectrum burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar,and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
+
 	
 To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
@@ -2974,7 +2991,7 @@ Chapter Postmortem
 
 Rule for printing the player's obituary:
 	say "*** YOU  ";
-	if the endgame is won:
+	if the endgame is won or the endgame is rapture:
 		say "HAVE WON";
 	else if the endgame is tardyPathetic or the endgame is drainedPathetic:
 		say "EVENTUALLY DIE";
@@ -2984,6 +3001,8 @@ Rule for printing the player's obituary:
 	if the endgame is:
 		-- won:
 			say "[wonText]";
+		-- rapture:
+			say "[raptureText]";
 		-- hastured:
 			say "[hasturedText]";
 		-- lasered:
