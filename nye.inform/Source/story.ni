@@ -817,42 +817,45 @@ To decide which movement is the best choice:
 
 
 [The main AI algorithm]
-To make an AI move:
+To decide which number is an AI move:
 	if the facing-direction of the robot is hither:
-		try firing; [keeps things fun!]
+		decide on 7;  [screw prediction, just FIRE!  keeps things fun!]
 	otherwise:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
 		say choices;
+		say "WOKKA WOKKA!";
 		let M be the best choice;
 		if M is:
-			-- m-forward:  
-				say "AI FORWARD MOVE[line break]";
+			-- m-forward:
+				decide on 5;
 			-- m-back:  
-				say "AI BACK MOVE[line break]";
+				decide on 2;
 			-- m-left:  
-				say "AI LEFT MOVE[line break]";
+				decide on 1;
 			-- m-right:  
-				say "AI RIGHT MOVE[line break]";
+				decide on 4;
 			-- m-pass:  
-				say "AI PASSES[paragraph break]";
-		say "AI Complete."
+				decide on 0.
 	
-	
+[
+1. CCW
+2. Back 1
+3. Spin 180
+4. CW
+5. Forward 1
+6. Foward 3
+7. Fire Lazzzzzer!
+8. scanning beam
+9. sound effects
+0. Spin 360 (effectively NOP)]	
 
 [this is a temporary substitute to simulate professor igneous's moves until the AI routines are writen - movement is randomish]
-To do RobotAttack: 
-	make an AI move;
+To do RobotAttack:
 	if autopilot is true:
 		say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
-		change lastDialed to "";
-		repeat with i running from 1 to 2:
-			let r be a random number between 1 and 4;
-			if r is:
-				-- 1: change lastDialed to the concatenation of lastDialed and "4";
-				-- 2:  change lastDialed to the concatenation of lastDialed and "5";
-				-- 3:  change lastDialed to the concatenation of lastDialed and "1";
-				-- 4:  change lastDialed to the concatenation of lastDialed and "2";
+		let N be an AI move;
+		change lastDialed to "[N]";
 		playTouchToneString;
 		do RobotControl;
 		say "[if muted is false]The professors move: [lastDialed].[end if]";
