@@ -61,7 +61,7 @@ geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
-phoneCharge is usually zero. phoneCharge is 170.
+phoneCharge is usually zero. phoneCharge is 130.
 
 lastUpdateTime is a time that varies. The lastUpdateTime is 11 AM.
 updateNumber is a number that varies. The updateNumber is 1.
@@ -160,8 +160,9 @@ number	figure-name
 14	Figure of PartsLocker
 
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
+
 The tile-array of the robogrid is  {
-     { 10, 1, 1, 1, 1 },
+     { 13, 1, 1, 1, 1 },
      { 4, 10, 1, 1, 6 },
      { 4, 7, 2, 2, 3 },
      { 7, 2, 2, 2, 11 },
@@ -312,7 +313,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -786,18 +787,10 @@ Before asking the player about something:
 	say "[noSelfTalking]";
 	stop the action.
 	
-Section Graphing
-[To accommodate non-graphics interpreters and visually-impaired users, the graphic command switches in and out of graphics mode for the Cunning Plan scene]
+Section Crediting
 
-
-Understand "graphics" as graphing.
-
-Graphing is an action out of world.
-
-Carry out graphing:
-	say "[bracket][if graphics is true]Graphics[otherwise]Text-only[end if] mode[close bracket]."
-
-	
+Understand "credit" or "credits" as asking for help.
+		
 Section Listening
 [Listen is implemented through insteads. Override this general instead rule with more specific ones as needed]
 
@@ -1034,7 +1027,7 @@ Section Cowing
 
 Cowing is an action applying to nothing.
 
-Understand "angry cows" or "cows" as cowing when cowLicense is greater than zero.
+Understand "angry cows" or "cows"  or "cow" or "bovine" or "moo" as cowing when cowLicense is greater than zero.
 
 Persuasion rule for asking Amelia to try cowing:
 	persuasion succeeds.
@@ -1043,6 +1036,8 @@ Carry out cowing:
 	say "[errorPrompt]".
 	
 Instead of Amelia cowing:
+	if cowLicense is greater than 1:
+		playback "A cow sound";
 	if cowLicense is:
 		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
 		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
@@ -1141,6 +1136,16 @@ Instead of Amelia phoneToing:
 	let T be the player's command;
 	replace the regular expression "^amelia\s*,\s*" in T with "";
 	replace the regular expression "(dial|phone|call)\s*" in T with "";
+	if T matches the regular expression "7183876962":
+		if Cunning Plan is Happening:
+			change lastDialed to T;
+			playTouchToneString;
+			say "[rapture]";
+			change the endgame to rapture;
+			end the game in victory;
+			stop;
+		otherwise:
+			say "Your mangoFONE pulses red briefly, but remains strangely silent.";
 	if T matches the regular expression "^<0-9>+$":
 		let n be the number of characters in T;
 		if n is greater than 10:
@@ -1190,7 +1195,71 @@ To playTouchToneString:
 		else if c is "0":
 			playback("the sound of the dtmf-zero").
 	
+Section Remapping
 
+CoordinateMaker is a thing. The CoordinateMaker has a list of numbers called the coordinates.
+
+To makeCoordinates of (x - a number) and (y - a number):
+	change the coordinates of CoordinateMaker to {};
+	add x to the coordinates of the CoordinateMaker;
+	add y to the coordinates of the CoordinateMaker.
+	
+Remapping is an action applying to nothing. Understand "allotheria" as remapping.
+
+Carry out remapping:
+	let L be a list of numbers;
+	let neighbor be a number;
+	let t be a number;	
+	let StartTiles be { 1, 2, 5, 12};
+	repeat with row running from 1 to 4:
+		repeat with column running from 1 to 5:
+			makeCoordinates of column and row;
+			let L be the coordinates of the CoordinateMaker;
+			if row is 1:
+				if column is 1:
+					change t to 13;
+				otherwise if column is 2:
+					let r be a random number between 1 and the number of entries in StartTiles;
+					change t to entry r of StartTiles;
+				otherwise: [top row----------------------------]
+					let r be a random number between 1 and 10;
+					let neighbor be entry (column minus 1) of entry row of the tile-array of robogrid;
+					if neighbor is 1: [left belt]
+						if r is less than 8:
+							change t to 1;[more left belt]
+						otherwise:
+							change t to 6;[upleft]
+					otherwise if neighbor is 2: [right belt]
+						if r is less than 8:
+							change t to 2; [more right belt]
+						otherwise:
+							change t to 10; [right down]
+					otherwise if neighbor is 5:
+						if r is less than 8:
+							change t to 2;
+						otherwise:
+							change t to 10;
+					otherwise if neighbor is 12:
+						if r is less than 8:
+							change t to 1;
+						otherwise:
+							change t to 6;
+					otherwise:
+						if r is less than 6:
+							change t to 1;
+						otherwise:
+							change t to 2;
+			otherwise if row is 4:[row just above UV laser---------]
+				change t to 11;						
+			otherwise: [rows in the middle----------------------]
+				change t to 10;		
+			place tile t at coordinate L of robogrid;
+	follow the window-drawing rules for the graphics-window.
+
+	
+Report remapping:
+	say "Remapped."
+	
 Section Skying
 
 Skying is an action applying to nothing.
@@ -1558,8 +1627,8 @@ When play begins:
 	change the right hand status line to "".
 
 After printing the banner text:
-	say "Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them."
-		[Temporarily commented out: This story includes the use of graphic diplays. To toggle between graphic and text-only mode, use the command [quotation mark]graphics[quotation mark]]
+	say "This game uses graphics and sound. Sound is optional, but graphic display is essential, so please use an appropriate interpreter. Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them."
+
 
 	
 Chapter Every Turn
@@ -1573,7 +1642,7 @@ Every turn:
 	decrease phoneCharge by one;
 	if Amelia is lit:
 		decrease phoneCharge by one;
-	change powerBars to phoneCharge divided by 30;
+	change powerBars to phoneCharge divided by 25;
 	if powerBars is greater than 5, change powerBars to five;
 	if phoneCharge is zero:
 		if Cunning Plan is happening:
@@ -2016,7 +2085,7 @@ Section Tables
 
 Table of PreChart
 turnNumber		canned-text
-3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
+3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift![quotation mark] offers Doctor Giblets.  [quotation mark]Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
 4		"Pop? Who says pop?"
 6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break][quotation mark]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
 
@@ -2167,7 +2236,7 @@ Persuasion rule for asking Amelia to try asking for help:
 	persuasion succeeds.
 	
 Instead of Amelia asking for help:
-	say "[quotation mark]Help mode. The phone recognizes the following  basic commands: apps calendar messages phone time [if the currentUpdateLevel is greater than zero]travel [end if]tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
+	say "[quotation mark]Help mode. The phone recognizes the following basic commands: apps calendar help messages phone time [if the currentUpdateLevel is greater than zero]travel [end if] update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
 	the rule succeeds.
 
 
@@ -2258,7 +2327,7 @@ To say openingLine2:
 	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark] asks Dr. Giblets.[paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]"
 	
 To say aboutText:
-	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]. This game makes use of graphics, to toggle between graphics and text-only mode, type [quotation mark]graphics[quotation mark]."
+	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
 	
 To say geeWhiz:
 	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amy's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
@@ -2292,6 +2361,9 @@ To say hasturedText:
 	
 To say wonText:
 	say "You survived the rehearsal.[line break]Now for wedding."
+
+To say raptureText:
+	say "Your call was answered."
 	
 To say laseredText:
 	say "Killed by Lenny,  who was[line break]operated by a madman,[line break]and backed by the 1%."
@@ -2574,6 +2646,10 @@ To say MarvShotOutsideLocker:
 To say lockerDescription:
 	say "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]";
 	now onFamiliarTerms is true.
+	
+To say rapture:
+	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
+
 	
 To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
@@ -2977,7 +3053,7 @@ Chapter Postmortem
 
 Rule for printing the player's obituary:
 	say "*** YOU  ";
-	if the endgame is won:
+	if the endgame is won or the endgame is rapture:
 		say "HAVE WON";
 	else if the endgame is tardyPathetic or the endgame is drainedPathetic:
 		say "EVENTUALLY DIE";
@@ -2987,6 +3063,8 @@ Rule for printing the player's obituary:
 	if the endgame is:
 		-- won:
 			say "[wonText]";
+		-- rapture:
+			say "[raptureText]";
 		-- hastured:
 			say "[hasturedText]";
 		-- lasered:
