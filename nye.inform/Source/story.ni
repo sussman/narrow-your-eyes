@@ -646,19 +646,20 @@ Chapter AI Logic for Igneous
 
 A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.  
 
-A Choice is a kind of thing.  A Choice has a Movement called the proposed move.   A Choice has a number called Goodness.  A Choice has a facing-direction called FinalDirection.
+Table of Choices
+Movement	Goodness	facing-direction
+m-forward	100	hither
+m-back	100	hither
+m-right	100	hither
+m-left	100	hither
+m-pass	100	hither
 
-Forward-choice is a choice.  The proposed move of forward-choice is m-forward.
-Back-choice is a choice.  The proposed move of back-choice is m-back.
-Right-choice is a choice.  The proposed move of right-choice is m-right.
-Left-choice is a choice.  The proposed move of left-choice is m-left.
-Pass-choice is a choice.  The proposed move of pass-choice is m-pass.
-
-To decide which number is the Goodness of (choice - a choice):
+[Calculate the {X, Y, facing-direction} of a proposed movement, and store the results in the Table of Choices]
+To calculate the future results of (choice - a movement):
 	let X be entry 1 of the grid-coordinate of the character of the robot;
 	let Y be entry 2 of the grid-coordinate of the character of the robot;
 	let D be the facing-direction of the robot;
-	if the proposed move of choice is:  [TODO:  immediately follow this with floor movement, THEN check bounds and such afterwards]
+	if the choice is:  [TODO:  immediately follow this with floor movement, THEN check bounds and such afterwards]
 		-- m-forward:
 			if D is:
 				-- right:
@@ -699,58 +700,54 @@ To decide which number is the Goodness of (choice - a choice):
 					now D is right;
 				-- yonder:
 					now D is left;
+	now the facing-direction corresponding to a Movement of choice in the Table of Choices is D;
 	if the destination of X and Y is valid and Y is not 5:
 		let PX be 4;  [TODO:  actually read the Marv-sprite's X value here later on]
-		decide on the absolute value of (X - PX);  [the distance to Marv's column]
+		now the Goodness corresponding to a Movement of choice in the Table of Choices is the absolute value of (X - PX);  [the distance to Marv's column]
 	otherwise:
-		decide on 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
+		now the Goodness corresponding to a Movement of choice in the Table of Choices is 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
 			
 
-To decide which movement is the best move from (choicelist - a list of choices):
-	sort choicelist in Goodness order;
-	let E1 be entry 1 of choicelist;
-	let E2 be entry 2 of choicelist;
-	if the Goodness of E1 is the Goodness of E2:
-		if the FinalDirection of E1 is hither:
-			decide on the proposed move of E1;
-		otherwise if the FinalDirection of E2 is hither:
-			decide on the proposed move of E2;
-		otherwise if the FinalDirection of E1 is right or the FinalDirection of E1 is left:
-			decide on the proposed move of E1;
+[Assumes the Table of Choices has already been fleshed out by hypothetical calculations above.]
+To decide which movement is the best choice:
+	sort the Table of Choices in Goodness order;
+	let G1 be the Goodness in row 1 of the Table of Choices;
+	let G2 be the Goodness in row 2 of the Table of Choices;
+	if G1 is G2:  [break a tie by looking at facing-direction]
+		if the facing-direction in row 1 of the Table of Choices is hither:
+			decide on the movement in row 1 of the Table of Choices;
+		otherwise if the facing-direction in row 2 of the Table of Choices is hither:
+			decide on the movement in row 2 of the Table of Choices;
+		otherwise if the facing-direction in row 1 of the Table of Choices is right:
+			decide on the movement in row 1 of the Table of Choices;
+		otherwise if the facing-direction in row 1 of the Table of Choices is left:
+			decide on the movement in row 1 of the Table of Choices;
 		otherwise:
-			decide on the proposed move of E2;
+			decide on the movement in row 2 of the Table of Choices;
 	otherwise:
-		decide on the proposed move of E1.
+		decide on the movement in row 1 of the Table of Choices.
 
 
-
-To make an AI Move:
+[The main AI algorithm]
+To make an AI move:
 	if the facing-direction of the robot is hither:
-		try firing;  [keeps things fun!]
+		say "";[try firing;  [keeps things fun!]]
 	otherwise:
-		let L be a list of Choices;
-		add Forward-choice to L;
-		add Back-choice to L;
-		add Right-choice to L;
-		add Left-choice to L;
-		add Pass-choice to L;
-		let G1 be the Goodness of Forward-choice;
-		now the Goodness of entry 1 of L is G1;
-		let G2 be the Goodness of Back-choice;
-		now the Goodness of entry 2 of L is G2;
-		let G3 be the Goodness of Right-choice;
-		now the Goodness of entry 3 of L is G3;
-		let G4 be the Goodness of Left-choice;
-		now the Goodness of entry 4 of L is G4;
-		let G5 be the Goodness of Pass-choice;
-		now the Goodness of entry 5 of L is G5; [TODO:  need to decide on facing-direction of each choice too ]
-		let M be the best move from L;
-		say "woo".  [TODO:  actually execute movement M!!]
-		
+		repeat with N running from 1 to the number of rows in the Table of Choices:
+			calculate the future results of the movement in row N of the Table of Choices;
+		let M be the best choice;
+		if M is:
+			-- m-forward:  say "AI FORWARD MOVE";
+			-- m-back:  say "AI BACK MOVE";
+			-- m-left:  say "AI LEFT MOVE";
+			-- m-right:  say "AI RIGHT MOVE";
+			-- m-pass:  say "AI PASSES".
+	
 	
 
 [this is a temporary substitute to simulate professor igneous's moves until the AI routines are writen - movement is randomish]
 To do RobotAttack: 
+	make an AI move;
 	if autopilot is true:
 		say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
 		change lastDialed to "";
