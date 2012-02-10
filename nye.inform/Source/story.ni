@@ -1218,11 +1218,37 @@ Carry out remapping:
 				otherwise if column is 2:
 					let r be a random number between 1 and the number of entries in StartTiles;
 					change t to entry r of StartTiles;
-				otherwise: [top row]
+				otherwise: [top row----------------------------]
+					let r be a random number between 1 and 10;
 					let neighbor be entry (column minus 1) of entry row of the tile-array of robogrid;
-					say "neighbor is [neighbor]";
-					let t be neighbor;
-			otherwise:
+					if neighbor is 1: [left belt]
+						if r is less than 8:
+							change t to 1;[more left belt]
+						otherwise:
+							change t to 6;[upleft]
+					otherwise if neighbor is 2: [right belt]
+						if r is less than 8:
+							change t to 2; [more right belt]
+						otherwise:
+							change t to 10; [right down]
+					otherwise if neighbor is 5:
+						if r is less than 8:
+							change t to 2;
+						otherwise:
+							change t to 10;
+					otherwise if neighbor is 12:
+						if r is less than 8:
+							change t to 1;
+						otherwise:
+							change t to 6;
+					otherwise:
+						if r is less than 6:
+							change t to 1;
+						otherwise:
+							change t to 2;
+			otherwise if row is 4:[row just above UV laser---------]
+				change t to 11;						
+			otherwise: [rows in the middle----------------------]
 				change t to 10;		
 			place tile t at coordinate L of robogrid;
 	follow the window-drawing rules for the graphics-window.
