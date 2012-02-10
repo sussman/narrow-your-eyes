@@ -641,9 +641,15 @@ This is the factory movement rule:
 
 Chapter AI Logic
 
-A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.
+A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.  
 
-A Choice is a kind of thing.  A Choice has a Movement called the proposed move.   A Choice has a number called Goodness.  A Choice has a facing-direction.
+A Choice is a kind of thing.  A Choice has a Movement called the proposed move.   A Choice has a number called Goodness.  A Choice has a facing-direction called FinalDirection.
+
+Forward-choice is a choice.  The proposed move of forward-choice is m-forward.
+Back-choice is a choice.  The proposed move of back-choice is m-back.
+Right-choice is a choice.  The proposed move of right-choice is m-right.
+Left-choice is a choice.  The proposed move of left-choice is m-left.
+Pass-choice is a choice.  The proposed move of pass-choice is m-pass.
 
 To decide which number is the Goodness of (move - a movement):
 	let X be entry 1 of the grid-coordinate of the character of the robot;
@@ -697,12 +703,34 @@ To decide which number is the Goodness of (move - a movement):
 		decide on 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
 			
 
-To decide which movement is the best from (choicelist - a list of Choices):
-	let L be a list of numbers;  [GoodnessList]
-	repeat with C running through choicelist:
-		add the Goodness of C to L;
-	decide on the proposed move of entry 1 of choicelist.
+To decide which movement is the best from (choicelist - a list of choices):
+	sort choicelist in Goodness order;
+	let E1 be entry 1 of choicelist;
+	let E2 be entry 2 of choicelist;
+	if the Goodness of E1 is the Goodness of E2:
+		if the FinalDirection of E1 is hither:
+			decide on the proposed move of E1;
+		otherwise if the FinalDirection of E2 is hither:
+			decide on the proposed move of E2;
+		otherwise if the FinalDirection of E1 is right or the FinalDirection of E1 is left:
+			decide on the proposed move of E1;
+		otherwise:
+			decide on the proposed move of E2;
+	otherwise:
+		decide on the proposed move of E1.
 
+
+
+To make an AI-Move:
+	if the facing-direction of the robot is hither:
+		try firing;  [keeps things fun!]
+	otherwise:
+		let L be { m-pass, m-forward, m-back, m-right, m-left };
+		repeat with M running through L:
+			say "boo".
+			
+		
+	
 
 
 [
