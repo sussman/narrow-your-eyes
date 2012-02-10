@@ -61,7 +61,7 @@ geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
 geeBars is usually zero.
 gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
-phoneCharge is usually zero. phoneCharge is 170.
+phoneCharge is usually zero. phoneCharge is 130.
 
 lastUpdateTime is a time that varies. The lastUpdateTime is 11 AM.
 updateNumber is a number that varies. The updateNumber is 1.
@@ -783,18 +783,10 @@ Before asking the player about something:
 	say "[noSelfTalking]";
 	stop the action.
 	
-Section Graphing
-[To accommodate non-graphics interpreters and visually-impaired users, the graphic command switches in and out of graphics mode for the Cunning Plan scene]
+Section Crediting
 
-
-Understand "graphics" as graphing.
-
-Graphing is an action out of world.
-
-Carry out graphing:
-	say "[bracket][if graphics is true]Graphics[otherwise]Text-only[end if] mode[close bracket]."
-
-	
+Understand "credit" or "credits" as asking for help.
+		
 Section Listening
 [Listen is implemented through insteads. Override this general instead rule with more specific ones as needed]
 
@@ -1040,6 +1032,8 @@ Carry out cowing:
 	say "[errorPrompt]".
 	
 Instead of Amelia cowing:
+	if cowLicense is greater than 1:
+		playback "A cow sound.";
 	if cowLicense is:
 		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
 		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
@@ -1565,8 +1559,8 @@ When play begins:
 	change the right hand status line to "".
 
 After printing the banner text:
-	say "Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them."
-		[Temporarily commented out: This story includes the use of graphic diplays. To toggle between graphic and text-only mode, use the command [quotation mark]graphics[quotation mark]]
+	say "This game uses graphics and sound. Sound is optional, but graphic display is essential, so please use an appropriate interpreter. Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them."
+
 
 	
 Chapter Every Turn
@@ -1580,7 +1574,7 @@ Every turn:
 	decrease phoneCharge by one;
 	if Amelia is lit:
 		decrease phoneCharge by one;
-	change powerBars to phoneCharge divided by 30;
+	change powerBars to phoneCharge divided by 25;
 	if powerBars is greater than 5, change powerBars to five;
 	if phoneCharge is zero:
 		if Cunning Plan is happening:
@@ -2023,7 +2017,7 @@ Section Tables
 
 Table of PreChart
 turnNumber		canned-text
-3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift! Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
+3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift![quotation mark] offers Doctor Giblets.  [quotation mark]Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
 4		"Pop? Who says pop?"
 6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break][quotation mark]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
 
@@ -2174,7 +2168,7 @@ Persuasion rule for asking Amelia to try asking for help:
 	persuasion succeeds.
 	
 Instead of Amelia asking for help:
-	say "[quotation mark]Help mode. The phone recognizes the following  basic commands: apps calendar messages phone time [if the currentUpdateLevel is greater than zero]travel [end if]tutor update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
+	say "[quotation mark]Help mode. The phone recognizes the following basic commands: apps calendar help messages phone time [if the currentUpdateLevel is greater than zero]travel [end if] update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
 	the rule succeeds.
 
 
@@ -2265,7 +2259,7 @@ To say openingLine2:
 	say "[paragraph break][quotation mark]Marv, Do you want to get that?[quotation mark] asks Dr. Giblets.[paragraph break][quotation mark]Nope. That sound means my phone just updated itself. It does that like every few hours -- the price of living on the bleeding edge![quotation mark][paragraph break]"
 	
 To say aboutText:
-	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]. This game makes use of graphics, to toggle between graphics and text-only mode, type [quotation mark]graphics[quotation mark]."
+	say "This story is part of the People's Republic of Interactive Fiction's tribute to They Might be Giants on the occasion of the 20th anniversary of their landmark album, Apollo 18.  Each work in this collection is based on one of the songs on this album, the full collection can be downloaded from <link to PR-IF website/collection>.[paragraph break]For instructions on how to play, type [quotation mark]help[quotation mark]."
 	
 To say geeWhiz:
 	say "[quotation mark]Gee whiz, Mr. Spindle, I've never seen a phone like that.[quotation mark][paragraph break][quotation mark]Please, Trevor, call me Marv -- we[apostrophe]re going to be cousin-in-laws! And yes, it is a special phone -- I guess Amy's dad already considers me to be in the family, to let me try out one of the few mangoFONE prototypes. I think he said it has some kind of super high-end quantum processor stuff inside -- sounded impressive to me, but what do I know about phones? So far I[apostrophe]ve just used it for text messages.[quotation mark][paragraph break]"
@@ -2586,7 +2580,7 @@ To say lockerDescription:
 	now onFamiliarTerms is true.
 	
 To say rapture:
-	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a spreadspectrum burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar,and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
+	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
 
 	
 To say Jeremy:
