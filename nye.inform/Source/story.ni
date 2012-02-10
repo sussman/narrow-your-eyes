@@ -639,7 +639,7 @@ This is the factory movement rule:
 			do nothing.
 
 
-Chapter AI Logic
+Chapter AI Logic for Igneous
 
 A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.  
 
@@ -651,11 +651,11 @@ Right-choice is a choice.  The proposed move of right-choice is m-right.
 Left-choice is a choice.  The proposed move of left-choice is m-left.
 Pass-choice is a choice.  The proposed move of pass-choice is m-pass.
 
-To decide which number is the Goodness of (move - a movement):
+To decide which number is the Goodness of (choice - a choice):
 	let X be entry 1 of the grid-coordinate of the character of the robot;
 	let Y be entry 2 of the grid-coordinate of the character of the robot;
 	let D be the facing-direction of the robot;
-	if the move is:  [TODO:  immediately follow this with floor movement, THEN check bounds and such afterwards]
+	if the proposed move of choice is:  [TODO:  immediately follow this with floor movement, THEN check bounds and such afterwards]
 		-- m-forward:
 			if D is:
 				-- right:
@@ -703,7 +703,7 @@ To decide which number is the Goodness of (move - a movement):
 		decide on 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
 			
 
-To decide which movement is the best from (choicelist - a list of choices):
+To decide which movement is the best move from (choicelist - a list of choices):
 	sort choicelist in Goodness order;
 	let E1 be entry 1 of choicelist;
 	let E2 be entry 2 of choicelist;
@@ -721,55 +721,30 @@ To decide which movement is the best from (choicelist - a list of choices):
 
 
 
-To make an AI-Move:
+To make an AI Move:
 	if the facing-direction of the robot is hither:
 		try firing;  [keeps things fun!]
 	otherwise:
-		let L be { m-pass, m-forward, m-back, m-right, m-left };
-		repeat with M running through L:
-			say "boo".
-			
+		let L be a list of Choices;
+		add Forward-choice to L;
+		add Back-choice to L;
+		add Right-choice to L;
+		add Left-choice to L;
+		add Pass-choice to L;
+		let G1 be the Goodness of Forward-choice;
+		now the Goodness of entry 1 of L is G1;
+		let G2 be the Goodness of Back-choice;
+		now the Goodness of entry 2 of L is G2;
+		let G3 be the Goodness of Right-choice;
+		now the Goodness of entry 3 of L is G3;
+		let G4 be the Goodness of Left-choice;
+		now the Goodness of entry 4 of L is G4;
+		let G5 be the Goodness of Pass-choice;
+		now the Goodness of entry 5 of L is G5; [TODO:  need to decide on facing-direction of each choice too ]
+		let M be the best move from L;
+		say "woo".  [TODO:  actually execute movement M!!]
 		
 	
-
-
-[
-
-[Igneous has 5 possible moves he can make.]
-A movement is one of {forward, back, left, right, pass}.
-
-Define a Choice to be a list of { move, Goodness, facing-direction }.
-
-[ if Igneous is allowed 2 moves in a row, execute this twice ]
-Main Algorithm:
-  if robot is facing hither:
-     fire laser;
-  otherwise:
-    for each of the 5 possible moves:
-      calculate the Goodness of the move;
-      add { move, facing-direction of BoardState, Goodness} to list of Choices;
-    compare all 5 Choices and choose the best;
-    execute the move of the best Choice.
-
-
-[0 is best, larger values are worse]
-To decide on the Goodness of (move - a movement):
-  apply the move tho the robot's coords/direction;
-  apply hypothetical board rotation on top of that;
-  if y==5:  return 1000   [UV laser would kill us!]
-  otherwise:
-    calculate x-distance from Marv's x coord.
-    return distance.
-
-To decide on the best move from (list - a list of Choices):
-  select the Choice with the minimum Goodness value.
-  if two Choices have the same Goodness value:
-    compare their facing-directions:
-      hinder is best; left/right is neutral; yonder is worst.
-  return the best Choice.
-
-]
-
 
 
 
