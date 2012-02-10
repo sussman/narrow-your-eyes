@@ -177,7 +177,7 @@ Some character-sprites are defined by the Table of Characters.
 
 Table of Characters
 character-sprite	image-ID	grid-coordinate
-Robot-sprite	Figure of RobotHither	{ 3, 3 }
+Robot-sprite	Figure of RobotHither	{ 2, 1 }
 Marv-sprite	Figure of Marv	{ 5, 5 }
 Igneous-sprite	Figure of Igneous	{ 1, 1 }
 
@@ -654,6 +654,13 @@ m-right	100	hither
 m-left	100	hither
 m-pass	100	hither
 
+To say choices:
+	say "Evaluating AI movement choices:[line break]";
+	repeat with N running from 1 to the number of rows in the Table of Choices:
+		choose row N in the Table of Choices;
+		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";
+
+
 [Calculate the {X, Y, facing-direction} of a proposed movement, and store the results in the Table of Choices]
 To calculate the future results of (choice - a movement):
 	let X be entry 1 of the grid-coordinate of the character of the robot;
@@ -702,7 +709,7 @@ To calculate the future results of (choice - a movement):
 					now D is left;
 	now the facing-direction corresponding to a Movement of choice in the Table of Choices is D;
 	if the destination of X and Y is valid and Y is not 5:
-		let PX be 4;  [TODO:  actually read the Marv-sprite's X value here later on]
+		let PX be entry 1 of the grid-coordinate of the Marv-sprite;
 		now the Goodness corresponding to a Movement of choice in the Table of Choices is the absolute value of (X - PX);  [the distance to Marv's column]
 	otherwise:
 		now the Goodness corresponding to a Movement of choice in the Table of Choices is 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
@@ -731,17 +738,24 @@ To decide which movement is the best choice:
 [The main AI algorithm]
 To make an AI move:
 	if the facing-direction of the robot is hither:
-		say "";[try firing;  [keeps things fun!]]
+		try firing; [keeps things fun!]
 	otherwise:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
+		say choices;
 		let M be the best choice;
 		if M is:
-			-- m-forward:  say "AI FORWARD MOVE";
-			-- m-back:  say "AI BACK MOVE";
-			-- m-left:  say "AI LEFT MOVE";
-			-- m-right:  say "AI RIGHT MOVE";
-			-- m-pass:  say "AI PASSES".
+			-- m-forward:  
+				say "AI FORWARD MOVE[line break]";
+			-- m-back:  
+				say "AI BACK MOVE[line break]";
+			-- m-left:  
+				say "AI LEFT MOVE[line break]";
+			-- m-right:  
+				say "AI RIGHT MOVE[line break]";
+			-- m-pass:  
+				say "AI PASSES[paragraph break]";
+		say "AI Complete."
 	
 	
 
