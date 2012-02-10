@@ -1613,7 +1613,7 @@ Chapter The Ophthalmology Office
 
 The Ophthalmology Office is a room. The description of the Ophthalmology office is "The room is pitch dark, except for some light coming through a device, which you are told is called a refractor, just in front of your nose."
 
-Before printing a locale paragraph about something fuzzy (called the item): 
+Before printing a locale paragraph about something fuzzy (called the item) when cunning plan has not happened: 
 	now the item is mentioned.
 
 The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart. The eye chart can be read. The eye chart is not read.
@@ -1951,7 +1951,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glowing like a fusion reactor. It hurts your eyes to look anywhere near it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
