@@ -1218,57 +1218,86 @@ Remapping is an action applying to nothing. Understand "allotheria" as remapping
 
 Carry out remapping:
 	let L be a list of numbers;
-	let neighbor be a number;
+	let leftneighbor be a number;
+	let upperneighbor be a number;
 	let t be a number;	
 	let StartTiles be { 1, 2, 5, 12};
 	repeat with row running from 1 to 4:
 		repeat with column running from 1 to 5:
 			makeCoordinates of column and row;
 			let L be the coordinates of the CoordinateMaker;
+			if column is greater than 1:
+				let leftneighbor be entry (column minus 1) of entry row of the tile-array of robogrid;
+			if row is greater than 1:
+				let upperneighbor be entry column of entry (row minus 1) of the tile-array of robogrid;
+			let r be a random number between 1 and 10;
 			if row is 1:
 				if column is 1:
 					change t to 13;
 				otherwise if column is 2:
-					let r be a random number between 1 and the number of entries in StartTiles;
-					change t to entry r of StartTiles;
+					let s be a random number between 1 and the number of entries in StartTiles;
+					change t to entry s of StartTiles;
 				otherwise: [top row----------------------------]
-					let r be a random number between 1 and 10;
-					let neighbor be entry (column minus 1) of entry row of the tile-array of robogrid;
-					if neighbor is 1: [left belt]
+					if leftneighbor is 1: [left belt]
 						if r is less than 8:
 							change t to 1;[more left belt]
 						otherwise:
 							change t to 6;[upleft]
-					otherwise if neighbor is 2: [right belt]
+					otherwise if leftneighbor is 2: [right belt]
 						if r is less than 8:
 							change t to 2; [more right belt]
 						otherwise:
 							change t to 10; [right down]
-					otherwise if neighbor is 5:
+					otherwise if leftneighbor is 5: [up right]
 						if r is less than 8:
-							change t to 2;
+							change t to 2; [more right]
 						otherwise:
-							change t to 10;
-					otherwise if neighbor is 12:
+							change t to 10; [right down]
+					otherwise if leftneighbor is 12: [left down ]
 						if r is less than 8:
-							change t to 1;
+							change t to 1; [more left]
 						otherwise:
-							change t to 6;
+							change t to 6; [up left]
 					otherwise:
 						if r is less than 6:
-							change t to 1;
+							change t to 1; [left]
 						otherwise:
-							change t to 2;
-			otherwise if row is 4:[row just above UV laser---------]
-				change t to 11;						
+							change t to 2; [right]						
 			otherwise: [rows in the middle----------------------]
-				change t to 10;		
+				if upperneighbor is 4 or upperneighbor is 10 or upperneighbor is 12: [downgoing]				
+					if r is less than 7:
+						change t to 4;
+					otherwise if r is less than 9:
+						change t to 7;
+					otherwise:
+						change t to 8;
+				otherwise if upperneighbor is 3 or upperneighbor is 9 or upperneighbor is 11:[upgoing ]
+					if r is less than 7:
+						change t to 3;
+					otherwise if r is less than 9:
+						change t to 5;
+					otherwise: 
+						change t to 6;
+				otherwise if leftneighbor is 1 or leftneighbor is 11 or leftneighbor is 12:[ left going ]
+					if r is less than 7:
+						change t to 1;
+					otherwise if r is less than 9:
+						change t to 6;
+					otherwise:
+						change t to 8;
+				otherwise: [right going & other]
+					if r is less than 7:
+						change t to 2;
+					otherwise if r is less than 9:
+						change t to 9;
+					otherwise:
+						change t to 10;	
 			place tile t at coordinate L of robogrid;
 	follow the window-drawing rules for the graphics-window.
 
 	
 Report remapping:
-	say "Remapped."
+	say "You invoke the chant of the ancient mammals to magically transform the world!"
 	
 Section Skying
 
@@ -3100,5 +3129,5 @@ Rule for printing the player's obituary:
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you? Here are some fun tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not. [paragraph break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://   ).[paragraph break]* Did you read every line of the eye chart?[paragraph break]* Did you try talking to the other characters? They know a lot about Marv and his world."
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[paragraph break]* Did you read every line of the eye chart?[paragraph break]* Did you try talking to the other characters? They know a lot about Marv and his world.[paragraph break]*There are at least 13 days to end this game, most of them not as pleasant as this one.[paragraph break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://   )."
 
