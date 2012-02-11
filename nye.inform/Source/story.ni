@@ -1063,8 +1063,16 @@ To say smooth:
 To say metallic:
 	say "[smooth] and metallic". 
 
-Section Using
+Section Walkthroughing
 
+Walkthroughing is an action applying to nothing. Understand "walkthrough" as walkthroughing.
+
+Carry out walkthroughing:
+	say "Are you sure you want to see the walkthrough? It shows the fastest, but not necessarily most enjoyable way through the game. By necessity, it is filled with spoilers. If you want to explore the game, but still receive some assistance,  you might be better off using the context-specific hints by entering [quotation mark]hints[quotation mark] at the prompt.[paragraph break]So, are you sure you want to see the walkthrough?";
+	if the player consents:
+		say "[walkthroughText][paragraph break]";
+	otherwise:
+		say "Phew."
 
 Section Xyzzying
 
@@ -2842,11 +2850,12 @@ To say lockerDescription:
 	
 To say rapture:
 	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
-
 	
 To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
 	
+To say walkthroughText:
+	say "TODO: Walkthrough Text".
 
 
 Book 5 Hints
