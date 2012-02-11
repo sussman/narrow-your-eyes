@@ -430,13 +430,10 @@ Chapter Movement Rules
 
 To decide whether the destination of (xcoord - a number) and (ycoord - a number) is valid:
 	if xcoord is 0 or xcoord is 6 or ycoord is 0:
-		playback "Sound of the robot straining to avoid hitting a wall.";
 		decide no;
 	otherwise if xcoord is 1 and ycoord is 1:
-		playback "Sound of the robot straining to avoid hitting Igneous.";
 		decide no;
 	otherwise if ycoord is 5:
-		playback "Sound of the robot straining to avoid contact with the deathly energy of web of UV laser light.";
 		decide no;
 	decide yes.		
 
@@ -465,7 +462,9 @@ Carry out forwarding:
 		-- yonder: decrement starty;
 	if the destination of startx and starty is valid:
 		playback("robot movement sound");
-		finalize the coordinates of startx and starty.
+		finalize the coordinates of startx and starty;
+	otherwise:
+		playback("robot straining sound").
 	
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
@@ -479,7 +478,9 @@ Carry out backwarding:
 		-- yonder: increment starty;
 	if the destination of startx and starty is valid:
 		playback("robot movement sound");
-		finalize the coordinates of startx and starty.		
+		finalize the coordinates of startx and starty;
+	otherwise:
+		playback("robot straining sound").	
 		
 Righting is an action applying to nothing.  Understand "right" as righting.
 
@@ -609,7 +610,9 @@ To shift (way - a conveyor-direction):
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
 		playback("the conveybelt sound");
-		say "[if muted is false]...the robot is moved by the conveyor belt![end if]"
+		say "[if muted is false]...the robot is moved by the conveyor belt![end if]";
+	otherwise:
+		playback "the robot straining sound".
 			
 This is the factory movement rule:
 	say "[if muted is false]The factory floor moves…[end if]";
@@ -663,18 +666,23 @@ m-left		100		hither
 m-pass		100		hither
 
 To say choices:
-	say "Evaluating AI movement choices:[line break]";
+	if muted is false:
+		say "Evaluating AI movement choices:[line break]";
 	repeat with N running from 1 to the number of rows in the Table of Choices:
 		choose row N in the Table of Choices;
 		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";
 
 
 To decide which number is the hypothetical floor tile for (X - a number) and (Y - a number):
+	if muted is false:
+		say "Deciding the number of the floor tile.";
 	let gridrow be entry Y of the tile-array of the robogrid;
 	decide on entry X of gridrow.
 
 [TODO:  this code should be refactored with the 'righting' and 'lefting' code in Movement Rules above.]
 To decide which facing-direction is the future-direction for (rotation - a movement) and (existing-direction - a facing-direction):
+	if muted is false:
+		say "Deciding the future facing direction.";
 	if the existing-direction is:
 		-- right:
 			if rotation is:
@@ -704,6 +712,8 @@ To decide which facing-direction is the future-direction for (rotation - a movem
 
 [Calculate the {X, Y, facing-direction} of a proposed movement, and store the results in the Table of Choices]
 To calculate the future results of (choice - a movement):
+	if muted is false:
+		say "Calculating future results.";
 	let X be entry 1 of the grid-coordinate of the character of the robot;
 	let Y be entry 2 of the grid-coordinate of the character of the robot;
 	let D be the facing-direction of the robot;
@@ -797,6 +807,8 @@ To calculate the future results of (choice - a movement):
 
 [Assumes the Table of Choices has already been fleshed out by hypothetical calculations above.]
 To decide which movement is the best choice:
+	if muted is false:
+		say "Deciding which movement is the best choice.";
 	sort the Table of Choices in Goodness order;
 	let G1 be the Goodness in row 1 of the Table of Choices;
 	let G2 be the Goodness in row 2 of the Table of Choices;
@@ -817,6 +829,8 @@ To decide which movement is the best choice:
 
 [The main AI algorithm]
 To decide which number is an AI move:
+	if muted is false:
+		say "Deciding which number is an AI move.";
 	if the facing-direction of the robot is hither and entry 1 of the grid-coordinate of the character of the robot is 5:
 		decide on 7;  [screw prediction, just FIRE!  keeps things fun!]
 	otherwise:
@@ -2363,7 +2377,7 @@ Table of BeforeIKillYou
 turnNumber	rant
 2	"As your eye accomodates to the light, you take notice of the tall gentleman in a white lab coat who stands in a plexiglass control booth in the far corner of the room. It seems that he notices you as well.[paragraph break][quotation mark]Ah, my archnemesis, Mr. Jeremy Flack. I see you[apostrophe]ve had some plastic surgery. Very nice work, but perhaps a bit squinty around the eyes.[quotation mark][paragraph break][quotation mark]This isn[apostrophe]t my wedding rehearsal?[quotation mark] you ask, too stunned, worried and jet-lagged to fully absorb everything that happened since leaving Doctor Giblets[apostrophe] office.  [quotation mark]Where is the rehearsal? I[apostrophe]m going to be late.[quotation mark][paragraph break][quotation mark]Yes, Mr. Flack. Humor, always humor. Well... let’s see how funny you find it when you are vaporized by my robot warrior![quotation mark][paragraph break][quotation mark]Wait...what? Not the rehearsal?[quotation mark] you stammer."
 3		"[quotation mark]I see that you followed my cunning plan to lure you to your doom, [Jeremy][quotation mark][paragraph break][quotation mark]But, before you die, I want you to see what I have created. I think you will agree that it is sheer elegance in its simplicity.[quotation mark][paragraph break]"
-4		"[quotation mark]Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a metaquantum AI controller, and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
+4		"[quotation mark]Behold the prototype kumquat-5000 robot warrior. At this point, I would ordinarily claim it is the ultimate in cybernetic technology, but among my many positive character traits, is a certain earnest honesty, as I[apostrophe]m certain you have come to appreciate. Humility, not so much, I[apostrophe]ll admit, but honesty? Yes, in spades.[quotation mark][paragraph break][quotation mark]It is not yet the ultimate killing machine because it lacks one critical component. As you Americans might say, it is like Fried Kentucky Chicken with only ten secret spices, yes? I need only add a sufficiently AI controller (which will soon be in my possession), and the robot will become my entirely  self-sufficient but unconditionally loyal servant.[quotation mark]"
 5		"[quotation mark]For now, I will have to content myself with directly controlling the kumquat-5000, I call him Lenny, as that name seems to resonate with me. I’m not sure why. I just like the sound of it. Anyhow, as I was saying... to controlling Lenny with an ingenious invention of mine that couples a matrix-scanned keyboard with two multiplexed sine wave oscillators. By merely pressing a button within my Plexiglass®-enclosed command booth, I can control his every action...the first of which will be to kill you. Now, please do cooperate and remain still, so I can get on with the day [apostrophe]s business of tracking down the aforementioned controller unit.[quotation mark]"
 6		"[quotation mark]Sorry for this aside, but henchmen remind me that I am legally obligated to mention that Plexiglass®  is a registered trademark of Altuglas International, for its polymethylmethacrylate resin and sheet products sold in the North and Latin America, whereas it is sold under the brand name Altuglas® in Asia/Pacific, Europe, Africa and the Middle East. Fine. Now, back to killing you.[quotation mark]"
 7		"[quotation mark]I hope you appreciate the irony. Your country will be the unwitting accomplice to my rise to power. You see, Lenny is not the only one of these robots. No, there are thousands of them (or, rather, there will be, when I have finished putting all the parts together). And where did they come from? I will tell you, as you are a most patient listener, even in these trying circumstances that will lead to your death.[quotation mark]"
@@ -3092,6 +3106,8 @@ When Cunning Plan begins:
 	
 Every turn during Cunning Plan:
 	if the turnCounter is greater than 1:
+		if muted is false:
+			say "ROBOATTACK!";
 		do RobotAttack;
 	otherwise:
 		follow the factory movement rule;
