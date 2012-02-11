@@ -2071,13 +2071,11 @@ The cover is a lid which is part of the metal parts locker. The description of t
 Rule for printing room description details of the metal parts locker:
 	omit contents in listing.
 
-The ultraviolet web is fixed in place thing. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of your perception[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
+The ultraviolet web is fixed in place thing. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of the visible spectrum[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
 
 Instead of touching, taking, eating, or kissing the ultraviolet web:
 	change the endgame to webbed;
 	end the game in death.
-
-
 
 Chapter CornerNW
 
@@ -2258,7 +2256,7 @@ At the time when phone gets yakked:
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. . The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. 
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized. The printed name of Professor Igneous is "[if Professor Igneous is recognized]Professor Igneous[otherwise]the man in a white lab coat[end if]".
 
 Chapter Giblets
 
@@ -3100,6 +3098,9 @@ Every turn during Exterior:
 Chapter Cunning Plan
 
 Cunning Plan is a scene. Cunning Plan begins when the player is in the Factory. Cunning Plan ends when Professor Igneous is dead.
+
+Before printing a locale paragraph about Professor Igneous:
+	now Professor Igneous is mentioned.
 
 When Cunning Plan begins:
 	change the turnCounter to 0;
