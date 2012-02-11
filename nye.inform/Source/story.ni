@@ -418,7 +418,7 @@ To say pronoun-accusative:
 Section Regular Verb Agreement
 
 To say (regular verb - some text) in correct agreement:
-	say "[regular verb][if the last mentioned thing is not plural-named]s".
+	say "[regular verb][if the last mentioned thing is not plural-named and the last mentioned thing is not the player]s".
 	
 Section String Concatenation
 
@@ -951,13 +951,50 @@ Section Smelling
 Instead of smelling:
 	if the location is:
 		-- Ophthalmology Office:
-			say "Like most medical offices, a slight twinge of disinfectant hang in the air."
+			say "Like most medical offices, a slight twinge of disinfectant hangs in the air.";
+		-- Wisconsin Avenue:
+			say "You smel [one of]a whiff of fine perfume, which marks the trail of a recent passerby[or]the exhaust of a city bus[or]the aroma of cooking burgers from the restaurant at the corner. Yum[in random order].";
+		-- CornerNW:
+			say "[One of]Taking a lung of air[or]Sniffing the air here[or]Breathing in[or]Smelling your surroundings[at random], you [one of]detect[or]recognize[or]perceive[or]distinguish[or]pick out[at random] the [one of]scent[or]odor[or]distinctive smell[at random] of [one of]the diesel exhaust of a late eighties model Volkswagen[or]a sugar-substitute commonly used in the production of low-calorie Boston Kreme donuts[or]the same heavy machine oil used to lubricate the track of the rotating roofs at Mauna Kea Observatory[or]very dilute hydralazine, a reactive chemical used in combination with certain oxidizers as propellant in some satellites[or]cherry cough syrup. No, wait a minute. You sniff again, more carefully. It is a slighty stale kriek, a cherry-flavored beer. Yes, although it must have been spilled on the sidewalk a few days ago, enough of its putrid aroma lingers for you to identify it as Lindeman[apostrophe]s Kriek, a beer with 5.5% alcohol content manufactured within the last year, and imported from Belgium. You are quite proud of yourself[at random].";
+		-- Poletop:
+			say "You smell [one of]nothing but the pure, clean air of the stratosphere[or]Congress. You must be downwind of The Capitol. Like any kind of congress, it is musky and dank[or]the winds of change[or]the street below[or]your own fear of heights[at random].";
+		-- Factory:
+			say "The factory reeks of [one of]mildew[or]machine oil[or]ozone[or]hydraulic fluid and solder smoke. Actually, you rather enjoy the piney smell of melted solder, and it relaxes you[or]over-roasted, bitter coffee[at random].";
+			
 	
-Instead of smelling something (called the scent):
-	say "[The scent] smells ";
-	if the scent is:
+Instead of smelling something (called the odor emitter):
+	let the regverb be "smell";
+	say "You sniff [the odor emitter]; ";
+	if the odor emitter is:
+		-- Amelia:
+			say "it";
+		-- Marv Spindle:
+			say "you";
+		-- otherwise:
+			say "[it-they]";
+	say " [the regverb in correct agreement] ";
+	if the odor emitter is:
+		-- Marv Spindle:
+			say "like [one of]you spent 18 hours finishing paperwork at the observatory, the next ten hours flying to the East Coast, and a couple hours worrying over wedding plans with Amy and your in-laws, with no time for sleep or showers thrown into the mix. In short, not great[or]less wonderful than you would on a typical day[stopping]";
 		-- refractor:
 			say "almost imperceptively of machine oil";
+		-- Trevor:
+			say "like cheap cologne";
+		-- Doctor Giblets:
+			say "of hand cleanser";
+		-- Amelia:
+			if amelia is not digested:
+				say "like a new phone (like a new car, but smaller)";
+			otherwise:
+				say "a bit like your breakfast";
+		-- bike:
+			say  "like cherry coke. You have no idea why";
+		-- hotel entrance:
+			say "like bubblegum";
+		-- supercapacitor power module:
+			say "like bakelite and gunpowder";
+		-- metal parts locker:
+			say "like an industrial dumpster that has been home to a family of feral cats for several years";
 		-- otherwise:
 			say "as you would expect";
 	say "."
