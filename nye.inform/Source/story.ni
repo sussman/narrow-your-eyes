@@ -760,46 +760,46 @@ To calculate the future results of (choice - a movement):
 				-- yonder:
 					now D is left;
 	[simulate the floor moving immediately afterward:]
-	let T be the hypothetical floor tile for X and Y;
-	if T is:
-		-- 1: [left]
-			if X is not 1, decrement X;  [moving floor won't send us through walls!]
-		-- 2: [right]
-			if X is not 5, increment X;
-		-- 3: [up]
-			if Y is not 1, decrement Y;
-		-- 4: [down]
-			if Y is not 5, increment Y;
-		-- 5: [up right]
-			now D is the future-direction for m-right and D;
-			if X is not 5, increment X;
-		-- 6: [up left]
-			now D is the future-direction for m-left and D;
-			if X is not 1, decrement X;
-		-- 7: [down right]
-			now D is the future-direction for m-left and D;
-			if X is not 5, increment X;
-		-- 8: [down left]
-			now D is the future-direction for m-right and D;
-			if X is not 1, decrement X;
-		-- 9: [right up]
-			now D is the future-direction for m-left and D;
-			if Y is not 1, decrement Y;
-		-- 10: [right down]
-			now D is the future-direction for m-right and D;
-			if Y is not 5, increment Y;
-		-- 11: [left up]
-			now D is the future-direction for m-right and D;
-			if Y is not 1, decrement Y;
-		-- 12: [left down]
-			now D is the future-direction for m-left and D;
-			if Y is not 5, increment Y;
-		-- 13: [blank -- for purposes of generalizability]
-			do nothing;
-	[store the final hypothetical facing-direction in our Table]
-	now the facing-direction corresponding to a Movement of choice in the Table of Choices is D;
-	[convert the final x,y position into a 'Goodness" value which is the distance to Marv's column]
-	if the destination of X and Y is valid and Y is not 5:
+	if the destination of X and Y is valid:[This checks for out of bounds and UV laser crossing]
+		let T be the hypothetical floor tile for X and Y;
+		if T is:
+			-- 1: [left]
+				if X is not 1, decrement X;  [moving floor won't send us through walls!]
+			-- 2: [right]
+				if X is not 5, increment X;
+			-- 3: [up]
+				if Y is not 1, decrement Y;
+			-- 4: [down]
+				if Y is not 5, increment Y;
+			-- 5: [up right]
+				now D is the future-direction for m-right and D;
+				if X is not 5, increment X;
+			-- 6: [up left]
+				now D is the future-direction for m-left and D;
+				if X is not 1, decrement X;
+			-- 7: [down right]
+				now D is the future-direction for m-left and D;
+				if X is not 5, increment X;
+			-- 8: [down left]
+				now D is the future-direction for m-right and D;
+				if X is not 1, decrement X;
+			-- 9: [right up]
+				now D is the future-direction for m-left and D;
+				if Y is not 1, decrement Y;
+			-- 10: [right down]
+				now D is the future-direction for m-right and D;
+				if Y is not 5, increment Y;
+			-- 11: [left up]
+				now D is the future-direction for m-right and D;
+				if Y is not 1, decrement Y;
+			-- 12: [left down]
+				now D is the future-direction for m-left and D;
+				if Y is not 5, increment Y;
+			-- 13: [blank -- for purposes of generalizability]
+				do nothing;
+		[store the final hypothetical facing-direction in our Table]
+		now the facing-direction corresponding to a Movement of choice in the Table of Choices is D;
+		[convert the final x,y position into a 'Goodness" value which is the distance to Marv's column]
 		let PX be entry 1 of the grid-coordinate of the Marv-sprite;
 		now the Goodness corresponding to a Movement of choice in the Table of Choices is the absolute value of (X - PX); 
 	otherwise:   [FAIL:  either x,y is out of bounds or the move would make us cross the UV laser]
