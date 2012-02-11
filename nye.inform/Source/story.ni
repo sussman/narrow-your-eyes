@@ -186,7 +186,7 @@ Some character-sprites are defined by the Table of Characters.
 
 Table of Characters
 character-sprite	image-ID	grid-coordinate
-Robot-sprite	Figure of RobotHither	{ 2, 1 }
+Robot-sprite	Figure of RobotHither	{ 2 ,2 }
 Marv-sprite	Figure of Marv	{ 5, 5 }
 Igneous-sprite	Figure of Igneous	{ 1, 1 }
 
@@ -817,13 +817,13 @@ To decide which movement is the best choice:
 
 [The main AI algorithm]
 To decide which number is an AI move:
-	if the facing-direction of the robot is hither:
+	if the facing-direction of the robot is hither and entry 1 of the grid-coordinate of the character of the robot is 5:
 		decide on 7;  [screw prediction, just FIRE!  keeps things fun!]
 	otherwise:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
-		say choices;
-		say "WOKKA WOKKA!";
+		if muted is false:
+			say choices;
 		let M be the best choice;
 		if M is:
 			-- m-forward:
@@ -849,18 +849,15 @@ To decide which number is an AI move:
 9. sound effects
 0. Spin 360 (effectively NOP)]	
 
-[this is a temporary substitute to simulate professor igneous's moves until the AI routines are writen - movement is randomish]
+
 To do RobotAttack:
-	if autopilot is true:
-		say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+	say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+	repeat with i running from 1 to 2:
+		change lastDialed to "";
 		let N be an AI move;
 		change lastDialed to "[N]";
 		playTouchToneString;
-		do RobotControl;
-		say "[if muted is false]The professors move: [lastDialed].[end if]";
-	otherwise:
-		follow the factory movement rule. [because factory movement occurs after robot movements; if there is no AI robot movement, and the player didn't move the robot, this assures that at last one cranking of the factory floor occurs.]
-		
+		do RobotControl.
 
 Chapter Verbs
 
@@ -1829,6 +1826,7 @@ Every turn:
 			say generalPowerDown;
 			change the endgame to drainedPathetic;
 		end the game in death;
+		stop;
 	if the time of day is after 1 pm:
 		if Cunning Plan is happening:
 			say "[tardyCunning]";
@@ -3093,7 +3091,7 @@ When Cunning Plan begins:
 	open up the graphics-window.
 	
 Every turn during Cunning Plan:
-	if the turnCounter is greater than 2:
+	if the turnCounter is greater than 1:
 		do RobotAttack;
 	otherwise:
 		follow the factory movement rule;
@@ -3109,6 +3107,7 @@ Before going a direction (called the way) during cunning plan:
 		say "Putting aside for a moment your deep understanding of high energy physics and everything you have learned since kindergarten about cause and effect, you step forward into the sizzling ultraviolet laser beam, which cuts through you so effortlessly that your head tumbles forward, sliced clear from the shoulders, and your last sight is various parts of your body falling in graceful arcs towards the floor.";
 		now the endgame is webbed;
 		end the game in death;
+		stop;
 	if the way is west or the way is northwest or the way is southwest:
 		say "You step on the conveyor belt to the west of the parts lockers and are whisked tout de suite into the web of ultraviolet laser beams. The conveyor belt continues to feed in any bits of you that fall backwards on it, until you are reduced to vapor. This is not how you were hoping the day would end.";
 		now the endgame is webbed;
@@ -3219,17 +3218,20 @@ To do shoot locker:
 				otherwise:
 					say "[MarvShotInsideLocker].";
 					change the endgame to parboiled;
-					end the game in death.
+					end the game in death;
+					stop.
 				
 To do shoot Igneous:
 	say "[IgneousDeath]";
 	change the endgame to won;
-	end the game in victory..
+	end the game in victory;
+	stop.
 	
 To do shoot Marv:
 	say "[MarvShotOutsideLocker]";
 	change the endgame to lasered;
-	end the game in death.
+	end the game in death;
+	stop.
 	
 
 Chapter Postmortem
