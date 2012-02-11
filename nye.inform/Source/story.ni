@@ -3091,8 +3091,10 @@ Every turn during Exterior:
 			move the player to CornerNW;
 		otherwise:
 			say "Turquoise lines criss-cross the surface of your mangoFONE, which announces, [quotation mark]You have reached your destination, deactivating navigation.[quotation mark][paragraph break]";
-			change gpsBars to zero.
-			
+			change gpsBars to zero;
+	if the location is poletop:
+		if a random chance of one in five succeeds:
+			say "[one of]A mean-looking vulture flies by. If you are not mistaken, it is a hook-beaked plains vulture, which is quite uncommon in the Mid-Atlantic region. He is carrying a half-rotten haunch of meat.[no line break][or]A lobster falls from the sky. Where the heck could that have come from?[no line break][or]A gleaming metal airship passes by, not far overhead. It must be the size of a football field! You slip down a bit on the pole but regain your hold. As the ship recedes into the distance at an incredible rate, you notice the name on its bow, the [italic type]Valkyrie[roman type].[no line break][or]The fog lifts momentarily over the Potomac River. By some miracle, in just that instant, your vision clears. On a far hilltop, you catch sight of some sort of sessile polyp, its gelatinous fronds waving in the wind.[no line break][or]The wind whips by.[run paragraph on][stopping][paragraph break]".
 
 
 Chapter Cunning Plan
