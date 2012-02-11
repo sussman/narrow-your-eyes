@@ -55,7 +55,6 @@ Chapter Declare Global Variables
 The last mentioned thing is a thing that varies.
 
 
-
 MAXBARS is a number that varies. MAXBARS is five.
 geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
 geeBars is usually zero.
@@ -890,13 +889,18 @@ Section Listening
 [Listen is implemented through insteads. Override this general instead rule with more specific ones as needed]
 
 Instead of listening:
-	pick a phrase from the Table of Ambient Noise;
-	say ".";
-	
-Table of Ambient Noise
-times-used		verbage
-0		"You hear yourself breathing"
-1		"You hear nothing special"
+	say "You hear ";
+	if the location is:
+		-- Ophthalmology Office:
+			say "[one of]Trevor and Doctor Giblets performing their eye exam on you[or]your own breathing[or]a slight buzzing from the refractor[or]shoppers and tourists walking along Wisconsin Avenue just outside the office[or]traffic on the street outside the office[in random order].";
+		-- Wisconsin Avenue:
+			say "[one of]the Sunday morning traffic along Wisconsin Avenue[or]a bus rumbling down the street[or]a rowdy bunch of college kids down the block[or]a flock of tourists being released into the wild[or]someone having a loud conversation on a cell phone[in random order].";
+		-- CornerNW:
+			say "[one of]heavy traffic on a nearby highway[or]the beeping horn of a taxi[or]a truck backing up[or]distant police sirens[in random order].";
+		-- Poletop:
+			say "[one of]the whistle of the wind[or]your own heart thumping[or]your own heavy breathing[or]the blood-curdling call of the turkey vultures that periodically circle near you[or]traffic on the street below[or]sounds from a construction crew[in random order].";
+		-- Factory:
+			say "[one of]relays clicking on and off[or]the crackle of electrical energy[or]the creaking of conveyor belts[or]the whir of servos[or]the sound of capacitor banks charging[or]metallic clanking[or]the rumble of industrial motors[in random order]."
 
 
 Section Looking Under
@@ -943,8 +947,20 @@ Before showing something (called the item) to the player:
 	the rule fails.
 
 Section Smelling
+
+Instead of smelling:
+	if the location is:
+		-- Ophthalmology Office:
+			say "Like most medical offices, a slight twinge of disinfectant hang in the air."
 	
-[Like listening, smelling is performed through instead rules. The generic smell rule tracks bad smells, which decay over time.]
+Instead of smelling something (called the scent):
+	say "[The scent] smells ";
+	if the scent is:
+		-- refractor:
+			say "almost imperceptively of machine oil";
+		-- otherwise:
+			say "as you would expect";
+	say "."
 
 Section Talking
 
@@ -1784,24 +1800,6 @@ Every turn:
 			say "[tardyPathetic]";
 			change the endgame to tardyPathetic;
 		end the game in death.
-		
-		
-Section Phrase Picker
-[To select a canned phrase from a table, choosing randomly amongst the less frequently said phrases. Tables need at least two entries.]
-
-To pick a phrase from (source - a table-name):
-	let R be a number;
-	sort the source in times-used order;
-	repeat with N running from 2 to the number of rows in the source:
-		change R to N;
-		if times-used in row N of the source is greater than times-used in row 1 of the source, break;
-	if R is not the number of rows in the source:
-		decrease R by one;
-	let T be a random number between 1 and R;
-	choose row T in the source;
-	increase the times-used entry by one;
-	say "[verbage entry]".
-
 
 Book 2 Places
 
@@ -1861,7 +1859,7 @@ Instead of doing something with the fifth line:
 
 Instead of reading or examining the eye chart, try searching the refractor.
 
-The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused.
+The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused. The texture of the refractor is "cold and metallic".
 
 Instead of pulling or pushing the refractor, say "It is heavier than it looks. Maybe Trevor clamped it into position so it would stay in proper alignment."
 
@@ -1886,7 +1884,7 @@ Chapter Wisconsin Avenue
 
 Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "[one of]It is a bright, unpleasantly sunny day. So sunny, in fact, that everything more than a few feet away is a complete blur. You narrow your eyes and recognize the outside of Doctor Giblet’s office[or]Somewhere on Wisconsin Avenue, just above Reservoir Road[stopping]."
 
-The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.   Understand "red" or "bicycle" as the bike.
+The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.   Understand "red" or "bicycle" as the bike. The texture of the bike is "metallic".
 
 Instead of climbing the bike:
 	try entering the bike.
@@ -1923,7 +1921,7 @@ The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" 
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed.
+The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
 
 The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
@@ -2095,6 +2093,12 @@ Instead of going a direction (called the way) when the location is poletop:
 		-- otherwise:
 			say "Tired of clinging to the dreary pole, you strike out [way]ward. For a moment, you think this is a brilliant idea. [onTheWayDown]";
 			plummet.
+			
+Every turn during Exterior:
+	if the location is the poletop:
+		change the geeBars to 1;
+	otherwise:
+		change the geeBars to 0.
 
 Chapter Limbo
 
@@ -2102,16 +2106,16 @@ Chapter Limbo
 
 Limbo is a room.
 
-The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." 
+The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The texture of the supercapacitor power module is "smooth, but slightly tacky".
 
 Instead of touching, tasting, eating or kissing the connector:
 	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash.";
 	change the endgame to electrocuted;
 	end the game in death.
 
-The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. 
+The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The texture of the interface port is "recessed".
 
-The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser." 
+The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser." The texture of the blast hole is "sharp around the edges".
 
 Instead of inserting something (called the insertee) into the blast hole:
 	say "While powerful, the laser beam that made this hole was tightly focused, and the hole[apostrophe]s diameter is too small to accommodate [the insertee]." Understand "holes" as the blast hole.
@@ -2147,7 +2151,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested.
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
