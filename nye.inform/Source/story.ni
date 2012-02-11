@@ -322,9 +322,9 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared and won.
+Conclusion is a kind of value. The conclusions are nil, hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared and won.
 
-Endgame is a conclusion that varies. The endgame is usually won.
+Endgame is a conclusion that varies. The endgame is usually nil.
 
 A latch is a kind of thing. A latch can be openable. A latch can be open. A latch can be lockable. A latch can be locked. A latch is usually openable, lockable, closed and locked.
 
@@ -3105,15 +3105,16 @@ When Cunning Plan begins:
 	open up the graphics-window.
 	
 Every turn during Cunning Plan:
-	if the turnCounter is greater than 1:
-		if muted is false:
-			say "ROBOATTACK!";
-		do RobotAttack;
-	otherwise:
-		follow the factory movement rule;
-	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou:
+	if the endgame is nil:
+		if the turnCounter is greater than 1:
+			if muted is false:
+				say "ROBOATTACK!";
+			do RobotAttack;
+		otherwise:
+			follow the factory movement rule;	
+	if there is a turnNumber of turnCounter in the Table of BeforeIKillYou and the endgame is nil:
 		say "[the rant corresponding to the turnNumber of turnCounter in the Table of BeforeIKillYou][paragraph break]";
-	if the turnCounter is 36:
+	if the turnCounter is 36 and the endgame is nil:
 		say "[boomStick]";
 		change the endgame to spiteful;
 		end the game in death.
@@ -3219,23 +3220,21 @@ To do shoot locker:
 			say "The robot discharges its laser into the metal locker. Where the beam strikes, the metal grows molten hot, and the beam penetrates. You are dazzled by the brilliance of the green laser light.";
 		now the blast hole is part of the metal parts locker;
 	otherwise:
-		let outcome be a random number between one and three;
+		let outcome be a random number between one and five;
 		if outcome is:
 			-- 1: 
-				if the metal parts locker encloses Marv:
-					say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]jmere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
-				otherwise:
-					say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
+				say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]jmere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
 			-- 2:
+				say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
+			-- 3:
 				say "The laser beam strikes the metal parts locker but [one of]is deflected[or]scatters ineffectively[or]reflects towards the ceiling[or]fails to burn through[or]does not dwell in one location long enough to cut through the thick metal[or]only scores the thick metal[or]merely heats the metal to incandescence[at random].";
-			-- 3: 
-				If the metal parts locker does not enclose Marv:
-					say "The [one of]deadly[or]lethal[or]powerful[or]brilliant[or]blinding[or]intense[at random] beam [one of]barely misses[or]goes just broad of[or]passes inches from[or]strikes the wall to the side of[at random] the metal parts locker.";
-				otherwise:
-					say "[MarvShotInsideLocker].";
-					change the endgame to parboiled;
-					end the game in death;
-					stop.
+			-- 4: 
+				say "The [one of]deadly[or]lethal[or]powerful[or]brilliant[or]blinding[or]intense[at random] beam [one of]barely misses[or]goes just broad of[or]passes inches from[or]strikes the wall to the side of[at random] the metal parts locker.";
+			-- 5:
+				say "[MarvShotInsideLocker].";
+				change the endgame to parboiled;
+				end the game in death;
+				stop.
 				
 To do shoot Igneous:
 	say "[IgneousDeath]";
