@@ -429,7 +429,6 @@ To decide what indexed text is the concatenation of (X - indexed text) and
 
 Chapter Movement Rules  
 
-
 To decide whether the destination of (xcoord - a number) and (ycoord - a number) is valid:
 	if xcoord is 0 or xcoord is 6 or ycoord is 0:
 		playback "Sound of the robot straining to avoid hitting a wall.";
@@ -657,12 +656,12 @@ Chapter AI Logic for Igneous
 A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.  
 
 Table of Choices
-Movement	Goodness	facing-direction
-m-forward	100	hither
-m-back	100	hither
-m-right	100	hither
-m-left	100	hither
-m-pass	100	hither
+Movement		Goodness		facing-direction
+m-forward		100		hither
+m-back		100		hither
+m-right		100		hither
+m-left		100		hither
+m-pass		100		hither
 
 To say choices:
 	say "Evaluating AI movement choices:[line break]";
@@ -671,12 +670,46 @@ To say choices:
 		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";
 
 
+To decide which number is the hypothetical floor tile for (X - a number) and (Y - a number):
+	let gridrow be entry Y of the tile-array of the robogrid;
+	decide on entry X of gridrow.
+
+[TODO:  this code should be refactored with the 'righting' and 'lefting' code in Movement Rules above.]
+To decide which facing-direction is the future-direction for (rotation - a movement) and (existing-direction - a facing-direction):
+	if the existing-direction is:
+		-- right:
+			if rotation is:
+				-- m-right:
+					decide on hither;
+				-- m-left:
+					decide on yonder;
+		-- left:
+			if rotation is:
+				-- m-right:
+					decide on yonder;
+				-- m-left:
+					decide on hither;
+		-- hither:
+			if rotation is:
+				-- m-right:
+					decide on left;
+				-- m-left:
+					decide on right;
+		-- yonder:
+			if rotation is:
+				-- m-right:
+					decide on right;
+				-- m-left:
+					decide on left;
+
+
 [Calculate the {X, Y, facing-direction} of a proposed movement, and store the results in the Table of Choices]
 To calculate the future results of (choice - a movement):
 	let X be entry 1 of the grid-coordinate of the character of the robot;
 	let Y be entry 2 of the grid-coordinate of the character of the robot;
 	let D be the facing-direction of the robot;
-	if the choice is:  [TODO:  immediately follow this with floor movement, THEN check bounds and such afterwards]
+	[simulate the robot moving by telecommand:]
+	if the choice is:
 		-- m-forward:
 			if D is:
 				-- right:
@@ -717,13 +750,51 @@ To calculate the future results of (choice - a movement):
 					now D is right;
 				-- yonder:
 					now D is left;
+	[simulate the floor moving immediately afterward:]
+	let T be the hypothetical floor tile for X and Y;
+	if T is:
+		-- 1: [left]
+			if X is not 1, decrement X;  [moving floor won't send us through walls!]
+		-- 2: [right]
+			if X is not 5, increment X;
+		-- 3: [up]
+			if Y is not 1, decrement Y;
+		-- 4: [down]
+			if Y is not 5, increment Y;
+		-- 5: [up right]
+			now D is the future-direction for m-right and D;
+			if X is not 5, increment X;
+		-- 6: [up left]
+			now D is the future-direction for m-left and D;
+			if X is not 1, decrement X;
+		-- 7: [down right]
+			now D is the future-direction for m-left and D;
+			if X is not 5, increment X;
+		-- 8: [down left]
+			now D is the future-direction for m-right and D;
+			if X is not 1, decrement X;
+		-- 9: [right up]
+			now D is the future-direction for m-left and D;
+			if Y is not 1, decrement Y;
+		-- 10: [right down]
+			now D is the future-direction for m-right and D;
+			if Y is not 5, increment Y;
+		-- 11: [left up]
+			now D is the future-direction for m-right and D;
+			if Y is not 1, decrement Y;
+		-- 12: [left down]
+			now D is the future-direction for m-left and D;
+			if Y is not 5, increment Y;
+		-- 13: [blank -- for purposes of generalizability]
+			do nothing;
+	[store the final hypothetical facing-direction in our Table]
 	now the facing-direction corresponding to a Movement of choice in the Table of Choices is D;
+	[convert the final x,y position into a 'Goodness" value which is the distance to Marv's column]
 	if the destination of X and Y is valid and Y is not 5:
 		let PX be entry 1 of the grid-coordinate of the Marv-sprite;
-		now the Goodness corresponding to a Movement of choice in the Table of Choices is the absolute value of (X - PX);  [the distance to Marv's column]
-	otherwise:
-		now the Goodness corresponding to a Movement of choice in the Table of Choices is 1000.  [FAIL:  either x,y is out of bounds, or the move would make us cross the UV laser]
-			
+		now the Goodness corresponding to a Movement of choice in the Table of Choices is the absolute value of (X - PX); 
+	otherwise:   [FAIL:  either x,y is out of bounds or the move would make us cross the UV laser]
+		now the Goodness corresponding to a Movement of choice in the Table of Choices is 1000.			
 
 [Assumes the Table of Choices has already been fleshed out by hypothetical calculations above.]
 To decide which movement is the best choice:
@@ -746,42 +817,45 @@ To decide which movement is the best choice:
 
 
 [The main AI algorithm]
-To make an AI move:
+To decide which number is an AI move:
 	if the facing-direction of the robot is hither:
-		try firing; [keeps things fun!]
+		decide on 7;  [screw prediction, just FIRE!  keeps things fun!]
 	otherwise:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
 		say choices;
+		say "WOKKA WOKKA!";
 		let M be the best choice;
 		if M is:
-			-- m-forward:  
-				say "AI FORWARD MOVE[line break]";
+			-- m-forward:
+				decide on 5;
 			-- m-back:  
-				say "AI BACK MOVE[line break]";
+				decide on 2;
 			-- m-left:  
-				say "AI LEFT MOVE[line break]";
+				decide on 1;
 			-- m-right:  
-				say "AI RIGHT MOVE[line break]";
+				decide on 4;
 			-- m-pass:  
-				say "AI PASSES[paragraph break]";
-		say "AI Complete."
+				decide on 0.
 	
-	
+[
+1. CCW
+2. Back 1
+3. Spin 180
+4. CW
+5. Forward 1
+6. Foward 3
+7. Fire Lazzzzzer!
+8. scanning beam
+9. sound effects
+0. Spin 360 (effectively NOP)]	
 
 [this is a temporary substitute to simulate professor igneous's moves until the AI routines are writen - movement is randomish]
-To do RobotAttack: 
-	make an AI move;
+To do RobotAttack:
 	if autopilot is true:
 		say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
-		change lastDialed to "";
-		repeat with i running from 1 to 2:
-			let r be a random number between 1 and 4;
-			if r is:
-				-- 1: change lastDialed to the concatenation of lastDialed and "4";
-				-- 2:  change lastDialed to the concatenation of lastDialed and "5";
-				-- 3:  change lastDialed to the concatenation of lastDialed and "1";
-				-- 4:  change lastDialed to the concatenation of lastDialed and "2";
+		let N be an AI move;
+		change lastDialed to "[N]";
 		playTouchToneString;
 		do RobotControl;
 		say "[if muted is false]The professors move: [lastDialed].[end if]";
