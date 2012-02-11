@@ -323,7 +323,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, and won.
+Conclusion is a kind of value. The conclusions are hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared and won.
 
 Endgame is a conclusion that varies. The endgame is usually won.
 
@@ -2073,7 +2073,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged.  
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested.
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
@@ -2101,9 +2101,6 @@ Instead of giving Amelia to someone:
 Instead of throwing, dropping, or attacking Amelia:
 	say "[hyperbole]";
 	
-Instead of eating Amelia:
-	say "It[apostrophe]s not that kind of mango."
-	
 Instead of pushing the button:
 	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark][voiceCommandPrompt][quotation mark][one of][paragraph break][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][or][stopping][paragraph break]".
 	
@@ -2114,6 +2111,21 @@ Instead of showing something to Amelia, say "[lackOfPhoneReply]".
 Instead of asking Amy about something, say "[noAmy]."
 Instead of telling Amy about something, say "[noAmy]."
 Instead of showing something to Amy, say "[noAmy]."
+
+After eating Amelia:
+	if amelia is not digested:
+		say "You swallow the phone. The glassy oblong shape goes down without any effort whatsoever.[paragraph break]A moment later, you wonder if that was such a great idea.";
+		now amelia is digested;
+		the phone gets yakked in three turns from now;
+	otherwise:
+		say "[deathByBezoar]";
+		change the endgame to bezoared;
+		end the game in death.
+	
+At the time when phone gets yakked:
+	say "After a momentary sense of vibration from deep within your bowels, you gasp and your mangoFONE comes flying out of your mouth. You catch it reflexively. The phone is spotless, not a fingerprint on its glassy surface.";
+	move amelia to the player.
+	
 
 
 
@@ -2436,6 +2448,12 @@ To say jumpedText:
 	
 To say electrocutedText:
 	say "Shocked by a Proprietary Connector."
+	
+To say deathByBezoar:
+	say "The hydrophobic nanoparticle coating of the mangoFONE holds out as long as it can, but finally gives way to the caustic onslaught of stomach acid. The subsequent combination of acid, electricity, and whatever you had for breakfast this morning proves disastrous to you and the city block around your location, henceforth to be known as Mango Crater."
+	
+To say bezoaredText:
+	say "A victim of persistence."
 	
 To say noAmy:
 	say "You don't see your fiancée here"
@@ -3135,6 +3153,8 @@ Rule for printing the player's obituary:
 			say "[jumpedText]";
 		-- electrocuted:
 			say "[electrocutedText]";
+		-- bezoared:
+			say "[bezoaredText]";
 		-- spiteful:
 			say "[spitefulText]".
 		
