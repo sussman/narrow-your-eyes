@@ -1869,6 +1869,9 @@ Before printing a locale paragraph about something fuzzy (called the item) when 
 
 The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart. The eye chart can be read. The eye chart is not read.
 
+Does the player mean examining or reading the first line:
+	it is very likely.
+
 Instead of reading or examining the first line:
 	say "[one of]You have no trouble reading the large letters of the first line: [quotation mark]hv[quotation mark]. Oh wait, that's a greek nu. Ah, some optics humor[or]It says [quotation mark]h nu[quotation mark]. You wonder how many of Doctor Giblets patients are famliar with the Planck constant[or]There[apostrophe]s no challenge in reading such large letters[stopping]."
 	
@@ -2198,7 +2201,7 @@ Instead of examining Marv Spindle:
 		continue the action;
 	if Exterior is happening:
 		if the location is Wisconsin Avenue:
-			say "You are, of course, Marv Spindle. A man who is in danger of being late to his own wedding rehearsal. In terms of physical description, your eyes were just dilated by an ophthalmologist, so you can[apostrophe]t see much detail beyond the observation that you appear to have limbs.";
+			say "You are, of course, Marv Spindle. A man who is in danger of being late to his own wedding rehearsal. As for a physical description, your eyes were just dilated by an ophthalmologist, as far as you can tell, you are a nebulous blob.";
 		otherwise:
 			say "Your vision is still blurry, but you recognize that you are not at your best. After the incident with the bus, your clothes are torn and bloodstained,  and you are covered in dirt and grime from the road. Also, since you didn't have time to apply conditioner this morning, your hair is also probably a mess.";
 	otherwise:
