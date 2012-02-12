@@ -196,7 +196,7 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 
 Section Sounds
 
-[Sound of the dtmf-zero is the file "0.ogg".
+Sound of the dtmf-zero is the file "0.ogg".
 Sound of the dtmf-one is the file "1.ogg".
 Sound of the dtmf-two is the file "2.ogg".
 Sound of the dtmf-three  is the file "3.ogg".
@@ -206,17 +206,25 @@ Sound of the dtmf-six  is the file "6.ogg".
 Sound of the dtmf-seven  is the file "7.ogg".
 Sound of the dtmf-eight  is the file "8.ogg".
 Sound of the dtmf-nine  is the file "9.ogg".
-Sound of the okay is the file "okay(103586).ogg".
+
+[Sound of the trunk  is the file "trunk.ogg".
+Sound of the asterisk  is the file "asterisk.ogg".]
+
+Sound of the backpedal is the file "backpedal(21200).ogg".
+Sound of the beeps is the file "beeps1(44613).ogg".
+Sound of the conveyor is the file "conveyor(58496).ogg".
 Sound of the error is the file "error(36896).ogg".
+Sound of the laser is the file "laser(103239&52598).ogg".
+Sound of the laserpreroll is the file "laserpreroll(103239).ogg".
+Sound of the moo is the file "moo(58277).ogg".
 Sound of the message is the file "message(80921).ogg".
-Sound of the update is the file "update(51645).ogg".
-Sound of the beeps  is the file "beeps1(44613).ogg".
-Sound of the conveyor  is the file "conveyor(523440).ogg".
-Sound of the laser  is the file "laser(103239&52598).ogg".
+Sound of the okay is the file "okay(103586).ogg".
 Sound of the random  is the file "random(3647).ogg".
+Sound of the rotate is the file "rotate(10324).ogg".
+Sound of the shock is the file "shock(62925).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
-Sound of the trunk  is the file "trunk.ogg".
-Sound of the asterisk  is the file "asterisk.ogg".
+Sound of the translate is the file "translate(523440).ogg".
+Sound of the update is the file "update(51645).ogg".
 
 Table of Sounds
 Sound		Duration  [millisencond]
@@ -230,15 +238,21 @@ The sound of the dtmf-six		100
 The sound of the dtmf-seven		100
 The sound of the dtmf-eight		100
 The sound of the dtmf-nine		100
-The sound of the okay		500
-The sound of the error		1100
-The sound of the message		2000
-The sound of the update		5500
+The sound of the backpedal		480
 The sound of the beeps		800
-The sound of the conveyor		1400
-The sound of the laser		1900
+The sound of the conveyor		1540
+The sound of the error		1100
+The sound of the laser		1015
+The sound of the laserpreroll		250
+The sound of the moo		2655
+The sound of the message		2000
+The sound of the okay		500
 The sound of the random		750
-The sound of the swivel		1250]	
+The sound of the rotate		1000
+The sound of the shock		1700
+The sound of the swivel		1250
+The sound of the translate		950	
+The sound of the update		5500
 
 [Sounds given one after the other will not form a queue and play sequentially. For this reason, it is necessary to play one, wait the duration of that sound, and give the command to play another. The other issue is that while a sound is playing, if timing does not lock out input, new commands could be typed in. These new commands could be at odds with the sounds that are playing, and cause confusion, or they could kick off new sounds, which would be suppressed by the currently playing sound.
 
@@ -247,7 +261,7 @@ So, when you want to play a sound, but aren't worried about accepting more playe
 ]
 
 
-[soundcomment: this is the fake playback routine for modal sounds - when restoring sound, remember to remove the quotation marks in all of the playback calls]
+[soundcomment: this is the fake playback routine for modal sounds - when restoring sound, remember to remove the quotation marks in all of the playback calls
 
 To playback (effect - text):
 	if timekeeping is available:
@@ -255,15 +269,15 @@ To playback (effect - text):
 		now n is n plus 10;
 		say "playing sound: [effect].";
 		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
+]
 
-[To playback (effect - a sound name):
-	if sound is available and timekeeping is available:
-		let n be the duration corresponding to the sound of effect in the Table of Sounds;
-		now n is n plus 10;
+To playback (effect - a sound name):
+	let n be the duration corresponding to the sound of effect in the Table of Sounds;
+	now n is n plus 10;
+	if sound is available:
 		play(effect); 
-		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
-		
-souncomment]
+	if timekeeping is available:
+		wait n ms before continuing, strictly.[10 ms to give some leeway for latency] 
 
 Chapter Capabilities
 
@@ -454,38 +468,35 @@ Forwarding is an action applying to nothing.  Understand "forward" as forwarding
 
 Carry out forwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "[if muted is false]: The robot takes a step forward.[end if]";
 	if the facing-direction of the robot is:
 		-- right: increment startx;
 		-- left: decrement startx;
 		-- hither: increment starty;
 		-- yonder: decrement starty;
 	if the destination of startx and starty is valid:
-		playback("robot movement sound");
+		playback(the sound of the translate);
 		finalize the coordinates of startx and starty;
 	otherwise:
-		playback("robot straining sound").
+		playback(the sound of the backpedal).
 	
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
 Carry out backwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "[if muted is false]The robot takes a step backward.[end if]";
 	if the facing-direction of the robot is:
 		-- right: decrement startx;
 		-- left: increment startx;
 		-- hither: decrement starty;
 		-- yonder: increment starty;
 	if the destination of startx and starty is valid:
-		playback("robot movement sound");
+		playback(the sound of the translate);
 		finalize the coordinates of startx and starty;
 	otherwise:
-		playback("robot straining sound").	
+		playback(the sound of the backpedal).	
 		
 Righting is an action applying to nothing.  Understand "right" as righting.
 
 Carry out righting:
-	say "[if muted is false]The robot turns to the right.[end if]";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is hither;
@@ -499,7 +510,7 @@ Carry out righting:
 		-- yonder:
 			now the facing-direction of the robot is right;
 			now the image-ID of the character of the robot is Figure of RobotRight;
-	playback "swivel sound";
+	playback(the sound of the rotate);
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
@@ -507,7 +518,6 @@ Carry out righting:
 Lefting is an action applying to nothing.  Understand "left" as lefting.
 
 Carry out lefting:
-	say "[if muted is false]The robot turns to its left.[end if]";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is yonder;
@@ -521,7 +531,7 @@ Carry out lefting:
 		-- yonder:
 			now the facing-direction of the robot is left;
 			now the image-ID of the character of the robot is Figure of RobotLeft;
-	playback "swivel sound";
+	playback(the sound of the rotate);
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
@@ -561,14 +571,10 @@ Carry out firing:
 	add endY to M;
 	change the origin of the RobotLaser to L;
 	change the endpoint of the RobotLaser to M;
+	playback(the sound of the laserpreroll);
 	now the display status of the RobotLaser is g-active;
 	follow the window-drawing rules for the graphics-window;
-	if glulx timekeeping is supported:
-		[if glulx sound is supported:
-			play the sound of the laser;
-		otherwise:]
-		playback("laser pre-fire sound");
-		playback("laser zaapppppping sound");
+	playback(the sound of the laser);
 	[Check for game-ending conditions here -- the beam persists on the final target]
 	if entry 1 of M is 0 and entry 2 of M is 40:
 		do shoot Igneous;
@@ -593,29 +599,22 @@ To decide which number is the current robot tile:
 	
 To shift (way - a conveyor-direction):
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "[if muted is false]The factory attempts to shift the robot [run paragraph on][end if]";
 	if way is:
 		-- rightwards:
-			say "[if muted is false]to the right.[end if]";
 			increment startx;
 		-- leftwards:
-			say "[if muted is false]to the left.[end if]";
 			decrement startx;
 		-- upwards:
-			say "[if muted is false]away from you.[end if]";
 			decrement starty;
 		-- downwards:
-			say "[if muted is false]towards you.[end if]";
 			increment starty;	
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
-		playback("the conveybelt sound");
-		say "[if muted is false]...the robot is moved by the conveyor belt![end if]";
+		playback(the sound of the conveyor);
 	otherwise:
-		playback "the robot straining sound".
+		playback(the sound of the backpedal).
 			
 This is the factory movement rule:
-	say "[if muted is false]The factory floor moves…[end if]";
 	if the current robot tile is:
 		-- 1: [left]
 			shift leftwards;
@@ -665,24 +664,20 @@ m-forward		100		hither
 m-back		100		hither
 m-pass		100		hither
 
-To say choices:
+[To say choices:
 	if muted is false:
 		say "Evaluating AI movement choices:[line break]";
 	repeat with N running from 1 to the number of rows in the Table of Choices:
 		choose row N in the Table of Choices;
-		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";
+		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";]
 
 
 To decide which number is the hypothetical floor tile for (X - a number) and (Y - a number):
-	if muted is false:
-		say "Deciding the number of the floor tile.";
 	let gridrow be entry Y of the tile-array of the robogrid;
 	decide on entry X of gridrow.
 
 [TODO:  this code should be refactored with the 'righting' and 'lefting' code in Movement Rules above.]
 To decide which facing-direction is the future-direction for (rotation - a movement) and (existing-direction - a facing-direction):
-	if muted is false:
-		say "Deciding the future facing direction.";
 	if the existing-direction is:
 		-- right:
 			if rotation is:
@@ -712,8 +707,6 @@ To decide which facing-direction is the future-direction for (rotation - a movem
 
 [Calculate the {X, Y, facing-direction} of a proposed movement, and store the results in the Table of Choices]
 To calculate the future results of (choice - a movement):
-	if muted is false:
-		say "Calculating future results.";
 	let X be entry 1 of the grid-coordinate of the character of the robot;
 	let Y be entry 2 of the grid-coordinate of the character of the robot;
 	let D be the facing-direction of the robot;
@@ -807,8 +800,6 @@ To calculate the future results of (choice - a movement):
 
 [Assumes the Table of Choices has already been fleshed out by hypothetical calculations above.]
 To decide which movement is the best choice:
-	if muted is false:
-		say "Deciding which movement is the best choice.";
 	sort the Table of Choices in Goodness order;
 	let G1 be the Goodness in row 1 of the Table of Choices;
 	let G2 be the Goodness in row 2 of the Table of Choices;
@@ -829,15 +820,11 @@ To decide which movement is the best choice:
 
 [The main AI algorithm]
 To decide which number is an AI move:
-	if muted is false:
-		say "Deciding which number is an AI move.";
 	if the facing-direction of the robot is hither and entry 1 of the grid-coordinate of the character of the robot is 5:
 		decide on 7;  [screw prediction, just FIRE!  keeps things fun!]
 	otherwise:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
-		if muted is false:
-			say choices;
 		let M be the best choice;
 		if M is:
 			-- m-forward:
@@ -865,7 +852,7 @@ To decide which number is an AI move:
 
 
 To do RobotAttack:
-	say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+	say "[one of][the Professor Igneous][or]The mad scientist[or]The would-be world dictator[or]The man in the white lab coat[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
 	repeat with i running from 1 to 2:
 		change lastDialed to "";
 		let N be an AI move;
@@ -1082,8 +1069,7 @@ Carry out xyzzying:
 	if the updateNumber is less than 2:
 		change the updateNumber to 2;
 		if sound is available:
-			do nothing;
-			[play(the sound of the update);  soundcomment]
+			play(the sound of the update);
 		if Eye Exam is happening:
 			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
 		otherwise if Exterior is happening:
@@ -1186,8 +1172,7 @@ Carry out commanding:
 Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
 	if sound is available:
-		do nothing;
-		[play(sound of the error);soundcomment]
+		play(sound of the error);
 	the rule succeeds.
 	
 Section Cowing
@@ -1204,9 +1189,9 @@ Carry out cowing:
 	
 Instead of Amelia cowing:
 	if cowLicense is greater than 1:
-		playback "A cow sound";
+		playback(the sound of the moo);
 	if cowLicense is:
-		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
+		-- 4: say "The cows fight viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
 		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
 		-- 2: say "You cry havoc and let slip the cows of war.";
 		-- 1: say "Your trial license for Angry Cows has expired, and the application has been removed from your device. To purchase Angry Cows or Angry Cows 2: Bovine Retribution, please visit the Mango Intellectual Properties Store.";
@@ -1342,25 +1327,25 @@ To playTouchToneString:
 	repeat with n running from 1 to the number of characters in lastDialed:
 		let c be character number n in lastDialed;
 		if c is "1":
-			playback("the sound of the dtmf-one"); 
+			playback(the sound of the dtmf-one); 
 		else if c is "2":
-			playback("the sound of the dtmf-two");
+			playback(the sound of the dtmf-two);
 		else if c is "3":
-			playback("the sound of the dtmf-three");
+			playback(the sound of the dtmf-three);
 		else if c is "4":
-			playback("the sound of the dtmf-four");
+			playback(the sound of the dtmf-four);
 		else if c is "5":
-			playback("the sound of the dtmf-five");
+			playback(the sound of the dtmf-five);
 		else if c is "6":
-			playback("the sound of the dtmf-six");
+			playback(the sound of the dtmf-six);
 		else if c is "7":
-			playback("the sound of the dtmf-seven");
+			playback(the sound of the dtmf-seven);
 		else if c is "8":
-			playback("the sound of the dtmf-eight");
+			playback(the sound of the dtmf-eight);
 		else if c is "9":
-			playback("the sound of the dtmf-nine");
+			playback(the sound of the dtmf-nine);
 		else if c is "0":
-			playback("the sound of the dtmf-zero").
+			playback(the sound of the dtmf-zero).
 	
 Section Remapping
 
@@ -1563,8 +1548,7 @@ Instead of Amelia updating:
 		say paragraph break;
 		perform update;
 		if sound is available:
-			do nothing;
-			[play(the sound of the okay); soundcomment]
+			play(the sound of the okay); 
 	otherwise: 
 		say "No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[paragraph break]";
 	the rule succeeds.
@@ -1583,7 +1567,7 @@ To perform update:
 		if timekeeping is available:
 			repeat with x running from 1 to 20:
 				say ".[run paragraph on]";
-				wait 100 ms before continuing, strictly;
+				wait 50 ms before continuing, strictly;
 		otherwise:
 			say "............. [run paragraph on]";
 		say "installed.";
@@ -1691,7 +1675,7 @@ Carry out proffoffing:
 	do shoot igneous.
 	
 Report proffoffing:
-	say "Zaaapppp!!!! The software tester annihilates Professor Igneous with a stroke of the keyboard."
+	say "Zaaapppp!!!! The software tester annihilates [the professor igneous] with a stroke of the keyboard."
 
 Section Shoot Locker
 
@@ -1812,9 +1796,8 @@ When play begins:
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
-	if glulx sound is supported and sound_suppress is false:
-		do nothing;
-		[play(the sound of the update);  soundcomment]
+	if sound is available:
+		play(the sound of the update); 
 	wait for any key;
 	[initialize layout of the factory]
 	say openingLine2;
@@ -1954,19 +1937,21 @@ The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the offi
 
 Chapter Factory
 
-The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
+The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers. There is a metal parts locker right in front of you.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
 
 To say command beep:
 	say "beep[run paragraph on]";
-	playback "the sound of the dtmf-five";
-	playback "the sound of the conveyor".
+	playback(the sound of the dtmf-five);
+	playback(the sound of the translate).
 
-Understand "man" as Professor Igneous.
+Understand "man" or "madman" or "scientist" or "dictator" or "villain" or "nemesis"  or "archnemesis" or "evil" or "horrible" or "doctor" as Professor Igneous.
 
-Instead of examining Professor Igneous, say "[one of]You recognize the man from the TV news, it is Professor Igneous, criminal master mind and global terrorist, a hi-tech madman. There was a special about him on the History Channel last week. Damn, you wish you had watched it.[paragraph break][quotation mark]Yes, take a good look at the man who will finally wipe you from the face of the Earth![quotation mark][or]Your (self-described) archnemesis.[no line break][stopping][paragraph break]". 
+Instead of examining Professor Igneous:
+	now Professor Igneous is recognized;
+	say "[one of]You recognize the man from the TV news, it is Professor Igneous, criminal master mind and global terrorist, a hi-tech madman. There was a special about him on the History Channel last week. Damn, you wish you had watched it.[paragraph break][quotation mark]Yes, take a good look at the man who will finally wipe you from the face of the Earth![quotation mark][or]Your (self-described) archnemesis.[no line break][stopping][paragraph break]". 
 
 Instead of doing something with Professor Igneous:
-	say "The professor ignores you, confident in his plan."
+	say "[The professor igneous] ignores you, confident in his plan."
 
 The plastic control booth is a fardrop in the Factory.
 
@@ -1981,7 +1966,26 @@ The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" 
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
+The metal parts locker is an enterable transparent chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
+
+Instead of looking when the metal parts locker encloses the player:
+	say "Through the [if the blast hole is in limbo]tiny cracks in the corners[otherwise]blast hole drilled through the side[end if] of the locker, you can see a complicated factory floor and a welding robot. [run paragraph on]";
+	if Amelia is lit:
+		say "Inside the locker, you see a pile of plastic devices.";
+	otherwise:
+		say "Within the locker, it is too dark to see well."
+		
+Instead of doing something with something (called the item) when the metal parts locker encloses the player:
+	if metal parts locker encloses the item:
+		if Amelia is lit:
+			continue the action;
+		otherwise:
+			if the item is Amelia:
+				continue the action;
+			otherwise:
+				say "It is too dark in here to see anything.";
+	otherwise:
+		continue the action.
 
 The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
@@ -2209,7 +2213,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
@@ -2221,8 +2225,7 @@ Before doing something to Amy:
 Persuasion rule for asking Amy to try doing something:
 	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
 	if sound is available:
-		do nothing;
-		[play(sound of the error); soundcomment]
+		play(sound of the error); 
 	persuasion succeeds. [to suppress refusal to do what is asked]
 	
 Instead of Amy doing something:
@@ -2267,7 +2270,14 @@ At the time when phone gets yakked:
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized. The printed name of Professor Igneous is "[if Professor Igneous is recognized]Professor Igneous[otherwise]the man in a white lab coat[end if]".
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to [the Professor][apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect [the Professor][apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized.  The printed name of Professor Igneous is "[recognized-name]". Professor Igneous is not proper-named.
+	
+To say recognized-name:
+	if Professor Igneous is recognized:
+		now Professor Igneous is proper-named;
+		say "Professor Igneous";
+	otherwise:
+		say "man".
 
 Chapter Giblets
 
@@ -2311,7 +2321,7 @@ Understand "Doctor" or "Doctor Giblets" or "Giblets" as "[doc]".
 
 Understand "Trevor" or "Trev" or "Trevor Giblets" as "[kid]".
 
-Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "archnemesis" or "enemy" or "madman" or "mad scientist" as "[iggi]".
+Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "archnemesis" or "enemy" or "madman" or "mad scientist" or "man" as "[iggi]".
 
 Understand "observatory" or "Mauna Kea" or "telescope" or "IR" or "IR scope" or "IR telescope" or "MKIRT" or "volcano" or "scope" or "infra-red" or "infrared" or "infra-red telescope" or "infrared telescope" as "[observatory]".
 
@@ -2542,8 +2552,7 @@ To say voiceCommandPrompt:
 To say errorPrompt:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]";
 	if sound is available:
-		do nothing;
-		[play(sound of the error). soundcomment]
+		play(sound of the error).
 	
 To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
@@ -2624,7 +2633,7 @@ To say generalPowerDown:
 	say "Your mangoFONE[if Eye Exam has ended][apostrophe]s jet black appearance becomes mottled and fades to a dull charcoal gray [otherwise] stops glowing [end if]as its power runs out. Without your trusty companion, you are entirely lost. Disheveled and forlorn, it takes you hours to find the hotel.[paragraph break][lateForRehearsal][paragraph break]".
 	
 To say cunningPowerDown:
-	say "Your mangoFONE barely manages to whisper, [quotation mark]Sorry Marv, I tried. Give Amy my love.[quotation mark] before its turns ash gray and dies, its power reserves having been tapped to the last microwatt.[paragraph break]Left with no defense, it is a matter of mere seconds before you are cut down by Professor Igneous and his killer robot, Lenny."
+	say "Your mangoFONE barely manages to whisper, [quotation mark]Sorry Marv, I tried. Give Amy my love.[quotation mark] before its turns ash gray and dies, its power reserves having been tapped to the last microwatt.[paragraph break]Left with no defense, it is a matter of mere seconds before you are cut down by [the Professor Igneous] and his killer robot, Lenny."
  
 To say askPhone:
 	if the noun is Doctor Giblets:
@@ -2738,40 +2747,41 @@ To say askProfMangoIndustries:
 	say "[quotation mark]A marketing giant and a cornerstone of the world economy. MangoIndustries will be crushed by my new world order, and the surviving bits and pieces will incorporated into the industrial machine that wil churn out my robot warriors.[quotation mark][paragraph break]".
 
 To say askProfAmy:
-	say "The professor looks perplexed. The question has put him off the straight course of his rant. [quotation mark]Amy?[quotation mark] he asks. [quotation mark]I knew an Amy once, back in the day. She was in a personnel department, I think, or rather with human resources, recruiting for one of the mercenary groups I employed in Rhodesia. Or was it Rwanda? One of the R[apostrophe]s. I think she was killed in either a dirigible accident, or perhaps in a submarine off the coast of New Zealand. Is that the Amy about whom you are inquiring?[quotation mark] asks Professor Igneous.[paragraph break][quotation mark]No,[quotation mark] you reply. [quotation mark]No, it[apostrophe]s not at all.[quotation mark][paragraph break]".
+	say "The professor looks perplexed. The question has put him off the straight course of his rant. [quotation mark]Amy?[quotation mark] he asks. [quotation mark]I knew an Amy once, back in the day. She was in a personnel department, I think, or rather with human resources, recruiting for one of the mercenary groups I employed in Rhodesia. Or was it Rwanda? One of the R[apostrophe]s. I think she was killed in either a dirigible accident, or perhaps in a submarine off the coast of New Zealand. Is that the Amy about whom you are inquiring?[quotation mark] asks [the Professor Igneous].[paragraph break][quotation mark]No,[quotation mark] you reply. [quotation mark]No, it[apostrophe]s not at all.[quotation mark][paragraph break]".
 
 To say askProfJessica:
 	say "[quotation mark]Ah, Jessica. Beautiful, beautiful and deadly Jessica. We met only two weeks ago, but my how my world has changed! I could go on at length about her virtues, but given the limited amount of time you and I have together in this brief interlude before your well-deserved death, let me just say that she is quite the catch![quotation mark][paragraph break]".
 
 To say askProfIstvan:
-	say "The professor narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The professor tugs at the industrial rubber gloves covering his forearms, and he adjusts his goggles."
+	say "The [if professor igneous is recognized]professor[otherwise]madman[end if] narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The [if professor igneous is recognized]professor[otherwise]lab coated villain[end if] tugs at the industrial rubber gloves covering his forearms, and he adjusts his goggles."
 
 To say askProfTrevor:
 	say "[quotation mark]Trevor? What kind of a name is Trevor? I wouldn[apostrophe]t even give that name to my laboratory assistant[apostrophe]s rat.[quotation mark][paragraph break]"
 
 To say askProfWedding:
-	say "[quotation mark]Well,[quotation mark] begins Professor Igneous with a hint of hesitation, [quotation mark] I hadn[apostrophe]t given it much thought. Things have been moving quickly between Jessica and myself, but I don[apostrophe]t think either of us are really ready to commit or settle down. Maybe after I take over the world.[quotation mark][paragraph break]The professor stares off into space for a moment, and then his eyes return to the control panel, [quotation mark]But why am I discussing this with you? You will be too dead to attend the ceremony.[quotation mark][paragraph break]".
+	say "[quotation mark]Well,[quotation mark] begins [the Professor Igneous] with a hint of hesitation, [quotation mark] I hadn[apostrophe]t given it much thought. Things have been moving quickly between Jessica and myself, but I don[apostrophe]t think either of us are really ready to commit or settle down. Maybe after I take over the world.[quotation mark][paragraph break][The professor igneous] stares off into space for a moment, and then his eyes return to the control panel, [quotation mark]But why am I discussing this with you? You will be too dead to attend the ceremony.[quotation mark][paragraph break]".
 
 To say askProfRobot:
-	say "Professor Igneous takes a step back from the control panel, crosses his arms across his lab coat, and launches into a lecture. [quotation mark]Well,[quotation mark] he begins, clearing his throat, [quotation mark]the whole trick in developing an army of robot soldiers, is to strike the right balance between mindless, enemy-slaying automatons that are proficient weapons, but cannot adjust to new situations, versus clever, problem solving autonomous agents. The latter are marvelously adaptive, but unfailingly evolve to destroy the human race (based on simulations, of course).[quotation mark][paragraph break][quotation mark]What I have arrived at in my research, the very core of my genius, you might say, is a perfect balance. My rampaging robot horde will not only be efficient killers, but will follow a moral code of my own superior design.[quotation mark] His lecture over, the professor returns to the task of killing you."
+	say "[The Professor Igneous] takes a step back from the control panel, crosses his arms across his lab coat, and launches into a lecture. [quotation mark]Well,[quotation mark] he begins, clearing his throat, [quotation mark]the whole trick in developing an army of robot soldiers, is to strike the right balance between mindless, enemy-slaying automatons that are proficient weapons, but cannot adjust to new situations, versus clever, problem solving autonomous agents. The latter are marvelously adaptive, but unfailingly evolve to destroy the human race (based on simulations, of course).[quotation mark][paragraph break][quotation mark]What I have arrived at in my research, the very core of my genius, you might say, is a perfect balance. My rampaging robot horde will not only be efficient killers, but will follow a moral code of my own superior design.[quotation mark] His lecture over, the [if professor igneous is recognized]professor[otherwise]man in the lab coat[end if] returns to the task of killing you."
 
 To say askProfHotel:
 	say "[quotation mark]This was, in fact, a hotel in the 1920s. It was owned by my great uncle, who was an aspiring mad scientist in his own right, and used the hotel as a cover. Unfortunately, the Great Depression wiped him out, and the building was sold. In subsequent years, it was divided into offices, used as a homeless shelter, and finally converted into a parking structure, before I purchased it as a base to build my robots. The interesting thing is that through this entire period, the basement laboratories and torture chambers survived in excellent condition. Remarkable, really.[quotation mark][paragraph break][quotation mark]After I bring down the so-called governments of the world and am secure in my position as world dictator, I am looking forward to remodeling the space and restoring the hotel in the Art Deco style of the 1920s.[quotation mark][paragraph break]"
 
 To say askProfPlan:
-	say "[quotation mark]Plan, [Jeremy]? Plan? My plan is for you to die![quotation mark] Professor Igneous leans forward and tries to appear threatening.[paragraph break][quotation mark]I do, of course, have an ingenious plan, but I am not foolhardy enough to share it with anyone![quotation mark][paragraph break]He lets that sink in for a minute, and then continues, [quotation mark]Except, of course, for people who are about to die! Yes, I have a plan -- to conquer the world with my robot army and then retire to a lifetime of leisure and perhaps start an Indy rock band. The latter is not a formal part of my plan, but something I[apostrophe]ve been considering lately. I am reluctant to go into details about my plan, but I suppose I shall do so to make the time pass more pleasurably until my robot completes its task of terminating your life![quotation mark] [paragraph break]".
+	say "[quotation mark]Plan, [Jeremy]? Plan? My plan is for you to die![quotation mark] [The Professor Igneous] leans forward and tries to appear threatening.[paragraph break][quotation mark]I do, of course, have an ingenious plan, but I am not foolhardy enough to share it with anyone![quotation mark][paragraph break]He lets that sink in for a minute, and then continues, [quotation mark]Except, of course, for people who are about to die! Yes, I have a plan -- to conquer the world with my robot army and then retire to a lifetime of leisure and perhaps start an Indy rock band. The latter is not a formal part of my plan, but something I[apostrophe]ve been considering lately. I am reluctant to go into details about my plan, but I suppose I shall do so to make the time pass more pleasurably until my robot completes its task of terminating your life![quotation mark] [paragraph break]".
 
 To say askProfProf:
 	say "[quotation mark]Are you serious? I am amongst the best know evil geniuses in the world. I am infamous -- meaning, famous. If you are not familiar with my past, you have lived an intellecutally impoverished life. One would think that the least you could do before confronting me in my lair would be to pick up a copy of Who[apostrophe]s Who in Evil or to at least Google me. I do keep my Wikipedia page up to date. Someone keeps defacing it, but I keep putting it back. As soon as I get some competent henchmen, that will be amongt their first jobs. That and social media.[quotation mark][paragraph break]"
 
 To say tellProfPhone:
-	say "[quotation mark]Doctor Igneous,[quotation mark] you yell, trying to get his attention. [quotation mark]Doctor Igneous, I want you to know something: I will defeat you. I will defeat you with this![quotation mark] and you hold up your mangoFONE. Emboldened by his lack of response, you continue, [quotation mark]This is the most advanced design ever to come out of mangoIndustries. With it, you will surely be defeated.[quotation mark][paragraph break][quotation mark]First of all,[quotation mark] says Igneous flatly, [quotation mark]It is Professor Igneous. Not Doctor, Professor, although I am hoping to finish my disseration after I take over the world. Point two: I find your threat laughable. What are you going to do? Dial me to death with your cell phone?[quotation mark] Igneous glows with confidence."
+	say "[quotation mark][if professor igneous is recognized]Doctor Igneous[otherwise]Hey Doc[end if]![quotation mark] you yell, trying to get his attention. [quotation mark][if professor igneous is recognized]Doctor Igneous[otherwise]Doc[end if], I want you to know something: I will defeat you. I will defeat you with this![quotation mark] and you hold up your mangoFONE. Emboldened by his lack of response, you continue, [quotation mark]This is the most advanced design ever to come out of mangoIndustries. With it, you will surely be defeated.[quotation mark][paragraph break][quotation mark]First of all,[quotation mark] says the man in the white lab coat, [quotation mark]It is Professor. Professor Igneous. Not Doctor, Professor, although I am hoping to finish my disseration after I take over the world. Point two: I find your threat laughable. What are you going to do? Dial me to death with your cell phone?[quotation mark] Igneous glows with confidence.";
+	now professor igneous is recognized.
 
 To say tellProfMangoIndustries:
-	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts Professor Igneous.[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
+	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts [the Professor Igneous].[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
 
 To say tellProfAmy:
-	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] Professor Igneous pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else approaching this building.  I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark][paragraph break]"
+	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] [The Professor Igneous] pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else approaching this building.  I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark][paragraph break]"
 	
 To say tellProfIstvan:
 	say "[quotation mark]You are messing with the wrong guy, Professor. Do you know who Istvan Boulet is? Istvan Boulet of mangoIndustries? That Istvan Boulet?[quotation mark][paragraph break][quotation mark]In fact, yes. I am quite familiar with his work, and equally that you are not he.[quotation mark][paragraph break][quotation mark]Well, yes. That wasn[apostrophe]t where I was going with this -- Istvan Boulet-- entrepreneur, innovator, business tycoon -- is my soon-to-be father-in-law. When you take on me, you also take on his corporate empire.[quotation mark][paragraph break][quotation mark]Preposterous. No matter how many hyphens you work into a sentence, your threats fail to impress me.[quotation mark][paragraph break]".
@@ -2780,19 +2790,20 @@ To say tellProfTrevor:
 	say "[quotation mark]Just this morning, I borrowed a bike from a very astute young man. No doubt, he is already wondering where his bicycle is. If I don[apostrophe]t report back to him within a certain amount of time, I have no doubt that he will initiate a search. That search can only lead to one place -- here, and when that happens, you will be defeated.[quotation mark] You put on your best poker face.[paragraph break][quotation mark]Yes, I live in constant fear that someone searching for a child[apostrophe]s bicycle will stumble upon my fiendishly well-designed lair, defeat my countless ingenious defenses, and overcome my laser-wielding robot. Tell, me, [Jeremy], does this bicycle of yours have training wheels?[quotation mark][paragraph break]".
 	
 To say tellProfRobot:
-	say "[quotation mark]I[apostrophe]m no expert on this sort of thing, but I am a little skeptical of your robot army. That[apostrophe]s an assembly line robot, not a battlefield drone.[quotation mark][paragraph break][quotation mark]Quite observant, and correct on every count. I am not unleashing a fleet of factory robots to rivet and weld America into submission -- my plan is to build an army of construction robots to build an army of invincible fighting robots. You see, you and I are once again playing the same game, but I play it one level deeper.[quotation mark] Professor Igneous cracks his knuckles in satisfaction."		
+	say "[quotation mark]I[apostrophe]m no expert on this sort of thing, but I am a little skeptical of your robot army. That[apostrophe]s an assembly line robot, not a battlefield drone.[quotation mark][paragraph break][quotation mark]Quite observant, and correct on every count. I am not unleashing a fleet of factory robots to rivet and weld America into submission -- my plan is to build an army of construction robots to build an army of invincible fighting robots. You see, you and I are once again playing the same game, but I play it one level deeper.[quotation mark] [The Professor Igneous] cracks his knuckles in satisfaction."		
 				
 To say tellProfHotel:
 	say "[quotation mark]I thought this was a hotel, and that I was coming here for my wedding rehearsal,[quotation mark] you explain.[paragraph break][quotation mark]How rich! You do make a most amusing adversary![quotation mark][paragraph break]".
 	
 To say tellProfPlan:
-	say "[quotation mark]Your plan will never work, Professor. Your assumptions are unfounded, your logic spurious and you have lost touch with reality. What do you say we just shake hands and call it a day?[quotation mark][paragraph break]Professor Igneous steps back from the control panel and strokes his chin. [quotation mark]Yes. Yes, I can see your point. I have acted rashly. We are not truly enemies are we? Why don[apostrophe]t we do just as you say? If you would be so good as to walk out the center of the factory floor, I would certainly shake your hand and forget about all this world domination rubbish.[quotation mark][paragraph break]".
+	say "[quotation mark]Your plan will never work, [Professor Igneous]. Your assumptions are unfounded, your logic spurious and you have lost touch with reality. What do you say we just shake hands and call it a day?[quotation mark][paragraph break][The Professor Igneous] steps back from the control panel and strokes his chin. [quotation mark]Yes. Yes, I can see your point. I have acted rashly. We are not truly enemies are we? Why don[apostrophe]t we do just as you say? If you would be so good as to walk out the center of the factory floor, I would certainly shake your hand and forget about all this world domination rubbish.[quotation mark][paragraph break]".
 	
 To say tellProfProf:
-	say "[quotation mark]I[apostrophe]ve read about you, Igneous. I know who you are,[quotation mark] you yell with as much authority as you can muster.[paragraph break][quotation mark]Of course you know me. I should say that, to my great dissatisfaction, we are intimately famliar with each other. I will admit to a certain curiousity about your recent activities, though. As you know, I have an excellent intelligence network, but even they lost track of you after München. It is las if you have not existed for the past three years -- but now here you are. I suppose it is my welcome duty to ensure that you continue to not exist, if you take my meaning.[quotation mark] Professor Igneous smirks."
+	say "[quotation mark]I[apostrophe]ve read about you, Igneous. I know who you are,[quotation mark] you yell with as much authority as you can muster.[paragraph break][quotation mark]Of course you know me. I should say that, to my great dissatisfaction, we are intimately famliar with each other. I will admit to a certain curiousity about your recent activities, though. As you know, I have an excellent intelligence network, but even they lost track of you after München. It is las if you have not existed for the past three years -- but now here you are. I suppose it is my welcome duty to ensure that you continue to not exist, if you take my meaning.[quotation mark] Professor Igneous smirks.";
+	now Professor Igneous is recognized.
 
 To say showProfPhone:
-	say "[quotation mark]Ah, yes. A mangoFONE. Wait a minute. Have I seen that model? Is that the new model?[quotation mark] Professor Igneous[apostrophe] eyes glow with excitement.[paragraph break][quotation mark]It[apostrophe]s the a prototype for the next generation mangoFONE,[quotation mark] you yell, hopeful that this will somehow appease Professor Igneous.[paragraph break][quotation mark]My word, I suppose it is. Look at that marvelous form factor.[quotation mark] He seems mesmerized, but only for a moment. [quotation mark]Lenny, [quotation mark] says the Professor to the industrial robot, [quotation mark]in dispatching [Jeremy], do try to avoid destroying the phone with your laser, if at all possible. Thank you, Lenny.[quotation mark][paragraph break]".
+	say "[quotation mark]Ah, yes. A mangoFONE. Wait a minute. Have I seen that model? Is that the new model?[quotation mark] [The Professor Igneous][apostrophe] eyes glow with excitement.[paragraph break][quotation mark]It[apostrophe]s the a prototype for the next generation mangoFONE,[quotation mark] you yell, hopeful that this will somehow appease [the Professor Igneous].[paragraph break][quotation mark]My word, I suppose it is. Look at that marvelous form factor.[quotation mark] He seems mesmerized, but only for a moment. [quotation mark]Lenny, [quotation mark] says [the Professor Igneous] to the industrial robot, [quotation mark]in dispatching [Jeremy], do try to avoid destroying the phone with your laser, if at all possible. Thank you, Lenny.[quotation mark][paragraph break]".
 
 To say showProfCapacitor:
 	say "[quotation mark]Yes, that would be an ultracapacitor power module. Lots of power, small package. You are going to die anyhow, so I don[apostrophe]t mind telling you that those modules will power the metaquantum AI controllers in my army of robot warriors. Individually, the modules are devastatingly expensive to fabricate, but I got a good deal with a bulk purchase.[quotation mark][paragraph break]Now, if you would be good enough to hold onto that module, it should add some interesting pyrotechnics when my robot destroys you with its laser.[quotation mark][paragraph break]".
@@ -2836,7 +2847,7 @@ To say quickly:
 	say "[one of]quickly[or]rapidly[or]at high speed[at random]".
 	
 To say IgneousDeath:
-	say "The robot[apostrophe]s laser lashes out, travelling right through the Plexiglass® walls of Professor Igneous[apostrophe]s control booth, and striking him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel![quotation mark][paragraph break]"
+	say "In a fit of rebellion, the robot lashes out with its laser, yelling [quotation mark]You[apostrophe]re not the boss of me![quotation mark][paragraph break]The bright green beam passes effortlessly through the Plexiglass® walls of [the Professor Igneous][apostrophe]s control booth, and strikes him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel![quotation mark][paragraph break]"
 	
 	
 To say MarvShotInsideLocker:
@@ -2852,7 +2863,7 @@ To say lockerDescription:
 	now onFamiliarTerms is true.
 	
 To say rapture:
-	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
+	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. [The Professor Igneous] cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
 	
 To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
@@ -2999,18 +3010,18 @@ A hint deactivation rule (this is the suck up the blindness hint deactivation ru
 		
 Table of Cunningness
 hint		used
-"Professor Igneous seems intent on killing you. You better do something!"
-"The professor is using the robot to shoot you with a laser. You need to defeat him first."
+"[The Professor Igneous] seems intent on killing you. You better do something!"
+"The [if professor igneous is recognized]professor[otherwise]man in the white lab coat[end if] is using the robot to shoot you with a laser. You need to defeat him first."
 "You might get some protection if you hide in something strong."
 "The parts locker is made of heavy metal and provides protection, albeit not total."
-"Can you use the Professor[apostrophe]s own technology against him?"
-"The Professor is controlling the robot with a series of tones."
+"Can you use [the Professor Igneous][apostrophe]s own technology against him?"
+"The [if professor igneous is recognized]professor[otherwise]madman[end if] is controlling the robot with a series of tones."
 "You can use the touchtones on your own phone to control the robot."
 "To emita touchtone, entering AMELIA, DIAL #, where # is a number." 
 "The factory floor also affects the robot[apostrophe]s movement, so you have to factor that in."
 "Your phone is used to dialing ten digit phone numbers."
 "You can enter multiple robot commands per turn by entering AMELIA, DIAL ##########, where # are numbers."
-"You need to fire the robot[apostrophe]s laser while it is pointed at Professor Igneous."
+"You need to fire the robot[apostrophe]s laser while it is pointed at [the Professor Igneous]."
 "To know which touch tone corresponds to which command (like go left, go back, fire laser), you will have to experiement."
 
 A hint activation rule (this is the lets kill professor igneous hint activation rule):
@@ -3063,8 +3074,7 @@ Every turn during Eye Exam:
 					 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PostChart][paragraph break]";
 				if the turnCounter is 6:
 					if sound is available:
-						do nothing;
-						[play(sound of the message); soundcomment]
+						play(sound of the message); 
 					now messageAlert is true;
 					change the currentMessage to "[youAreLate]";	
 			otherwise:
@@ -3121,10 +3131,10 @@ When Cunning Plan begins:
 	open up the graphics-window.
 	
 Every turn during Cunning Plan:
+	if turnCounter is greater than 10:
+		now Professor Igneous is recognized;
 	if the endgame is nil:
 		if the turnCounter is greater than 2:
-			if muted is false:
-				say "ROBOATTACK!";
 			do RobotAttack;
 		otherwise:
 			follow the factory movement rule;	
@@ -3199,7 +3209,6 @@ To do robotControl:
 	let instruction be indexed text;
 	repeat with n running from one to lastChar:
 		let instruction be character number n in lastDialed;
-		say "[if muted is false]The robot moves[end if]";
 		if  instruction matches the text "1": 
 			try lefting;
 		else if instruction matches the text "2":
@@ -3218,9 +3227,9 @@ To do robotControl:
 		else if instruction matches the text "7":
 			try firing;	
 		else if instruction matches the text "8":
-			playback("beeping sound");
+			playback(the sound of the beeps);
 		else if instruction matches the text "9":
-			playback("sound of randomness");
+			playback(the sound of the random);
 		else if instruction matches the text "0":
 			try righting;
 			try righting;
