@@ -865,7 +865,7 @@ To decide which number is an AI move:
 
 
 To do RobotAttack:
-	say "[one of][the Professor Igneous][or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+	say "[one of][the Professor Igneous][or]The mad scientist[or]The would-be world dictator[or]The man in the white lab coat[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
 	repeat with i running from 1 to 2:
 		change lastDialed to "";
 		let N be an AI move;
@@ -1985,6 +1985,25 @@ The character of the Robot is the Robot-sprite.  The display status of the Robot
 
 The metal parts locker is an enterable transparent chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
 
+Instead of looking when the metal parts locker encloses the player:
+	say "Through the [if the blast hole is in limbo]tiny cracks in the corners[otherwise]blast hole drilled through the side[end if] of the locker, you can see a complicated factory floor and a welding robot. [run paragraph on]";
+	if Amelia is lit:
+		say "Inside the locker, you see a pile of plastic devices.";
+	otherwise:
+		say "Within the locker, it is too dark to see well."
+		
+Instead of doing something with something (called the item) when the metal parts locker encloses the player:
+	if metal parts locker encloses the item:
+		if Amelia is lit:
+			continue the action;
+		otherwise:
+			if the item is Amelia:
+				continue the action;
+			otherwise:
+				say "It is too dark in here to see anything.";
+	otherwise:
+		continue the action.
+
 The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
 To say pileAppearance:
@@ -2211,7 +2230,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like a reactor going critical. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
+Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
 Amy. This will get complicated if the actual Amy is around.]
