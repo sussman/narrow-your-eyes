@@ -17,9 +17,9 @@ Include Adaptive Hints by Eric Eve.
 Use full-length room descriptions, american dialect and the serial comma.
 
 [
-Use memory economy.
+Use memory economy.]
 Release along with cover art.
-]
+
 
 Book 1 Mechanics
 
