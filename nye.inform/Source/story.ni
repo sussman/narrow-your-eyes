@@ -196,7 +196,7 @@ Element scaling rule for a character-sprite (called the character) (this is the 
 
 Section Sounds
 
-[Sound of the dtmf-zero is the file "0.ogg".
+Sound of the dtmf-zero is the file "0.ogg".
 Sound of the dtmf-one is the file "1.ogg".
 Sound of the dtmf-two is the file "2.ogg".
 Sound of the dtmf-three  is the file "3.ogg".
@@ -206,17 +206,25 @@ Sound of the dtmf-six  is the file "6.ogg".
 Sound of the dtmf-seven  is the file "7.ogg".
 Sound of the dtmf-eight  is the file "8.ogg".
 Sound of the dtmf-nine  is the file "9.ogg".
-Sound of the okay is the file "okay(103586).ogg".
+
+[Sound of the trunk  is the file "trunk.ogg".
+Sound of the asterisk  is the file "asterisk.ogg".]
+
+Sound of the backpedal is the file "backpedal(21200).ogg".
+Sound of the beeps is the file "beeps1(44613).ogg".
+Sound of the conveyor is the file "conveyor(58496).ogg".
 Sound of the error is the file "error(36896).ogg".
+Sound of the laser is the file "laser(103239&52598).ogg".
+Sound of the laserpreroll is the file "laserpreroll(103239).ogg".
+Sound of the moo is the file "moo(58277).ogg".
 Sound of the message is the file "message(80921).ogg".
-Sound of the update is the file "update(51645).ogg".
-Sound of the beeps  is the file "beeps1(44613).ogg".
-Sound of the conveyor  is the file "conveyor(523440).ogg".
-Sound of the laser  is the file "laser(103239&52598).ogg".
+Sound of the okay is the file "okay(103586).ogg".
 Sound of the random  is the file "random(3647).ogg".
+Sound of the rotate is the file "rotate(10324).ogg".
+Sound of the shock is the file "shock(62925).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
-Sound of the trunk  is the file "trunk.ogg".
-Sound of the asterisk  is the file "asterisk.ogg".
+Sound of the translate is the file "translate(523440).ogg".
+Sound of the update is the file "update(51645).ogg".
 
 Table of Sounds
 Sound		Duration  [millisencond]
@@ -230,15 +238,21 @@ The sound of the dtmf-six		100
 The sound of the dtmf-seven		100
 The sound of the dtmf-eight		100
 The sound of the dtmf-nine		100
-The sound of the okay		500
-The sound of the error		1100
-The sound of the message		2000
-The sound of the update		5500
+The sound of the backpedal		480
 The sound of the beeps		800
-The sound of the conveyor		1400
-The sound of the laser		1900
+The sound of the conveyor		1540
+The sound of the error		1100
+The sound of the laser		1015
+The sound of the laserpreroll		250
+The sound of the moo		2655
+The sound of the message		2000
+The sound of the okay		500
 The sound of the random		750
-The sound of the swivel		1250]	
+The sound of the rotate		1000
+The sound of the shock		1700
+The sound of the swivel		1250
+The sound of the translate		950	
+The sound of the update		5500
 
 [Sounds given one after the other will not form a queue and play sequentially. For this reason, it is necessary to play one, wait the duration of that sound, and give the command to play another. The other issue is that while a sound is playing, if timing does not lock out input, new commands could be typed in. These new commands could be at odds with the sounds that are playing, and cause confusion, or they could kick off new sounds, which would be suppressed by the currently playing sound.
 
