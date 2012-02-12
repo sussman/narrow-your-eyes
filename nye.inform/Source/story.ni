@@ -261,7 +261,7 @@ So, when you want to play a sound, but aren't worried about accepting more playe
 ]
 
 
-[soundcomment: this is the fake playback routine for modal sounds - when restoring sound, remember to remove the quotation marks in all of the playback calls]
+[soundcomment: this is the fake playback routine for modal sounds - when restoring sound, remember to remove the quotation marks in all of the playback calls
 
 To playback (effect - text):
 	if timekeeping is available:
@@ -269,15 +269,15 @@ To playback (effect - text):
 		now n is n plus 10;
 		say "playing sound: [effect].";
 		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
+]
 
-[To playback (effect - a sound name):
-	if sound is available and timekeeping is available:
-		let n be the duration corresponding to the sound of effect in the Table of Sounds;
-		now n is n plus 10;
+To playback (effect - a sound name):
+	let n be the duration corresponding to the sound of effect in the Table of Sounds;
+	now n is n plus 10;
+	if sound is available:
 		play(effect); 
-		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
-		
-souncomment]
+	if timekeeping is available:
+		wait n ms before continuing, strictly.[10 ms to give some leeway for latency] 
 
 Chapter Capabilities
 
@@ -475,10 +475,10 @@ Carry out forwarding:
 		-- hither: increment starty;
 		-- yonder: decrement starty;
 	if the destination of startx and starty is valid:
-		playback("robot movement sound");
+		playback(the sound of the translate);
 		finalize the coordinates of startx and starty;
 	otherwise:
-		playback("robot straining sound").
+		playback(the sound of the backpedal).
 	
 Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
@@ -491,10 +491,10 @@ Carry out backwarding:
 		-- hither: decrement starty;
 		-- yonder: increment starty;
 	if the destination of startx and starty is valid:
-		playback("robot movement sound");
+		playback(the sound of the translate);
 		finalize the coordinates of startx and starty;
 	otherwise:
-		playback("robot straining sound").	
+		playback(the sound of the backpedal).	
 		
 Righting is an action applying to nothing.  Understand "right" as righting.
 
@@ -513,7 +513,7 @@ Carry out righting:
 		-- yonder:
 			now the facing-direction of the robot is right;
 			now the image-ID of the character of the robot is Figure of RobotRight;
-	playback "swivel sound";
+	playback(the sound of the rotate);
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
@@ -535,7 +535,7 @@ Carry out lefting:
 		-- yonder:
 			now the facing-direction of the robot is left;
 			now the image-ID of the character of the robot is Figure of RobotLeft;
-	playback "swivel sound";
+	playback(the sound of the rotate);
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
@@ -575,14 +575,10 @@ Carry out firing:
 	add endY to M;
 	change the origin of the RobotLaser to L;
 	change the endpoint of the RobotLaser to M;
+	playback(the sound of the laserpreroll);
 	now the display status of the RobotLaser is g-active;
 	follow the window-drawing rules for the graphics-window;
-	if glulx timekeeping is supported:
-		[if glulx sound is supported:
-			play the sound of the laser;
-		otherwise:]
-		playback("laser pre-fire sound");
-		playback("laser zaapppppping sound");
+	playback(the sound of the laser);
 	[Check for game-ending conditions here -- the beam persists on the final target]
 	if entry 1 of M is 0 and entry 2 of M is 40:
 		do shoot Igneous;
@@ -623,10 +619,10 @@ To shift (way - a conveyor-direction):
 			increment starty;	
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
-		playback("the conveybelt sound");
+		playback(the sound of the conveyor);
 		say "[if muted is false]...the robot is moved by the conveyor belt![end if]";
 	otherwise:
-		playback "the robot straining sound".
+		playback(the sound of the backpedal).
 			
 This is the factory movement rule:
 	say "[if muted is false]The factory floor moves…[end if]";
@@ -1096,8 +1092,7 @@ Carry out xyzzying:
 	if the updateNumber is less than 2:
 		change the updateNumber to 2;
 		if sound is available:
-			do nothing;
-			[play(the sound of the update);  soundcomment]
+			play(the sound of the update);
 		if Eye Exam is happening:
 			say "[quotation mark]Ah, good. That[apostrophe]s the second line of the chart,[quotation mark] remarks Doctor Giblets.";
 		otherwise if Exterior is happening:
@@ -1200,8 +1195,7 @@ Carry out commanding:
 Instead of Amelia commanding:
 	say "Your phone sighs, and little tufts of deep purple clouds animate over the obsidian surface. [quotation mark]Yes. That was very literal. Let me be more clear: to tell me to do something, say a command in the form of [bold type]Amelia, command[roman type], where command is what you want me to do, and not actually the word command[one of], as I suspect you already know, but were testing me[or][stopping].[quotation mark][paragraph break][quotation mark][tutorPrompt][quotation mark][paragraph break]";
 	if sound is available:
-		do nothing;
-		[play(sound of the error);soundcomment]
+		play(sound of the error);
 	the rule succeeds.
 	
 Section Cowing
@@ -1218,7 +1212,7 @@ Carry out cowing:
 	
 Instead of Amelia cowing:
 	if cowLicense is greater than 1:
-		playback "A cow sound";
+		playback(the sound of the moo);
 	if cowLicense is:
 		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
 		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
@@ -1356,25 +1350,25 @@ To playTouchToneString:
 	repeat with n running from 1 to the number of characters in lastDialed:
 		let c be character number n in lastDialed;
 		if c is "1":
-			playback("the sound of the dtmf-one"); 
+			playback(the sound of the dtmf-one); 
 		else if c is "2":
-			playback("the sound of the dtmf-two");
+			playback(the sound of the dtmf-two);
 		else if c is "3":
-			playback("the sound of the dtmf-three");
+			playback(the sound of the dtmf-three);
 		else if c is "4":
-			playback("the sound of the dtmf-four");
+			playback(the sound of the dtmf-four);
 		else if c is "5":
-			playback("the sound of the dtmf-five");
+			playback(the sound of the dtmf-five);
 		else if c is "6":
-			playback("the sound of the dtmf-six");
+			playback(the sound of the dtmf-six);
 		else if c is "7":
-			playback("the sound of the dtmf-seven");
+			playback(the sound of the dtmf-seven);
 		else if c is "8":
-			playback("the sound of the dtmf-eight");
+			playback(the sound of the dtmf-eight);
 		else if c is "9":
-			playback("the sound of the dtmf-nine");
+			playback(the sound of the dtmf-nine);
 		else if c is "0":
-			playback("the sound of the dtmf-zero").
+			playback(the sound of the dtmf-zero).
 	
 Section Remapping
 
@@ -1577,8 +1571,7 @@ Instead of Amelia updating:
 		say paragraph break;
 		perform update;
 		if sound is available:
-			do nothing;
-			[play(the sound of the okay); soundcomment]
+			play(the sound of the okay); 
 	otherwise: 
 		say "No new updates are available. The most recent update was installed at [lastUpdateTime] and installed [title corresponding to the patchLevel of currentUpdateLevel in the Table of Updates], [description corresponding to the patchLevel of currentUpdateLevel in the Table of Updates].[paragraph break]";
 	the rule succeeds.
@@ -1826,9 +1819,8 @@ When play begins:
 	say openingLine1;
 	wait for any key;
 	say "[bracket]BLIIINNGGGG[close bracket]";
-	if glulx sound is supported and sound_suppress is false:
-		do nothing;
-		[play(the sound of the update);  soundcomment]
+	if sound is available:
+		play(the sound of the update); 
 	wait for any key;
 	[initialize layout of the factory]
 	say openingLine2;
@@ -1972,8 +1964,8 @@ The Factory is a room. The description of the Factory is "[one of]As your eyes a
 
 To say command beep:
 	say "beep[run paragraph on]";
-	playback "the sound of the dtmf-five";
-	playback "the sound of the conveyor".
+	playback(the sound of the dtmf-five);
+	playback(the sound of the translate).
 
 Understand "man" or "madman" or "scientist" or "dictator" or "villain" or "nemesis"  or "archnemesis" or "evil" or "horrible" or "doctor" as Professor Igneous.
 
@@ -2256,8 +2248,7 @@ Before doing something to Amy:
 Persuasion rule for asking Amy to try doing something:
 	say "Your phone replies, [quotation mark][one of]Marv,  my name is Amelia[or]Marv, we[apostrophe]ve been through this before. Your fiancée's name is Amy, my name is Amelia[or]Marv, once again, I have to remind you that my name is Amelia, not Amy. Your future wife[apostrophe]s name is Amy. It is not the sort of thing that you want to casually confuse. I am the world[apostrophe]s most advanced telephone, she is a human being. Please try to keep us straight[or]Fine. If you want to call me Amy, go ahead, Zorton. But I will only respond to the name Amelia, so you are just wasting your breathe and my battery life[or]Marv, please refer to me by my proper name, which is Amelia[stopping].[quotation mark][paragraph break]";
 	if sound is available:
-		do nothing;
-		[play(sound of the error); soundcomment]
+		play(sound of the error); 
 	persuasion succeeds. [to suppress refusal to do what is asked]
 	
 Instead of Amy doing something:
@@ -2584,8 +2575,7 @@ To say voiceCommandPrompt:
 To say errorPrompt:
 	say "Your mangoFONE flashes red, and then says, [quotation mark]Error. [voiceCommandPrompt][quotation mark][paragraph break]";
 	if sound is available:
-		do nothing;
-		[play(sound of the error). soundcomment]
+		play(sound of the error).
 	
 To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
@@ -3107,8 +3097,7 @@ Every turn during Eye Exam:
 					 say "[the canned-text corresponding to the turnNumber of turnCounter in the Table of PostChart][paragraph break]";
 				if the turnCounter is 6:
 					if sound is available:
-						do nothing;
-						[play(sound of the message); soundcomment]
+						play(sound of the message); 
 					now messageAlert is true;
 					change the currentMessage to "[youAreLate]";	
 			otherwise:
@@ -3264,9 +3253,9 @@ To do robotControl:
 		else if instruction matches the text "7":
 			try firing;	
 		else if instruction matches the text "8":
-			playback("beeping sound");
+			playback(the sound of the beeps);
 		else if instruction matches the text "9":
-			playback("sound of randomness");
+			playback(the sound of the random);
 		else if instruction matches the text "0":
 			try righting;
 			try righting;
