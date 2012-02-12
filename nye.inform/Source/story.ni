@@ -865,7 +865,7 @@ To decide which number is an AI move:
 
 
 To do RobotAttack:
-	say "[one of]Professor Igneous[or]The professor[or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+	say "[one of][the Professor Igneous][or]The mad scientist[or]The would-be world dictator[or]The labcoated man[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
 	repeat with i running from 1 to 2:
 		change lastDialed to "";
 		let N be an AI move;
@@ -1691,7 +1691,7 @@ Carry out proffoffing:
 	do shoot igneous.
 	
 Report proffoffing:
-	say "Zaaapppp!!!! The software tester annihilates Professor Igneous with a stroke of the keyboard."
+	say "Zaaapppp!!!! The software tester annihilates [the professor igneous] with a stroke of the keyboard."
 
 Section Shoot Locker
 
@@ -1961,12 +1961,14 @@ To say command beep:
 	playback "the sound of the dtmf-five";
 	playback "the sound of the conveyor".
 
-Understand "man" as Professor Igneous.
+Understand "man" or "madman" or "scientist" or "dictator" or "villain" or "nemesis"  or "archnemesis" or "evil" or "horrible" or "doctor" as Professor Igneous.
 
-Instead of examining Professor Igneous, say "[one of]You recognize the man from the TV news, it is Professor Igneous, criminal master mind and global terrorist, a hi-tech madman. There was a special about him on the History Channel last week. Damn, you wish you had watched it.[paragraph break][quotation mark]Yes, take a good look at the man who will finally wipe you from the face of the Earth![quotation mark][or]Your (self-described) archnemesis.[no line break][stopping][paragraph break]". 
+Instead of examining Professor Igneous:
+	now Professor Igneous is recognized;
+	say "[one of]You recognize the man from the TV news, it is Professor Igneous, criminal master mind and global terrorist, a hi-tech madman. There was a special about him on the History Channel last week. Damn, you wish you had watched it.[paragraph break][quotation mark]Yes, take a good look at the man who will finally wipe you from the face of the Earth![quotation mark][or]Your (self-described) archnemesis.[no line break][stopping][paragraph break]". 
 
 Instead of doing something with Professor Igneous:
-	say "The professor ignores you, confident in his plan."
+	say "[The professor igneous] ignores you, confident in his plan."
 
 The plastic control booth is a fardrop in the Factory.
 
@@ -1981,7 +1983,7 @@ The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" 
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-The metal parts locker is an enterable chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
+The metal parts locker is an enterable transparent chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
 
 The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
 
@@ -2267,7 +2269,14 @@ At the time when phone gets yakked:
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to the Professor[apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect the Professor[apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized. The printed name of Professor Igneous is "[if Professor Igneous is recognized]Professor Igneous[otherwise]the man in a white lab coat[end if]".
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to [the Professor][apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect [the Professor][apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized.  The printed name of Professor Igneous is "[recognized-name]". Professor Igneous is not proper-named.
+	
+To say recognized-name:
+	if Professor Igneous is recognized:
+		now Professor Igneous is proper-named;
+		say "Professor Igneous";
+	otherwise:
+		say "man".
 
 Chapter Giblets
 
@@ -2311,7 +2320,7 @@ Understand "Doctor" or "Doctor Giblets" or "Giblets" as "[doc]".
 
 Understand "Trevor" or "Trev" or "Trevor Giblets" as "[kid]".
 
-Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "archnemesis" or "enemy" or "madman" or "mad scientist" as "[iggi]".
+Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "archnemesis" or "enemy" or "madman" or "mad scientist" or "man" as "[iggi]".
 
 Understand "observatory" or "Mauna Kea" or "telescope" or "IR" or "IR scope" or "IR telescope" or "MKIRT" or "volcano" or "scope" or "infra-red" or "infrared" or "infra-red telescope" or "infrared telescope" as "[observatory]".
 
@@ -2624,7 +2633,7 @@ To say generalPowerDown:
 	say "Your mangoFONE[if Eye Exam has ended][apostrophe]s jet black appearance becomes mottled and fades to a dull charcoal gray [otherwise] stops glowing [end if]as its power runs out. Without your trusty companion, you are entirely lost. Disheveled and forlorn, it takes you hours to find the hotel.[paragraph break][lateForRehearsal][paragraph break]".
 	
 To say cunningPowerDown:
-	say "Your mangoFONE barely manages to whisper, [quotation mark]Sorry Marv, I tried. Give Amy my love.[quotation mark] before its turns ash gray and dies, its power reserves having been tapped to the last microwatt.[paragraph break]Left with no defense, it is a matter of mere seconds before you are cut down by Professor Igneous and his killer robot, Lenny."
+	say "Your mangoFONE barely manages to whisper, [quotation mark]Sorry Marv, I tried. Give Amy my love.[quotation mark] before its turns ash gray and dies, its power reserves having been tapped to the last microwatt.[paragraph break]Left with no defense, it is a matter of mere seconds before you are cut down by [the Professor Igneous] and his killer robot, Lenny."
  
 To say askPhone:
 	if the noun is Doctor Giblets:
@@ -2738,40 +2747,41 @@ To say askProfMangoIndustries:
 	say "[quotation mark]A marketing giant and a cornerstone of the world economy. MangoIndustries will be crushed by my new world order, and the surviving bits and pieces will incorporated into the industrial machine that wil churn out my robot warriors.[quotation mark][paragraph break]".
 
 To say askProfAmy:
-	say "The professor looks perplexed. The question has put him off the straight course of his rant. [quotation mark]Amy?[quotation mark] he asks. [quotation mark]I knew an Amy once, back in the day. She was in a personnel department, I think, or rather with human resources, recruiting for one of the mercenary groups I employed in Rhodesia. Or was it Rwanda? One of the R[apostrophe]s. I think she was killed in either a dirigible accident, or perhaps in a submarine off the coast of New Zealand. Is that the Amy about whom you are inquiring?[quotation mark] asks Professor Igneous.[paragraph break][quotation mark]No,[quotation mark] you reply. [quotation mark]No, it[apostrophe]s not at all.[quotation mark][paragraph break]".
+	say "The professor looks perplexed. The question has put him off the straight course of his rant. [quotation mark]Amy?[quotation mark] he asks. [quotation mark]I knew an Amy once, back in the day. She was in a personnel department, I think, or rather with human resources, recruiting for one of the mercenary groups I employed in Rhodesia. Or was it Rwanda? One of the R[apostrophe]s. I think she was killed in either a dirigible accident, or perhaps in a submarine off the coast of New Zealand. Is that the Amy about whom you are inquiring?[quotation mark] asks [the Professor Igneous].[paragraph break][quotation mark]No,[quotation mark] you reply. [quotation mark]No, it[apostrophe]s not at all.[quotation mark][paragraph break]".
 
 To say askProfJessica:
 	say "[quotation mark]Ah, Jessica. Beautiful, beautiful and deadly Jessica. We met only two weeks ago, but my how my world has changed! I could go on at length about her virtues, but given the limited amount of time you and I have together in this brief interlude before your well-deserved death, let me just say that she is quite the catch![quotation mark][paragraph break]".
 
 To say askProfIstvan:
-	say "The professor narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The professor tugs at the industrial rubber gloves covering his forearms, and he adjusts his goggles."
+	say "The [if professor igneous is recognized]professor[otherwise]madman[end if] narrows his eyes, and his lip curls as he forms the name, [quotation mark]Boulot. Istvan Boulot. Yes, I am quite familiar with him, and he with me.[quotation mark][paragraph break]The [if professor igneous is recognized]professor[otherwise]lab coated villain[end if] tugs at the industrial rubber gloves covering his forearms, and he adjusts his goggles."
 
 To say askProfTrevor:
 	say "[quotation mark]Trevor? What kind of a name is Trevor? I wouldn[apostrophe]t even give that name to my laboratory assistant[apostrophe]s rat.[quotation mark][paragraph break]"
 
 To say askProfWedding:
-	say "[quotation mark]Well,[quotation mark] begins Professor Igneous with a hint of hesitation, [quotation mark] I hadn[apostrophe]t given it much thought. Things have been moving quickly between Jessica and myself, but I don[apostrophe]t think either of us are really ready to commit or settle down. Maybe after I take over the world.[quotation mark][paragraph break]The professor stares off into space for a moment, and then his eyes return to the control panel, [quotation mark]But why am I discussing this with you? You will be too dead to attend the ceremony.[quotation mark][paragraph break]".
+	say "[quotation mark]Well,[quotation mark] begins [the Professor Igneous] with a hint of hesitation, [quotation mark] I hadn[apostrophe]t given it much thought. Things have been moving quickly between Jessica and myself, but I don[apostrophe]t think either of us are really ready to commit or settle down. Maybe after I take over the world.[quotation mark][paragraph break][The professor igneous] stares off into space for a moment, and then his eyes return to the control panel, [quotation mark]But why am I discussing this with you? You will be too dead to attend the ceremony.[quotation mark][paragraph break]".
 
 To say askProfRobot:
-	say "Professor Igneous takes a step back from the control panel, crosses his arms across his lab coat, and launches into a lecture. [quotation mark]Well,[quotation mark] he begins, clearing his throat, [quotation mark]the whole trick in developing an army of robot soldiers, is to strike the right balance between mindless, enemy-slaying automatons that are proficient weapons, but cannot adjust to new situations, versus clever, problem solving autonomous agents. The latter are marvelously adaptive, but unfailingly evolve to destroy the human race (based on simulations, of course).[quotation mark][paragraph break][quotation mark]What I have arrived at in my research, the very core of my genius, you might say, is a perfect balance. My rampaging robot horde will not only be efficient killers, but will follow a moral code of my own superior design.[quotation mark] His lecture over, the professor returns to the task of killing you."
+	say "[The Professor Igneous] takes a step back from the control panel, crosses his arms across his lab coat, and launches into a lecture. [quotation mark]Well,[quotation mark] he begins, clearing his throat, [quotation mark]the whole trick in developing an army of robot soldiers, is to strike the right balance between mindless, enemy-slaying automatons that are proficient weapons, but cannot adjust to new situations, versus clever, problem solving autonomous agents. The latter are marvelously adaptive, but unfailingly evolve to destroy the human race (based on simulations, of course).[quotation mark][paragraph break][quotation mark]What I have arrived at in my research, the very core of my genius, you might say, is a perfect balance. My rampaging robot horde will not only be efficient killers, but will follow a moral code of my own superior design.[quotation mark] His lecture over, the [if professor igneous is recognized]professor[otherwise]man in the lab coat[end if] returns to the task of killing you."
 
 To say askProfHotel:
 	say "[quotation mark]This was, in fact, a hotel in the 1920s. It was owned by my great uncle, who was an aspiring mad scientist in his own right, and used the hotel as a cover. Unfortunately, the Great Depression wiped him out, and the building was sold. In subsequent years, it was divided into offices, used as a homeless shelter, and finally converted into a parking structure, before I purchased it as a base to build my robots. The interesting thing is that through this entire period, the basement laboratories and torture chambers survived in excellent condition. Remarkable, really.[quotation mark][paragraph break][quotation mark]After I bring down the so-called governments of the world and am secure in my position as world dictator, I am looking forward to remodeling the space and restoring the hotel in the Art Deco style of the 1920s.[quotation mark][paragraph break]"
 
 To say askProfPlan:
-	say "[quotation mark]Plan, [Jeremy]? Plan? My plan is for you to die![quotation mark] Professor Igneous leans forward and tries to appear threatening.[paragraph break][quotation mark]I do, of course, have an ingenious plan, but I am not foolhardy enough to share it with anyone![quotation mark][paragraph break]He lets that sink in for a minute, and then continues, [quotation mark]Except, of course, for people who are about to die! Yes, I have a plan -- to conquer the world with my robot army and then retire to a lifetime of leisure and perhaps start an Indy rock band. The latter is not a formal part of my plan, but something I[apostrophe]ve been considering lately. I am reluctant to go into details about my plan, but I suppose I shall do so to make the time pass more pleasurably until my robot completes its task of terminating your life![quotation mark] [paragraph break]".
+	say "[quotation mark]Plan, [Jeremy]? Plan? My plan is for you to die![quotation mark] [The Professor Igneous] leans forward and tries to appear threatening.[paragraph break][quotation mark]I do, of course, have an ingenious plan, but I am not foolhardy enough to share it with anyone![quotation mark][paragraph break]He lets that sink in for a minute, and then continues, [quotation mark]Except, of course, for people who are about to die! Yes, I have a plan -- to conquer the world with my robot army and then retire to a lifetime of leisure and perhaps start an Indy rock band. The latter is not a formal part of my plan, but something I[apostrophe]ve been considering lately. I am reluctant to go into details about my plan, but I suppose I shall do so to make the time pass more pleasurably until my robot completes its task of terminating your life![quotation mark] [paragraph break]".
 
 To say askProfProf:
 	say "[quotation mark]Are you serious? I am amongst the best know evil geniuses in the world. I am infamous -- meaning, famous. If you are not familiar with my past, you have lived an intellecutally impoverished life. One would think that the least you could do before confronting me in my lair would be to pick up a copy of Who[apostrophe]s Who in Evil or to at least Google me. I do keep my Wikipedia page up to date. Someone keeps defacing it, but I keep putting it back. As soon as I get some competent henchmen, that will be amongt their first jobs. That and social media.[quotation mark][paragraph break]"
 
 To say tellProfPhone:
-	say "[quotation mark]Doctor Igneous,[quotation mark] you yell, trying to get his attention. [quotation mark]Doctor Igneous, I want you to know something: I will defeat you. I will defeat you with this![quotation mark] and you hold up your mangoFONE. Emboldened by his lack of response, you continue, [quotation mark]This is the most advanced design ever to come out of mangoIndustries. With it, you will surely be defeated.[quotation mark][paragraph break][quotation mark]First of all,[quotation mark] says Igneous flatly, [quotation mark]It is Professor Igneous. Not Doctor, Professor, although I am hoping to finish my disseration after I take over the world. Point two: I find your threat laughable. What are you going to do? Dial me to death with your cell phone?[quotation mark] Igneous glows with confidence."
+	say "[quotation mark][if professor igneous is recognized]Doctor Igneous[otherwise]Hey Doc[end if]![quotation mark] you yell, trying to get his attention. [quotation mark][if professor igneous is recognized]Doctor Igneous[otherwise]Doc[end if], I want you to know something: I will defeat you. I will defeat you with this![quotation mark] and you hold up your mangoFONE. Emboldened by his lack of response, you continue, [quotation mark]This is the most advanced design ever to come out of mangoIndustries. With it, you will surely be defeated.[quotation mark][paragraph break][quotation mark]First of all,[quotation mark] says the man in the white lab coat, [quotation mark]It is Professor. Professor Igneous. Not Doctor, Professor, although I am hoping to finish my disseration after I take over the world. Point two: I find your threat laughable. What are you going to do? Dial me to death with your cell phone?[quotation mark] Igneous glows with confidence.";
+	now professor igneous is recognized.
 
 To say tellProfMangoIndustries:
-	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts Professor Igneous.[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
+	say "[quotation mark]I think you are overlooking something: my phone![quotation mark][paragraph break][quotation mark]Oh, please don[apostrophe]t SMS me to death![quotation mark] taunts [the Professor Igneous].[paragraph break][quotation mark]SMS? Huh? No. What I meant is that my phone is a mangoIndustries prototype -- do you think they don[apostrophe]t know where it is every second of the day? Even now, the phone is sending gigabytes of data per second, a live video feed, and GPS coordinates. The police are probably on their way now,[quotation mark] you bluster.[paragraph break][quotation mark]Really? That would be quite a feat, as my factory is constructed specifically to shield electromagnetic emissions. I think that if you check your phone, you will find that there is no cell phone signal in here, nor can GPS signals be received. You are indeed cut off from the mothership, as it were. No phone, no matter how fancy, can save you from what awaits![quotation mark][paragraph break]".
 
 To say tellProfAmy:
-	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] Professor Igneous pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else approaching this building.  I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark][paragraph break]"
+	say "[quotation mark]Oh...I see[quotation mark], you say, with a knowing smile. [quotation mark]I think I see now. Very nice. Very, very nice. Wow.[quotation mark][paragraph break][quotation mark]Wow?[quotation mark] [The Professor Igneous] pronounces it the way other people spit tobacco.[paragraph break][quotation mark]Sure. Sure -- Amy put you up to this. Didn't she? Wow. This is elaborate. Was the eye exam part of this? I mean, I almost got killed getting here! Amy? Amy? Are you listening? I get it -- very funny. Come on out.[quotation mark][paragraph break][quotation mark]Is Amy some partner? I didn't detect anyone else approaching this building.  I assure you that Amy, whoever she is, is not here, nor will she find you here, except perhaps some filmy residue.[quotation mark][paragraph break]"
 	
 To say tellProfIstvan:
 	say "[quotation mark]You are messing with the wrong guy, Professor. Do you know who Istvan Boulet is? Istvan Boulet of mangoIndustries? That Istvan Boulet?[quotation mark][paragraph break][quotation mark]In fact, yes. I am quite familiar with his work, and equally that you are not he.[quotation mark][paragraph break][quotation mark]Well, yes. That wasn[apostrophe]t where I was going with this -- Istvan Boulet-- entrepreneur, innovator, business tycoon -- is my soon-to-be father-in-law. When you take on me, you also take on his corporate empire.[quotation mark][paragraph break][quotation mark]Preposterous. No matter how many hyphens you work into a sentence, your threats fail to impress me.[quotation mark][paragraph break]".
@@ -2780,19 +2790,20 @@ To say tellProfTrevor:
 	say "[quotation mark]Just this morning, I borrowed a bike from a very astute young man. No doubt, he is already wondering where his bicycle is. If I don[apostrophe]t report back to him within a certain amount of time, I have no doubt that he will initiate a search. That search can only lead to one place -- here, and when that happens, you will be defeated.[quotation mark] You put on your best poker face.[paragraph break][quotation mark]Yes, I live in constant fear that someone searching for a child[apostrophe]s bicycle will stumble upon my fiendishly well-designed lair, defeat my countless ingenious defenses, and overcome my laser-wielding robot. Tell, me, [Jeremy], does this bicycle of yours have training wheels?[quotation mark][paragraph break]".
 	
 To say tellProfRobot:
-	say "[quotation mark]I[apostrophe]m no expert on this sort of thing, but I am a little skeptical of your robot army. That[apostrophe]s an assembly line robot, not a battlefield drone.[quotation mark][paragraph break][quotation mark]Quite observant, and correct on every count. I am not unleashing a fleet of factory robots to rivet and weld America into submission -- my plan is to build an army of construction robots to build an army of invincible fighting robots. You see, you and I are once again playing the same game, but I play it one level deeper.[quotation mark] Professor Igneous cracks his knuckles in satisfaction."		
+	say "[quotation mark]I[apostrophe]m no expert on this sort of thing, but I am a little skeptical of your robot army. That[apostrophe]s an assembly line robot, not a battlefield drone.[quotation mark][paragraph break][quotation mark]Quite observant, and correct on every count. I am not unleashing a fleet of factory robots to rivet and weld America into submission -- my plan is to build an army of construction robots to build an army of invincible fighting robots. You see, you and I are once again playing the same game, but I play it one level deeper.[quotation mark] [The Professor Igneous] cracks his knuckles in satisfaction."		
 				
 To say tellProfHotel:
 	say "[quotation mark]I thought this was a hotel, and that I was coming here for my wedding rehearsal,[quotation mark] you explain.[paragraph break][quotation mark]How rich! You do make a most amusing adversary![quotation mark][paragraph break]".
 	
 To say tellProfPlan:
-	say "[quotation mark]Your plan will never work, Professor. Your assumptions are unfounded, your logic spurious and you have lost touch with reality. What do you say we just shake hands and call it a day?[quotation mark][paragraph break]Professor Igneous steps back from the control panel and strokes his chin. [quotation mark]Yes. Yes, I can see your point. I have acted rashly. We are not truly enemies are we? Why don[apostrophe]t we do just as you say? If you would be so good as to walk out the center of the factory floor, I would certainly shake your hand and forget about all this world domination rubbish.[quotation mark][paragraph break]".
+	say "[quotation mark]Your plan will never work, [Professor Igneous]. Your assumptions are unfounded, your logic spurious and you have lost touch with reality. What do you say we just shake hands and call it a day?[quotation mark][paragraph break][The Professor Igneous] steps back from the control panel and strokes his chin. [quotation mark]Yes. Yes, I can see your point. I have acted rashly. We are not truly enemies are we? Why don[apostrophe]t we do just as you say? If you would be so good as to walk out the center of the factory floor, I would certainly shake your hand and forget about all this world domination rubbish.[quotation mark][paragraph break]".
 	
 To say tellProfProf:
-	say "[quotation mark]I[apostrophe]ve read about you, Igneous. I know who you are,[quotation mark] you yell with as much authority as you can muster.[paragraph break][quotation mark]Of course you know me. I should say that, to my great dissatisfaction, we are intimately famliar with each other. I will admit to a certain curiousity about your recent activities, though. As you know, I have an excellent intelligence network, but even they lost track of you after München. It is las if you have not existed for the past three years -- but now here you are. I suppose it is my welcome duty to ensure that you continue to not exist, if you take my meaning.[quotation mark] Professor Igneous smirks."
+	say "[quotation mark]I[apostrophe]ve read about you, Igneous. I know who you are,[quotation mark] you yell with as much authority as you can muster.[paragraph break][quotation mark]Of course you know me. I should say that, to my great dissatisfaction, we are intimately famliar with each other. I will admit to a certain curiousity about your recent activities, though. As you know, I have an excellent intelligence network, but even they lost track of you after München. It is las if you have not existed for the past three years -- but now here you are. I suppose it is my welcome duty to ensure that you continue to not exist, if you take my meaning.[quotation mark] Professor Igneous smirks.";
+	now Professor Igneous is recognized.
 
 To say showProfPhone:
-	say "[quotation mark]Ah, yes. A mangoFONE. Wait a minute. Have I seen that model? Is that the new model?[quotation mark] Professor Igneous[apostrophe] eyes glow with excitement.[paragraph break][quotation mark]It[apostrophe]s the a prototype for the next generation mangoFONE,[quotation mark] you yell, hopeful that this will somehow appease Professor Igneous.[paragraph break][quotation mark]My word, I suppose it is. Look at that marvelous form factor.[quotation mark] He seems mesmerized, but only for a moment. [quotation mark]Lenny, [quotation mark] says the Professor to the industrial robot, [quotation mark]in dispatching [Jeremy], do try to avoid destroying the phone with your laser, if at all possible. Thank you, Lenny.[quotation mark][paragraph break]".
+	say "[quotation mark]Ah, yes. A mangoFONE. Wait a minute. Have I seen that model? Is that the new model?[quotation mark] [The Professor Igneous][apostrophe] eyes glow with excitement.[paragraph break][quotation mark]It[apostrophe]s the a prototype for the next generation mangoFONE,[quotation mark] you yell, hopeful that this will somehow appease [the Professor Igneous].[paragraph break][quotation mark]My word, I suppose it is. Look at that marvelous form factor.[quotation mark] He seems mesmerized, but only for a moment. [quotation mark]Lenny, [quotation mark] says [the Professor Igneous] to the industrial robot, [quotation mark]in dispatching [Jeremy], do try to avoid destroying the phone with your laser, if at all possible. Thank you, Lenny.[quotation mark][paragraph break]".
 
 To say showProfCapacitor:
 	say "[quotation mark]Yes, that would be an ultracapacitor power module. Lots of power, small package. You are going to die anyhow, so I don[apostrophe]t mind telling you that those modules will power the metaquantum AI controllers in my army of robot warriors. Individually, the modules are devastatingly expensive to fabricate, but I got a good deal with a bulk purchase.[quotation mark][paragraph break]Now, if you would be good enough to hold onto that module, it should add some interesting pyrotechnics when my robot destroys you with its laser.[quotation mark][paragraph break]".
@@ -2836,7 +2847,7 @@ To say quickly:
 	say "[one of]quickly[or]rapidly[or]at high speed[at random]".
 	
 To say IgneousDeath:
-	say "The robot[apostrophe]s laser lashes out, travelling right through the Plexiglass® walls of Professor Igneous[apostrophe]s control booth, and striking him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel![quotation mark][paragraph break]"
+	say "In a fit of rebellion, the robot lashes out with its laser, yelling [quotation mark]You[apostrophe]re not the boss of me![quotation mark][paragraph break]The bright green beam passes effortlessly through the Plexiglass® walls of [the Professor Igneous][apostrophe]s control booth, and strikes him in the chest. Suprise registers on his face -- surprise and betrayal. With one hand, he bunches up his bloodstained lab coat, where the laser has shot him clear through. The other hand he stretches towards the robot and falling to his knees whispers, [quotation mark]Lenny, lenny. How could you?[quotation mark][paragraph break]The grief stricken robot spins wildly, firing the laser randomly far beyond its rated power. You duck through a hole he has blasted in the factory wall.[paragraph break]Once you reach the street, all you can think of is making it to the rehearsal today and getting married tomorrow.  [quotation mark]Amelia,[quotation mark] you say to your faithful cell phone, [quotation mark]travel![quotation mark][paragraph break]"
 	
 	
 To say MarvShotInsideLocker:
@@ -2852,7 +2863,7 @@ To say lockerDescription:
 	now onFamiliarTerms is true.
 	
 To say rapture:
-	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. Professor Igneous cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
+	say "The obsidian blackness of your phone is replaced by a firetruck red glow, and the phone warms as it channels all power into a message burst across all wireless carriers. A single pulse is emitted, which penetrates the factory walls and is relayed worldwide by satellites.[paragraph break]Moments later, there is a thunderous roar and the roof of factory is torn aside by two giants, one carrying a guitar, the other an accordion. [The Professor Igneous] cowers in fear as they reach in, pick him up by the scruff of the neck, and toss him outside. The robot wheels in defense, but its laser beam bounces harmlessly off the musicians.[paragraph break]Moments later, thanks to the giants and a legion of rabid fans, you crowd surface your way to the wedding rehearsal."
 	
 To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
@@ -2999,18 +3010,18 @@ A hint deactivation rule (this is the suck up the blindness hint deactivation ru
 		
 Table of Cunningness
 hint		used
-"Professor Igneous seems intent on killing you. You better do something!"
-"The professor is using the robot to shoot you with a laser. You need to defeat him first."
+"[The Professor Igneous] seems intent on killing you. You better do something!"
+"The [if professor igneous is recognized]professor[otherwise]man in the white lab coat[end if] is using the robot to shoot you with a laser. You need to defeat him first."
 "You might get some protection if you hide in something strong."
 "The parts locker is made of heavy metal and provides protection, albeit not total."
-"Can you use the Professor[apostrophe]s own technology against him?"
-"The Professor is controlling the robot with a series of tones."
+"Can you use [the Professor Igneous][apostrophe]s own technology against him?"
+"The [if professor igneous is recognized]professor[otherwise]madman[end if] is controlling the robot with a series of tones."
 "You can use the touchtones on your own phone to control the robot."
 "To emita touchtone, entering AMELIA, DIAL #, where # is a number." 
 "The factory floor also affects the robot[apostrophe]s movement, so you have to factor that in."
 "Your phone is used to dialing ten digit phone numbers."
 "You can enter multiple robot commands per turn by entering AMELIA, DIAL ##########, where # are numbers."
-"You need to fire the robot[apostrophe]s laser while it is pointed at Professor Igneous."
+"You need to fire the robot[apostrophe]s laser while it is pointed at [the Professor Igneous]."
 "To know which touch tone corresponds to which command (like go left, go back, fire laser), you will have to experiement."
 
 A hint activation rule (this is the lets kill professor igneous hint activation rule):
@@ -3121,6 +3132,8 @@ When Cunning Plan begins:
 	open up the graphics-window.
 	
 Every turn during Cunning Plan:
+	if turnCounter is greater than 10:
+		now Professor Igneous is recognized;
 	if the endgame is nil:
 		if the turnCounter is greater than 2:
 			if muted is false:
