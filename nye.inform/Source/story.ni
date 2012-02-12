@@ -2201,7 +2201,7 @@ Instead of examining Marv Spindle:
 		continue the action;
 	if Exterior is happening:
 		if the location is Wisconsin Avenue:
-			say "You are, of course, Marv Spindle. A man who is in danger of being late to his own wedding rehearsal. In terms of physical description, your eyes were just dilated by an ophthalmologist, so you can[apostrophe]t see much detail beyond the observation that you appear to have limbs.";
+			say "You are, of course, Marv Spindle. A man who is in danger of being late to his own wedding rehearsal. As for a physical description, your eyes were just dilated by an ophthalmologist, as far as you can tell, you are a nebulous blob.";
 		otherwise:
 			say "Your vision is still blurry, but you recognize that you are not at your best. After the incident with the bus, your clothes are torn and bloodstained,  and you are covered in dirt and grime from the road. Also, since you didn't have time to apply conditioner this morning, your hair is also probably a mess.";
 	otherwise:
