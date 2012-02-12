@@ -1,0 +1,70 @@
+
+What is this?
+-------------
+
+This is the source code to "Narrow Your Eyes", an interactive fiction
+game (or more commonly known as "text adventure".)
+
+It was originally written by Jack Welch and Ben Collins-Sussman on February 12, 
+2012 (in beta).  The code is now released under the "Creative Commons
+Attribution - Noncommercial - Share Alike 3.0" license, which you can
+find in the LICENSE file.
+
+The game is written in the Inform 7 programming language.  You can
+download the compiler and IDE as a single package from here:
+
+  http://www.inform7.com
+
+
+When compiled, the source code produces a bytecode file which can be
+executed on any implementation of a Glulx virtual machine:
+
+  http://www.eblong.com/zarf/glulx/
+
+The game's source code lives in a single file called 'story.ni'.
+
+
+
+To build the game:
+------------------
+
+1. Create a working Inform project from your source tree:
+
+  $ hg clone URL nye
+  $ cd nye
+  $ mv nye.inform/ temp.inform/
+
+  [...launch Inform, create new project in this dir called 'nye'…]
+
+  $ cp temp.inform/Source/story.ni nye.inform/Source/
+  $ cp temp.inform/uuid.txt nye.inform/
+  $ rm -rf temp.inform/
+
+
+2. Use the Inform 7 IDE to install the *.i7x extensions. In the past, you 
+had to manually copy them to a directory that depended on what operating
+system you were using, and how you had configured it. It is preferable to 
+do this automatically within the IDE by clicking on the "File" menu, and then 
+on the "Install extension" submenu. Since all of the extensions are downloaded
+when you clone the repository, you can find them at the top level of your
+working directory.
+
+When the extensions are installed, their names should appear in black type
+(rather than gray) under "File" > "Open Extension" > Author's Name 
+> Extension Name.  If you want to review the text of an extension, click on
+its name.
+
+3. Launch the Inform IDE and load the nye.inform project.  The
+source code should be visible, and it should compile fine.  [Make sure
+that Inform's settings are are set to "Glulx" as the target VM.]
+
+
+WARNING!!
+  ******************************************************************
+  ** DO NOT do any version control operations (commit, push,
+  ** and particularly, pull, update, and merge) while the Inform IDE 
+  ** is still open.  When the IDE 'saves', it destroys and recreates 
+  ** the whole nye.inform/ directory, thus possibly eradicating any 
+  **  changes you may have downloaded. 
+  ******************************************************************
+
