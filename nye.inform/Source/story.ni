@@ -468,7 +468,6 @@ Forwarding is an action applying to nothing.  Understand "forward" as forwarding
 
 Carry out forwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "[if muted is false]: The robot takes a step forward.[end if]";
 	if the facing-direction of the robot is:
 		-- right: increment startx;
 		-- left: decrement startx;
@@ -484,7 +483,6 @@ Backwarding is an action applying to nothing.  Understand "back" as backwarding.
 
 Carry out backwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "[if muted is false]The robot takes a step backward.[end if]";
 	if the facing-direction of the robot is:
 		-- right: decrement startx;
 		-- left: increment startx;
@@ -499,7 +497,6 @@ Carry out backwarding:
 Righting is an action applying to nothing.  Understand "right" as righting.
 
 Carry out righting:
-	say "[if muted is false]The robot turns to the right.[end if]";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is hither;
@@ -521,7 +518,6 @@ Carry out righting:
 Lefting is an action applying to nothing.  Understand "left" as lefting.
 
 Carry out lefting:
-	say "[if muted is false]The robot turns to its left.[end if]";
 	if the facing-direction of the robot is:
 		-- right:
 			now the facing-direction of the robot is yonder;
@@ -603,29 +599,22 @@ To decide which number is the current robot tile:
 	
 To shift (way - a conveyor-direction):
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
-	say "[if muted is false]The factory attempts to shift the robot [run paragraph on][end if]";
 	if way is:
 		-- rightwards:
-			say "[if muted is false]to the right.[end if]";
 			increment startx;
 		-- leftwards:
-			say "[if muted is false]to the left.[end if]";
 			decrement startx;
 		-- upwards:
-			say "[if muted is false]away from you.[end if]";
 			decrement starty;
 		-- downwards:
-			say "[if muted is false]towards you.[end if]";
 			increment starty;	
 	if the destination of startx and starty is valid:
 		finalize the coordinates of startx and starty;
 		playback(the sound of the conveyor);
-		say "[if muted is false]...the robot is moved by the conveyor belt![end if]";
 	otherwise:
 		playback(the sound of the backpedal).
 			
 This is the factory movement rule:
-	say "[if muted is false]The factory floor moves…[end if]";
 	if the current robot tile is:
 		-- 1: [left]
 			shift leftwards;
@@ -675,24 +664,20 @@ m-forward		100		hither
 m-back		100		hither
 m-pass		100		hither
 
-To say choices:
+[To say choices:
 	if muted is false:
 		say "Evaluating AI movement choices:[line break]";
 	repeat with N running from 1 to the number of rows in the Table of Choices:
 		choose row N in the Table of Choices;
-		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";
+		say "[movement entry]:  [Goodness entry], [facing-direction entry] .";]
 
 
 To decide which number is the hypothetical floor tile for (X - a number) and (Y - a number):
-	if muted is false:
-		say "Deciding the number of the floor tile.";
 	let gridrow be entry Y of the tile-array of the robogrid;
 	decide on entry X of gridrow.
 
 [TODO:  this code should be refactored with the 'righting' and 'lefting' code in Movement Rules above.]
 To decide which facing-direction is the future-direction for (rotation - a movement) and (existing-direction - a facing-direction):
-	if muted is false:
-		say "Deciding the future facing direction.";
 	if the existing-direction is:
 		-- right:
 			if rotation is:
@@ -722,8 +707,6 @@ To decide which facing-direction is the future-direction for (rotation - a movem
 
 [Calculate the {X, Y, facing-direction} of a proposed movement, and store the results in the Table of Choices]
 To calculate the future results of (choice - a movement):
-	if muted is false:
-		say "Calculating future results.";
 	let X be entry 1 of the grid-coordinate of the character of the robot;
 	let Y be entry 2 of the grid-coordinate of the character of the robot;
 	let D be the facing-direction of the robot;
@@ -817,8 +800,6 @@ To calculate the future results of (choice - a movement):
 
 [Assumes the Table of Choices has already been fleshed out by hypothetical calculations above.]
 To decide which movement is the best choice:
-	if muted is false:
-		say "Deciding which movement is the best choice.";
 	sort the Table of Choices in Goodness order;
 	let G1 be the Goodness in row 1 of the Table of Choices;
 	let G2 be the Goodness in row 2 of the Table of Choices;
@@ -839,15 +820,11 @@ To decide which movement is the best choice:
 
 [The main AI algorithm]
 To decide which number is an AI move:
-	if muted is false:
-		say "Deciding which number is an AI move.";
 	if the facing-direction of the robot is hither and entry 1 of the grid-coordinate of the character of the robot is 5:
 		decide on 7;  [screw prediction, just FIRE!  keeps things fun!]
 	otherwise:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
-		if muted is false:
-			say choices;
 		let M be the best choice;
 		if M is:
 			-- m-forward:
@@ -1214,7 +1191,7 @@ Instead of Amelia cowing:
 	if cowLicense is greater than 1:
 		playback(the sound of the moo);
 	if cowLicense is:
-		-- 4: say "You can’t see the phone because [if the player is dilated]your vision is blurred[otherwise]you are looking through the refractor[end if], but you hear the sound of cows fighting viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
+		-- 4: say "The cows fight viciously against their mortal enemies. After some time, the phone determines that you are not actively playing the game, the mooing fades, and the cows come home.";
 		-- 3: say "Cows leap into action, mercilessly slaughtering their sworn enemies, the hedgehogs. It is a metaphor for life.";
 		-- 2: say "You cry havoc and let slip the cows of war.";
 		-- 1: say "Your trial license for Angry Cows has expired, and the application has been removed from your device. To purchase Angry Cows or Angry Cows 2: Bovine Retribution, please visit the Mango Intellectual Properties Store.";
@@ -1590,7 +1567,7 @@ To perform update:
 		if timekeeping is available:
 			repeat with x running from 1 to 20:
 				say ".[run paragraph on]";
-				wait 100 ms before continuing, strictly;
+				wait 50 ms before continuing, strictly;
 		otherwise:
 			say "............. [run paragraph on]";
 		say "installed.";
@@ -1960,7 +1937,7 @@ The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the offi
 
 Chapter Factory
 
-The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
+The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers. There is a metal parts locker right in front of you.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
 
 To say command beep:
 	say "beep[run paragraph on]";
@@ -3158,8 +3135,6 @@ Every turn during Cunning Plan:
 		now Professor Igneous is recognized;
 	if the endgame is nil:
 		if the turnCounter is greater than 2:
-			if muted is false:
-				say "ROBOATTACK!";
 			do RobotAttack;
 		otherwise:
 			follow the factory movement rule;	
@@ -3234,7 +3209,6 @@ To do robotControl:
 	let instruction be indexed text;
 	repeat with n running from one to lastChar:
 		let instruction be character number n in lastDialed;
-		say "[if muted is false]The robot moves[end if]";
 		if  instruction matches the text "1": 
 			try lefting;
 		else if instruction matches the text "2":
