@@ -852,7 +852,7 @@ To decide which number is an AI move:
 
 
 To do RobotAttack:
-	say "[one of][the Professor Igneous][or]The mad scientist[or]The would-be world dictator[or]The man in the white lab coat[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
+	say "[one of]The mad scientist[or]The would-be world dictator[or]The man in the white lab coat[as decreasingly likely outcomes] [one of]presses[or]mashes[or]runs his hand over[or]selects[or]pokes at[or]manipulates[or]punches[or]taps on[in random order] a couple buttons.";
 	repeat with i running from 1 to 2:
 		change lastDialed to "";
 		let N be an AI move;
