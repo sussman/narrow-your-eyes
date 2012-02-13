@@ -1817,10 +1817,11 @@ Every turn:
 	[avoid penalizing time for non-actions, a nuance]
 	if the current action is taking inventory or the current action is looking:
 		change the time of day to 1 minute before the time of day;
-	increase turnCounter by one;[so don't do this in per-scene-everyturn]
-	decrease phoneCharge by one;
-	if Amelia is lit:
+	otherwise:
+		increase turnCounter by one;[so don't do this in per-scene-everyturn]
 		decrease phoneCharge by one;
+		if Amelia is lit:
+			decrease phoneCharge by one;
 	change powerBars to phoneCharge divided by 25;
 	if powerBars is greater than 5, change powerBars to five;
 	if phoneCharge is zero:
