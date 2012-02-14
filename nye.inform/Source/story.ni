@@ -1830,7 +1830,6 @@ After printing the banner text:
 		say "cannot display graphics. The game cannot be completed without graphic capabilities, so you may wish to try another interpreter. ";
 	say "Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them[roman type]."
 
-
 	
 Chapter Every Turn
 
@@ -2323,7 +2322,7 @@ Chapter mangoFONE
 
 Amelia is a woman. Understand "telephone", "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
 
-Instead of pushing Amelia:
+Instead of pushing or pulling or opening or touching Amelia:
 	try pushing the orange button.
 
 Amy is a woman. Amy is part of Amelia. [A work around for now, because some players want to call the phone
