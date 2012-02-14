@@ -577,7 +577,7 @@ Carry out firing:
 	follow the window-drawing rules for the graphics-window;
 	playback(the sound of the laser);
 	[Check for game-ending conditions here -- the beam persists on the final target]
-	if entry 1 of M is 0 and entry 2 of M is 40:
+	if (entry 1 of M is 0 and entry 2 of M is 40) or (entry 1 of M is 40 and entry 2 of M is 0):
 		do shoot Igneous;
 	otherwise if entry 1 of M is 360 and entry 2 of M is 400:
 		if the metal parts locker encloses Marv:
