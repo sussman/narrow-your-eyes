@@ -3332,7 +3332,7 @@ To do shoot locker:
 		let outcome be a random number between one and five;
 		if outcome is:
 			-- 1: 
-				say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]jmere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
+				say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]mere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
 			-- 2:
 				say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
 			-- 3:
