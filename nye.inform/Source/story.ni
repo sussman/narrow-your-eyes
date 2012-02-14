@@ -1937,7 +1937,7 @@ Instead of searching the refractor:
 			say "Now it all looks sharp, except perhaps for the tiny letters of the fourth line that seem to crawl about on their own."
 			
 Instead of going somewhere during the Eye Exam:
-	say "Wedding jitters almost got to you, but then you sit back down to finish the eye exam."
+	say "Wedding jitters almost get to you, but then you sit back down to finish the eye exam."
 
 Chapter Wisconsin Avenue
 
