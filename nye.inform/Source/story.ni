@@ -1818,7 +1818,17 @@ When play begins:
 	change the right hand status line to "".
 
 After printing the banner text:
-	say "This game uses graphics and sound. Sound is optional, but graphic display is essential, so please use an appropriate interpreter. Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them."
+	say "[italic type]Your interpreter ";
+	if glulx sound is supported:
+		say "appears to support sound. ";
+	otherwise:
+		say "does not appear to support sound. It is possible to complete the game without sound, but not recommended. ";
+	say "Additionally, your interpreter indicates that it can ";
+	if glulx graphics is supported:
+		say "display graphics. That[apostrophe]s good, since you[apostrophe]ll need them. ";
+	otherwise:
+		say "cannot display graphics. The game cannot be completed without graphic capabilities, so you may wish to try another interpreter. ";
+	say "Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them[roman type]."
 
 
 	
