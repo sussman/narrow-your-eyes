@@ -465,7 +465,7 @@ To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
 
 [TODO:  In release, disable these command tokens; the actions themselves need to persist as they do the actual moving around of the robot -- people should just not be able to say "forward", "back", etc., but will have to use the touchtones.]
 
-Forwarding is an action applying to nothing.  Understand "forward" as forwarding.
+Forwarding is an action applying to nothing.  
 
 Carry out forwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
@@ -480,7 +480,7 @@ Carry out forwarding:
 	otherwise:
 		playback(the sound of the backpedal).
 	
-Backwarding is an action applying to nothing.  Understand "back" as backwarding.
+Backwarding is an action applying to nothing.  
 
 Carry out backwarding:
 	set starting coordinates of entry 1 of the grid-coordinate of the character of the robot and entry 2 of the grid-coordinate of the character of the robot;
@@ -495,7 +495,7 @@ Carry out backwarding:
 	otherwise:
 		playback(the sound of the backpedal).	
 		
-Righting is an action applying to nothing.  Understand "right" as righting.
+Righting is an action applying to nothing.  
 
 Carry out righting:
 	if the facing-direction of the robot is:
@@ -516,7 +516,7 @@ Carry out righting:
 	follow the refresh windows rule.
 
 
-Lefting is an action applying to nothing.  Understand "left" as lefting.
+Lefting is an action applying to nothing.  
 
 Carry out lefting:
 	if the facing-direction of the robot is:
@@ -544,7 +544,7 @@ The UVLaser is a line primitive.  The origin of the UVLaser is { 0, 320 }.  The 
 	
 The RobotLaser is a line primitive.  The origin of the RobotLaser is { 0, 0 }.  The endpoint of the RobotLaser is { 400, 320 }.  The line-weight of the RobotLaser is 4.  The tint of the RobotLaser is g-green-laser.  The associated canvas of the RobotLaser is the graphics-canvas.  The display-layer of the RobotLaser is 3.  The display status of the RobotLaser is g-inactive.
 
-Firing is an action applying to nothing.  Understand "fire" as firing.
+Firing is an action applying to nothing.  
 
 Carry out firing:
 	let endX be a number;
@@ -1791,6 +1791,13 @@ Carry out timertoggling:
 Report timertoggling:
 	say "Timekeeping suppression is now [if timekeeping_suppress is true]on[otherwise]off[end if]."
 
+Section Debug Only Robot Control
+
+Understand "forward" as forwarding.
+Understand "back" as backwarding.
+Understand "right" as righting.
+Understand "left" as lefting.
+Understand "fire" as firing.
 
 	
 Chapter Initialize
@@ -2947,7 +2954,7 @@ To say MarvShotOutsideLocker:
 	
 
 To say lockerDescription:
-	say "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]";
+	say "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping][paragraph break]";
 	now onFamiliarTerms is true.
 	
 To say rapture:
