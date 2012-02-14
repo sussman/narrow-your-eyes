@@ -1229,7 +1229,6 @@ Instead of Amelia flashing:
 		otherwise:
 			say "The light from your phone fades out.";
 			now Amelia is not lit;
-	say paragraph break;
 	the rule succeeds.
 	
 Section Messaging
@@ -1552,7 +1551,6 @@ Carry out updating:
 
 Instead of Amelia updating:
 	if updates are available:
-		say paragraph break;
 		perform update;
 		if sound is available:
 			play(the sound of the okay); 
@@ -2013,6 +2011,11 @@ The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
 The metal locker is an enterable transparent chest. It is in the Factory. The metal locker can be pinholed. The metal locker is not pinholed. The texture of the metal locker is "cold and metallic".
+
+Instead of examining the metal locker:
+	say the description of the metal locker.
+	[yeah, but leave out the x-ray vision part about describing what is inside.  ]
+
 
 Instead of looking when the metal locker encloses the player:
 	say "Through the [if the blast hole is in limbo]tiny cracks in the corners[otherwise]blast hole drilled through the side[end if] of the locker, you can see a complicated factory floor and a welding robot. [run paragraph on]";
@@ -2941,7 +2944,7 @@ To say MarvShotOutsideLocker:
 	
 
 To say lockerDescription:
-	say "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked, [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]";
+	say "A light colored sturdy metal box, with a hinged cover that comes up to your chest. It is marked [quotation mark]Parts[quotation mark].[no line break][one of][paragraph break][quotation mark]There’s nothing there that will help you, Jeremy. May I call you Jeremy? Yes, I think we’re on intimate terms now, at least for this deliciously brief period before your death. That bin is full of ultra high-density power modules stolen from your own Army by my operatives in West Ispharistan. Each of them will power my robot warriors for weeks![quotation mark][or][stopping]";
 	now onFamiliarTerms is true.
 	
 To say rapture:
