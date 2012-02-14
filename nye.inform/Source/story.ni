@@ -1935,12 +1935,50 @@ Chapter Wisconsin Avenue
 
 Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The description of Wisconsin Avenue is "[one of]It is a bright, unpleasantly sunny day. So sunny, in fact, that everything more than a few feet away is a complete blur. You narrow your eyes and recognize the outside of Doctor Giblet’s office[or]Somewhere on Wisconsin Avenue, just above Reservoir Road[stopping]."
 
-The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.   Understand "red" or "bicycle" as the bike. The texture of the bike is "metallic".
+The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.   Understand "red" or "bicycle" or "body" as the bike. The texture of the bike is "metallic".
 
 Instead of taking or climbing the bike:
 	try entering the bike.
 	
 The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the office-proxy is "office". The description of the office-proxy is "The front of the Doctor Giblet[apostrophe]s small ophthalmology office. A sign hangs in the front window: [quotation mark]Closed Sundays[quotation mark]." Understand "office" or "sign" or "window" as the office-proxy. The office-proxy is not fuzzy.
+
+The electronic enhancements are a part of the bike. The description of the electronic enhancements is "Thick bundles of wire exit the bike[apostrophe]s complicated control panel just below the rear view mirror and dive into the body of the bike, where who knows what they do. Luckily for you, the control panel is illuminated and says, [quotation mark]AUTOPILOT ENGAGED.[quotation mark] This is particularly fortunate, since you never really learned to ride a bike in the first place." 
+
+The bundles of wire are part of the bike. The description of the bundles of wire are "Wires of every color."  Understand "wire" as the bundles of wire.
+
+The control panel is part of the bike. The description of the control panel is "All kinds of controls, far too complicated for simple rocket scientist like yourself to comprehend on the day before his wedding." Understand "controls" or "autopilot" as the control panel. Understand "electronics" as the electronic enhancements.
+
+Instead of doing something other than examining with the electronic enhancements:
+	say "[noWires]."
+		
+Instead of doing something other than examining with the bundles of wire:
+	say "[noWires]."
+	
+Instead of doing something other than examining with the control panel:
+	say "[noWires]."
+	
+The stabilization gyros are part of the bike. The description of the stabilization gyros is "Small, high-speed flywheels flank each side of the bike[apostrophe]s seat, and allow the bike to stand perfectly balanced, even when no one is on it. They should make riding the bike a piece of cake." Understand "gyroscope" or "flywheel" or "gyro" or "gyroscopes" or "flywheels" or "gadgets"  as the stabilization gyros.
+
+The seat is part of the bike. The description of the seat is "A padded, leather seat. Marv apparently spared no expense on this bike." Understand "leather" or "padded" as the seat.
+
+The wheels are a part of the bike. The description of the wheels is "The wheels are largely covered by the smooth, tubular body of the bike, but from what does protrude, you can see that the wheels have a wide base, which should promote stability, and that the tread is more like that of a mountain bike than a city bike. The ride may be bumpy, but at least the wheels will grip the pavement." Understand "tread" as the wheels.
+
+Instead of pushing, pulling or turning the bike:
+	say "The gyros resist the externally applied force. The bike remains exactly where it was, like a statue."
+	
+The rear view mirror is part of the bike. The description of the rear view mirror is "There seems to be some lettering on the rear view mirror. Your vision is to blurry to make out objects in the distance, though." 
+
+The lettering is part of the rear view mirror. Understand "inscription" or "writing" as the lettering. 
+
+Instead of examining or reading the lettering:
+	try reading the rear view mirror.
+
+The inscription of the rear view mirror is "The frosted writing on the rear view mirror offers the following warning: [quotation mark]Objects may be distant in the rear view mirror, but they are actual size.[quotation mark]" 
+
+Instead of searching the rear view mirror:
+	try examining the rear view mirror.
+
+The bike, the electronic enhancements, the control panel, the rear view mirror, the bundles of wire, the stabilization gyros, the seat and the wheels are not fuzzy.
 
 
 Chapter Factory
@@ -2915,6 +2953,8 @@ To say Jeremy:
 To say walkthroughText:
 	say "This is the most direct way through the game. If you follow this you will miss a lot of fun interactions with characters and situations, but we assume that you know what you are doing. If you do not want to see this, either rip out your own eyes like Oedipus (not recommended) or just keep hitting enter until the text scrolls off the screen. Otherwise, remember… you have brought this on yourself.[paragraph break]1. You need to complete the eye exam. Keep entering [quotation mark]read the third line[quotation mark] (of the eye chart) until Doctor Giblets says that you have got it correct. He will make adjustments each time, gradually refining the prescription for your glasses.[paragraph break]2. It takes a few more turns for Doctor Giblets to finish his eye exam; you can do anything during this time. You might as well get famliar with your phone by entering [quotation mark]Amelia, help[quotation mark]. One of the things you can do with your phone is to apply software updates. You will know when one is available, because the number of updates will be shown at the top of the screen. To apply an update, enter [quotation mark]Amelia, update[quotation mark]. The first update installs the travel module, which you will need in step 4.[paragraph break]3. After a few turns, your phone will sound a notification that you have a message and the word [quotation mark]message[quotation mark] will appear at the top of the screen. To review messages, enter [quotation mark]Amelia, messages[quotation mark].[paragraph break]4. A turn after you hear the message, you will figure out that you are late for your own wedding rehearsal, and will bolt out of the eye exam. You are in a hurry, so get on the bike. Since you need directions, engage the phone[apostrophe]s navigation system by entering [quotation mark]Amelia, travel[quotation mark].[paragraph break]5. You arrive on a street corner, and can enter the hotel, which turns out to be a factory.[paragraph break]6. Inside the factory, Professor Igneous will attempt to kill you with his robot, Lenny. I kid you not. Both he and you can control Lenny's movements using telephone touch tones. You can enter one or more touch tones by saying [quotation mark]Amelia, dial ##########[quotation mark], where # is a number. After each robot movement, the robot will also be moved by the factory floor, so you will need to take that into consideration.[paragraph break]7. The robot will shoot to kill you whenever it has the opportunity. You can find some refuge within the parts locker, which is right in front of you when you enter the factory. It does not offer complete protection, but it is better than nothing.[paragraph break]8. Good luck."
 	
+To say noWires:
+	say "You are content to leave well enough alone. After all, you don[apostrophe]t want to get electrocuted on the way to your wedding rehearsal"
 	
 	
 Book 5 Hints
