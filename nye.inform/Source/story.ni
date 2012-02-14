@@ -225,6 +225,7 @@ Sound of the shock is the file "shock(62925).ogg".
 Sound of the swivel  is the file "swivel(101439).ogg".
 Sound of the translate is the file "translate(523440).ogg".
 Sound of the update is the file "update(51645).ogg".
+Sound of the sitar is the file "sitar(65872).ogg".
 
 Table of Sounds
 Sound		Duration  [millisencond]
@@ -253,6 +254,7 @@ The sound of the shock		1700
 The sound of the swivel		1250
 The sound of the translate		950	
 The sound of the update		5500
+The sound of the sitar		2350
 
 [Sounds given one after the other will not form a queue and play sequentially. For this reason, it is necessary to play one, wait the duration of that sound, and give the command to play another. The other issue is that while a sound is playing, if timing does not lock out input, new commands could be typed in. These new commands could be at odds with the sounds that are playing, and cause confusion, or they could kick off new sounds, which would be suppressed by the currently playing sound.
 
@@ -328,7 +330,6 @@ A furniture is a kind of supporter. It is usually scenery and fixed in place. [I
 A thing can be large. A thing is usually not large.
 
 Everything has some text called texture. The texture of something is usually "".
-Everything has some text called scent. The scent of something is usually "". 
 
 A thing can be fuzzy. A thing is usually fuzzy.
 
@@ -882,6 +883,10 @@ Before asking the player about something:
 Section Crediting
 
 Understand "credit" or "credits" as asking for help.
+
+Section Lick
+
+Understand "lick [a thing]" as tasting.
 		
 Section Listening
 [Listen is implemented through insteads. Override this general instead rule with more specific ones as needed]
@@ -958,6 +963,8 @@ Instead of smelling:
 			say "You smell [one of]nothing but the pure, clean air of the stratosphere[or]Congress. You must be downwind of The Capitol. Like any kind of congress, it is musky and dank[or]the winds of change[or]the street below[or]your own fear of heights[at random].";
 		-- Factory:
 			say "The factory reeks of [one of]mildew[or]machine oil[or]ozone[or]hydraulic fluid and solder smoke. Actually, you rather enjoy the piney smell of melted solder, and it relaxes you[or]over-roasted, bitter coffee[at random].";
+		-- Fibber Island:
+			say "The arid ocean air carries the floral bouquet of low tide."
 			
 	
 Instead of smelling something (called the odor emitter):
@@ -2099,7 +2106,16 @@ CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye S
 
 The pole is a supporter in CornerNW. The description of the pole is "The pole is studded with official traffic signs: snow emergency route, two hour parking zone 2 permit holders only, one way street, metro bus stop, dumping prohibited, loading zone, no parking, alternate parking Wednesdays, yield to pedestrians, slow children... you can only follow the pole upwards so far, before the bright sky bothers your dilated eyes." The pole is not fuzzy.
 
+Instead of tasting the pole:
+	say "The pole tastes unexpectedly acidic.[paragraph break]Suddenly, the world seems less solid and everything wavers...";
+	if sound is available:
+		play(the sound of the sitar);
+	move the player to Fibber Island.
+	
 The signs are a part of the pole. Understand "sign" as the signs. The signs are plural-named. The description of the signs is "The signs start fairly far up the pole. They are mostly about parking and other traffic regulations, one is about picking up after your dog, another about recycling of plastics, and another about this being a neighbor watch community."
+
+Instead of taking the signs:
+	say "Theft of city property is a misdemeanor."
 
 The hotel entrance is an open openable lockable unlocked enterable container in CornerNW. The description of the hotel entrance is "A revolving brass door, which leads into the hotel." Understand "brass" or "door" as the hotel entrance. The hotel entrance is not fuzzy.
 
@@ -2162,6 +2178,30 @@ Every turn during Exterior:
 		change the geeBars to 1;
 	otherwise:
 		change the geeBars to 0.
+		
+Chapter Fibber Island
+
+Fibber Island is a room. The description of Fibber Island is "A long peninsula, surrounded on every side by water, narrowing to an isthmus at its widest point, Fibber Island is a surreal wasteland teeming with life. A monochromatic rainbow casts luminous shadows on the rolling hills of Fibber Plateau, and schools of oysters chase each other through the treetops.[paragraph break]An antique phonograph stands before you."
+
+The antique phonograph is a furniture in Fibber Island. The description of the antique phonograph is "An old style wooden phonograph with a wax cylinder and a metal crank." The texture of the antique phonograph is "polished". 
+
+Instead of rubbing the antique phonograph:
+	say "The wood shines up nicely."
+ 
+Instead of listening to the antique phonograph: 
+	say "It does not appear to be playing. All you can hear is the [one of]croaking of the tigers in the distant mountains[or]snicker-snacker of the toadstools[or]mournful chirping of the turtledoves[or]rustling of fast-growing cacti[or]plaintive lament of a succulent herb, which sounds like Henry Kissinger, but with a less marked accent[or]the neurotic ramblings of the three-toed sloths from the neighboring islands[at random]."
+
+The wax cylinder is a part of the antique phonograph. The description of the wax cylinder is "The cylinder is made of hard wax, and a thin spiral is etched into its surface." The texture of the wax cylinder is "unsurprisingly, waxy".
+
+The thin spiral is part of the wax cylinder. The description of the thin spiral is "A tiny depression in the wax, like a groove on a record." The texture of the thin spiral is "rough".
+
+The metal crank shaft is a part of the antique phonograph. The description of the metal crank is "An S-shaped crank shaft made of a dark, brown metal. It emerges seamlessly from the side of the phonograph and appears worn with use." The texture of the metal crank shaft is "[metallic]". Understand "crankshaft" as the metal crank shaft.
+
+Instead of pushing, pulling or turning the metal crank shaft:
+	say "From the phonograph, you hear the disembodied voice of Thomas Alva Edison. He wishes you well on your journey.";
+	move the player to CornerNW.
+	
+The antique phonograph, wax cylinder, thin spiral and metal crank shaft are not fuzzy.
 
 Chapter Limbo
 
@@ -2214,7 +2254,7 @@ Instead of examining Marv Spindle:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
+Amelia is a woman. Understand "telephone", "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
 
 Instead of pushing Amelia:
 	try pushing the orange button.
