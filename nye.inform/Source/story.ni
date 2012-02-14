@@ -1186,7 +1186,7 @@ Section Cowing
 
 Cowing is an action applying to nothing.
 
-Understand "angry cows" or "cows"  or "cow" or "bovine" or "moo" as cowing when cowLicense is greater than zero.
+Understand "angry cows" or "cows"or "angry" or "cow" or "bovine" or "moo" as cowing when cowLicense is greater than zero.
 
 Persuasion rule for asking Amelia to try cowing:
 	persuasion succeeds.
