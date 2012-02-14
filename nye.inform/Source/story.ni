@@ -3395,7 +3395,7 @@ To do shoot Marv:
 Chapter Postmortem
 
 Rule for printing the player's obituary:
-	say "*** YOU  ";
+	say "*** YOU ";
 	if the endgame is won or the endgame is rapture:
 		say "HAVE WON";
 	else if the endgame is tardyPathetic or the endgame is drainedPathetic:
