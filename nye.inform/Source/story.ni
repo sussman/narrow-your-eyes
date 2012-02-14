@@ -2384,6 +2384,9 @@ Chapter Giblets
 
 Doctor Giblets is a man in the Ophthalmology Office. Understand "pop" or "ophthalmologist" as Doctor Giblets.
 
+Instead of attacking Doctor Giblets or Trevor: 
+	say "[one of]What? Your future in-law? What would Amy have to say about that?[or]Violence is not the answer when you are in the dark and people have sharp things only millimeters from your eyeballs[or]Why would you do that? You are entirely too worked up about this eye exam[or]Maybe Amy was right, you do need a vacation[or]The urge to do so passes almost immediately[stopping]."
+
 Chapter Trevor
 
 Trevor is a man in the Ophthalmology Office. Understand "Trev" as Trevor.
