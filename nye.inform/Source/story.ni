@@ -940,7 +940,7 @@ Carry out reading:
 	
 Section Riding
 
-Understand "ride [a thing]" as entering.
+Understand "ride [an enterable thing]" as entering.
 	
 
 Section Showing
