@@ -1863,7 +1863,7 @@ The Ophthalmology Office is a room. The description of the Ophthalmology office 
 Before printing a locale paragraph about something fuzzy (called the item) when cunning plan has not happened: 
 	now the item is mentioned.
 
-The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart. The eye chart can be read. The eye chart is not read.
+The eye chart is a fardrop. It is in the Ophthalmology Office. The first line is part of the eye chart. The description of the first line is "h". The second line is part of the eye chart. The description of the second line is "XZYZZ". The third line is part of the eye chart. The third line can be completed. The third line is not completed. The fourth line is part of the eye chart. The fifth line is part of the eye chart. The eye chart can be read. The eye chart is not read. Understand "1st" as the first line. Understand "2nd" as the second line. Understand "3rd" as the third line. Understand "4th" as the fourth line. Understand "5th" as fifth line. Understand "bottom" as the fourth line. Understand "top" as the first line.
 
 Does the player mean examining or reading the first line:
 	it is very likely.
