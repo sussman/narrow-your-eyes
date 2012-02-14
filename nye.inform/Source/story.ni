@@ -2033,18 +2033,18 @@ Instead of doing something with something (called the item) when the metal parts
 	otherwise:
 		continue the action.
 
-The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]".
+The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]."
 
 To say pileAppearance:
 	if Amelia is supercharged:
-		say "A bunch of supercapacitors like the one currently installed in your mangoFONE.";
+		say "A bunch of supercapacitors like the one currently installed in your mangoFONE";
 	otherwise:
 		if the player does not hold the supercapacitor:
-			say "They are black plastic boxes, with fashionably rounded corners and some sort of connector at one end. Picking one up, you notice text on one side says [quotation mark]10 farad ultracapacitor power module. Made in West Ispharistan. Patent pending. For terrorist use only.[quotation mark] An indicator shows full power. As you bring the box near your mangoFONE, you note that the phone has opened a port, exactly the size and shape of the connector on the ultracapacitor.";
+			say "They are black plastic boxes, with fashionably rounded corners and some sort of connector at one end. Picking one up, you notice text on one side says [quotation mark]10 farad ultracapacitor power module. Made in West Ispharistan. Patent pending. For terrorist use only.[quotation mark] An indicator shows full power. As you bring the box near your mangoFONE, you note that the phone has opened a port, exactly the size and shape of the connector on the ultracapacitor";
 			move the supercapacitor power module to the player;
 			now the interface port is part of Amelia;
 		otherwise:
-			say "Hundreds of black plastic boxes, just like the one you picked up."
+			say "Hundreds of black plastic boxes, just like the one you picked up"
 			
 Instead of inserting something (called the insertee) into something (called the recipient):
 	if the insertee is the supercapacitor power module or the insertee is the connector:
