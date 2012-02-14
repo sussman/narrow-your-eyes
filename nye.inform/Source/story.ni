@@ -1937,7 +1937,7 @@ Wisconsin Avenue is a room. It is outside from the Ophthalmology Office. The des
 
 The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The description of the bike is "A heavily-customized, bright red bike. It is built like a tank and has a bevy of electronic enhancements, including stabilization gyros." The bike is not fuzzy.   Understand "red" or "bicycle" as the bike. The texture of the bike is "metallic".
 
-Instead of climbing the bike:
+Instead of taking or climbing the bike:
 	try entering the bike.
 	
 The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the office-proxy is "office". The description of the office-proxy is "The front of the Doctor Giblet[apostrophe]s small ophthalmology office. A sign hangs in the front window: [quotation mark]Closed Sundays[quotation mark]." Understand "office" or "sign" or "window" as the office-proxy. The office-proxy is not fuzzy.
