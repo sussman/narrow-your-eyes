@@ -2526,7 +2526,7 @@ Persuasion rule for asking Amelia to try asking for help:
 	persuasion succeeds.
 	
 Instead of Amelia asking for help:
-	say "[quotation mark]Help mode. The phone recognizes the following basic commands: apps calendar help messages phone time [if the currentUpdateLevel is greater than zero]travel [end if] update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
+	say "[quotation mark]Help mode. The phone recognizes the following basic commands: apps calendar help messages phone time [if the currentUpdateLevel is greater than zero]travel [end if]update and warranty. Other modes are unavailable during alpha testing.[quotation mark][paragraph break]";
 	the rule succeeds.
 
 
