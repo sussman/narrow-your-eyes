@@ -2379,7 +2379,7 @@ To say recognized-name:
 
 Chapter Giblets
 
-Doctor Giblets is a man in the Ophthalmology Office. Understand "pop" as Doctor Giblets.
+Doctor Giblets is a man in the Ophthalmology Office. Understand "pop" or "ophthalmologist" as Doctor Giblets.
 
 Chapter Trevor
 
