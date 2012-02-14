@@ -580,7 +580,7 @@ Carry out firing:
 	if (entry 1 of M is 0 and entry 2 of M is 40) or (entry 1 of M is 40 and entry 2 of M is 0):
 		do shoot Igneous;
 	otherwise if entry 1 of M is 360 and entry 2 of M is 400:
-		if the metal parts locker encloses Marv:
+		if the metal locker encloses Marv:
 			do shoot locker;
 		otherwise:
 			do shoot Marv;
@@ -998,7 +998,7 @@ Instead of smelling something (called the odor emitter):
 			say "like bubblegum";
 		-- supercapacitor power module:
 			say "like bakelite and gunpowder";
-		-- metal parts locker:
+		-- metal locker:
 			say "like an industrial dumpster that has been home to a family of feral cats for several years";
 		-- otherwise:
 			say "as you would expect";
@@ -1692,7 +1692,7 @@ Carry out lockerzapping:
 	do shoot locker.
 	
 Report lockerzapping:
-	say "Zeeerrrk! The software tester takes a shot at the Parts Locker."
+	say "Zeeerrrk! The software tester takes a shot at the Metal Locker."
 
 
 Section Shoot Marv
@@ -1983,7 +1983,7 @@ The bike, the electronic enhancements, the control panel, the rear view mirror, 
 
 Chapter Factory
 
-The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers. There is a metal parts locker right in front of you.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
+The Factory is a room. The description of the Factory is "[one of]As your eyes adjust to the near darkness, you are alarmed that not only is the wedding party absent, but this doesn’t even look like a hotel! It looks like a factory floor, complete with moving conveyor belts, spinning platforms, an industrial welding robot.  If you are not mistaken, you are cut off from the far side of the room by a web of ultraviolet cutting lasers. There is a metal locker right in front of you.[paragraph break]From the far corner of the room, you hear a [command beep] and the industrial robot takes a step forward[or]An operational factory floor, with conveyor belts, spinning platforms, and an industrial welding robot. You are cut off from the far side of the room by a web of ultraviolet cutting lasers[if turnCounter is greater than 2]. A man occupies a plastic control booth in one corner[end if][stopping]."
 
 To say command beep:
 	say "beep[run paragraph on]";
@@ -2012,17 +2012,17 @@ The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" 
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-The metal parts locker is an enterable transparent chest. It is in the Factory. The metal parts locker can be pinholed. The metal parts locker is not pinholed. The texture of the metal parts locker is "cold and metallic".
+The metal locker is an enterable transparent chest. It is in the Factory. The metal locker can be pinholed. The metal locker is not pinholed. The texture of the metal locker is "cold and metallic".
 
-Instead of looking when the metal parts locker encloses the player:
+Instead of looking when the metal locker encloses the player:
 	say "Through the [if the blast hole is in limbo]tiny cracks in the corners[otherwise]blast hole drilled through the side[end if] of the locker, you can see a complicated factory floor and a welding robot. [run paragraph on]";
 	if Amelia is lit:
 		say "Inside the locker, you see a pile of plastic devices.";
 	otherwise:
 		say "Within the locker, it is too dark to see well."
 		
-Instead of doing something with something (called the item) when the metal parts locker encloses the player:
-	if metal parts locker encloses the item:
+Instead of doing something with something (called the item) when the metal locker encloses the player:
+	if metal locker encloses the item:
 		if Amelia is lit:
 			continue the action;
 		otherwise:
@@ -2033,7 +2033,7 @@ Instead of doing something with something (called the item) when the metal parts
 	otherwise:
 		continue the action.
 
-The metal parts locker contains a pile of plastic devices. The description of the metal parts locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]."
+The metal locker contains a pile of plastic devices. The description of the metal locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device" or "part" or "parts"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]."
 
 To say pileAppearance:
 	if Amelia is supercharged:
@@ -2063,7 +2063,7 @@ Instead of doing something with the pile of plastic devices:
 	if the current action is examining:
 		continue the action;
 	else if the current action is attacking:
-		say "[one of]No doubt, the pile feels intimidated now[or]Apparently, violence is just the answer when it comes to randomly rearranging a pile of plastic devices in a dark parts locker, while your evil nemesis takes pot shots at you with a robot[or]That will teach them[or]That was cathartic[or]It seems these plastic boxes are just about indestructible[at random].";
+		say "[one of]No doubt, the pile feels intimidated now[or]Apparently, violence is just the answer when it comes to randomly rearranging a pile of plastic devices in a dark metal locker, while your evil nemesis takes pot shots at you with a robot[or]That will teach them[or]That was cathartic[or]It seems these plastic boxes are just about indestructible[at random].";
 	else if the current action is taking:
 		if the player holds the supercapacitor power module or amelia is supercharged:
 			say "You have already taken one supercapacitor, which should be enough to power a city block for a decade. Grabbing another one won[apostrophe]t help matters.";
@@ -2077,15 +2077,15 @@ Instead of doing something with the pile of plastic devices:
 Instead of throwing, dropping, or attacking the supercapacitor power module:
 	say "That could damage your precious supercapacitor power module. On reconsideration, you hold it protectively."
 				
-After searching the metal parts locker:
-	if the metal parts locker does not enclose the player:
+After searching the metal locker:
+	if the metal locker does not enclose the player:
 		say "It is too dark inside the locker to see anything."
 
-After opening the metal parts locker:
-	say "You lift the [one of]cover of the parts locker, and find it much heavier than you would have guessed. You realize that the locker is not made from cheap sheet metal, but is almost like armor in terms of thickness. It is dark inside the locker[or]heavy cover and it remains balanced in the open position[stopping]."
+After opening the metal locker:
+	say "You lift the [one of]cover of the metal locker, and find it much heavier than you would have guessed. You realize that the locker is not made from cheap sheet metal, but is almost like armor in terms of thickness. It is dark inside the locker[or]heavy cover and it remains balanced in the open position[stopping]."
 	
-After closing the metal parts locker:
-	say "With great effort, you [one of]lift the cover to the balancing point and then let it slam thunderously down[or]close the parts locker[apostrophe]s cover[stopping]."
+After closing the metal locker:
+	say "With great effort, you [one of]lift the cover to the balancing point and then let it slam thunderously down[or]close the metal locker[apostrophe]s cover[stopping]."
 	
 Instead of climbing the locker:
 	say "You recall the admonition from your youth: warning -- metal bin may tip. Do not play in or around."
@@ -2093,9 +2093,9 @@ Instead of climbing the locker:
 After entering the locker:
 	say "You tumble into the locker[one of], any grace and coordination having been lost during your recent encounter with a ten ton city bus. You land on a pile of plastic parts. The heavy lid clangs down, sealing you in.  After a moment, you notice that you can see a little of what is going on outside the locker by peering through some hairline defects in the welding joints. Even so, almost none of the dim factory light enters the locker through these peepholes[or][stopping].";
 	change the display status of Marv-sprite to g-inactive;
-	now the metal parts locker is closed.
+	now the metal locker is closed.
 	
-The peepholes are a part of the metal parts locker. The description of the peepholes is "Tiny defects in the welding joints on each of the four corners of the locker. None are more than a millimeter[if the metal parts locker encloses the player]; they barely let even light into the locker[end if]." Understand "defect" or "defects" or "hairline" or "fissure" or "crack" or "cracks" or "seams" or  "seam" or "weld" or or "welds" or "welding" or "joint" or "joints" or "corners" or "corner" or "peephole" as the peepholes. 
+The peepholes are a part of the metal locker. The description of the peepholes is "Tiny defects in the welding joints on each of the four corners of the locker. None are more than a millimeter[if the metal locker encloses the player]; they barely let even light into the locker[end if]." Understand "defect" or "defects" or "hairline" or "fissure" or "crack" or "cracks" or "seams" or  "seam" or "weld" or or "welds" or "welding" or "joint" or "joints" or "corners" or "corner" or "peephole" as the peepholes. 
 
 Instead of inserting something into the peepholes:
 	say "The cracks far too small."
@@ -2105,18 +2105,18 @@ Before examining the peepholes:
 	stop the action.
 	
 Before searching the peepholes:
-	if the metal parts locker encloses the player:
+	if the metal locker encloses the player:
 		say "From each of the cracks, you can see a bit of the factory floor.";
 	otherwise:
 		say "[tooDarkInside].";
 	stop the action.
 	
 Before exiting during the cunning plan:
-	if the metal parts locker encloses the player:
+	if the metal locker encloses the player:
 		try silently opening the cover.
 
 Instead of exiting during the cunning plan:
-	if the metal parts locker encloses the player:
+	if the metal locker encloses the player:
 		continue the action;
 	otherwise:
 		say "There are no exits[one of] -- the revolving door has disappeared behind you[or][stopping].";
@@ -2125,11 +2125,11 @@ Instead of exiting during the cunning plan:
 After exiting during Cunning Plan:[The only thing the player can exit during this scene *is* the locker]
 	say "You clamber over the side of the locker and land awkwardly on the factory floor, back where you had started. The cover slams back down, sealing the locker.";
 	change the display status of Marv-sprite to g-active;
-	now the metal parts locker is closed.		
+	now the metal locker is closed.		
 
-The cover is a lid which is part of the metal parts locker. The description of the cover is "The parts locker[apostrophe]s hinged cover of thick plate steel. The cover [if the metal parts locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. 
+The cover is a lid which is part of the metal locker. The description of the cover is "The metal locker[apostrophe]s hinged cover of thick plate steel. The cover [if the metal locker is open]rests open[otherwise]is shut[end if]." Understand "hinge" or "hinges" as the cover. 
 
-Rule for printing room description details of the metal parts locker:
+Rule for printing room description details of the metal locker:
 	omit contents in listing.
 
 The ultraviolet web is fixed in place thing. It is in the Factory. The description of the ultraviolet web is "An intricately woven web of high intensity light, just on the edge of the visible spectrum[one of]. On the downside, you will surely be seeing Doctor Giblets about cataract removal after this experience -- if you survive it. On the bright side, you will come out of this with a healthy tan[or][stopping]."
@@ -2247,7 +2247,7 @@ Chapter Limbo
 
 Limbo is a room.
 
-The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The texture of the supercapacitor power module is "smooth, but slightly tacky".
+The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The texture of the supercapacitor power module is "smooth, but slightly tacky". 
 
 Instead of touching, tasting, eating or kissing the connector:
 	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash.";
@@ -2266,7 +2266,7 @@ Before examining the blast hole:
 	stop the action.
 	
 Before searching the blast hole:
-	if the metal parts locker encloses the player:
+	if the metal locker encloses the player:
 		say "Through the hole, you have a good view of the factory floor.";
 	otherwise:
 		say "[tooDarkInside].";
@@ -2933,7 +2933,7 @@ To say IgneousDeath:
 	
 	
 To say MarvShotInsideLocker:
-	say "The laser beam pierces the walls of the parts locker, boils off the interior paint, ricochets off the gleaming metal, and skewers your body from several directions at once. Superheated within a fraction of a second, your blood boils and your body explodes before you can think of an appropriately dramatic remark"
+	say "The laser beam pierces the walls of the metal locker, boils off the interior paint, ricochets off the gleaming metal, and skewers your body from several directions at once. Superheated within a fraction of a second, your blood boils and your body explodes before you can think of an appropriately dramatic remark"
 	
 	
 To say MarvShotOutsideLocker:
@@ -2951,7 +2951,7 @@ To say Jeremy:
 	say "[if onFamiliarTerms is true]Jeremy[otherwise]Mr. Flack[end if]".
 	
 To say walkthroughText:
-	say "This is the most direct way through the game. If you follow this you will miss a lot of fun interactions with characters and situations, but we assume that you know what you are doing. If you do not want to see this, either rip out your own eyes like Oedipus (not recommended) or just keep hitting enter until the text scrolls off the screen. Otherwise, remember… you have brought this on yourself.[paragraph break]1. You need to complete the eye exam. Keep entering [quotation mark]read the third line[quotation mark] (of the eye chart) until Doctor Giblets says that you have got it correct. He will make adjustments each time, gradually refining the prescription for your glasses.[paragraph break]2. It takes a few more turns for Doctor Giblets to finish his eye exam; you can do anything during this time. You might as well get famliar with your phone by entering [quotation mark]Amelia, help[quotation mark]. One of the things you can do with your phone is to apply software updates. You will know when one is available, because the number of updates will be shown at the top of the screen. To apply an update, enter [quotation mark]Amelia, update[quotation mark]. The first update installs the travel module, which you will need in step 4.[paragraph break]3. After a few turns, your phone will sound a notification that you have a message and the word [quotation mark]message[quotation mark] will appear at the top of the screen. To review messages, enter [quotation mark]Amelia, messages[quotation mark].[paragraph break]4. A turn after you hear the message, you will figure out that you are late for your own wedding rehearsal, and will bolt out of the eye exam. You are in a hurry, so get on the bike. Since you need directions, engage the phone[apostrophe]s navigation system by entering [quotation mark]Amelia, travel[quotation mark].[paragraph break]5. You arrive on a street corner, and can enter the hotel, which turns out to be a factory.[paragraph break]6. Inside the factory, Professor Igneous will attempt to kill you with his robot, Lenny. I kid you not. Both he and you can control Lenny's movements using telephone touch tones. You can enter one or more touch tones by saying [quotation mark]Amelia, dial ##########[quotation mark], where # is a number. After each robot movement, the robot will also be moved by the factory floor, so you will need to take that into consideration.[paragraph break]7. The robot will shoot to kill you whenever it has the opportunity. You can find some refuge within the parts locker, which is right in front of you when you enter the factory. It does not offer complete protection, but it is better than nothing.[paragraph break]8. Good luck."
+	say "This is the most direct way through the game. If you follow this you will miss a lot of fun interactions with characters and situations, but we assume that you know what you are doing. If you do not want to see this, either rip out your own eyes like Oedipus (not recommended) or just keep hitting enter until the text scrolls off the screen. Otherwise, remember… you have brought this on yourself.[paragraph break]1. You need to complete the eye exam. Keep entering [quotation mark]read the third line[quotation mark] (of the eye chart) until Doctor Giblets says that you have got it correct. He will make adjustments each time, gradually refining the prescription for your glasses.[paragraph break]2. It takes a few more turns for Doctor Giblets to finish his eye exam; you can do anything during this time. You might as well get famliar with your phone by entering [quotation mark]Amelia, help[quotation mark]. One of the things you can do with your phone is to apply software updates. You will know when one is available, because the number of updates will be shown at the top of the screen. To apply an update, enter [quotation mark]Amelia, update[quotation mark]. The first update installs the travel module, which you will need in step 4.[paragraph break]3. After a few turns, your phone will sound a notification that you have a message and the word [quotation mark]message[quotation mark] will appear at the top of the screen. To review messages, enter [quotation mark]Amelia, messages[quotation mark].[paragraph break]4. A turn after you hear the message, you will figure out that you are late for your own wedding rehearsal, and will bolt out of the eye exam. You are in a hurry, so get on the bike. Since you need directions, engage the phone[apostrophe]s navigation system by entering [quotation mark]Amelia, travel[quotation mark].[paragraph break]5. You arrive on a street corner, and can enter the hotel, which turns out to be a factory.[paragraph break]6. Inside the factory, Professor Igneous will attempt to kill you with his robot, Lenny. I kid you not. Both he and you can control Lenny's movements using telephone touch tones. You can enter one or more touch tones by saying [quotation mark]Amelia, dial ##########[quotation mark], where # is a number. After each robot movement, the robot will also be moved by the factory floor, so you will need to take that into consideration.[paragraph break]7. The robot will shoot to kill you whenever it has the opportunity. You can find some refuge within the metal locker, which is right in front of you when you enter the factory. It does not offer complete protection, but it is better than nothing.[paragraph break]8. Good luck."
 	
 To say noWires:
 	say "You are content to leave well enough alone. After all, you don[apostrophe]t want to get electrocuted on the way to your wedding rehearsal"
@@ -3097,7 +3097,7 @@ hint		used
 "[The Professor Igneous] seems intent on killing you. You better do something!"
 "The [if professor igneous is recognized]professor[otherwise]man in the white lab coat[end if] is using the robot to shoot you with a laser. You need to defeat him first."
 "You might get some protection if you hide in something strong."
-"The parts locker is made of heavy metal and provides protection, albeit not total."
+"The locker is made of heavy metal and provides protection, albeit not total."
 "Can you use [the Professor Igneous][apostrophe]s own technology against him?"
 "The [if professor igneous is recognized]professor[otherwise]madman[end if] is controlling the robot with a series of tones."
 "You can use the touchtones on your own phone to control the robot."
@@ -3236,7 +3236,7 @@ Before going a direction (called the way) during cunning plan:
 		end the game in death;
 		stop;
 	if the way is west or the way is northwest or the way is southwest:
-		say "You step on the conveyor belt to the west of the parts lockers and are whisked tout de suite into the web of ultraviolet laser beams. The conveyor belt continues to feed in any bits of you that fall backwards on it, until you are reduced to vapor. This is not how you were hoping the day would end.";
+		say "You step on the conveyor belt to the west of the metal locker and are whisked tout de suite into the web of ultraviolet laser beams. The conveyor belt continues to feed in any bits of you that fall backwards on it, until you are reduced to vapor. This is not how you were hoping the day would end.";
 		now the endgame is webbed;
 		end the game in death;
 	otherwise:
@@ -3322,23 +3322,23 @@ To do robotControl:
 		follow the factory movement rule.
 			
 To do shoot locker:
-	if the blast hole is not part of the metal parts locker:
-		if the player is in the parts locker:
-			say "The metal wall of the locker glows red, and creaks as it deforms from extreme heating. For an instant you see a blinding beam of green laser light as it penetrates the locker wall. You try to blink away the after image of the perfectly round hole it cut in the parts locker, but for the moment you are totally blind. The beam just missed you.";
+	if the blast hole is not part of the metal locker:
+		if the player is in the metal locker:
+			say "The metal wall of the locker glows red, and creaks as it deforms from extreme heating. For an instant you see a blinding beam of green laser light as it penetrates the locker wall. You try to blink away the after image of the perfectly round hole it cut in the locker, but for the moment you are totally blind. The beam just missed you.";
 		otherwise:
 			say "The robot discharges its laser into the metal locker. Where the beam strikes, the metal grows molten hot, and the beam penetrates. You are dazzled by the brilliance of the green laser light.";
-		now the blast hole is part of the metal parts locker;
+		now the blast hole is part of the metal locker;
 	otherwise:
 		let outcome be a random number between one and five;
 		if outcome is:
 			-- 1: 
 				say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]mere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
 			-- 2:
-				say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal parts locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
+				say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
 			-- 3:
-				say "The laser beam strikes the metal parts locker but [one of]is deflected[or]scatters ineffectively[or]reflects towards the ceiling[or]fails to burn through[or]does not dwell in one location long enough to cut through the thick metal[or]only scores the thick metal[or]merely heats the metal to incandescence[at random].";
+				say "The laser beam strikes the metal locker but [one of]is deflected[or]scatters ineffectively[or]reflects towards the ceiling[or]fails to burn through[or]does not dwell in one location long enough to cut through the thick metal[or]only scores the thick metal[or]merely heats the metal to incandescence[at random].";
 			-- 4: 
-				say "The [one of]deadly[or]lethal[or]powerful[or]brilliant[or]blinding[or]intense[at random] beam [one of]barely misses[or]goes just broad of[or]passes inches from[or]strikes the wall to the side of[at random] the metal parts locker.";
+				say "The [one of]deadly[or]lethal[or]powerful[or]brilliant[or]blinding[or]intense[at random] beam [one of]barely misses[or]goes just broad of[or]passes inches from[or]strikes the wall to the side of[at random] the metal locker.";
 			-- 5:
 				say "[MarvShotInsideLocker].";
 				change the endgame to parboiled;
