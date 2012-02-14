@@ -2082,7 +2082,10 @@ Instead of throwing, dropping, or attacking the supercapacitor power module:
 				
 After searching the metal locker:
 	if the metal locker does not enclose the player:
-		say "It is too dark inside the locker to see anything."
+		if the metal locker is open:
+			say "It is too dark inside the locker to see anything.";
+		otherwise:
+			say "You can[apostrophe]t. The locker is shut.";
 
 After opening the metal locker:
 	say "You lift the [one of]cover of the metal locker, and find it much heavier than you would have guessed. You realize that the locker is not made from cheap sheet metal, but is almost like armor in terms of thickness. It is dark inside the locker[or]heavy cover and it remains balanced in the open position[stopping]."
