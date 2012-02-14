@@ -1930,7 +1930,7 @@ Instead of searching the refractor:
 			say "You strain as you peer through the refractor, but you can[apostrophe]t even tell where one letter ends and another begins. [paragraph break][quotation mark]It[apostrophe]s a total blur,[quotation mark] you reply.[paragraph break]Doctor Giblets makes an adjustment.[paragraph break][quotation mark]How about now?[quotation mark][paragraph break]The lines of the letters sharpen up. [quotation mark]A bit better,[quotation mark] you reply.";
 			  now the refractor is blurry;
 		-- blurry:
-			say "Well, Marv,[quotation mark] asks Doctor Giblets, [quotation mark]what do you see? Just read the third line back to me.[quotation mark][paragraph break]";
+			say "[quotation mark]Well, Marv,[quotation mark] asks Doctor Giblets, [quotation mark]what do you see? Just read the third line back to me.[quotation mark][paragraph break]";
 		-- diplopic:
 			say "It looks more in focus, but not quite right.";
 		-- sharp:
