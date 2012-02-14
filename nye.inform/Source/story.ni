@@ -1901,7 +1901,7 @@ To say thirdLineDescription:
 			say "The letters are now crisply focused, and you confidently read them off, [quotation mark]X-X-M-M-V-V-E-E-H-H-G-G-A-A-Q-Q-L-L.[quotation mark][paragraph break][quotation mark]Ah, great. But you're seeing double. Trevor -- adjust the convergence.[quotation mark][paragraph break]You hear some clicking and the letters slide together.";
 			now the refractor is sharp;
 		-- sharp:
-			say "[one of]You read off the letters again, [quotation mark]X-M-V-E-H-G-A-Q-L[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]";
+			say "[one of]You read off the letters again, [quotation mark]X-M-V-E-H-G-A-Q-L.[quotation mark][paragraph break][quotation mark]Ah, that[apostrophe]s got it! We can whip up some glasses and frames for you with no problem now[or][quotation mark]Right. We've got that line, thanks[or][quotation mark]Yes, you[apostrophe]ve become a veritable expert on that line, Marv[or][quotation mark]No need to read it again, we have everything we need to grind new lenses[or][quotation mark]Right[stopping].[quotation mark][paragraph break]";
 			now the eye chart is read;
 			now the turnCounter is zero.
 			
