@@ -884,6 +884,16 @@ Section Crediting
 
 Understand "credit" or "credits" as asking for help.
 
+Section Hide
+
+Hiding is an action applying to nothing. Understand "hide" as hiding.
+
+Carry out hiding:
+	do nothing.
+	
+Report hiding:
+	say "You look around for a good place to hide, but don[apostrophe]t see any good places."
+
 Section Lick
 
 Understand "lick [a thing]" as tasting.
@@ -1601,9 +1611,6 @@ Chapter General Insteads
 
 Section Examining
 
-
-[TOCONSIDER: Limit this to scenes other than the cunning plan, as vision has had time to clear up by then, and Marv needs to be able to examine more items in that scene. This would obviate explicitly saying that items appearing in that scene are not fuzzy]
-
 Instead of examining something fuzzy (called the item):
 	if Eye Exam is happening:
 		if Marv Spindle is dilated:
@@ -1619,7 +1626,30 @@ Instead of examining something fuzzy (called the item):
 			continue the action;
 		otherwise:
 			say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] [is-are] a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
+			
+Section Hiding
 
+Instead of Hiding:
+	if the location is:
+		-- ophthalmology office:
+			say "In the dark, it is difficult to find a place not to hide.";
+		-- wisconsin avenue:
+			say "You are standing on a busy city street. The best that you can manage is to pretend that you are a flesh-colored lump on the sidewalk, and hope that no one notices you. Or steps on you.";
+		-- cornerNW:
+			say "You try to blend in your surroundings.";
+		-- poletop:
+			say "Surely, no one will notice a man clinging to a tall pole.";
+		-- fibber island:
+			say "Don[apostrophe]t worry, you are the least interesting thing on Fibber Island.";
+		-- factory:
+			if the metal locker encloses the player:
+				say "This is as hidden as you can get!";
+			otherwise:
+				if the metal locker is closed:
+					say "The only place to hide seems to be metal locker, but you would have to open its cover first.";
+				otherwise:
+					try entering the metal locker.
+				
 Section Taking Inventory
 
 Instead of taking inventory: [purloined from Persephone, example 62 in I7 documentation]
@@ -2261,7 +2291,7 @@ The wax cylinder is a part of the antique phonograph. The description of the wax
 
 The thin spiral is part of the wax cylinder. The description of the thin spiral is "A tiny depression in the wax, like a groove on a record." The texture of the thin spiral is "rough".
 
-The metal crank shaft is a part of the antique phonograph. The description of the metal crank is "An S-shaped crank shaft made of a dark, brown metal. It emerges seamlessly from the side of the phonograph and appears worn with use." The texture of the metal crank shaft is "[metallic]". Understand "crankshaft" as the metal crank shaft.
+The metal crank shaft is a part of the antique phonograph. The description of the metal crank is "An S-shaped crank shaft made of a dark, brown metal. It emerges seamlessly from the side of the phonograph and appears worn with use." The texture of the metal crank shaft is "[metallic]". Understand "crankshaft" or "rod" or "handle" as the metal crank shaft.
 
 Instead of pushing, pulling or turning the metal crank shaft:
 	say "From the phonograph, you hear the disembodied voice of Thomas Alva Edison. He wishes you well on your journey.";
