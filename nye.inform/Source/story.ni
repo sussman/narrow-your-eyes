@@ -1873,15 +1873,15 @@ Instead of reading or examining the first line:
 	
 Instead of reading or examining the second line:
 	if updateNumber is less than 2:
-		say "You read the second line to yourself, unsure how to pronounce it. ";
+		say "You read the second line to yourself, unsure how to pronounce it.";
 	otherwise:
 		if the eye chart is read:
 			say "Right, that[apostrophe]s the second line. Don[apostrophe]t wear it out.";
 		otherwise:
-			say "[one of]You read the second line, [quotation mark]XYZZY[quotation mark], but Trevor replies, [quotation mark]One more line down, Marv. That's the second line[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets[or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor[or][quotation mark]Right[quotation mark][stopping]."
+			say "[one of]You read the second line, [quotation mark]XYZZY[quotation mark], but Trevor replies, [quotation mark]One more line down, Marv. That's the second line.[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets.[no line break][or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor.[or][quotation mark]Right.[quotation mark][stopping][paragraph break]".
 	
 Instead of reading or examining the third line:
-	say "[thirdLineDescription]".
+	say "[thirdLineDescription]"..
 	
 Instead of reading or examining the fourth line:
 	if the focus of the refractor is not sharp:
@@ -1947,6 +1947,9 @@ The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The
 
 Instead of taking or climbing the bike:
 	try entering the bike.
+	
+Instead of entering the bike when the bike encloses the player:
+	try going north.
 	
 The office-proxy is a backdrop in Wisconsin Avenue. The printed name of the office-proxy is "office". The description of the office-proxy is "The front of the Doctor Giblet[apostrophe]s small ophthalmology office. A sign hangs in the front window: [quotation mark]Closed Sundays[quotation mark]." Understand "office" or "sign" or "window" as the office-proxy. The office-proxy is not fuzzy.
 
