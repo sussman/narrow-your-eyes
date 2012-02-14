@@ -2049,7 +2049,7 @@ To say pileAppearance:
 Instead of inserting something (called the insertee) into something (called the recipient):
 	if the insertee is the supercapacitor power module or the insertee is the connector:
 		if the recipient is amelia or the recipient is the interface:
-			say "The ultracapacitor clicks into place and molds seemlessly into the mangoFONE[apostrophe]s obsidian unibody. As it does so, the phone ripples with new found energy, humming a bass note so low that it shakes your intestines. ";
+			say "The ultracapacitor clicks into place and molds seemlessly into the mangoFONE[apostrophe]s obsidian unibody. As it does so, the phone ripples with new found energy, humming a bass note so low that it shakes your intestines.";
 			move the interface to Limbo;
 			move the supercapacitor power module to Limbo;
 			now Amelia is supercharged;
