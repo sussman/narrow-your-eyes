@@ -1461,7 +1461,7 @@ Carry out skying:
 	say "[errorPrompt]".
 	
 Instead of Amelia skying:
-	say "The dark background makes this app easier to see. [if Marv Spindle is dilated]You can’t distinguish individual starts, but as a professional astronomer, you have no trouble making out the shape of individual constellations[otherwise]As a professional astronmer, you immediately recognize the stars and contellations[end if]. As you change orientations, the image on the phone rotates, fixed on the heavens.";
+	say "The dark background makes this app easier to see. [if Marv Spindle is dilated]You can’t distinguish individual starts, but as a professional astronomer, you have no trouble making out the shape of individual constellations[otherwise]As a professional astronomer, you immediately recognize the stars and constellations[end if]. As you change orientations, the image on the phone rotates, fixed on the heavens.";
 	the rule succeeds.
 	
 Section Time
