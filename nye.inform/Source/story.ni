@@ -1533,7 +1533,7 @@ Carry out treeing:
 	say "[errorPrompt]".
 	
 Instead of Amelia treeing:
-	say "A nice concept, but boring in the implementation: the mummies rest eternally in their sarcophagi and the trees grow serenely nearby, at the edge of an oasis. You turn it back off after a while.";
+	say "[one of]A nice concept, but boring in the implementation: the mummies rest eternally in their sarcophagi and the trees grow serenely nearby, at the edge of an oasis. You turn it back off after a while[or]The trees rustle gently in the wind on the shores of the Nile and the sun sets behind a pyramid. Without warning, text scrolls up the screen, breaking mummesis[or]It seems to be a draw. The trees and the mummies continue to coexist. The score is zero[stopping].";
 	the rule succeeds.
 
 	
@@ -2384,8 +2384,11 @@ Chapter Giblets
 
 Doctor Giblets is a man in the Ophthalmology Office. Understand "pop" or "ophthalmologist" as Doctor Giblets.
 
-Instead of attacking Doctor Giblets or Trevor: 
-	say "[one of]What? Your future in-law? What would Amy have to say about that?[or]Violence is not the answer when you are in the dark and people have sharp things only millimeters from your eyeballs[or]Why would you do that? You are entirely too worked up about this eye exam[or]Maybe Amy was right, you do need a vacation[or]The urge to do so passes almost immediately[stopping]."
+Instead of attacking someone (called the victim):
+	if the  victim is Doctor Giblets or the victim is Trevor:
+		say "[one of]What? Your future in-law? What would Amy have to say about that?[no line break][or]Violence is not the answer when you are in an unfamiliar pitch dark room and people have sharp things only millimeters from your eyeballs.[no line break][or]Why would you do that? You are entirely too worked up about this eye exam![no line break][or]Maybe Amy was right, you do need a vacation.[no line break][or]The urge to do so passes almost immediately.[no line break][stopping][paragraph break]";
+	otherwise:
+		continue the action.
 
 Chapter Trevor
 
@@ -2777,7 +2780,7 @@ To say askGiblets:
 	say "[if the noun is Giblets]Doctor Giblets takes a break for a moment from adjusting the complicated ophthalmological equipment, and says, [quotation mark]Istvan and I grew up on the West Coast, but we both moved here in our twenties. I opened by Ophthalmology Office here in Georgetown, and Istvan found it convenient to base his business here because of the all the government contracting that mangoIndustries undertakes[otherwise]From somewhere in the darkness, Trevor answers, [quotation mark]Pop? Pop is swell[end if].[quotation mark][paragraph break]".
 			
 To say OcularEncouragement:
-	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark] implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[or]Can you tell pop what you read on that eye chart,[quotation mark] asks Trevor[or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[in random order][paragraph break]".
+	say "[quotation mark][one of]I don[apostrophe]t mean to rush you, Marv,[quotation mark] implores Trevor, [quotation mark]but I have a hot date tonight with [randomGirl]. Do you think you could please hurry up and read the eye chart so we can make your glasses?[quotation mark][or]Marv,[quotation mark] says Doctor Giblets, [quotation mark]I am supposed to do some eye exams over at the orphanage later today. I[apostrophe]d appreciate it if you could read the third line from the eye chart, so we can move things along.[quotation mark][or]If you could read the eye chart, we could get a start on making some lenses for you,[quotation mark] prompts Doctor Giblets.[no line break][or]Can you tell Pop what you read on that eye chart?[quotation mark] asks Trevor.[no line break][or]How does that third line on the eye chart look to you, Marv? If it[apostrophe]s not sharp, I can tweak the settings a bit,[quotation mark] offers Doctor Giblets.[no line break][or]Can you make out all of the letters on the eye chart, or are some blurry? Try the third line down,[quotation mark] suggests Trevor.[no line break][in random order][paragraph break]".
 							
 
 To say eyeDisease:
