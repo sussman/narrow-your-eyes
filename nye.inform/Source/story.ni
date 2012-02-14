@@ -2013,7 +2013,7 @@ The conveyor belts are a fardrop. They are in the Factory. Understand "belt" as 
 
 The spinning platforms are a fardrop. They are in the Factory. Understand "platform" as the spinning platforms. The description of the spinning platforms is "About a meter in diameter, these platforms spin in one direction or another."
 
-The robot is a person. It is in the Factory. Understand "Lenny" or "industrial" or "welding" as the robot. The laser is part of the robot. The description of the robot is "An assembly line robot that has been modified for greater speed, flexibility and strength." The description of the laser is "Offhand, it looks like a neodymium yttrium-aluminum-garnet laser designed to cut through thick metal." 
+The robot is a person. It is in the Factory. Understand "Lenny", "industrial", "welding" or "pink" as the robot. The laser is part of the robot. The description of the robot is "An assembly line robot that has been modified for greater speed, flexibility and strength. Unlike most industrial robots, it has been painted shocking pink." The description of the laser is "Offhand, it looks like a neodymium yttrium-aluminum-garnet laser designed to cut through thick metal."  
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
