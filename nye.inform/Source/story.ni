@@ -2017,7 +2017,7 @@ The robot is a person. It is in the Factory. Understand "Lenny", "industrial", "
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-The metal locker is an enterable transparent chest. It is in the Factory. The metal locker can be pinholed. The metal locker is not pinholed. The texture of the metal locker is "cold and metallic".
+The metal locker is an enterable transparent chest. It is in the Factory. The metal locker can be pinholed. The metal locker is not pinholed. The texture of the metal locker is "cold and metallic". Understand "box" or "container" as the metal locker
 
 Instead of examining the metal locker:
 	say the description of the metal locker.
