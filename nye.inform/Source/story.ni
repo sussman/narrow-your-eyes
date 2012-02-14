@@ -1910,7 +1910,7 @@ Instead of doing something with the fifth line:
 
 Instead of reading or examining the eye chart, try searching the refractor.
 
-The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused. The texture of the refractor is "cold and metallic".
+The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused. The texture of the refractor is "cold and metallic". Understand "device" as the refractor.
 
 Instead of pulling or pushing the refractor, say "It is heavier than it looks. Maybe Trevor clamped it into position so it would stay in proper alignment."
 
