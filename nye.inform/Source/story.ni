@@ -1872,10 +1872,13 @@ Instead of reading or examining the first line:
 	say "[one of]You have no trouble reading the large letters of the first line: [quotation mark]hv[quotation mark]. Oh wait, that's a greek nu. Ah, some optics humor[or]It says [quotation mark]h nu[quotation mark]. You wonder how many of Doctor Giblets patients are famliar with the Planck constant[or]There[apostrophe]s no challenge in reading such large letters[stopping]."
 	
 Instead of reading or examining the second line:
-	if the eye chart is read:
-		say "Right, that[apostrophe]s the second line. Don[apostrophe]t wear it out. ";
+	if updateNumber is less than 2:
+		say "You read the second line to yourself, unsure how to pronounce it. ";
 	otherwise:
-		say "[one of]You read the second line, but Trevor replies, [quotation mark]One more line down, Marv. That's the second line[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets[or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor[or][quotation mark]Right[quotation mark][stopping]."
+		if the eye chart is read:
+			say "Right, that[apostrophe]s the second line. Don[apostrophe]t wear it out.";
+		otherwise:
+			say "[one of]You read the second line, [quotation mark]XYZZY[quotation mark], but Trevor replies, [quotation mark]One more line down, Marv. That's the second line[quotation mark][or][quotation mark]Please read the third line, Marv,[quotation mark] asks Doctor Giblets[or]Yes, you've got the second line already. Please read the third one,[quotation mark] instructs Trevor[or][quotation mark]Right[quotation mark][stopping]."
 	
 Instead of reading or examining the third line:
 	say "[thirdLineDescription]".
