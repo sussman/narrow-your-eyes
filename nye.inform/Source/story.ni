@@ -929,6 +929,13 @@ Understand "look [a visible thing]" as examining.
 Section Mounting
 
 Understand "mount [a thing]" as entering.
+
+Section Narrowing
+
+Narrowing is an action applying to one thing. Understand "narrow [a thing]" as narrowing. 
+
+Carry out narrowing:
+	say "You are not sure how to narrow [a noun]."
 		
 Section Putting
 
@@ -1661,7 +1668,6 @@ Chapter General Afters
 Section Undoing
 
 
-
 Chapter Not Ready For Prime Time - Not for release
 
 Section Autopilot
@@ -2347,6 +2353,19 @@ Instead of examining Marv Spindle:
 			say "Your vision is still blurry, but you recognize that you are not at your best. After the incident with the bus, your clothes are torn and bloodstained,  and you are covered in dirt and grime from the road. Also, since you didn't have time to apply conditioner this morning, your hair is also probably a mess.";
 	otherwise:
 		say "It is fortunate for you that the lighting is too low in here for you to fully appreciate the extent of your own injuries."
+		
+The eyes are part of Marv Spindle. 
+	
+Instead of doing something with the eyes:
+	if the current action is examining:
+		say "You are unable to spin your eyes far enough towards your nose for them to see each other. It is a design defect.";
+	otherwise if the current action is narrowing:
+		say "You narrow your eyes.";
+	otherwise:
+		if the eye exam is happening: 
+			say "When it comes to your own eyes, you are squeamish and don[apostrophe]t even want to think about them[if the eye exam is happening]. Even now, you are trying to image yourself as a [one of]super spy, battling the robot hordes of an evil menace[or]bicycle racer, leading your team on the Tour de France[or]stunt man, jumping your motorcycle over thirty city buses[or]a circus acrobat, scaling the big top pole and preparing to dive into a glass of water[in random order].";
+		otherwise:
+			say "Eyes are icky. You don[apostrophe]t want to do anything with your eyes. The thought is disgusting. Good thing you[apostrophe]re an astronomer and not an ophthalmologist."
 
 Chapter mangoFONE
 
