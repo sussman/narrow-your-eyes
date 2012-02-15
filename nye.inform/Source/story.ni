@@ -2376,6 +2376,20 @@ Instead of doing something with the mind:
 		say "[one of]You consider registering as a Republican, but then dismiss it[or]You are giving yourself a headache[stopping].";
 	otherwise:
 		say "You do stuff with your mind all week. Well, it[apostrophe]s Sunday, and you[apostrophe]re glad to give it a rest."
+		
+The nose is part of Marv Spindle. The indefinite article of the nose is "your". Understand "nostril" or "nostrils" or "nares" as nose.
+
+Before inserting something (called the donation) into the nose:
+	say "On further reflection, that does not sound like a good long term storage solution.[paragraph break]You refrain from snorting [the donation].";
+	stop the action.
+
+Instead of doing something with the nose:
+	if the current action is examining:
+		say "You have your father[apostrophe]s nose. Not literally, of course.";
+	otherwise:
+		say "Your nose refuses to participate in your shenanigans."
+		
+
 
 Chapter mangoFONE
 
