@@ -2354,7 +2354,7 @@ Instead of examining Marv Spindle:
 	otherwise:
 		say "It is fortunate for you that the lighting is too low in here for you to fully appreciate the extent of your own injuries."
 		
-The eyes are part of Marv Spindle. 
+The eyes are part of Marv Spindle. The indefinite article of the eyes is "your".
 	
 Instead of doing something with the eyes:
 	if the current action is examining:
@@ -2366,6 +2366,16 @@ Instead of doing something with the eyes:
 			say "When it comes to your own eyes, you are squeamish and don[apostrophe]t even want to think about them[if the eye exam is happening]. Even now, you are trying to image yourself as a [one of]super spy, battling the robot hordes of an evil menace[or]bicycle racer, leading your team on the Tour de France[or]stunt man, jumping your motorcycle over thirty city buses[or]a circus acrobat, scaling the big top pole and preparing to dive into a glass of water[in random order].";
 		otherwise:
 			say "Eyes are icky. You don[apostrophe]t want to do anything with your eyes. The thought is disgusting. Good thing you[apostrophe]re an astronomer and not an ophthalmologist."
+			
+The mind is part of Marv Spindle. The indefinite article of the mind is "your". Understand "brain" as mind.
+
+Instead of doing something with the mind:
+	if the current action is examining:
+		say "You try to picture your mind within your mind[apostrophe]s eye and are nearly blinded by the recursion.";
+	otherwise if the current action is narrowing:
+		say "[one of]You consider registering as a Republican, but then dismiss it[or]You are giving yourself a headache[stopping].";
+	otherwise:
+		say "You do stuff with your mind all week. Well, it[apostrophe]s Sunday, and you[apostrophe]re glad to give it a rest."
 
 Chapter mangoFONE
 
