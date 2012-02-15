@@ -2354,7 +2354,7 @@ Instead of examining Marv Spindle:
 	otherwise:
 		say "It is fortunate for you that the lighting is too low in here for you to fully appreciate the extent of your own injuries."
 		
-The eyes are part of Marv Spindle. The indefinite article of the eyes is "your".
+The eyes are part of Marv Spindle. The indefinite article of the eyes is "your". Eyes can be open. Eyes are open.
 	
 Instead of doing something with the eyes:
 	if the current action is examining:
@@ -2366,6 +2366,19 @@ Instead of doing something with the eyes:
 			say "When it comes to your own eyes, you are squeamish and don[apostrophe]t even want to think about them[if the eye exam is happening]. Even now, you are trying to image yourself as a [one of]super spy, battling the robot hordes of an evil menace[or]bicycle racer, leading your team on the Tour de France[or]stunt man, jumping your motorcycle over thirty city buses[or]a circus acrobat, scaling the big top pole and preparing to dive into a glass of water[in random order].";
 		otherwise:
 			say "Eyes are icky. You don[apostrophe]t want to do anything with your eyes. The thought is disgusting. Good thing you[apostrophe]re an astronomer and not an ophthalmologist."
+			
+Before closing the eyes:
+	if the eye exam is happening:
+		say "[darkIsDark].";
+	otherwise if cunning plan is happening and the metal locker encloses the player and Amelia is not lit:
+		say "[darkIsDark].";
+	otherwise:
+		say "You close your eyes for a moment and then reopen them.";
+	stop the action.
+		
+Before opening the eyes:
+	say "They are already open.";
+	stop the action.
 			
 The mind is part of Marv Spindle. The indefinite article of the mind is "your". Understand "brain" as mind.
 
@@ -3062,6 +3075,9 @@ To say walkthroughText:
 	
 To say noWires:
 	say "You are content to leave well enough alone. After all, you don[apostrophe]t want to get electrocuted on the way to your wedding rehearsal"
+	
+To say darkIsDark:
+	say "You close your eyes and then reopen them. Not much of a difference".
 	
 	
 Book 5 Hints
