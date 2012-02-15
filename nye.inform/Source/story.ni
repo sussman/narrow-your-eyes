@@ -2388,7 +2388,7 @@ Instead of doing something with the mind:
 	otherwise if the current action is narrowing:
 		say "[one of]You consider registering as a Republican, but then dismiss it[or]You are giving yourself a headache[stopping].";
 	otherwise:
-		say "You do stuff with your mind all week. Well, it[apostrophe]s Sunday, and you[apostrophe]re glad to give it a rest."
+		say "You don[apostrophe]t want to think about your mind."
 		
 The nose is part of Marv Spindle. The indefinite article of the nose is "your". Understand "nostril" or "nostrils" or "nares" as nose.
 
