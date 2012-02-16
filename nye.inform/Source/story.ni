@@ -54,6 +54,10 @@ Chapter Declare Global Variables
 
 The last mentioned thing is a thing that varies.
 
+lastUpdateTime is a time that varies. The lastUpdateTime is 11 AM.
+
+lastDialed is an indexed text that varies. lastDialed is "".
+currentMessage is a text that varies. currentMessage is "".
 
 MAXBARS is a number that varies. MAXBARS is five.
 geeBars, gpsBars, powerBars, and phoneCharge are numbers that vary.
@@ -62,34 +66,20 @@ gpsBars is usually zero.
 powerBars is usually zero. powerBars is five.
 phoneCharge is usually zero. phoneCharge is 130.
 
-lastUpdateTime is a time that varies. The lastUpdateTime is 11 AM.
 updateNumber is a number that varies. The updateNumber is 1.
 currentUpdateLevel is a number that varies. currentUpdateLevel is 0.
-
+cowLicense is a number that varies. cowLicense is four.
+turnCounter is a number that varies. turnCounter is zero.
+eyeAttempt is a number that varies. eyeAttempt is 1.
+tempUpdateLevel is a number that varies. tempUpdateLevel is zero.
+Robot delay is a number that varies. Robot delay is 400. [milliseconds]
+startx is a number that varies. starty is a number that varies.
 hasturCount is a number that varies. hasturCount is zero.
 
-lastDialed is an indexed text that varies. lastDialed is "".
-
-cowLicense is a number that varies. cowLicense is four.
-
-turnCounter is a number that varies. turnCounter is zero.
-
-currentMessage is a text that varies. currentMessage is "".
 messageAlert is a truth state that varies. messageAlert is false.
-
-graphics is a truth state that varies. graphics is true.
-
-tempUpdateLevel is a number that varies. tempUpdateLevel is zero.
-
 onFamiliarTerms is a truth state that varies. onFamiliarTerms is false.
-
-Robot delay is a number that varies. Robot delay is 400. [milliseconds]
-
-startx is a number that varies. starty is a number that varies.
-
 finalJump is a truth state that varies. finalJump is false.
-
-eyeAttempt is a number that varies. eyeAttempt is 1.
+readyToNarrow is a truth state that varies. readyToNarrow is true.
 
 [some flags for testing]
 graphics_suppress is a truth state that varies. graphics_suppress is false.
@@ -97,7 +87,6 @@ sound_suppress is a truth state that varies. sound_suppress is false.
 unicode_suppress is a truth state that varies. unicode_suppress is false.
 status_suppress is a truth state that varies. status_suppress is false.
 timekeeping_suppress is a truth state that varies. timekeeping_suppress is false.
-
 Muted is a truth state that varies. Muted is true.
 autopilot is a truth state that varies. autopilot is true. 
 
@@ -2376,9 +2365,7 @@ Before opening the eyes:
 	stop the action.
 			
 Instead of narrowing eyes:
-	if the eye chart is not read:
-		say "You try to narrow your eyes (whatever that means), and you experience an ever so mild tingling sensation, but nothing happens.";
-	otherwise:
+	if readyToNarrow is true:
 		choose the row with attempt of eyeAttempt in the Table of OcularNarrowing;
 		if sound is available:
 			if tense entry is past:
@@ -2389,8 +2376,16 @@ Instead of narrowing eyes:
 			say "Everything shimmers for a moment and you have a sensation of [one of]vertigo[or]ants crawling all over you[or]having just eaten a peppermint patty[or]extreme disorientation[or]being distant from your body[or]being lost[or]not being quite yourself[in random order].[paragraph break]";
 			say "[the narrative entry][roman type][paragraph break]";
 			increase eyeAttempt by one;
+			change readyToNarrow to false;
+			vision recovers in (eyeAttempt times two) turns from now;
 		otherwise:
-			say "[the narrative entry]."
+			say "[the narrative entry].";
+	otherwise:
+		say "[one of]You feel drained from the last effort. Perhaps if you wait a while[or]You have not recovered from the last attempt to narrow your eyes[or]Your eyes are too tired to try this again so soon[or]Your eyes complain that they are still tired. Give them a little rest[or]It is getting harder and harder to narrow your eyes[or]You are not ready yet[or]It seems like each time you narrow your eyes, it takes longer to recover from the strain[or]Your mind is willing, but your eyes are weak[or]Give it a minute[or]Nope, your eyes aren[apostrophe]t ready for more narrowing quite yet[or]Your eyes are still pretty narrowed from the last time. Let them widen a bit[or]You are not yet ready to do so[stopping]."
+			
+At the time when vision recovers:
+	now readyToNarrow is true.
+
 
 
 The mind is part of Marv Spindle. The indefinite article of the mind is "your". Understand "brain" as mind.
@@ -2854,7 +2849,7 @@ To say spitefulText:
 	
 	
 To say timedOut:
-	say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi."
+	say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi.[paragraph break]"
 	
 To say lateForRehearsal:
 	say "By the time you arrive at the hotel, there is no sign of the wedding party. When you inquire, the hotel doorman says, [quotation mark]Oh. You are [italic type]that[roman type] guy? I wouldn[apostrophe]t be worried about being late for the rehearsal. From what I saw today, there isn[apostrophe]t going to be a wedding.[quotation mark].[paragraph break]It turns out he was right. A text message message arrived a half hour later to that effect, and by evening you were on the plane back to Hawaii."
