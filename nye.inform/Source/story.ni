@@ -2536,6 +2536,8 @@ Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "arch
 
 Understand "observatory" or "Mauna Kea" or "telescope" or "IR" or "IR scope" or "IR telescope" or "MKIRT" or "volcano" or "scope" or "infra-red" or "infrared" or "infra-red telescope" or "infrared telescope" as "[observatory]".
 
+Understand "girl" or "girls" or "date" or "dates" or "Jenny" or "Jeanine" or "Julie" or "Jeanette" or "Jeanie" or "Janine"  or "Jo-Jo" or "JoAnne" or "Julianne" or "Janet" as "[girlNames]".
+
 Section OpthoAsking
 
 Table of OphthoAsking
@@ -2543,7 +2545,7 @@ topic		ophtho-text
 "[phone]"		"[askPhone]"
 "mangoIndustries"		"[askMangoIndustries]"
 "music"		"[askMusic]"
-"girls"		"[askGirls]"
+"[girlNames]"		"[askGirls]"
 "bike" or "bicycle"		"[askBike]"
 "[dadInLaw]"		"[askIstvan]"
 "[futureWife]"		"[askAmy]"
@@ -2888,10 +2890,10 @@ To say askMusic:
 	say "[quotation mark][if the noun is Giblets]I prefer They Might Be Giants[otherwise][one of]Perry Como[or]Mario Lanza[or]Nat King Cole[or]Tony Bennett[or]Elvis Presley[or]Chuck Berry[or]Jerry Lee Lewis[or]Johnny Cash[or]Ella Fitzgerald[or]Dean Martin[or]Doris Day[or]Frank Sinatra[or]Connie Francis[or]Jim Reeves[or]Cliff Richard[at random] sure is [one of]swell[or]spiff[or]snazzy[or]the cat's potatoes[at random][end if].[quotation mark][paragraph break]".
 	
 To say randomGirl:
-	say "[one of]Jenny[or]Jeanine[or]Julie[or]Jeanette[or]Jeanie[or]Janine[or]Jo-Jo[or]JoAnne[or]Julianne[or]Janet[at random]".
+	say "[one of]Jenny[or]Jeanine[or]Julie[or]Jeanette[or]Jeanie[or]Janine[or]Jo-Jo[or]JoAnne[or]Julianne[or]Janet[in random order]".
 	
 To say askGirls:
-	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I want to date[or]I might have a crush on[or]I want to go to the movies with[at random] [randomGirl]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
+	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]Come to think of it,[or]Now that you mention it[or]Actually, I was just thinking that[in random order] [one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I want to date[or]I might have a crush on[or]I want to go to the movies with[in random order] [randomGirl]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
 	
 To say askBike:
 	say "[quotation mark][if the noun is Giblets]Trevor sure has put a lot of work into that bike of his -- it can practically drive itself[otherwise]It[apostrophe]s the latest -- three speeds! I painted it myself: bright red. You must have seen it when you came in[end if].[quotation mark][paragraph break]".
