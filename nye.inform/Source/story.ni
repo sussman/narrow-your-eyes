@@ -89,6 +89,7 @@ startx is a number that varies. starty is a number that varies.
 
 finalJump is a truth state that varies. finalJump is false.
 
+eyeAttempt is a number that varies. eyeAttempt is 1.
 
 [some flags for testing]
 graphics_suppress is a truth state that varies. graphics_suppress is false.
@@ -354,6 +355,8 @@ To decide whether updates are available:
 A facing-direction is a kind of value.  The facing-directions are right, left, hither, and yonder.
 
 A conveyor-direction is a kind of value. The conveyor-directions are upwards, downwards, leftwards and rightwards.
+
+Tense is a kind of value. The tenses are past, present and future.
 
 
 Section Chests and Lids
@@ -2380,6 +2383,21 @@ Before opening the eyes:
 	say "They are already open.";
 	stop the action.
 			
+Instead of narrowing eyes:
+	if the eye chart is not read:
+		say "You try to narrow your eyes (whatever that means), and you experience an ever so mild tingling sensation, but nothing happens.";
+	otherwise:
+		choose the row with attempt of eyeAttempt in the Table of OcularNarrowing;
+		if the tense entry is:
+			-- past: do nothing;
+			-- future: do nothing;
+			-- present: do nothing;
+		say "Everything shimmers for a moment and you have a sensation of [one of]vertigo[or]ants crawling all over you[or]having just eaten a peppermint patty[or]extreme disorientation[or]being distant from your body[or]being lost[or]not being quite yourself[in random order].[paragraph break]";
+		say "[the narrative entry][roman type][paragraph break]";
+		if the eyeAttempt is less than 7:
+			increase eyeAttempt by one.
+
+
 The mind is part of Marv Spindle. The indefinite article of the mind is "your". Understand "brain" as mind.
 
 Instead of doing something with the mind:
@@ -2491,12 +2509,16 @@ Trevor is a man in the Ophthalmology Office. Understand "Trev" as Trevor.
 
 Book 4 Tables and Boxed Text
 
-Section Tables
+Chapter Tables
+
+Section Prechart
 
 Table of PreChart
 turnNumber		canned-text
 3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift![quotation mark] offers Doctor Giblets.  [quotation mark]Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, Pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
 6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break][quotation mark]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
+
+Section PostChart
 
 Table of PostChart
 turnNumber	canned-text
@@ -2526,6 +2548,8 @@ Understand "Professor" or "Professor Igneous" or "Igneous" or "nemesis" or "arch
 
 Understand "observatory" or "Mauna Kea" or "telescope" or "IR" or "IR scope" or "IR telescope" or "MKIRT" or "volcano" or "scope" or "infra-red" or "infrared" or "infra-red telescope" or "infrared telescope" as "[observatory]".
 
+Section OpthoAsking
+
 Table of OphthoAsking
 topic		ophtho-text
 "[phone]"		"[askPhone]"
@@ -2545,6 +2569,7 @@ topic		ophtho-text
 "ophthalmology"		"[askOphthalmology]"
 "himself"		"[askHimselfOphtho]"
 		
+Section OphthoTelling
 
 Table of OphthoTelling
 topic		ophtho-text
@@ -2560,6 +2585,7 @@ topic		ophtho-text
 "wedding" or "wedding plans" or "plans"		"[tellPlans]"
 "[moi]" or "work"		"[tellMoi]"
 
+Section CunningAsking
 
 Table of CunningAsking
 topic		asking-text
@@ -2575,6 +2601,8 @@ topic		asking-text
 "plan" or "conspiracy" or "evil plan"		"[askProfPlan]"
 "himself" or "[iggi]"		"[askProfProf]"	
 
+Section CunningTelling
+
 Table of CunningTelling			
 topic		telling-text		
 "[phone]"		"[tellProfPhone]"
@@ -2588,10 +2616,29 @@ topic		telling-text
 "plan" or "conspiracy" or "evil plan"		"[tellProfPlan]"
 "himself" or "[iggi]"		"[tellProfProf]"
 
+Section CunningShowing
+
 Table of CunningShowing			
 thing			showing-text		
 Amelia			"[showProfPhone]"
 supercapacitor power module			"[showProfCapacitor]"
+
+Section OcularNarrowing
+
+Table of OcularNarrowing
+attempt	tense		narrative
+1	past		"[bold type]Wisconsin Avenue[italic type][paragraph break]Having just parked somewhere over on one of those side streets (Dunbarton Oaks? Volta? One of them.) you walk down to Amy[apostrophe]s uncle[apostrophe]s ophthalmology office. He has graciously agreed to help you out by fitting you for some glasses after you broke the last pair at breakfast this morning. Ah, this must be the place. You open the door, walk in, and are greeted by an older man who must be Doctor Giblets, and a younger man, who you suppose is Trevor, his son."
+2	future		"[bold type]M Street, NW[italic type][paragraph break]A bus hurtles down the street, blaring its horn. Pedestrians turn to stare, and a cab runs off the side of the road as it attempts to get out of the path of the swerving bus. Tires squeal as brakes are applied, and there is a grating sound of metal upon metal."
+3	past		"[bold type]Boulot Mansion, Fairfax Station[italic type][paragraph break]Amy is having coffee with her mother near a window that overlooks the gardens. Still groggy from last night[apostrophe]s flight, you dash in, sliding in your socks on the polished marble floor, but stopping short of upsetting the table and its fine china.[paragraph break][quotation mark]Look,[quotation mark] you say, digging into your bathrobe pockets and pulling out a wad of crumpled lined paper, your glasses, and a pen. [quotation mark]I rewrote some of the vows on the flight out.[quotation mark] Setting everything on a chair, you hand the papers to Amy, who accepts them appreciatively. As you read along over her shoulder, she nods and turns the page. You have the impression that perhaps the vows are too long. Concerned, you sit down and hear a crunching sound."
+4	future		"coming again someday"
+5	past		"of historical interest"
+6	future		"of great hope"
+7	present		"[one of ]Nothing seems to happen[or]You strain, but nothing happen[stopping]."
+
+
+
+
+
 
 Table of BeforeIKillYou
 turnNumber	rant
