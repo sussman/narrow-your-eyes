@@ -961,7 +961,8 @@ Carry out reading:
 Section Riding
 
 Understand "ride [an enterable thing]" as entering.
-	
+
+Understand "pedal" as going when the bike encloses the player.
 
 Section Showing
 
@@ -1995,6 +1996,9 @@ The bike is a enterable portable supporter. The bike is in Wisconsin Avenue. The
 Instead of taking or climbing the bike:
 	try entering the bike.
 	
+Instead of attacking the bike:
+	say "That[apostrophe]d be no way to thank Trevor."
+	
 Instead of entering the bike when the bike encloses the player:
 	try going north.
 	
@@ -2206,7 +2210,7 @@ Instead of touching, taking, eating, or kissing the ultraviolet web:
 
 Chapter CornerNW
 
-CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "You are on a street corner next to a green metal pole and a brass door, everything in the distance is blurry."
+CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "You are on a street corner next to a green metal pole and a brass door; everything in the distance is blurry."
 
 The pole is a supporter in CornerNW. The description of the pole is "The pole is studded with official traffic signs: snow emergency route, two hour parking zone 2 permit holders only, one way street, metro bus stop, dumping prohibited, loading zone, no parking, alternate parking Wednesdays, yield to pedestrians, slow children... you can only follow the pole upwards so far, before the bright sky bothers your dilated eyes." The pole is not fuzzy.
 
@@ -2352,7 +2356,7 @@ Instead of examining Marv Spindle:
 		if the location is Wisconsin Avenue:
 			say "You are, of course, Marv Spindle. A man who is in danger of being late to his own wedding rehearsal. As for a physical description, your eyes were just dilated by an ophthalmologist, as far as you can tell, you are a nebulous blob.";
 		otherwise:
-			say "Your vision is still blurry, but you recognize that you are not at your best. After the incident with the bus, your clothes are torn and bloodstained,  and you are covered in dirt and grime from the road. Also, since you didn't have time to apply conditioner this morning, your hair is also probably a mess.";
+			say "Your vision is still blurry, but you recognize that you are not at your best. After the incident with the bus, your clothes are torn and bloodstained  and you are covered in dirt and grime from the road. Also, since you didn't have time to apply conditioner this morning, your hair is a mess.";
 	otherwise:
 		say "It is fortunate for you that the lighting is too low in here for you to fully appreciate the extent of your own injuries."
 		
