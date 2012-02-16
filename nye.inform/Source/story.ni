@@ -227,8 +227,8 @@ Sound of the swivel  is the file "swivel(101439).ogg".
 Sound of the translate is the file "translate(523440).ogg".
 Sound of the update is the file "update(51645).ogg".
 Sound of the sitar is the file "sitar(65872).ogg".
-Sound of the future is the file "futuro(1720).ogg".
-Sound of the past is the file "postero(1720).ogg".
+Sound of the future is the file "futuro(7120).ogg".
+Sound of the past is the file "postero(7120).ogg".
 
 Table of Sounds
 Sound		Duration  [millisencond]
