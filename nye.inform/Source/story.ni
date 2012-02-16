@@ -48,7 +48,7 @@ Chapter Rules Modifications
 
 [Override inherent prudeness -- allow PC to kiss anything]
 The block kissing rule is not listed in any rulebook.
-The kissing yourself rule is not listed in any rulebook.		
+The kissing yourself rule is not listed in any rulebook.
 
 Chapter Declare Global Variables
 
@@ -1047,6 +1047,19 @@ Before telling the player about something:
 	say "[noSelfTalking]";
 	stop the action.
 	
+Section Toggle Sound Support
+
+Soundtoggling is an action out of world. Understand "togglesound" as soundtoggling.
+
+Carry out soundtoggling:
+	if sound_suppress is false:
+		now sound_suppress is true;
+	otherwise:
+		now sound_suppress is false.
+		
+This is the toggle sound rule:
+	try soundtoggling.
+	
 Section Touch
 [ Touching is implemented through an after rule, which is nice in terms of making use of existing relationships about whether something is touchable or not. If an item has a texture attribute, this rule makes use of it.]
 
@@ -1762,20 +1775,6 @@ Carry out futuring:
 	
 Report futuring:
 	say "It is now 12:55 PM. Welcome to the future."
-	
-Section Toggle Sound Support
-
-Soundtoggling is an action out of world. Understand "togglesound" as soundtoggling.
-
-Carry out soundtoggling:
-	if sound_suppress is false:
-		now sound_suppress is true;
-	otherwise:
-		now sound_suppress is false.
-		
-Report soundtoggling:
-	say "Sound suppression is now [if sound_suppress is true]on[otherwise]off[end if]."
-
 
 Section Toggle Graphics Support
 
@@ -2709,6 +2708,7 @@ title	subtable	description	toggle
 "What is this?"	Table of Adventures	""	--
 "How does this work?"	Table of How	--	--
 "Help! I'm stuck!"	Table of Stuck	--	--
+"Settings"	Table of Settings	--	--
 "Entomology"	Table of Bugs	--	--
 "Acknowledgements"	Table of Acknowledgements	--	--
 "Revision History"	Table of Revisions	--	--
@@ -2759,6 +2759,10 @@ title	subtable	description	toggle
 "A Matter of Interpretation"		--	"This game is designed to run on a virtual machine, some flavor of Glulx interpreter. You are, no doubt, using some implementation of the Glulx interpreter written for your specific hardware -- an android phone, an iPad, a laptop, a dishwasher -- whatever -- as authors, we're just happy we don't have to write a separate game for each device, but can write it once and have other people develop interpreters for each hardware platform. We've made every effort to test it on a number of platforms, but these tests are far from comprehensive. So far as we know, there are no interpreter-specific issues.  However, if the 
   game doesn't run right for you, you could try another interpreter and see if that fixes the situation.[paragraph break]Whether you think the problem is the interpreter or the game itself, we'd appreciate it if you'd let us know. (see [quotation mark]Zapping Bugs[quotation mark])"	--
 "Zapping Bugs"	--		"The more freedom you have in your actions, the more likely it is that you'll expose some unknown weakness in the game. What should you do if you elicit such an error?  After due gloating, please help us out by letting us know about the bug. There's no monetary reward for finding errors, but your name will appear on the next version of the ultra-prestigious bug finders list. Now [italic type]there's[roman type] something you can show to your grandchildren with pride.[paragraph break]Bugs can be submitted directly to the project's issue tracker at:[paragraph break]http://code.google.com/p/narrow-your-eyes/issues/list[paragraph break]Without logging into the site, you can peruse all of the previous issue reports, to see if yours is unique, or if the issue is already being addressed. To report a new issue, you would need to log into the site and then click on [quotation mark]new issue[quotation mark] to start a bug report. If you'd prefer, you can also report bugs to:[paragraph break]rover@red-bean.com[paragraph break][quotation mark]Patches are welcome.[quotation mark]"		--
+
+Table of Settings
+title	subtable	description	toggle
+"Sound effects [if sound_suppress is false]on[otherwise]off[end if]"	--	--	toggle sound rule
 
 Table of Acknowledgements
 title	subtable	description	toggle
