@@ -2445,7 +2445,7 @@ Instead of throwing, dropping, or attacking Amelia:
 	say "[hyperbole]";
 	
 Instead of pushing the orange button:
-	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark][voiceCommandPrompt][quotation mark][one of][paragraph break][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][or][stopping][paragraph break]".
+	say "You press the mangoFONE[apostrophe]s button and it speaks, [quotation mark][voiceCommandPrompt][quotation mark][paragraph break][if the location is the ophthalmology office][one of][quotation mark]That[apostrophe]s kind of, um, strange, isn[apostrophe]t it, Mr. Spindle -- I mean, Marv -- that it has the same name as my cousin?[quotation mark] asks Trevor.[paragraph break][quotation mark]I guess,[quotation mark] you reply. [quotation mark]I've had Amy so much on my mind that I couldn't think of anything else when I was setting up the phone.[quotation mark][paragraph break][quotation mark]Golly. The phone even sounds like Amy.[quotation mark][paragraph break][quotation mark]I guess it does at that. I'd never really noticed.[quotation mark][line break][or][stopping][end if]".
 	
 Instead of asking Amelia about something, say "[lackOfPhoneReply]".
 Instead of telling Amelia about something, say "[lackOfPhoneReply]".
@@ -2469,8 +2469,6 @@ At the time when phone gets yakked:
 	say "After a momentary sense of vibration from deep within your bowels, you gasp and your mangoFONE comes flying out of your mouth. You catch it reflexively. The phone is spotless, not a fingerprint on its glassy surface.";
 	move amelia to the player.
 	
-
-
 
 Chapter Igneous
 
