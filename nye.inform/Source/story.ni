@@ -858,6 +858,25 @@ Carry out abouting:
 
 Section Answering
 
+Understand the command "answer" as something new.
+
+Understand "answer" as simpleAnswering. simpleAnswering is an action applying to nothing.
+
+Carry out simpleAnswering:
+	say "Answer? What was the question?"
+	
+Understand "answer [a thing]" as complexAnswering. ComplexAnswering is an action applying to one thing.
+
+Carry out complexAnswering:
+	say "It seems that [the noun] is not impressed by your answer."
+	
+Instead of complexAnswering someone (called the party):
+	if the party is amelia:
+		say "But your phone didn[apostrophe]t ring!";
+	otherwise:
+		say "[lame talk]".
+		
+
 Section Asking
 
 Before asking the player about something:
