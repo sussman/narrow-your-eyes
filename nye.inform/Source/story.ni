@@ -264,18 +264,6 @@ The sound of the sitar		2350
 [Sounds given one after the other will not form a queue and play sequentially. For this reason, it is necessary to play one, wait the duration of that sound, and give the command to play another. The other issue is that while a sound is playing, if timing does not lock out input, new commands could be typed in. These new commands could be at odds with the sounds that are playing, and cause confusion, or they could kick off new sounds, which would be suppressed by the currently playing sound.
 
 So, when you want to play a sound, but aren't worried about accepting more player input, use "play(sound)", but when you want to assure that a sound will play in its entirety, but suspend other operations, use "playback(sound)". Obviously, these sounds should be short, so that the player doesn't get upset about waiting to enter commands.
-
-]
-
-
-[soundcomment: this is the fake playback routine for modal sounds - when restoring sound, remember to remove the quotation marks in all of the playback calls
-
-To playback (effect - text):
-	if timekeeping is available:
-		let n be the 500;
-		now n is n plus 10;
-		say "playing sound: [effect].";
-		wait n ms before continuing, strictly.[10 ms to give some leeway for latency]
 ]
 
 To playback (effect - a sound name):
@@ -2397,10 +2385,12 @@ Instead of narrowing eyes:
 				play(the sound of the past);
 			otherwise if tense entry is future:
 				play(the sound of the future);
-		say "Everything shimmers for a moment and you have a sensation of [one of]vertigo[or]ants crawling all over you[or]having just eaten a peppermint patty[or]extreme disorientation[or]being distant from your body[or]being lost[or]not being quite yourself[in random order].[paragraph break]";
-		say "[the narrative entry][roman type][paragraph break]";
-		if the eyeAttempt is less than 7:
-			increase eyeAttempt by one.
+		if the eyeAttempt is less than 10:
+			say "Everything shimmers for a moment and you have a sensation of [one of]vertigo[or]ants crawling all over you[or]having just eaten a peppermint patty[or]extreme disorientation[or]being distant from your body[or]being lost[or]not being quite yourself[in random order].[paragraph break]";
+			say "[the narrative entry][roman type][paragraph break]";
+			increase eyeAttempt by one;
+		otherwise:
+			say "[the narrative entry]."
 
 
 The mind is part of Marv Spindle. The indefinite article of the mind is "your". Understand "brain" as mind.
@@ -2632,17 +2622,16 @@ Section OcularNarrowing
 
 Table of OcularNarrowing
 attempt	tense		narrative
-1	past		"[bold type]Wisconsin Avenue[italic type][paragraph break]Having just parked somewhere over on one of those side streets (Dunbarton Oaks? Volta? One of them.) you walk down to Amy[apostrophe]s uncle[apostrophe]s ophthalmology office. He has graciously agreed to help you out by fitting you for some glasses after you broke the last pair at breakfast this morning. Ah, this must be the place. You open the door, walk in, and are greeted by an older man who must be Doctor Giblets, and a younger man, who you suppose is Trevor, his son."
+1	past		"[bold type]Wisconsin Avenue[italic type][paragraph break]Having just parked somewhere over on one of those side streets (Dent? Volta? One of them.) you walk down to Amy[apostrophe]s uncle[apostrophe]s ophthalmology office. He has graciously agreed to help you out by fitting you for some glasses after you broke the last pair at breakfast this morning. Ah, this must be the place. You open the door, walk in, and are greeted by an older man who must be Doctor Giblets, and a younger man, who you suppose is Trevor, his son."
 2	future		"[bold type]M Street, NW[italic type][paragraph break]A bus hurtles down the street, blaring its horn. Pedestrians turn to stare, and a cab runs off the side of the road as it attempts to get out of the path of the swerving bus. Tires squeal as brakes are applied, and there is a grating sound of metal upon metal."
-3	past		"[bold type]Boulot Mansion, Fairfax Station[italic type][paragraph break]Amy is having coffee with her mother near a window that overlooks the gardens. Still groggy from last night[apostrophe]s flight, you dash in, sliding in your socks on the polished marble floor, but stopping short of upsetting the table and its fine china.[paragraph break][quotation mark]Look,[quotation mark] you say, digging into your bathrobe pockets and pulling out a wad of crumpled lined paper, your glasses, and a pen. [quotation mark]I rewrote some of the vows on the flight out.[quotation mark] Setting everything on a chair, you hand the papers to Amy, who accepts them appreciatively. As you read along over her shoulder, she nods and turns the page. You have the impression that perhaps the vows are too long. Concerned, you sit down and hear a crunching sound."
-4	future		"coming again someday"
-5	past		"of historical interest"
-6	future		"of great hope"
-7	present		"[one of ]Nothing seems to happen[or]You strain, but nothing happen[stopping]."
-
-
-
-
+3	past		"[bold type]Boulot Mansion, Fairfax Station[italic type][paragraph break]Amy is having coffee with her mother near a window that overlooks the gardens. Still groggy from last night[apostrophe]s flight, you dash in, sliding in your socks across the polished marble floor, but stopping short of upsetting the table and its fine china.[paragraph break][quotation mark]Look,[quotation mark] you say, digging into your bathrobe pockets and pulling out a wad of crumpled lined paper, your glasses, and a pen. [quotation mark]I rewrote some of the vows on the flight out.[quotation mark] Setting everything on a chair, you hand the papers to Amy, who accepts them appreciatively. As you read along over her shoulder, she nods and turns the page. You have the impression that perhaps the vows are too long. Concerned, you sit down and hear a crunching sound."
+4	future		"[bold type]The Factory[italic type][paragraph break]You experience a great sense of urgency. Not far from you, a robot wheels quickly across the factory floor, turning this way and that. It pauses a moment to weld something and a fountain of sparks fall to the ground.  You enter a metal container and are consumed by darkness."
+5	past		"[bold type]Mauna Kea Observatory[italic type][paragraph break]Your graduate student Amber asks in amazement, [quotation mark]And what did Amy say?[quotation mark][paragraph break][quotation mark]What do you think she said? Hand me the temperature probe.[quotation mark] You take the probe and slide it into the telescope[apostrophe]s preamplifier assembly.[paragraph break][quotation mark]Yes?[quotation mark] suggests Amber cautiously.[paragraph break][quotation mark]Of course she said yes![quotation mark] you say with a broad smile and then reclamp the assembly."
+6	future		"[bold type]The Constitution Room[italic type][paragraph break]As the guests depart, Amy reaches across the table and takes your hand, [quotation mark]So, so you[apostrophe]ve defeated a madman and his cybernetic army of evil, convinced my father that the army can[apostrophe]t be trusted with his inventions, and brought peace to Ispharistan this afternoon. Are you ready for our wedding?[quotation mark][paragraph break]Sure,[quotation mark] you reply. [quotation mark]What could possibly go wrong between now and tomorrow?[quotation mark][paragraph break]Your mangoFone beeps with a text message: [quotation mark]marv where r u? bachelor party can’t start w/o u! Hurry![quotation mark]"
+7	past		"[bold type]Ленинград, СССР[italic type][paragraph break]The Intourist guide expertly corrals a herd of camera-toting tourists on the banks of the river and gestures magnificently towards the Hermitage. Only meters away, a pair of fartsovshiki are cutting a deal from the trunk of their Lada, while a militsia officer carefully avoids eye contact.[paragraph break]You sit on the designated park bench, unfold Izvestia and scan the back page, a story about how well the war in Afghanistan is going. Your contact is only slightly late, which is to be expected these days. Quietly, she whispers, [quotation mark]They say it is Professor…[quotation mark]. She does not finish the sentence. You slide her sideways, cover the spreading blood stain with the paper, and disappear into the crowd."
+8	future		"[bold type]Lava Shaft, Ring of Fire[italic type][paragraph break][quotation mark]Amelia,[quotation mark] you command, [quotation mark]scan.[quotation mark][paragraph break]Your phone ripples with bright colors and replies, [quotation mark]The tube continues downward at a ten percent grade, in a roughly southeasterly direction for approximately six hundred meters before bifurcating.[quotation mark] The phone then adds in a concerned voice, [quotation mark]Marv, we are getting too deep. I estimate less than an hour to detonation.[quotation mark]"
+9	past		"[bold type]Upper Zambezi River[italic type][paragraph break]You locate the rocks covering your buried parachute harness and dig down with a spade to recover your signals box. You snap open the box, withdraw a plastic bag, and slice it open with your knife. From the bag, you extract a light weight battery and activate it by pouring the last mouthful of water from your canteen over it. Next, you reel out the antenna wire and toss it into low branches. After running the counterpoise wire for some distance, you insert the battery into the transponder, activating it.[paragraph break]Safe for the moment, you hunker down in the scrub, waiting for a chopper, and mentally preparing your debriefing about Professor Igneous. "
+10	present		"[one of ]Nothing seems to happen[or]You strain, but nothing happens[stopping]"
 
 
 Table of BeforeIKillYou
