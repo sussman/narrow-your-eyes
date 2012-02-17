@@ -2562,6 +2562,10 @@ Understand "observatory" or "Mauna Kea" or "telescope" or "IR" or "IR scope" or 
 
 Understand "girl" or "girls" or "date" or "dates" or "Jenny" or "Jeanine" or "Julie" or "Jeanette" or "Jeanie" or "Janine"  or "Jo-Jo" or "JoAnne" or "Julianne" or "Janet" as "[girlNames]".
 
+Understand "contacts" or "contact lens" or "contact lenses" as "[contacts]".
+
+Understand "dream" or "dreams" or "nightmares" or "nightmare" or "vision" or "hallucination" as "[dream]".
+
 Section OpthoAsking
 
 Table of OphthoAsking
@@ -2582,6 +2586,11 @@ topic		ophtho-text
 "office" or "ophthalmology office"		"[askOffice]"
 "ophthalmology"		"[askOphthalmology]"
 "himself"		"[askHimselfOphtho]"
+"glasses"		"[askGlasses]"
+"[contacts]"		"[askContacts]"
+"hastur"		"[askHastur]"
+
+
 		
 Section OphthoTelling
 
@@ -2598,6 +2607,7 @@ topic		ophtho-text
 "engagement"		"[tellEngagement]"
 "wedding" or "wedding plans" or "plans"		"[tellPlans]"
 "[moi]" or "work"		"[tellMoi]"
+"hastur"		"[tellHastur]"
 
 Section CunningAsking
 
@@ -2613,7 +2623,8 @@ topic		asking-text
 "robot" or "Lenny"		"[askProfRobot]"
 "factory" or "hotel" or "spa" or "bed and breakfast"		"[askProfHotel]"
 "plan" or "conspiracy" or "evil plan"		"[askProfPlan]"
-"himself" or "[iggi]"		"[askProfProf]"	
+"himself" or "[iggi]"		"[askProfProf]"
+"hastur"		"[askProfHastur]"	
 
 Section CunningTelling
 
@@ -2971,6 +2982,23 @@ To say askHimselfOphtho:
 		say askGiblets;
 	otherwise:
 		say askTrevor.
+		
+To say askGlasses:
+	say "xxx".
+	
+To say askContacts:
+	say "xxx".
+	
+To say askHastur:
+	say "xxx". [and advance the doomsday marker by one]
+
+To say tellHastur:
+	say "xxx".
+	
+To say askProfHastur:
+	say "xxx".
+
+
 	
 To say tellPhone:
 	say "[quotation mark]Right after I landed last night, Amy showed up with her dad in one of the mangoIndustries limos and I got the royal treatment back to their place in Virginia. On the way, Istvan asked me if I[apostrophe]d like to field test one of their phones.[quotation mark][paragraph break][quotation mark]And you said, yes?[quotation mark] suggests Doctor Giblets.[paragraph break][quotation mark]Of course I said yes! Can you imagine how insanely jealous my graduate students at the obervatory are going to be when I tell them that I was one of the first people in the world to try out the new mangoFONE?[quotation mark][paragraph break][quotation mark]I know they[apostrophe]re amazing phones, but what is so special about this new model?[quotation mark] asks Trevor.[paragraph break][quotation mark]So far, with all the wedding stuff going on, I haven[apostrophe]t had much change to play with it. Istvan did mention that the phone has some special heuristics built in, meaning that it can learn and he lost with when he started talking about genetic algorithms and evolving q-ware, but I got the impression that the phone somehow improves itself over time.[quotation mark][paragraph break][quotation mark]Spiff![quotation mark] exclaims Trevor."
