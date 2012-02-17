@@ -1940,7 +1940,7 @@ Instead of reading or examining the fourth line:
 				increase the hasturCount by one;
 			-- 1: say "[quotation mark]Hmm, that fourth line is an odd word.[quotation mark] You can[apostrophe]t help but think that you[apostrophe]ve heard that one before somewhere. Idly, you pronounce it: [quotation mark]HASTUR.[quotation mark][paragraph break][quotation mark]Marv, really. We need to get on with the rest of the exam. You can stop reading that line[quotation mark], advises Doctor Giblets.[paragraph break]Trevor sounds frankly panicked now, though, as he implores [quotation mark]For the love of man, stop reading![quotation mark][paragraph break]";
 				increase the hasturCount by one;
-			-- 2: say "Once more, you say [quotation mark]HASTUR[quotation mark].[paragraph break]Doctor Giblets lunges at the refractor, trying to pry it from your eyes, while Trevor tears the eye chart from the wall.[paragraph break]But it is too late. You have awoken the Unspeakable One and given birth to a nightmare horror that even now is reaching out of an incompressible fold in space, uncoiling its tentacles, and snapping its hideous beak in anticipation of what is to come.[paragraph break]You narrow your eyes as the grotesque horror engulfs you and gibbers madly onward towards an unsuspecting world.";
+			-- 2: say "Once more, you say [quotation mark]HASTUR[quotation mark].[paragraph break]Doctor Giblets lunges at the refractor, trying to pry it from your eyes, while Trevor tears the eye chart from the wall.[paragraph break]But it is too late. [goodbyeWorld].";
 			   now the endgame is hastured;
 				end the story.
 		
@@ -2566,6 +2566,12 @@ Understand "contacts" or "contact lens" or "contact lenses" as "[contacts]".
 
 Understand "dream" or "dreams" or "nightmares" or "nightmare" or "vision" or "hallucination" as "[dream]".
 
+Understand "Jeremy" or "Flack" as "[alterego]".
+
+Understand "ophthalmology" or "ophthalmologist" as "[ophtho]".
+
+Understand "optometry" or "optometrist" or "optician" as "[opto]".
+
 Section OpthoAsking
 
 Table of OphthoAsking
@@ -2584,7 +2590,7 @@ topic		ophtho-text
 "atropine"		"[askAtropine]"
 "rehearsal" 		"[askRehearsal]"
 "office" or "ophthalmology office"		"[askOffice]"
-"ophthalmology"		"[askOphthalmology]"
+"[ophtho]"		"[askOphthalmology]"
 "himself"		"[askHimselfOphtho]"
 "glasses"		"[askGlasses]"
 "[contacts]"		"[askContacts]"
@@ -2624,7 +2630,8 @@ topic		asking-text
 "factory" or "hotel" or "spa" or "bed and breakfast"		"[askProfHotel]"
 "plan" or "conspiracy" or "evil plan"		"[askProfPlan]"
 "himself" or "[iggi]"		"[askProfProf]"
-"hastur"		"[askProfHastur]"	
+"hastur"		"[askProfHastur]"
+"[alterego]"		"[askProfJeremy]"	
 
 Section CunningTelling
 
@@ -2640,6 +2647,8 @@ topic		telling-text
 "factory" or "hotel" or "spa" or "bed and breakfast"		"[tellProfHotel]"
 "plan" or "conspiracy" or "evil plan"		"[tellProfPlan]"
 "himself" or "[iggi]"		"[tellProfProf]"
+"hastur"		"[tellProfHastur]"
+"[alterego]"		"[tellProfJeremy]"
 
 Section CunningShowing
 
@@ -2933,7 +2942,7 @@ To say randomGirl:
 	say "[one of]Jenny[or]Jeanine[or]Julie[or]Jeanette[or]Jeanie[or]Janine[or]Jo-Jo[or]JoAnne[or]Julianne[or]Janet[in random order]".
 	
 To say askGirls:
-	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]Come to think of it,[or]Now that you mention it[or]Actually, I was just thinking that[in random order] [one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I want to date[or]I might have a crush on[or]I want to go to the movies with[in random order] [randomGirl]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
+	say "[quotation mark][if the noun is Giblets]That[apostrophe]s more Trevor[apostrophe]s territory[otherwise][one of]Come to think of it,[or]Now that you mention it[or]Actually, I was just thinking that[in random order] [one of]I[apostrophe]ve had my eye on[or]I think like[or]I have been longing after[or]I[apostrophe]d like to date[or]I might have a crush on[or]I want to go to the movies with[in random order] [randomGirl]. Unfortunately, I haven't quite worked up the nerve to ask her out[end if].[quotation mark][paragraph break]".
 	
 To say askBike:
 	say "[quotation mark][if the noun is Giblets]Trevor sure has put a lot of work into that bike of his -- it can practically drive itself[otherwise]It[apostrophe]s the latest -- three speeds! I painted it myself: bright red. You must have seen it when you came in[end if].[quotation mark][paragraph break]".
@@ -2984,18 +2993,60 @@ To say askHimselfOphtho:
 		say askTrevor.
 		
 To say askGlasses:
-	say "xxx".
+	say "He replies, [quotation mark][if the noun is Giblets]Glasses are like the storm windows of the soul[otherwise]Glasses are a big turn on for girls -- [randomGirl] told me so[end if].[quotation mark][paragraph break]".
 	
 To say askContacts:
-	say "xxx".
+	say "[quotation mark][if the noun is Giblets]Nasty little things. Give me a nice pair of glasses any day,[quotation mark] replies Doctor Giblets.[no line break][otherwise]Contacts?[quotation mark] asks Trevor. [quotation mark]I just cleaned the contacts on my bike -- they were all gunked up, but now it purrs like a kitten. I can[apostrophe]t wait to show it off to [randomGirl].[quotation mark][end if][paragraph break]".
 	
+To say goodbyeWorld:
+	say "You have awoken the Unspeakable One and given birth to a nightmare horror that even now is reaching out of an incompressible fold in space, uncoiling its tentacles, and snapping its hideous beak in anticipation of what is to come.[paragraph break]You narrow your eyes as the grotesque horror engulfs you and gibbers madly onward towards an unsuspecting world."
+
+To say optoHastur:
+	if the hasturCount is:
+		-- 1: 
+		say "For a moment, there is silence in the office. A silence as deep as death itself.[paragraph break][quotation mark]No, no. I don[apostrophe]t think so.[quotation mark] whispers Doctor Giblets solemnly. [quotation mark]Why don[apostrophe]t you tell us more about yourself, Marv. I[apostrophe]m sure Trevor would like to hear more about his new cousin-in-law, wouldn[apostrophe]t you, Trev?[quotation mark][paragraph break][quotation mark]Sure thing, Pop![quotation mark][paragraph break]";
+		-- 2: 
+		say "Doctor Giblets bumps into something in the dark and mutters under his breath. [quotation mark]Means? It means nothing. Nothing at all. It is sheer nonsense. A nonsensical word.[quotation mark][paragraph break][quotation mark]Yes, nonsense![quotation mark] interjects Trevor, just a tad too urgently.[paragraph break][quotation mark]Best forget you ever heard it, if you know what[apostrophe]s good for you,[quotation mark] says the ophthalmologist with a hint of malice in his voice. [quotation mark]Shouldn[apostrophe]t a man who is getting married tomorrow have other things on his mind? Nice things. Pure things?[quotation mark][paragraph break]";
+		-- 3: 
+		say  "Doctor Giblets bolts from his exam chair, sending it spinning. He  slams his meaty fist against the light switch, but the flicking fluorescent tubes overhead only intensify the horror unfolding before you. Trevor[apostrophe]s nails gouge the office floor as he is drawn feet first by a tentacle towards a gelatinous cavity of pulsating flesh.[paragraph break][goodByeWorld]";
+		now the endgame is hastured;
+		end the story.
+			
 To say askHastur:
-	say "xxx". [and advance the doomsday marker by one]
+	say "You say, [quotation mark]";
+	if hasturCount is:
+		-- 0: say "I have absolutely no idea how this thought just popped into my head out of the blue, but I was wondering: have you guys ever heard the name… HASTUR?[no line break]";
+		-- 1: say "It[apostrophe]s kind of catchy, you know? What do you think HASTUR means?[no line break]";
+		-- 2: say "I can[apostrophe]t stop thinking about it. I feel compelled to say it again…HASTUR![no line break]";
+	say "[quotation mark][paragraph break]";	
+	increase the hasturCount by one;
+	say "[optoHastur]".
 
 To say tellHastur:
+	say "You say, [quotation mark]";
+	if hasturCount is:
+		-- 0: say "You know how sometimes a word just pops into your head and you have absolutely no idea where it came from? That just happened to me. It[apostrophe]s an odd word, too: HASTUR! Has that ever happened to you guys?[no line break]";
+		-- 1: say "It feel like I should know what it means, like I once knew, but forgot. It[apostrophe]s right there on the tip of my tongue… HASTUR![no line break]";
+		-- 2: say "Maybe it is an acronym for something. Could I have heard it at the Astronomy Symposium last week? Pulsar, Quasar… HASTUR![no line break]";
+	say "[quotation mark][paragraph break]";	
+	increase the hasturCount by one;
+	say "[optoHastur]".
+
+To say factoryHastur:
+	say "The man in the lab coat snorts derisively and taunts, [quotation mark]HASTUR? HASTUR? HASTUR is a mere fantasy, a thing to frighten children, an antiquated remnant of a superstitious age, predating scientific reason and…[quotation mark] Tentacles burst through the floor.[paragraph break][goodByeWorld]";
+	now the endgame is hastured;
+		end the story.
+
+To say askProfHastur:
+	say "You ask, [quotation mark]Have you ever heard of HASTUR?[quotation mark][paragraph break][factoryHastur]".			
+	
+To say tellProfHastur:
+	say "[quotation mark]I think it is time to mention a topic that I think you will find most… intriguing,[quotation mark] you say, biding for time, [quotation mark]What do you know about… HASTUR?[quotation mark][paragraph break][factoryHastur]".
+	
+To say askProfJeremy:
 	say "xxx".
 	
-To say askProfHastur:
+To say tellProfJeremy:
 	say "xxx".
 
 
