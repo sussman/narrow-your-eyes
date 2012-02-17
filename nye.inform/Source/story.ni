@@ -75,6 +75,7 @@ tempUpdateLevel is a number that varies. tempUpdateLevel is zero.
 Robot delay is a number that varies. Robot delay is 400. [milliseconds]
 startx is a number that varies. starty is a number that varies.
 hasturCount is a number that varies. hasturCount is zero.
+jumpitude is a number that varies. jumpitude is zero.
 
 messageAlert is a truth state that varies. messageAlert is false.
 onFamiliarTerms is a truth state that varies. onFamiliarTerms is false.
@@ -319,7 +320,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are nil, hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared and won.
+Conclusion is a kind of value. The conclusions are nil, hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared, vomered and won.
 
 Endgame is a conclusion that varies. The endgame is usually nil.
 
@@ -1649,6 +1650,37 @@ Instead of examining something fuzzy (called the item):
 		otherwise:
 			say "[one of]Your eyes are to blurry to get a good look at [the item][or]You narrow your eyes, but can[apostrophe]t focus properly on [the item][or][The item] [is-are] a blur to you[or]The drops are still affecting your eyes. You can[apostrophe]t see any detail about [the item][at random]."	
 			
+Section Jumping
+
+Instead of Jumping:
+	if the location is:
+		-- the ophthalmology office:
+			increase the jumpitude by one;
+			if jumpitude is 5:
+				say "Some deeply repressed self-destructive tendency compels you to jump one final time, driving a small, angular bone known as the vomer backwards into a part of your brain that considers itself important just because it keeps you alive. That part of the brain takes umbrage at being impaled by a bone that properly belongs in the nose, and stops telling your heart to beat. This greatly inconveniences your blood, which stops flowing to your lungs, and the whole thing comes full circle, when your oxygen-deprived brain just up and quits.";
+				change the endgame to vomered;
+				end the game in death;
+			otherwise:
+				say "[one of]You bump your nose on the refractor[or]Again, you bump your nose on the refractor[or]Even George Bush was smart enough to misquote the line about fooling himself once. Your nose is getting quite sore[or]You continue to abuse both your nose and the refractor[stopping].";
+		-- wisconsin avenue:
+			say "You hop up and down on a major road running through Georgetown. You hope no one sees you, but it does feel good, after having been cooped up in a dark room for so long.";
+		-- cornerNW:
+			say "If you want to go up, climb the pole, eh?";
+		-- poletop:
+			say "You cast yourself back from the pole and enjoy several seconds of freefall.  [onTheWayDown]";
+			plummet;
+		-- factory:
+			if the metal locker encloses the player and the metal locker is closed:
+				if the metal locker is not jumpy:
+					say "You whack your head on the cover of the metal locker and see stars.";
+					now the metal locker is jumpy;
+				otherwise:
+					say "Not profiting from your previous encounter with the heavy metal cover of the locker, you jump again with the agility of an Olympic polevaulter, slamming your head into the top of the locker. This time, you lose consciousness. When you wake, you find that you have been killed by a laser wielding robot.";
+					change the endgame to lasered;
+					end the game in death;
+			otherwise:
+				say "You jump up and down, fruitless, except for your mangoFONE."
+			
 Section Hiding
 
 Instead of Hiding:
@@ -1671,6 +1703,11 @@ Instead of Hiding:
 					say "The only place to hide seems to be metal locker, but you would have to open its cover first.";
 				otherwise:
 					try entering the metal locker.
+					
+Section Swearing
+
+Instead of swearing obscenely:
+	say "Got to watch that -- swearing upsets Amy."
 				
 Section Taking Inventory
 
@@ -1966,7 +2003,7 @@ Instead of doing something with the fifth line:
 
 Instead of reading or examining the eye chart, try searching the refractor.
 
-The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused. The texture of the refractor is "cold and metallic". Understand "device" as the refractor.
+The refractor is a furniture in the Ophthalmology Office. The refractor has focus. The refractor is unfocused. The texture of the refractor is "cold and metallic". Understand "device" as the refractor. 
 
 Instead of pulling or pushing the refractor, say "It is heavier than it looks. Maybe Trevor clamped it into position so it would stay in proper alignment."
 
@@ -2074,7 +2111,7 @@ The robot is a person. It is in the Factory. Understand "Lenny", "industrial", "
 
 The character of the Robot is the Robot-sprite.  The display status of the Robot-sprite is g-active. The Robot has a facing-direction.  The facing-direction of the Robot is hither.
 
-The metal locker is an enterable transparent chest. It is in the Factory. The metal locker can be pinholed. The metal locker is not pinholed. The texture of the metal locker is "cold and metallic". Understand "box" or "container" as the metal locker
+The metal locker is an enterable transparent chest. It is in the Factory. The metal locker can be pinholed. The metal locker is not pinholed. The texture of the metal locker is "cold and metallic". Understand "box" or "container" as the metal locker. The metal locker can be jumpy. The metal locker is not jumpy.
 
 Instead of examining the metal locker:
 	say the description of the metal locker.
@@ -2259,10 +2296,6 @@ Instead of climbing the top of the pole, try going down.
 To plummet: 
 	change the endgame to jumped;
 	end the game in death.
-
-Instead of jumping when the location is poletop:
-	say "You cast yourself back from the pole and enjoy several seconds of freefall.  [onTheWayDown]";
-	plummet.
 	
 Instead of waving hands when the location is the poletop:
 	say "You wave your hands at tourists, eager to make their trip to the nation's capital memorable. Surely, it will be for them.[paragraph break][onTheWayDown]";
@@ -2897,6 +2930,9 @@ To say boomStick:
 	
 To say spitefulText:
 	say "She toasts the sad cold fact, her loves are never coming back and races to the bottom of the glass."
+	
+To say vomeredText:
+	say "Too jumpy to live."
 	
 	
 To say timedOut:
@@ -3675,9 +3711,11 @@ Rule for printing the player's obituary:
 		-- bezoared:
 			say "[bezoaredText]";
 		-- spiteful:
-			say "[spitefulText]".
+			say "[spitefulText]";
+		-- vomered:
+			say "[vomeredText]".
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]Did you visit Fibber Island?[line break]* There are at least 13 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]Did you visit Fibber Island?[line break]* There are at least 17 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
 
