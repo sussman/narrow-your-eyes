@@ -2527,8 +2527,8 @@ Section Prechart
 
 Table of PreChart
 turnNumber		canned-text
-3		"[quotation mark]Thanks for opening up on a Sunday.  I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift![quotation mark] offers Doctor Giblets.  [quotation mark]Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, Pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
-6		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break][quotation mark]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
+1		"[quotation mark]Thanks for opening up on a Sunday,[quotation mark] you say with some embarrassment. [quotation mark]I feel like such a bozo for sitting on my glasses the day of the rehearsal... I[apostrophe]ve just been so jet-lagged since flying in from Hawaii.[quotation mark] You would palm your face, but the refractor is in the way.[paragraph break][quotation mark]Consider it a wedding gift![quotation mark] offers Doctor Giblets.  [quotation mark]Trevor, would you get the atropine drops? No sense in doing an eye exam halfway.[quotation mark][paragraph break][quotation mark]Sure, Pop. As you always say, the funduscopic exam is what separates the ophthalmologists from the optometrists.[quotation mark][paragraph break][quotation mark]Indeed it is, son. Indeed it is.[quotation mark]"
+4		"[quotation mark]Let[apostrophe]s try to figure out what kind of prescription you need. We can grind the lenses this morning and have Trevor run them over to the hotel in time for the rehearsal. What time did you say rehearsal is?[quotation mark][paragraph break]You checked your mangoFONE[apostrophe]s calendar just before the eye appointment, so you say [quotation mark]It[apostrophe]s at five, and the hotel is downtown -- I should have plenty of time to get there.[quotation mark][paragraph break][quotation mark]Fine, fine. Just look at the eye chart and read the third line down.[quotation mark]"
 
 Section PostChart
 
@@ -2595,6 +2595,7 @@ topic		ophtho-text
 "glasses"		"[askGlasses]"
 "[contacts]"		"[askContacts]"
 "hastur"		"[askHastur]"
+"[dream]"		"[askDreams]"
 
 
 		
@@ -2614,6 +2615,7 @@ topic		ophtho-text
 "wedding" or "wedding plans" or "plans"		"[tellPlans]"
 "[moi]" or "work"		"[tellMoi]"
 "hastur"		"[tellHastur]"
+"[dream]"		"[tellDreams]"
 
 Section CunningAsking
 
@@ -3049,6 +3051,13 @@ To say askProfJeremy:
 To say tellProfJeremy:
 	say "[one of][quotation mark]I know you think I am Jeremy Flack, but you have to believe me. I have no idea who he is. There has been a terrible mistake. I am sure we an work this misunderstanding out, if you[apostrophe]ll just hear me out.[quotation mark][paragraph break][quotation mark]Oh, I will hear you out, [Jeremy]. I will hear you out of existence itself![quotation mark] He laughs briefly at his own joke.[or][quotation mark]But, I tell you…[quotation mark][paragraph break]The man in the lab coat cuts you off, [quotation mark]Enough of this nonsense. We both know who you are.[quotation mark][line break][or][quotation mark]You have to believe me….[quotation mark][paragraph break]The man plugs his ears with his fingers, [quotation mark]Na, na, na, na. I[apostrophe]m not listening![quotation mark][line break][stopping]"
 	
+To say askDreams:
+	say "[quotation mark][if the noun is Doctor Giblets]My dream is retire in another five years and have young Trevor here take over the family business.[quotation mark][paragraph break]Trevor offers no comment.[no line break][otherwise]I had the strangest dream the other night I was [one of]driving Pop[apostrophe]s convertible[or]late for math class and had forgotten my homework, and I was totally naked except for some post-it notes[or]dressed in armor and fighting something so incomprehensibly alien that our language cannot convey the horror[or]given the Bloodname of Nagath-Pottork (or Destroyer of Destinies) by our tribal elder and I had just sacrified a black goat upon an alter of gold[or]I can[apostrophe]t remember the first part of the dream, but I do recall the part[stopping] when [randomGirl] suddenly reached over and kissed me. Then I woke up.[quotation mark][end if][paragraph break]".
+	
+To say tellDreams:
+	say "[quotation mark]I[apostrophe]ve been having some vivid dreams,[quotation mark] you say. [quotation mark]Odd ones. I can[apostrophe]t say that I recall them afterwards, except for some fragments. In some, I am like an action hero. Running, shooting, doing kung-fu. In others, I am running, swimming, all that sort of outdoor stuff that I normaly leave for other people.[quotation mark][paragraph break]Trevor and Doctor Giblets agree that you do indeed have some interesting dreams, but chalk it up to nervous energy before the wedding."
+
+
 To say tellPhone:
 	say "[quotation mark]Right after I landed last night, Amy showed up with her dad in one of the mangoIndustries limos and I got the royal treatment back to their place in Virginia. On the way, Istvan asked me if I[apostrophe]d like to field test one of their phones.[quotation mark][paragraph break][quotation mark]And you said, yes?[quotation mark] suggests Doctor Giblets.[paragraph break][quotation mark]Of course I said yes! Can you imagine how insanely jealous my graduate students at the obervatory are going to be when I tell them that I was one of the first people in the world to try out the new mangoFONE?[quotation mark][paragraph break][quotation mark]I know they[apostrophe]re amazing phones, but what is so special about this new model?[quotation mark] asks Trevor.[paragraph break][quotation mark]So far, with all the wedding stuff going on, I haven[apostrophe]t had much change to play with it. Istvan did mention that the phone has some special heuristics built in, meaning that it can learn and he lost with when he started talking about genetic algorithms and evolving q-ware, but I got the impression that the phone somehow improves itself over time.[quotation mark][paragraph break][quotation mark]Spiff![quotation mark] exclaims Trevor."
 	
