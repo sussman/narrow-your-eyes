@@ -447,8 +447,6 @@ To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
 	follow the window-drawing rules for the graphics-window;
 	follow the refresh windows rule.
 
-[TODO:  In release, disable these command tokens; the actions themselves need to persist as they do the actual moving around of the robot -- people should just not be able to say "forward", "back", etc., but will have to use the touchtones.]
-
 Forwarding is an action applying to nothing.  
 
 Carry out forwarding:
@@ -1867,6 +1865,8 @@ After printing the banner text:
 		say "display graphics. That[apostrophe]s good, since you[apostrophe]ll need them. ";
 	otherwise:
 		say "cannot display graphics. The game cannot be completed without graphic capabilities, so you may wish to try another interpreter. ";
+	if unicodage is disabled:
+		say "This isn[apostrophe]t very common any more, but it also looks like your interpreter does not support unicode, which means that at some point this game is going to burst into a giant mass of screaming, flaming electrons and crash horribly. In the interest of saving your very soul, you are urged to use another interpreter. ";
 	say "Type [quotation mark]help[quotation mark] for instructions, and [quotation mark]hints[quotation mark] for hints if you want them[roman type]."
 
 	
@@ -2496,7 +2496,7 @@ At the time when phone gets yakked:
 
 Chapter Igneous
 
-Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to [the Professor][apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect [the Professor][apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized.  The printed name of Professor Igneous is "[recognized-name]". Professor Igneous is not proper-named.
+Professor Igneous is a man in the Factory. He is alive. Professor Igneous wears a lab coat, a pair of rubber gloves, and a pair of goggles. The description of the lab coat is "A wrinkled lab coat, with dark stains on the arms, and an acid burn near the right shoulder." The description of the rubber gloves is "A pair of thick, pink, rubber gloves that come up to [the Professor][apostrophe]s elbows." The description of the goggles is "Heavy laboratory goggles, tinted to protect [the Professor][apostrophe]s eyes from robot[apostrophe]s bright laser."  Understand "labcoat" as the lab coat. Understand "pink" as the rubber gloves. Understand "tinted" as the goggles. The character of Professor Igneous is Igneous-sprite. The display status of Igneous-sprite is g-active. Professor Igneous can be recognized. Professor Igneous is not recognized.  The printed name of Professor Igneous is "[recognized-name]". Professor Igneous is not proper-named. Understand "scientist" or "madman" or "man" or "prof" as Professor Igneous.
 	
 To say recognized-name:
 	if Professor Igneous is recognized:
@@ -3676,5 +3676,5 @@ Rule for printing the player's obituary:
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[paragraph break]* Did you read every line of the eye chart?[paragraph break]* Did you try talking to the other characters? They know a lot about Marv and his world.[paragraph break]*There are at least 13 ways to end this game, most of them not as pleasant as this one.[paragraph break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (http://zork.net/~nick/ogg/gunpoint_studios/lambda_expressway/)."
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]Did you visit Fibber Island?[line break]* There are at least 13 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
 
