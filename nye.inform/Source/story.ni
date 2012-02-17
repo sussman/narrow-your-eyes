@@ -2568,9 +2568,9 @@ Understand "dream" or "dreams" or "nightmares" or "nightmare" or "vision" or "ha
 
 Understand "Jeremy" or "Flack" as "[alterego]".
 
-Understand "ophthalmology" or "ophthalmologist" as "[ophtho]".
+Understand "ophthalmology" or "ophthalmologist" or "ophthalmologists" as "[ophtho]".
 
-Understand "optometry" or "optometrist" or "optician" as "[opto]".
+Understand "optometry" or "optometrist" or "optician" or "optometrists" or "opticians" as "[opto]".
 
 Section OpthoAsking
 
@@ -2596,7 +2596,7 @@ topic		ophtho-text
 "[contacts]"		"[askContacts]"
 "hastur"		"[askHastur]"
 "[dream]"		"[askDreams]"
-
+"[opto]"		"[askOpto]";
 
 		
 Section OphthoTelling
@@ -2615,7 +2615,7 @@ topic		ophtho-text
 "wedding" or "wedding plans" or "plans"		"[tellPlans]"
 "[moi]" or "work"		"[tellMoi]"
 "hastur"		"[tellHastur]"
-"[dream]"		"[tellDreams]"
+"[dream]"		"[tellDreams]"	
 
 Section CunningAsking
 
@@ -3054,6 +3054,9 @@ To say tellProfJeremy:
 To say askDreams:
 	say "[quotation mark][if the noun is Doctor Giblets]My dream is retire in another five years and have young Trevor here take over the family business.[quotation mark][paragraph break]Trevor offers no comment.[no line break][otherwise]I had the strangest dream the other night I was [one of]driving Pop[apostrophe]s convertible[or]late for math class and had forgotten my homework, and I was totally naked except for some post-it notes[or]dressed in armor and fighting something so incomprehensibly alien that our language cannot convey the horror[or]given the Bloodname of Nagath-Pottork (or Destroyer of Destinies) by our tribal elder and I had just sacrified a black goat upon an alter of gold[or]I can[apostrophe]t remember the first part of the dream, but I do recall the part[stopping] when [randomGirl] suddenly reached over and kissed me. Then I woke up.[quotation mark][end if][paragraph break]".
 	
+To say askOpto:
+	say "You innocently ask [if the noun is Doctor Giblets]Doctor Giblets[otherwise]Trevor[end if] about optometry. He replies, [quotation mark][if the noun is Doctor Giblets]They let anyone wear a white coat today. Hey, did you hear this one? [one of]Why did the optometrist cross the road? Because he couldn[apostrophe]t see the other side! Hah![no line break][or]Three optometrists walk into a bar. Get it? Hah![no line break][or]How many optometrists does it take to change a light bulb? One! Because they keep the lights on for their exams. Hah! Classic.[no line break][or]How do you tell an optometrist from an optician? You don[apostrophe]t! Hah. Great stuff.[no line break][or]What did the opticians wife see in him? Nothing! Hah![no line break][in random order][otherwise]Pop says that optometrists are the root cause of the downfall of Western Civilization.[no line break][end if][quotation mark][paragraph break]".
+		
 To say tellDreams:
 	say "[quotation mark]I[apostrophe]ve been having some vivid dreams,[quotation mark] you say. [quotation mark]Odd ones. I can[apostrophe]t say that I recall them afterwards, except for some fragments. In some, I am like an action hero. Running, shooting, doing kung-fu. In others, I am running, swimming, all that sort of outdoor stuff that I normaly leave for other people.[quotation mark][paragraph break]Trevor and Doctor Giblets agree that you do indeed have some interesting dreams, but chalk it up to nervous energy before the wedding."
 
