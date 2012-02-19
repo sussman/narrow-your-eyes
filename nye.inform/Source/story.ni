@@ -1,4 +1,4 @@
-"Narrow Your Eyes" by Ben Collins-Sussman and Jack Welch
+"Narrow Your Eyes" by Ben Collins-Sussman and Jack Welchultracapacitor
 
 The story headline is "The 10th track on a tribute to TMBG's Apollo 18".
 The release number is 3.
@@ -895,6 +895,15 @@ Carry out hiding:
 	
 Report hiding:
 	say "You look around for a good place to hide, but don[apostrophe]t see any good places."
+	
+Section Insert
+
+Understand the command "connect" as "attach".
+
+Understand the command "plug" as "insert".
+
+Instead of tying the ultracapacitor power module to something (called the receptor):
+	try inserting the ultracapacitor power module into the receptor.
 
 Section Lick
 
@@ -1016,7 +1025,7 @@ Instead of smelling something (called the odor emitter):
 			say  "like cherry coke. You have no idea why";
 		-- hotel entrance:
 			say "like bubblegum";
-		-- supercapacitor power module:
+		-- ultracapacitor power module:
 			say "like bakelite and gunpowder";
 		-- metal locker:
 			say "like an industrial dumpster that has been home to a family of feral cats for several years";
@@ -2137,25 +2146,25 @@ Instead of doing something with something (called the item) when the metal locke
 	otherwise:
 		continue the action.
 
-The metal locker contains a pile of plastic devices. The description of the metal locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "supercapacitors" or "black" or "boxes"  or "device" or "part" or "parts"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]."
+The metal locker contains a pile of plastic devices. The description of the metal locker is "[lockerDescription]". The pile of plastic devices is a fixed in place thing.  Understand "ultracapacitors" or "black" or "boxes"  or "device" or "part" or "parts"  as the pile of plastic devices. The description of the pile of plastic devices is "[pileAppearance]."
 
 To say pileAppearance:
 	if Amelia is supercharged:
-		say "A bunch of supercapacitors like the one currently installed in your mangoFONE";
+		say "A bunch of ultracapacitors like the one currently installed in your mangoFONE";
 	otherwise:
-		if the player does not hold the supercapacitor:
+		if the player does not hold the ultracapacitor:
 			say "They are black plastic boxes, with fashionably rounded corners and some sort of connector at one end. Picking one up, you notice text on one side says [quotation mark]10 farad ultracapacitor power module. Made in West Ispharistan. Patent pending. For terrorist use only.[quotation mark] An indicator shows full power. As you bring the box near your mangoFONE, you note that the phone has opened a port, exactly the size and shape of the connector on the ultracapacitor";
-			move the supercapacitor power module to the player;
+			move the ultracapacitor power module to the player;
 			now the interface port is part of Amelia;
 		otherwise:
 			say "Hundreds of black plastic boxes, just like the one you picked up"
 			
 Instead of inserting something (called the insertee) into something (called the recipient):
-	if the insertee is the supercapacitor power module or the insertee is the connector:
+	if the insertee is the ultracapacitor power module or the insertee is the connector:
 		if the recipient is amelia or the recipient is the interface:
 			say "The ultracapacitor clicks into place and molds seemlessly into the mangoFONE[apostrophe]s obsidian unibody. As it does so, the phone ripples with new found energy, humming a bass note so low that it shakes your intestines.";
 			move the interface to Limbo;
-			move the supercapacitor power module to Limbo;
+			move the ultracapacitor power module to Limbo;
 			now Amelia is supercharged;
 			change phoneCharge to 2000;
 		otherwise:
@@ -2169,8 +2178,8 @@ Instead of doing something with the pile of plastic devices:
 	else if the current action is attacking:
 		say "[one of]No doubt, the pile feels intimidated now[or]Apparently, violence is just the answer when it comes to randomly rearranging a pile of plastic devices in a dark metal locker, while your evil nemesis takes pot shots at you with a robot[or]That will teach them[or]That was cathartic[or]It seems these plastic boxes are just about indestructible[at random].";
 	else if the current action is taking:
-		if the player holds the supercapacitor power module or amelia is supercharged:
-			say "You have already taken one supercapacitor, which should be enough to power a city block for a decade. Grabbing another one won[apostrophe]t help matters.";
+		if the player holds the ultracapacitor power module or amelia is supercharged:
+			say "You have already taken one ultracapacitor, which should be enough to power a city block for a decade. Grabbing another one won[apostrophe]t help matters.";
 		otherwise:
 			try examining the pile of plastic devices;
 	else if the current action is entering:
@@ -2178,8 +2187,8 @@ Instead of doing something with the pile of plastic devices:
 	otherwise:
 		continue the action.
 		
-Instead of throwing, dropping, or attacking the supercapacitor power module:
-	say "That could damage your precious supercapacitor power module. On reconsideration, you hold it protectively."
+Instead of throwing, dropping, or attacking the ultracapacitor power module:
+	say "That could damage your precious ultracapacitor power module. On reconsideration, you hold it protectively."
 				
 After searching the metal locker:
 	if the metal locker does not enclose the player:
@@ -2352,14 +2361,14 @@ Chapter Limbo
 
 Limbo is a room.
 
-The supercapacitor power module is a prop. It is in Limbo. Understand "source" as the supercapacitor power module. The description of the supercapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the supercapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the supercapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The texture of the supercapacitor power module is "smooth, but slightly tacky". 
+The ultracapacitor power module is a prop. It is in Limbo. Understand "source" as the ultracapacitor power module. The description of the ultracapacitor power module is "An extremely high density power source, with a connector and a power indicator."  The connector is part of the ultracapacitor power module. The description of the connector is "A proprietary eighteen prong polarized connector." The indicator is part of the ultracapacitor power module. Understand "meter" as the indicator. The description of the indicator is "The meter shows full charge." The texture of the ultracapacitor power module is "smooth, but slightly tacky". 
 
 Instead of touching, tasting, eating or kissing the connector:
-	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the supercapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash.";
+	say "It's not so much the voltage as the current. As soon as you make contact with one of the eighteen exposed metal prongs on the connector, the ultracapacitor discharges through you in a matter of seconds, leaving a charred pile of carbon ash.";
 	change the endgame to electrocuted;
 	end the game in death.
 
-The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a supercapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The texture of the interface port is "recessed".
+The interface port is a prop. It is in limbo. The description of the interface port is "A proprietary 18-socket port[one of] designed to accept power and control signals from a ultracapacitor power source (or so you intuit)[or][stopping]." Understand "socket" as the interface port. The texture of the interface port is "recessed".
 
 The blast hole is a thing. The blast hole is in Limbo. The description of the blast hole is "A perfectly round hole burned through the thick metal by the robot[apostrophe]s powerful cutting laser." The texture of the blast hole is "sharp around the edges".
 
@@ -2471,7 +2480,7 @@ Instead of doing something with the nose:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "telephone", "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges". 
+Amelia is a woman. Understand "telephone", "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the ultracapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges". 
 
 Instead of pushing or pulling or opening or touching Amelia:
 	try pushing the orange button.
@@ -2690,7 +2699,7 @@ Section CunningShowing
 Table of CunningShowing			
 thing			showing-text		
 Amelia			"[showProfPhone]"
-supercapacitor power module			"[showProfCapacitor]"
+ultracapacitor power module			"[showProfCapacitor]"
 
 Section OcularNarrowing
 
