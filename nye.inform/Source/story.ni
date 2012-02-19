@@ -1,7 +1,7 @@
 "Narrow Your Eyes" by Ben Collins-Sussman and Jack Welchultracapacitor
 
 The story headline is "The 10th track on a tribute to TMBG's Apollo 18".
-The release number is 3.
+The release number is 4.
 The story creation year is 2012.
 The story genre is "Comedy".
 
@@ -900,7 +900,8 @@ Section Insert
 
 Understand the command "connect" as "attach".
 
-Understand the command "plug" as "insert".
+Understand the command "plug" as "insert". 
+Understand the command "stick" as "insert".
 
 Instead of tying the ultracapacitor power module to something (called the receptor):
 	try inserting the ultracapacitor power module into the receptor.
