@@ -1340,7 +1340,7 @@ Instead of Amelia phoneToing:
 	if T matches the regular expression "^<0-9>+$":
 		let n be the number of characters in T;
 		if n is greater than 10:
-			say "Your mangoFONE fades to a deep purple and says, [quotation mark]Error: Phone numbers are limited to ten digits.[quotation mark][paragraph break]";
+			say "Your mangoFONE fades to a deep purple and says, [quotation mark]Error: Phone numbers are limited to a maximum of ten digits.[quotation mark][paragraph break]";
 			change lastDialed to "";
 		otherwise:
 			say "The phone shimmers with golden sparkles, and says, [quotation mark]Dialing number: [T].[quotation mark][paragraph break]";
@@ -2471,7 +2471,7 @@ Instead of doing something with the nose:
 
 Chapter mangoFONE
 
-Amelia is a woman. Understand "telephone", "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges".
+Amelia is a woman. Understand "telephone", "phone","mango","fone","mangofone","cell" or "cellular" as Amelia. The printed name of Amelia is "your mangoFONE". Marv Spindle carries Amelia. The description of Amelia is "[one of]Cut from a single, flawless crystal of lab-grown Obsidian and no doubt polished by countless inadequately paid laborers to a brilliant shine, the pulsing orange glow of the prototype mangoFONE's single button is hypnotic[or]Your beloved mangoFONE, Amelia. Its single orange button glows invitingly[stopping][if the player holds the supercapacitor power module]. The phone’s power coupling port is open[end if][if Amelia is lit]. With the flashlight app on, the phone is glows with pure white light, like tiny nuclear furnace. It is painful to stare directly at it[end if]." Amelia can be shown-to-Trevor. Amelia is not shown-to-Trevor. Amelia can be message-played. Amelia is not message-played. Amelia is not fuzzy. Amelia can be lit. Amelia is not lit. Amelia can be supercharged. Amelia is not supercharged. Amelia is edible. Amelia can be digested. Amelia is not digested. The texture of amelia is "smooth and silky, with sensual, rounded edges". 
 
 Instead of pushing or pulling or opening or touching Amelia:
 	try pushing the orange button.
@@ -2880,7 +2880,7 @@ To say tutorPrompt:
 	say "For a list of available functions, you can say [bold type]Amelia, help[roman type].[no line break]".
 	
 To say noNetwork:
-	say "[paragraph break]The phone turns marroon, and warns, [quotation mark]No SIM card is installed. No phone network is available.[quotation mark][one of][paragraph break]You realize that in your haste to pack for the trip to Washington, DC, you didn’t move your SIM card from your old phone to the mangoFONE that Istvan gave you. Guess that explains the lack of network bars.[no line break][or][stopping][paragraph break]".
+	say "[paragraph break]The phone turns marroon, and warns, [quotation mark]No SIM card is installed. No phone network is available.[quotation mark][paragraph break][one of]You realize that in your haste to pack for the trip to Washington, DC, you didn’t move your SIM card from your old phone to the mangoFONE that Istvan gave you. Guess that explains the lack of network bars. Well, at least you dial numerically[or]Without a SIM card installed in your phone, there is no address book to access. You are limited to inputing actual phone numbers -- not that anyone remembers phone numbers these days[stopping]."
 	
 To say noSelfTalking:
 	say "You have never talked to yourself, and you are not about to start now."
