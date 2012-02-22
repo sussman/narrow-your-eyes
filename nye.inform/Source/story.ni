@@ -1,4 +1,4 @@
-"Narrow Your Eyes" by Ben Collins-Sussman and Jack Welchultracapacitor
+"Narrow Your Eyes" by Ben Collins-Sussman and Jack Welch
 
 The story headline is "The 10th track on a tribute to TMBG's Apollo 18".
 The release number is 4.
@@ -40,9 +40,17 @@ Chapter No More Get All
 [A more efficient no more get all, suggested by Radical Al:]
 
 After reading a command:
-	if the player's command includes "all":
-		say "One thing at a time, please.";
-		reject the player's command.
+	if the player's command matches "get all" or the player's command matches "take all":
+		if the player carries the can:
+			say "You[apostrophe]ve already got more than enough to deal with.";
+		otherwise:
+			say "Taken.";
+			move the can to the player;
+		reject the player's command;
+	otherwise:
+		if the player's command includes "all":
+			say "One thing at a time, please.";
+			reject the player's command.
 	
 Chapter Rules Modifications
 
@@ -320,7 +328,7 @@ A thing has some text called the inscription. The inscription of something is us
 
 A fardrop is a kind of backdrop.
 
-Conclusion is a kind of value. The conclusions are nil, hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared, vomered and won.
+Conclusion is a kind of value. The conclusions are nil, hastured, lasered, parboiled, webbed, drainedCunning, drainedPathetic, jumped, electrocuted, tardyCunning, tardyPathetic, spiteful, rapture, bezoared, vomered, snaked and won.
 
 Endgame is a conclusion that varies. The endgame is usually nil.
 
@@ -2356,6 +2364,7 @@ Instead of pushing, pulling or turning the metal crank shaft:
 	
 The antique phonograph, wax cylinder, thin spiral and metal crank shaft are not fuzzy.
 
+
 Chapter Limbo
 
 [A place for offstage stuff]
@@ -2386,6 +2395,38 @@ Before searching the blast hole:
 	otherwise:
 		say "[tooDarkInside].";
 	stop the action.
+
+The can is a closed openable container. The can is in Limbo. The description of the can is "Unfortunately, you do not understand the hieroglyphics on the can and the fine print is too small for you to read. All you have to go by is the label on the can." 
+
+The label is part of the can. The description of the label is "In the style of ancient Egyptian funereal paintings, the label depicts a regal woman in a long white dress, sporting a collection elaborate jewels. She is riding in a reed boat, along what you suppose is the Nile. It looks like she has just opened a basket, perhaps a gift, and is hugging something to her chest. She does not appear happy[one of][or].[paragraph break]On closer inspection, it looks she is fighting against some sort of serpent[stopping]."
+
+The reed boat is part of the label. The description of the reed boat is "The kind of reed boat that might have transported royalty up and down the Nile during the Hellenistic period. It is both functional and elegant."
+
+The basket is part of the label. The description of the basket is "A woven basket of the sort used to transport deadly snakes. You read about such baskets in last month[apostrophe]s National Geographic."
+
+The jewels are part of the label. The description of the jewels is "Golden jewels inset with either jadite or nephrite. You[apostrophe]ve never understood the distinction. Something green at any rate."
+
+The regal woman is part of the label. Understand "royal" or "royalty" or "queen" or "cleopatra" or "egyptian" as the woman. The description of the woman is "A woman of ageless perfection."
+
+The snake is part of the label. Understand "asp" or "cobra" or "viper" or "pit" or "serpent" or "deadly" or "terrible" as the snake. The description of the snake is "A black snake with a yellow head and sharp, curved fangs."
+
+Instead of opening the can:
+	say "In the second before the deadly serpent springs from the can and embeds its venomous fangs in your flesh, you are pleased that you managed to open a can with no tools whatsoever. Not even a pocketknife. You are a real Boy Scout.";
+	change the endgame to snaked;
+	end the game in death.
+	
+Instead of listening to the can:
+	say "You hear [one of]something moving inside the can, a slithering, sliding sort of sound. It evokes primal fear[or]some sort of hissing, like air escaping from a punctured tire[or]a rattlng sound[or]something uncoiling, as it senses your body heat[in random order]."
+	
+Instead of throwing the can at something:
+	say "The can flys in an erratic arc, as if something inside the can were moving around. It rolls into a corner and is lost in the darkness.";
+	move the can to Limbo.
+	
+Instead of attacking the can:
+	say "The can bucks violently and unleashes a train of hissing sounds that chill you to your very soul."
+	
+Instead of talking the can:
+	say "The can seems entranced by the sound of your voice and remains still."	
 	
 
 Book 3 Characters
@@ -2944,6 +2985,8 @@ To say spitefulText:
 To say vomeredText:
 	say "Too jumpy to live."
 	
+To say snakedText:
+	say "Be careful what you asp for."
 	
 To say timedOut:
 	say "In the distance, you hear chimes ring one o'clock, and after a moment it registers that you have missed your own wedding rehearsal. The frantic compulsion to rush to the rehearsal is replaced by a crushing despondency. You sulk for who knows how long before you flag down a taxi.[paragraph break]"
@@ -3658,7 +3701,7 @@ To do shoot locker:
 			-- 1: 
 				say "A laser beams slams into the locker and bores through it, [one of]narrowly missing your arm[or]mere inches from your leg[or]just above your head[or]dangerously close to your rear end[or]slicing neatly between your legs[or]too close for comfort[or]near enough to singe your eye brows[at random].";
 			-- 2:
-				say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blind you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
+				say "The robot[apostrophe]s laser [one of]drills through[or]punctures[or]skewers[or]transfixes[or]drives completely through[or]ruptures through[or]slices through[or]cuts through[or]perforates[at random] the metal locker and [one of]bits of metal fly off it[or]molten slag drips down its walls[or] continues to the wall, where it leaves a gash[or]blinds you[or]startles you[or]makes a sound like nails on a blackboard[at random].";
 			-- 3:
 				say "The laser beam strikes the metal locker but [one of]is deflected[or]scatters ineffectively[or]reflects towards the ceiling[or]fails to burn through[or]does not dwell in one location long enough to cut through the thick metal[or]only scores the thick metal[or]merely heats the metal to incandescence[at random].";
 			-- 4: 
@@ -3723,9 +3766,11 @@ Rule for printing the player's obituary:
 		-- spiteful:
 			say "[spitefulText]";
 		-- vomered:
-			say "[vomeredText]".
+			say "[vomeredText]";
+		-- snaked:
+			say "[snakedText]".
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]Did you visit Fibber Island?[line break]* There are at least 17 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honey moon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]Did you visit Fibber Island?[line break]* There are at least 16 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Rays[apostrophe] audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
 
