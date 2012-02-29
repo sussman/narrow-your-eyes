@@ -226,6 +226,8 @@ Sound of the sitar is the file "sitar(65872).ogg".
 Sound of the future is the file "futuro(7120).ogg".
 Sound of the past is the file "postero(7120).ogg".
 
+Sound of the YDPIWYSP is the file "YDPIWYSP.ogg".
+
 Table of Sounds
 Sound		Duration  [millisencond]
 The sound of the dtmf-zero		100
@@ -3730,6 +3732,8 @@ Rule for printing the player's obituary:
 	say "*** YOU ";
 	if the endgame is won or the endgame is rapture:
 		say "HAVE WON";
+		if sound is available:
+			play(the sound of the YDPIWYSP);
 	else if the endgame is tardyPathetic or the endgame is drainedPathetic:
 		say "EVENTUALLY DIE";
 	otherwise:
