@@ -1548,7 +1548,7 @@ Section Travel
 
 Traveling is an action applying to nothing.
 
-Understand "travel" or "travel module" or "map" or "maps" or "navigate" or "gps" or "guidance" or "location" or "navigation" as Traveling when the currentUpdateLevel is greater than zero.
+Understand "travel", "travel module", "map", "maps","navigate", "gps", "guidance", "location", "navigation", "direction" or "directions" as Traveling when the currentUpdateLevel is greater than zero.
 
 Persuasion rule for asking Amelia to try Traveling:
 	persuasion succeeds.
