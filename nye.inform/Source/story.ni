@@ -1590,7 +1590,7 @@ Section Updating
 
 Updating is an action applying to nothing.
 
-Understand "update" or "updates" as updating.
+Understand "update", "updates", "install updates", "install update", "show update", "show updates" as updating.
 
 Persuasion rule for asking Amelia to try updating:
 	persuasion succeeds.
