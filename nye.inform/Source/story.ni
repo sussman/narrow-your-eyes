@@ -1284,7 +1284,7 @@ Section Messaging
 
 Messaging is an action applying to nothing.
 
-Understand "message" or "messages" or "text" or "text message" or "message transcript" or "transcribed message" or "voice message" or "voice messages" or "text messages" or "transcribed messages" as messaging.
+Understand "message", "messages", "text", "text message", "message transcript", "transcribed message", "voice message","voice messages","text messages", "transcribed messages", "voice mail", "play message", "play messages" or "voicemail" as messaging.
 
 Persuasion rule for asking Amelia to try messaging:
 	persuasion succeeds.
