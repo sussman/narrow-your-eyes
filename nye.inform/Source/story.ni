@@ -1284,7 +1284,7 @@ Section Messaging
 
 Messaging is an action applying to nothing.
 
-Understand "message", "messages", "text", "text message", "message transcript", "transcribed message", "voice message","voice messages","text messages", "transcribed messages", "voice mail", "play message", "play messages" or "voicemail" as messaging.
+Understand "message", "messages", "text", "text message", "message transcript", "transcribed message", "voice message","voice messages","text messages", "transcribed messages", "voice mail", "play message", "play messages", "read message", "read messages", or "voicemail" as messaging.
 
 Persuasion rule for asking Amelia to try messaging:
 	persuasion succeeds.
@@ -2146,7 +2146,7 @@ Instead of doing something with something (called the item) when the metal locke
 		if Amelia is lit:
 			continue the action;
 		otherwise:
-			if the item is Amelia:
+			if the item is Amelia or the item is the orange button:
 				continue the action;
 			otherwise:
 				say "It is too dark in here to see anything.";
