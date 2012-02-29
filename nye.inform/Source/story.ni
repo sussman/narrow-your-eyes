@@ -2263,7 +2263,7 @@ Instead of touching, taking, eating, or kissing the ultraviolet web:
 
 Chapter CornerNW
 
-CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "You are on a street corner next to a green metal pole. A brass door is to the north, but everything in the distance is blurry."
+CornerNW is a room. The printed name of CornerNW is "The corner of 4th and Eye Streets, NW". The description of the CornerNW is "You are on a downtown street corner. A brass door is to the north, but everything in the distance is blurry."
 
 The pole is a supporter in CornerNW. The description of the pole is "The pole is studded with official traffic signs: snow emergency route, two hour parking zone 2 permit holders only, one way street, metro bus stop, dumping prohibited, loading zone, no parking, alternate parking Wednesdays, yield to pedestrians, slow children... you can only follow the pole upwards so far, before the bright sky bothers your dilated eyes." The pole is not fuzzy.
 
@@ -2589,7 +2589,7 @@ To say recognized-name:
 
 Chapter Giblets
 
-Doctor Giblets is a man in the Ophthalmology Office. Understand "pop" or "ophthalmologist" as Doctor Giblets.
+Doctor Giblets is a man in the Ophthalmology Office. Understand "pop", "doc", or "ophthalmologist" as Doctor Giblets.
 
 Instead of attacking someone (called the victim):
 	if the  victim is Doctor Giblets or the victim is Trevor:
