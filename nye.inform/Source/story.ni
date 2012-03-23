@@ -159,7 +159,7 @@ number	figure-name
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
 
 The tile-array of the robogrid is  {
-     { 13, 12, 1, 1, 1 },
+     { 13, 1, 1, 1, 1 },
      { 4, 10, 1, 1, 6 },
      { 4, 7, 2, 2, 3 },
      { 7, 2, 2, 2, 11 },
@@ -2670,6 +2670,8 @@ Understand "ophthalmology" or "ophthalmologist" or "ophthalmologists" as "[ophth
 
 Understand "optometry" or "optometrist" or "optician" or "optometrists" or "opticians" as "[opto]".
 
+Understand "fundoscopic" or "funduscopic" or "exam"  or "retina" or "fundus" or "macula" as "[fundo]".
+
 Section OpthoAsking
 
 Table of OphthoAsking
@@ -2694,6 +2696,7 @@ topic		ophtho-text
 "[contacts]"		"[askContacts]"
 "hastur"		"[askHastur]"
 "[dream]"		"[askDreams]"
+"[fundo]"		"[askFundo]"
 "[opto]"		"[askOpto]";
 
 		
@@ -2796,7 +2799,7 @@ turnNumber	rant
 21		"[quotation mark]This is far longer than I had expected you to survive. Very well, you have made your point -- you are a most worthy adversary. There. Are you happy? I have said it. Honor is served. Now, would you please allow me to kill you? I shalln[apostrophe]t say please again. I[apostrophe]m getting quite cross, you know.[quotation mark]"
 22		"[quotation mark]Just so you know, I am now turning Lenny[apostrophe]s laser power output down from [apostrophe]vaporize[apostrophe] to [apostrophe]kill[apostrophe] as a reflection of my state of irritation. Rather than blast you to oblivion and move on, I have decided to have you stuffed and mounted in my living room in a comical, but demeaning pose. Not only will you soon be dead, but ridiculed, and no doubt used to hold empty glasses and plates at my dinner parties. Just you consider that.[quotation mark]"
 23		"[quotation mark]The next robot I build will have *ten* lasers and make a much quicker job of it. Ten lasers, one on each arm. And the arms will not all face forward.[quotation mark]" 
-24		"Professor Igneous reaches into his lab coat and produces a cell phone. A feature phone, you note with an air of superiority. One like your grandmother uses.[paragraph break][quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Priscilla?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark] Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark]"
+24		"Professor Igneous reaches into his lab coat and produces a cell phone. A feature phone, you note with an air of superiority. One like your grandmother uses.[paragraph break][quotation mark]Excuse me, I have to take this...[quotation mark][paragraph break][quotation mark]Hello? Priscilla?[quotation mark][paragraph break][quotation mark]Yes, it is I, Professor Igneous.[quotation mark][paragraph break][quotation mark]Sure, this is a fine time.[quotation mark][paragraph break][quotation mark]No, I am still at work. I[apostrophe]m locked in a robot battle to the death with you-know-who.[quotation mark]"
 25		"[quotation mark]Quite a while, actually. I was hoping he[apostrophe]d die very quickly.[quotation mark][paragraph break][quotation mark]No, I am quite certain I can finish him off. I should say he[apostrophe]s in the throws of death even now as we speak.[quotation mark][paragraph break][quotation mark]No, no, I shall be fine. No need. Thanks you for the offer, though, my love.[quotation mark][paragraph break][quotation mark]Got to run. Good luck getting the AI controller. See you tonight! Bye.[quotation mark]"
 26		"[quotation mark]Lenny, do get on with it. I have to be somewhere.[quotation mark]"
 27		"[quotation mark]You know, Jeremy, I am your father.[quotation mark][paragraph break][quotation mark]Yes, you know it to be true. Search your feelings. Join me and we can rule the galaxy together as father and son![quotation mark][paragraph break][quotation mark]Nah. Just kidding.[quotation mark]"
@@ -2961,7 +2964,7 @@ To say raptureText:
 	say "Your call was answered."
 	
 To say laseredText:
-	say "Killed by Lenny,  who was[line break]operated by a madman,[line break]and backed by the 1%."
+	say "[one of]Killed by Lenny,  who was[line break]operated by a madman,[line break]and backed by the 1%[or]A victim of coherent photons,[line break]an unwitting robot,[line break]and an incoherent mad scientist[or]You seem to have reached[line break]a suboptimal outcome[line break]in a formerly existential sense[or]Your unpleasant fate[line break]reminds you that science[line break]is not always in your friend[or]Annihilated by a killer robot.[line break]Your first thought is to blog about it[line break]but you are too dead[or]Sliced in half[line break]by a laser-wielding automaton[line break]like Ben Kenobi versus a Cuisinart[or]Your death is remarkably painful,[line break]but only up to a certain point[or]You've already paid for[line break]flowers and a reception hall;[line break]at least they[apostrophe]ll be useful[line break]at your funeral[or]You recall with some annoyance[line break]that your life insurance excludes[line break]death by lasers, robots and madmen[in random order]."
 	
 To say parboiledText:
 	say "In all likelihood, your funeral will be a closed casket affair."
@@ -3158,6 +3161,9 @@ To say tellProfJeremy:
 To say askDreams:
 	say "[quotation mark][if the noun is Doctor Giblets]My dream is retire in another five years and have young Trevor here take over the family business.[quotation mark][paragraph break]Trevor offers no comment.[no line break][otherwise]I had the strangest dream the other night I was [one of]driving Pop[apostrophe]s convertible[or]late for math class and had forgotten my homework, and I was totally naked except for some post-it notes[or]dressed in armor and fighting something so incomprehensibly alien that our language cannot convey the horror[or]given the Bloodname of Nagath-Pottork (or Destroyer of Destinies) by our tribal elder and I had just sacrificed a black goat upon an alter of gold[or]I can[apostrophe]t remember the first part of the dream, but I do recall the part[stopping] when [randomGirl] suddenly reached over and kissed me. Then I woke up.[quotation mark][end if][paragraph break]".
 	
+To say askFundo:
+	say "Dr. Giblets replies, [quotation mark]To do a full exam, I need to look at the back of your eye, the part that does the actually seeing for your brain. It[apostrophe]s called a funduscopic exam because it[apostrophe]s [italic type]FUN[roman type] for you and me.[quotation mark] He laughs quietly at his own joke for a moment and then admits, [quotation mark]Actually, the fundus is the back part of the eye, and that[apostrophe]s where the exam gets its name.[quotation mark][paragraph break]".
+
 To say askOpto:
 	say "You innocently ask [if the noun is Doctor Giblets]Doctor Giblets[otherwise]Trevor[end if] about optometry. He replies, [quotation mark][if the noun is Doctor Giblets]They let anyone wear a white coat today. Hey, did you hear this one? [one of]Why did the optometrist cross the road? Because he couldn[apostrophe]t see the other side! Hah![no line break][or]Three optometrists walk into a bar. Get it? Hah![no line break][or]How many optometrists does it take to change a light bulb? One! Because they keep the lights on for their exams. Hah! Classic.[no line break][or]How do you tell an optometrist from an optician? You don[apostrophe]t! Hah. Great stuff.[no line break][or]What did the opticians wife see in him? Nothing! Hah![no line break][in random order][otherwise]Pop says that optometrists are the root cause of the downfall of Western Civilization.[no line break][end if][quotation mark][paragraph break]".
 		
