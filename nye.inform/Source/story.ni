@@ -159,7 +159,7 @@ number	figure-name
 The robogrid is a tileset image-map.  The associated tileset is Robo.  The associated canvas is the graphics-canvas.
 
 The tile-array of the robogrid is  {
-     { 13, 1, 1, 1, 1 },
+     { 13, 12, 1, 1, 1 },
      { 4, 10, 1, 1, 6 },
      { 4, 7, 2, 2, 3 },
      { 7, 2, 2, 2, 11 },
