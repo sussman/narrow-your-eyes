@@ -1,7 +1,7 @@
 "Narrow Your Eyes" by Ben Collins-Sussman and Jack Welch
 
 The story headline is "The 10th track on a tribute to TMBG's Apollo 18".
-The release number is 5.
+The release number is 6.
 The story creation year is 2012.
 The story genre is "Comedy".
 
