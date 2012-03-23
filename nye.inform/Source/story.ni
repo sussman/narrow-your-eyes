@@ -654,12 +654,12 @@ Chapter AI Logic for Igneous
 A Movement is a kind of value.  The Movements are m-forward, m-back, m-right, m-left, and m-pass.  
 
 Table of Choices
-Movement		Goodness		facing-direction
-m-right		100		hither
-m-left		100		hither
-m-forward		100		hither
-m-back		100		hither
-m-pass		100		hither
+Movement		Goodness		facing-direction	longitude	latitude
+m-right		100		hither	1	1
+m-left		100		hither	1	1
+m-forward		100		hither	1	1
+m-back		100		hither	1	1
+m-pass		100		hither	1	1
 
 [To say choices:
 	if muted is false:
@@ -789,7 +789,9 @@ To calculate the future results of (choice - a movement):
 				do nothing;
 		[store the final hypothetical facing-direction in our Table]
 		now the facing-direction corresponding to a Movement of choice in the Table of Choices is D;
-		[convert the final x,y position into a 'Goodness" value which is the distance to Marv's column]
+		now the longitude corresponding to a Movement of choice in the Table of Choices is X;
+		now the latitude corresponding to a Movement of choice in the Table of Choices is Y;			
+		[convert the final x,y position into a 'Goodness" value -- which is the absolute distance to Marv's column]
 		let PX be entry 1 of the grid-coordinate of the Marv-sprite;
 		now the Goodness corresponding to a Movement of choice in the Table of Choices is the absolute value of (X - PX); 
 	otherwise:   [FAIL:  either x,y is out of bounds or the move would make us cross the UV laser]
@@ -823,6 +825,13 @@ To decide which number is an AI move:
 		repeat with N running from 1 to the number of rows in the Table of Choices:
 			calculate the future results of the movement in row N of the Table of Choices;
 		let M be the best choice;
+		[Sanity check: if the 'best' move would have us end up in the same coordinates we're already in, then make a random move.]
+		let currentX be entry 1 of the grid-coordinate of the character of the robot;
+		let currentY be entry 2 of the grid-coordinate of the character of the robot;
+		let proposedX be the longitude corresponding to a Movement of M in the Table of Choices;
+		let proposedY be the latitude corresponding to a Movement of M in the Table of Choices;
+		if (currentX is proposedX) and (currentY is proposedY):
+			let M be a random Movement;
 		if M is:
 			-- m-forward:
 				decide on 5;
@@ -3780,5 +3789,5 @@ Rule for printing the player's obituary:
 		
 						
 Rule for amusing a victorious player:
-say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honeymoon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]Did you visit Fibber Island?[line break]* There are at least 16 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Ray[apostrophe]s audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
+say "Congratulations for surviving the day of your wedding rehearsal. Of course, it's not over yet. You still have the bachelor party and the wedding itself, not to mention the honeymoon. Yes, you certainly do seem to attract trouble, don't you?[paragraph break]Now that you have won, we can reveal the secret magical word [quotation mark]Allotheria[quotation mark]. This command will transform the orderly factory floor into a swirling maelstrom of cybernetic chaos.[paragraph break]Here are some tidbits about the game:[paragraph break]* Is Marv’s adventure over? Probably not.[line break]* Did you read every line of the eye chart?[line break]* Did you try talking to the other characters? They know a lot about Marv and his world.[line break]* Did you try narrowing your eyes?[line break]*Have you played Trees versus Mummies?[line break]* Did you visit Fibber Island?[line break]* There are at least 16 ways to end this game, most of them not as pleasant as this one.[line break]* Some elements of this story were inspired by Erik Ray[apostrophe]s audio adventure, Lambda Expressway. If you have never heard it, you are in for a treat (Google it)."
 
