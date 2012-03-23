@@ -134,6 +134,7 @@ Figure of Blank is the file "blank.png".
 Figure of PartsLocker is the file "partsLocker.png".
 Figure of Igneous is the file "Igneous.png".
 Figure of Marv is the file "Marv.png".
+Figure of RobotClear is the file "clear.png".
 
 Robo is a tileset.  The translation-table is the Table of Robo Tiles.  The tile-width is 80.  The tile-height is 80.
 
@@ -451,6 +452,10 @@ To set starting coordinates of (xcoord - a number) and (ycoord - a number):
 	change starty to ycoord.
 	
 To finalize the coordinates of (xcoord - a number) and (ycoord - a number):
+	let temp be the image-ID of the character of the robot;
+	now the image-ID of the character of the robot is Figure of RobotClear;
+	follow the window-drawing rules for the graphics-window;
+	now the image-ID of the character of the robot is temp;
 	change entry 1 of the grid-coordinate of the character of the robot to startx;
 	change entry 2 of the grid-coordinate of the character of the robot to starty;
 	follow the window-drawing rules for the graphics-window;
