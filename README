@@ -30,7 +30,7 @@ To build the game:
 
 1. Create a working Inform project from your source tree:
 
-  $ hg clone URL nye
+  $ git clone URL nye
   $ cd nye
   $ mv nye.inform/ temp.inform/
 
